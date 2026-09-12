@@ -38,7 +38,7 @@ author: Oséias Farias
 
 <center>
 <div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/arquitetura_firmware-1.png?raw=true"
+  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/arquitetura_firmware-1.png?raw=true"
        width="900">  
   <p>Figura 1 - Diagrama de blocos do Sistema em Malha Fechada.</p>
 </div>

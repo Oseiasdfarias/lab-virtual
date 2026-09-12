@@ -1,7 +1,7 @@
 site_name: Laboratório Virtual
 
-repo_url: https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial
-repo_name: Projeto_Tcc_Oseias_Oficial
+repo_url: https://github.com/Oseiasdfarias/lab-virtual
+repo_name: lab-virtual
 
 theme:
   logo: logo.svg

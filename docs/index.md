@@ -8,7 +8,7 @@ hide:
 </p>
 
 <p align="center" height="30px">
-  <img style="height: 30px" src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/logos_lg/UFPA-removebg-preview.png?raw=true">
+  <img style="height: 30px" src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/logos_lg/UFPA-removebg-preview.png?raw=true">
 </p>
 
 Esse projeto surgiu do desenvolvimento de um <strong>trabalho de conclusão de curso</strong>, intitulado, <strong>Desenvolvimento de Protótipo e Gêmeo Digital como Ferramenta para um Laboratório Virtual com Foco em Modelagem e Controle de Sistemas Dinâmicos</strong>, desennvolvido na <strong>Universidade Federal do Pará</strong> no <strong>Campus de Tucuruí</strong>, pelo discente da <strong>Faculdade de Engenharia Elétrica</strong>, <strong>Oséias Farias</strong>. 
@@ -36,7 +36,7 @@ Esse projeto surgiu do desenvolvimento de um <strong>trabalho de conclusão de c
 
 
 
-### <a href="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial" target="_blank">
+### <a href="https://github.com/Oseiasdfarias/lab-virtual" target="_blank">
 Projeto no GitHub</a>
 
 
@@ -68,7 +68,7 @@ Projeto no GitHub</a>
 Implementa um aeropêndulo real, pode ser usado para estudos e testes de controladores e identificação de sistemas etc.
 
 <figure markdown>
-<img src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/img_aeropendulo.png?raw=true" alt="Protótipo Aeropêndulo" style="height: 70%; width:70%;"/>
+<img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/img_aeropendulo.png?raw=true" alt="Protótipo Aeropêndulo" style="height: 70%; width:70%;"/>
 </figure>
 
 
@@ -76,7 +76,7 @@ Implementa um aeropêndulo real, pode ser usado para estudos e testes de control
 Usa o sinal de saída (ângulo) para realizar a dinâmica do sinulador.
 
 <figure markdown>
-<img src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/gemeo_digital.png?raw=true" alt="Gêmeo Digital" style="height: 70%; width:70%;"/>
+<img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/gemeo_digital.png?raw=true" alt="Gêmeo Digital" style="height: 70%; width:70%;"/>
 </figure>
 
 
@@ -84,13 +84,13 @@ Usa o sinal de saída (ângulo) para realizar a dinâmica do sinulador.
 Usada para iteragir em tempo real com o protótipo, esse sistema plotado os gráficos da posição angular, erro, sinal de referência, sinal PRBS e sinal de controle em malha fechada.
 
 <figure markdown>
-<img src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/demo_interface_light.png?raw=true" alt="Interface Gráfica de Usuário" style="height: 70%; width:70%;"/>
+<img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/demo_interface_light.png?raw=true" alt="Interface Gráfica de Usuário" style="height: 70%; width:70%;"/>
 </figure>
 
 ### Firmware
 Implementa o controlador, envio e recebimento de dados inteface gráfica / microcontrolador, geração de sinal de referência, leitura do sensor potenciômetro.
 
 <figure markdown>
-<img src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/arquitetura_firmware-1.png?raw=true" alt="Firmware" style="height: 70%; width:70%;"/>
+<img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/arquitetura_firmware-1.png?raw=true" alt="Firmware" style="height: 70%; width:70%;"/>
 </figure>
 

@@ -38,7 +38,7 @@ author: Oséias Farias
 
 <center>
 <div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/demo_interface_light.png?raw=true"
+  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/demo_interface_light.png?raw=true"
        width="900">  
   <p>Figura 1 - Interface Gráfica de Usuário.</p>
 </div>
