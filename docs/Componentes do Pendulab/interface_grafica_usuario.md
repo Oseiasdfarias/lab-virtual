@@ -18,7 +18,7 @@ author: Oséias Farias
 
 <center>
 <div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/LabVirtual/blob/pipy_v1/utils/image.png?raw=true"
+  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/brand/png/icone-256.png?raw=true"
        width="80">  
 </div>
 </center>
@@ -46,6 +46,6 @@ author: Oséias Farias
 
 <br/>
 
-# EM DESENOLVIMENTO ...
+# Em desenvolvimento
 
 <br/>
