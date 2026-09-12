@@ -1,0 +1,178 @@
+projeto: "TCC - Identificação de Sistemas, Simulador Gráfico e Prototipagem de um Aeropêndulo"
+titulo_completo_site: "Desenvolvimento de Protótipo e Gêmeo Digital como Ferramenta para um Laboratório Virtual com Foco em Modelagem e Controle de Sistemas Dinâmicos"
+autor: "Oséias Farias"
+instituicao: "UFPA - Campus Universitário de Tucuruí, Faculdade de Engenharia Elétrica"
+gerado_em: "2026-09-12"
+
+uso:
+  descricao: >
+    Índice mestre dos resumos em docs_tcc/. Objetivo: servir de contexto rápido para
+    assistentes de IA sem precisar reabrir os arquivos-fonte originais (LaTeX, PDFs,
+    notebooks, código-fonte) inteiros a cada tarefa.
+  como_consultar: >
+    1) Leia este index.yaml para achar o documento certo pelo tema/tags.
+    2) Abra o .md correspondente (já é um resumo processado).
+    3) Só abra o arquivo em `fonte` quando precisar de detalhe que não está no resumo.
+  aviso: >
+    Estes resumos refletem o estado do projeto em 2026-09-12. Se a monografia, o código
+    ou os materiais mudarem depois disso, os resumos ficam desatualizados até serem
+    regenerados manualmente (não há regeneração automática).
+
+fontes_principais:
+  monografia_final_tex: "revisao_tcc/Template_TCC_FEE/tcc_oseias_farias.tex"
+  monografia_final_pdf: "revisao_tcc/Template_TCC_FEE/tcc_oseias_farias.pdf"
+  monografia_bibliografia_real: "revisao_tcc/Template_TCC_FEE/bibtex-referencias.bib"
+  monografia_copias_revisao_desatualizadas: ["revisao_tcc/TCC-Oseas/", "revisao_tcc/andre/"]
+  software: "softwares_aeropendulo/"
+  site_publicado: "docs/ (mkdocs.yml na raiz, publicado via GitHub Pages)"
+  materiais_complementares: "materiais_complementares/"
+
+documentos:
+  - path: docs_tcc/00_overview.md
+    titulo: "Visão geral do projeto"
+    resumo: "Mapa de todo o projeto (4 frentes: protótipo, firmware, interface, gêmeo digital), onde está cada coisa, e os 3 objetivos do usuário (finalizar doc, artigo, livro)."
+    tags: [overview, navegacao]
+
+  - path: docs_tcc/01_monografia/resumo.md
+    titulo: "Visão geral da monografia"
+    fonte: "revisao_tcc/Template_TCC_FEE/tcc_oseias_farias.tex e includes"
+    resumo: "Estrutura de 4 capítulos, objetivos geral/específicos, status por capítulo. Nota crítica: arquivo mestre usa elementos_textuais/ e elementos_pretextuais/, não Capitulos/ e PreTextual/."
+    tags: [monografia, overview, latex]
+
+  - path: docs_tcc/01_monografia/cap1_introducao.md
+    titulo: "Capítulo 1 — Introdução"
+    fonte: "elementos_textuais/Cap_1_introducao.tex"
+    resumo: "Contexto, motivação, problema, objetivos geral/específicos, justificativa, estrutura do trabalho."
+    tags: [monografia, cap1, introducao]
+
+  - path: docs_tcc/01_monografia/cap2_aeropendulo.md
+    titulo: "Capítulo 2 — Aeropêndulo (fundamentação e modelagem)"
+    fonte: "Capitulos/2_aeropendulo/*.tex"
+    resumo: "Fundamentação teórica e modelagem analítica completas. 2_1_descricao.tex e 2_4_modelagem_identificacao_sistemas.tex são rascunhos abandonados (não usados na compilação final)."
+    tags: [monografia, cap2, modelagem, aeropendulo]
+
+  - path: docs_tcc/01_monografia/cap3_hardware_softwares.md
+    titulo: "Capítulo 3 — Hardware e Softwares (desenvolvimento)"
+    fonte: "Capitulos/3_hardware_softwares/*.tex"
+    resumo: "Arquitetura geral do sistema: prototipagem, simulador Python, interface gráfica, firmware, ecossistema. Completo."
+    tags: [monografia, cap3, arquitetura, hardware, software]
+
+  - path: docs_tcc/01_monografia/cap3_resultados.md
+    titulo: "Capítulo 3 — Resultados e Discussões"
+    fonte: "Cap_3_Resultados_e_Discussoes.tex"
+    resumo: "Ensaios e identificação de sistemas (PRBS + mínimos quadrados). Validação qualitativa/visual, sem métricas quantitativas de erro (RMSE/EQM) — limitação reconhecida pelo autor."
+    tags: [monografia, cap3, resultados, identificacao_sistemas]
+
+  - path: docs_tcc/01_monografia/cap4_conclusao.md
+    titulo: "Capítulo 4 — Conclusão"
+    fonte: "Cap_4_ Conclusao.tex"
+    resumo: "Contribuições, limitações reconhecidas pelo autor, trabalhos futuros sugeridos."
+    tags: [monografia, cap4, conclusao]
+
+  - path: docs_tcc/01_monografia/pretextual.md
+    titulo: "Elementos pré-textuais (resumo, abstract, siglas, símbolos)"
+    fonte: "elementos_pretextuais/*.tex"
+    resumo: "Resumo e abstract do TCC. Listas de siglas/símbolos parecem genéricas de template, sem relação real com o aeropêndulo — não confiar sem checar."
+    tags: [monografia, pretextual, resumo, abstract]
+
+  - path: docs_tcc/01_monografia/referencias.md
+    titulo: "Bibliografia da monografia"
+    fonte: "revisao_tcc/Template_TCC_FEE/bibtex-referencias.bib (17 entradas — não confundir com Capitulos/Referencias.bib)"
+    resumo: "Catálogo temático das referências centrais. Bugs: entradas vpython/vpython11 com URL errada, entrada 'exemplo' é resíduo de template."
+    tags: [monografia, bibliografia, referencias]
+
+  - path: docs_tcc/01_monografia/pendencias.md
+    titulo: "Pendências de revisão da monografia (diff rascunho x final + sugestões do orientador)"
+    fonte: "diff entre revisao_tcc/TCC-Oseas/Capitulos/ e revisao_tcc/Template_TCC_FEE/Capitulos/; revisao_tcc/andre/Sugestões TCC - Oseias.docx"
+    resumo: "O que já foi corrigido na versão final; sugestões do orientador (docx lido com sucesso via pandoc); 2 equações do Cap.3 com \\frac{numerador}{denominador} literal (bug); erro de concordância no Cap.4."
+    tags: [monografia, revisao, pendencias, orientador]
+
+  - path: docs_tcc/02_software/visao_geral.md
+    titulo: "Arquitetura geral do software"
+    fonte: "softwares_aeropendulo/ (pyproject.toml, README.md, main_aeropendulo.py, rungui.py)"
+    resumo: "rungui.py é o entry point real. main_aeropendulo.py está QUEBRADO (importa classes que não existem mais)."
+    tags: [software, arquitetura, python, overview]
+
+  - path: docs_tcc/02_software/simulador_aeropendulo.md
+    titulo: "Simulador / gêmeo digital (Python)"
+    fonte: "softwares_aeropendulo/simulador_aeropendulo/*.py"
+    resumo: "Modelo dinâmico do aeropêndulo, animação e geração de gráficos. Pasta interfaces/ contém só classes abstratas (ABC), não é duplicata."
+    tags: [software, simulador, gemeo_digital, python]
+
+  - path: docs_tcc/02_software/interface_grafica.md
+    titulo: "Interface gráfica (PC)"
+    fonte: "softwares_aeropendulo/src_interface/*.py"
+    resumo: "Comunicação serial com o protótipo, plotagem em tempo real, coleta e persistência de dados de ensaio em CSV."
+    tags: [software, interface_grafica, serial, python]
+
+  - path: docs_tcc/02_software/firmware_microcontroladores.md
+    titulo: "Firmware (Arduino / ESP32)"
+    fonte: "softwares_aeropendulo/firmwares_microcontroladores/ (Arduino_IDE/ e PlatformIo/)"
+    resumo: "Variante mais completa é PlatformIo/Esp32_ttgo_modulos (PID, malha aberta/fechada). Esp32_ttgo_modulos_freertos é enganoso: não usa FreeRTOS de fato e tem menos funcionalidade. Bugs: syntax error no Arduino_Nano/main.cpp, arquivos vazios em Esp32_ttgo/lib, possível bug de dimensionamento no PID e no clamp do conversor."
+    tags: [software, firmware, esp32, arduino, pid, cpp]
+
+  - path: docs_tcc/02_software/dados_ensaios.md
+    titulo: "Dados de ensaio (CSV)"
+    fonte: "softwares_aeropendulo/src_interface/dados_de_ensaio/*.csv (9 arquivos)"
+    resumo: "Ensaios reais do aeropêndulo, sem cabeçalho nomeado (só índices). Mapeamento de colunas inferido do protocolo serial do firmware, não documentado formalmente em nenhum lugar do projeto."
+    tags: [software, dados, ensaios, csv]
+
+  - path: docs_tcc/03_docs_publicadas/resumo_mkdocs.md
+    titulo: "Site de documentação publicado (MkDocs/GitHub Pages)"
+    fonte: "docs/ + mkdocs.yml"
+    resumo: "Páginas de instalação e referência técnica (mkdocstrings) completas. 4 páginas ('Componentes do Pendulab', 'Módulo Firmware') marcadas 'EM DESENVOLVIMENTO', sem conteúdo real."
+    tags: [docs_publicadas, mkdocs, site, incompleto]
+
+  - path: docs_tcc/04_materiais_complementares/identificacao_sistemas.md
+    titulo: "Materiais de identificação de sistemas"
+    fonte: "materiais_complementares/analise_de_sinais/, materiais_complementares/Identificacao_de_Sistemas/"
+    resumo: "Forte duplicação de notebooks entre raiz, identificacao_aeropendulo/ e identificacao_aeropendulo/ident_up/ (esta última é a mais avançada — foca no aeropêndulo real, cadeia completa identificação→discretização→validação→projeto PI)."
+    tags: [materiais_complementares, identificacao_sistemas, notebooks, duplicacao]
+
+  - path: docs_tcc/04_materiais_complementares/modelagem_sistema.md
+    titulo: "Materiais de modelagem do sistema"
+    fonte: "materiais_complementares/Modelagem_do_Sistema/"
+    resumo: "Dedução matemática do aeropêndulo e motor CC série. Arquivo mais completo/citável: Simulacoes/Aeropendulo_Python/arquivos_complementares/README.md (espaço de estados + código completo)."
+    tags: [materiais_complementares, modelagem, matematica, simulacao]
+
+  - path: docs_tcc/04_materiais_complementares/prototipagem_braco.md
+    titulo: "Materiais de prototipagem do braço"
+    fonte: "materiais_complementares/Prototipagem_do_Braco_de_Helicoptero/"
+    resumo: "Diagramas, desenhos, parte elétrica por componente (ESP32, ponte H, potenciômetro, fonte, capacitor/resistor) e parte estrutural do protótipo físico."
+    tags: [materiais_complementares, prototipagem, hardware, eletronica]
+
+  - path: docs_tcc/04_materiais_complementares/bibliografia.md
+    titulo: "Bibliografia bruta e materiais de estudo"
+    fonte: "materiais_complementares/Bibliografias/, materiais_complementares/Materiais_de_Estudos/"
+    resumo: "~19 PDFs em 6 categorias (braço levitador, motor CC série, controladores, livros como Ogata/Ljung, NRMSE, TCC de referência) + tutoriais do blog 'ThePoorEngineer' que parecem ter inspirado a arquitetura de hardware/software."
+    tags: [materiais_complementares, bibliografia, referencias]
+
+  - path: docs_tcc/04_materiais_complementares/cronograma.md
+    titulo: "Cronograma e estrutura originalmente planejada"
+    fonte: "materiais_complementares/cronograma_estrutura_tcc/, materiais_complementares/Modelos_de_Documentos_Uteis/"
+    resumo: "Plano original previa ~6-8 capítulos; versão final consolidou em 4, fundindo protótipo+modelagem+controle no Cap.2 e resultados de identificação/controle no Cap.3."
+    tags: [materiais_complementares, cronograma, estrutura, planejamento]
+
+  - path: docs_tcc/05_plano_publicacoes/pendencias_documentacao.md
+    titulo: "Punch list — o que falta para finalizar a documentação"
+    fonte: "síntese de 01_monografia/pendencias.md, 02_software/*, 03_docs_publicadas/resumo_mkdocs.md"
+    resumo: "Lista consolidada e acionável (checkboxes) de tudo que falta corrigir/completar: monografia, software, site publicado, organização do repo."
+    tags: [plano, pendencias, punch_list, proximos_passos]
+
+  - path: docs_tcc/05_plano_publicacoes/plano_artigo.md
+    titulo: "Plano do artigo (esqueleto, não definido)"
+    resumo: "Inventário do material que já sustenta um artigo (modelagem, identificação de sistemas, protótipo+firmware+interface+gêmeo digital) e perguntas em aberto para definir escopo/veículo com o usuário."
+    tags: [plano, artigo, publicacao, a_definir]
+
+  - path: docs_tcc/05_plano_publicacoes/plano_livro.md
+    titulo: "Plano do livro (esqueleto, não definido)"
+    resumo: "Inventário do material que sustenta um livro mais amplo que o artigo (fundamentação, identificação aplicada, construção do protótipo do zero, simulação) e perguntas em aberto sobre público-alvo e formato."
+    tags: [plano, livro, publicacao, a_definir]
+
+alertas_criticos:
+  - "main_aeropendulo.py quebrado (softwares_aeropendulo/) — importa classes inexistentes; usar rungui.py como entry point."
+  - "2 equações do Cap.3 da monografia final com \\frac{numerador}{denominador} literal em vez dos coeficientes reais."
+  - "4 páginas do site MkDocs publicado estão vazias ('EM DESENVOLVIMENTO')."
+  - "firmwares_microcontroladores/PlatformIo/Arduino_Nano/src/main.cpp não compila (erro de sintaxe)."
+  - "Esp32_ttgo_modulos_freertos não usa FreeRTOS de fato, apesar do nome — não confundir com a variante mais completa (Esp32_ttgo_modulos)."
+  - "Bibliografia real da monografia é revisao_tcc/Template_TCC_FEE/bibtex-referencias.bib, NÃO Capitulos/Referencias.bib."
