@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.14 163.14" width="163" height="163" role="img" aria-label="Laboratório Virtual">
+  <line x1="26.71" y1="36.04" x2="26.71" y2="136.04" stroke="#FFCDCD" stroke-width="3.57" stroke-dasharray="7.14 7.14" stroke-linecap="butt" opacity="1.0"/>
+  <line x1="26.71" y1="36.04" x2="103.32" y2="100.31" stroke="#FF5757" stroke-width="8.93" stroke-linecap="round"/>
+  <line x1="103.32" y1="100.31" x2="121.68" y2="78.43" stroke="#FF5757" stroke-width="16.07" stroke-linecap="round"/>
+  <line x1="99.80" y1="60.06" x2="143.57" y2="96.79" stroke="#FF5757" stroke-width="7.14" stroke-linecap="round"/>
+  <circle cx="26.71" cy="36.04" r="10.71" fill="#FF5757"/>
+  <path d="M 33.18 82.01 A 46.43 46.43 0 0 0 58.97 69.43" fill="none" stroke="#FF8989" stroke-width="4.46" stroke-linecap="round" opacity="1.0"/>
+  <polygon points="0,-6.43 14.29,0 0,6.43" fill="#FF8989" opacity="1.0" stroke="#FF8989" stroke-width="0.00" stroke-linejoin="round" transform="translate(58.97 69.43) rotate(-46.00)"/>
+</svg>

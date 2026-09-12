@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 162.27 162.27" width="162" height="162" role="img" aria-label="Laboratório Virtual">
+  <line x1="27.53" y1="53.21" x2="104.13" y2="117.49" stroke="#1D1D1F" stroke-width="22.18" stroke-linecap="round"/>
+  <line x1="27.53" y1="53.21" x2="104.13" y2="117.49" stroke="#F5F5F7" stroke-width="12.05" stroke-linecap="round"/>
+  <line x1="104.13" y1="117.49" x2="122.50" y2="95.60" stroke="#1D1D1F" stroke-width="31.82" stroke-linecap="round"/>
+  <line x1="104.13" y1="117.49" x2="122.50" y2="95.60" stroke="#F5F5F7" stroke-width="21.70" stroke-linecap="round"/>
+  <line x1="100.61" y1="77.24" x2="144.38" y2="113.97" stroke="#1D1D1F" stroke-width="19.77" stroke-linecap="round"/>
+  <line x1="100.61" y1="77.24" x2="144.38" y2="113.97" stroke="#F5F5F7" stroke-width="9.64" stroke-linecap="round"/>
+  <circle cx="27.53" cy="53.21" r="19.53" fill="#1D1D1F"/>
+  <circle cx="27.53" cy="53.21" r="14.46" fill="#F5F5F7"/>
+</svg>

@@ -1,11 +1,9 @@
 <p align="center">
-  <img height="73px" src="utils/logos_lg/logo_ufpa.png">
-  <img height="70px" src="utils/favicon_aeropendulo_png.png">
+  <img height="110px" src="./brand/png/logo-vertical-800.png" alt="Laboratório Virtual">
 </p>
 
 <p align="center">
-  <img height="30" src="./utils/logos_lg/UFPA-removebg-preview.png"> &
-  <a href="https://oseiasdfarias.github.io/Projeto_Tcc_Oseias_Oficial/"><img height="30" src="./utils/logos_lg/Pendulab_lg-removebg-preview.png"></a>
+  <img height="30" src="./utils/logos_lg/UFPA-removebg-preview.png">
 </p>
 
 <p align="center">

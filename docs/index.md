@@ -4,14 +4,12 @@ hide:
 ---
 
 <p align="center">
-<img src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/favicon_aeropendulo_png.png?raw=true" alt="Protótipo Aeropêndulo" style="height: 10%; width:10%;"/>
+  <img src="logo-horizontal.png" alt="Laboratório Virtual" style="max-width: 420px; width: 70%;"/>
 </p>
 
 <p align="center" height="30px">
-  <img style="height: 30px" src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/logos_lg/UFPA-removebg-preview.png?raw=true"> & <img style="height: 30px" src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/logos_lg/Pendulab_lg-removebg-preview.png?raw=true">
+  <img style="height: 30px" src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/logos_lg/UFPA-removebg-preview.png?raw=true">
 </p>
-
-<h1 align=center><strong>Documentação PenduLab</strong></h1>
 
 Esse projeto surgiu do desenvolvimento de um <strong>trabalho de conclusão de curso</strong>, intitulado, <strong>Desenvolvimento de Protótipo e Gêmeo Digital como Ferramenta para um Laboratório Virtual com Foco em Modelagem e Controle de Sistemas Dinâmicos</strong>, desennvolvido na <strong>Universidade Federal do Pará</strong> no <strong>Campus de Tucuruí</strong>, pelo discente da <strong>Faculdade de Engenharia Elétrica</strong>, <strong>Oséias Farias</strong>. 
 
@@ -32,7 +30,7 @@ Esse projeto surgiu do desenvolvimento de um <strong>trabalho de conclusão de c
 ---
 
 
-## Demostração Pendulab
+## Demonstração do Laboratório Virtual
 
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/893039111?h=80089a63c1&autoplay=1&loop=1" style="position:absolute;top:0;left:0;width:90%;height:90%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 

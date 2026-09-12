@@ -9,3 +9,6 @@
     --md-primary-fg-color--light: #ECB7B7;
     --md-primary-fg-color--dark:  #90030C;
   }
+
+  /* O logo padrão tem contorno, então funciona tanto no cabeçalho claro (#f0f0f0)
+     quanto no escuro (#14151A) — não precisa de troca por tema. */

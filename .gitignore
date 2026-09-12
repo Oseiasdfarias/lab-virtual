@@ -28,3 +28,6 @@ correcao_professor/
 previa_tcc/
 site/
 apresentacao/
+
+# Sessões do companheiro visual (Claude Code / superpowers)
+.superpowers/
