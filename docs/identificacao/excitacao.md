@@ -9,6 +9,20 @@ vez de deduzi-lo puramente da física (comparar com a [Modelagem Matemática](..
 O primeiro passo é excitar o sistema real com um sinal conhecido e registrar como ele
 responde.
 
+```mermaid
+flowchart TB
+  A["PRBS em malha aberta<br/>0,4 Hz · 0,3 V · offset 1 V"] --> B["Ensaio no protótipo<br/>Ts = 0,02 s"]
+  B --> C[("CSV · 7 colunas")]
+  C --> D["Mínimos quadrados<br/>modelo discreto"]
+  D --> E["2ª ordem"]
+  D --> F["10ª ordem (ARX)"]
+  E -- "validação: simulada × real" --> X["<b>insuficiente</b>"]
+  F -- "validação: simulada × real" --> Y["<b>aceitável</b>"]
+```
+
+Esta página cobre as três primeiras etapas; a estimação e a validação têm páginas próprias
+([Estimação por Mínimos Quadrados](estimacao.md) e [Validação do Modelo](validacao.md)).
+
 ## Por que PRBS
 
 Um sinal PRBS (*Pseudo-Random Binary Sequence*) alterna entre dois níveis fixos seguindo uma
@@ -76,3 +90,4 @@ ensaio de identificação e compara a saída simulada com a saída real medida �
 
 **Ver também:** [← Modelagem Matemática](../modelagem/index.md) ·
 [Estimação por Mínimos Quadrados →](estimacao.md)
+{ .lv-see-also }

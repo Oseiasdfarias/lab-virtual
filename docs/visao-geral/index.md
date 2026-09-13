@@ -53,6 +53,17 @@ acontece, siga [Protótipo](../prototipo/index.md) →
 [Gêmeo Digital](../gemeo-digital/index.md) →
 [Software](../software/interface-grafica.md).
 
+```mermaid
+flowchart TB
+  P["<b>Protótipo</b><br/>haste, motor CC com hélice, potenciômetro"]
+  M["<b>Modelagem Matemática</b><br/>equações da física e linearização"]
+  I["<b>Identificação de Sistemas</b><br/>PRBS, mínimos quadrados e validação"]
+  C["<b>Projeto de Controle</b><br/>PID no firmware e ensaios em malha fechada"]
+  G["<b>Gêmeo Digital</b><br/>animação 3D e gráficos em tempo real"]
+  S["<b>Software</b><br/>firmware ESP32 e interface gráfica Python"]
+  P --> M --> I --> C --> G --> S
+```
+
 ## Origem acadêmica
 
 Este laboratório é o resultado do Trabalho de Conclusão de Curso de **Oséias Dias de
@@ -65,3 +76,4 @@ aberto na Biblioteca Digital de Monografias da UFPA, em
 ---
 
 **Ver também:** [Arquitetura do Sistema →](arquitetura.md)
+{ .lv-see-also }

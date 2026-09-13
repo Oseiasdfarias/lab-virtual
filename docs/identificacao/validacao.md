@@ -46,3 +46,4 @@ no repositório para o item em aberto sobre validação quantitativa.
 
 **Ver também:** [← Estimação por Mínimos Quadrados](estimacao.md) ·
 [Projeto de Controle →](../controle/pid.md)
+{ .lv-see-also }

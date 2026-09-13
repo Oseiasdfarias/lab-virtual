@@ -3,27 +3,46 @@ hide:
     - toc
 ---
 
-<p align="center">
-  <img src="logo.svg" alt="Laboratório Virtual" width="90">
-</p>
+# Laboratório Virtual { .lv-visually-hidden }
 
-<h1 align="center">Laboratório Virtual</h1>
+<div class="lv-hero" markdown>
 
-<p align="center"><i>Protótipo, gêmeo digital e identificação de sistemas aplicados a um
-aeropêndulo — um mapa completo do desenvolvimento, da física ao código.</i></p>
+:lab-logo-horizontal:{ .lv-hero-logo }
+
+<p class="lv-tagline">Protótipo, gêmeo digital e identificação de sistemas aplicados a um
+aeropêndulo — um mapa completo do desenvolvimento, da física ao código.</p>
+
+</div>
 
 ## Comece por aqui
 
-- **Quer uma visão rápida?** → [O que é o Laboratório Virtual](visao-geral/index.md)
-- **Quer aprender o processo científico?** → [Modelagem Matemática](modelagem/index.md) →
-  [Identificação de Sistemas](identificacao/excitacao.md) →
-  [Projeto de Controle](controle/pid.md)
-- **Quer reproduzir ou modificar o hardware/software?** →
-  [Protótipo](prototipo/index.md) e [Software](software/interface-grafica.md)
+<div class="grid cards" markdown>
+
+-   :material-compass-outline:{ .lg .middle } **Quer uma visão rápida?**
+
+    ---
+
+    [O que é o Laboratório Virtual](visao-geral/index.md)
+
+-   :material-sine-wave:{ .lg .middle } **Quer aprender o processo científico?**
+
+    ---
+
+    [Modelagem Matemática](modelagem/index.md) →
+    [Identificação de Sistemas](identificacao/excitacao.md) →
+    [Projeto de Controle](controle/pid.md)
+
+-   :material-tools:{ .lg .middle } **Quer reproduzir ou modificar o hardware/software?**
+
+    ---
+
+    [Protótipo](prototipo/index.md) e [Software](software/interface-grafica.md)
+
+</div>
 
 ## Sobre o projeto
 
-Esse projeto surgiu do desenvolvimento de um <strong>trabalho de conclusão de curso</strong>, intitulado, <strong>Desenvolvimento de Protótipo e Gêmeo Digital como Ferramenta para um Laboratório Virtual com Foco em Modelagem e Controle de Sistemas Dinâmicos</strong>, desennvolvido na <strong>Universidade Federal do Pará</strong> no <strong>Campus de Tucuruí</strong>, pelo discente da <strong>Faculdade de Engenharia Elétrica</strong>, <strong>Oséias Farias</strong>. 
+Esse projeto surgiu do desenvolvimento de um <strong>trabalho de conclusão de curso</strong>, intitulado, <strong>Desenvolvimento de Protótipo e Gêmeo Digital como Ferramenta para um Laboratório Virtual com Foco em Modelagem e Controle de Sistemas Dinâmicos</strong>, desenvolvido na <strong>Universidade Federal do Pará</strong> no <strong>Campus de Tucuruí</strong>, pelo discente da <strong>Faculdade de Engenharia Elétrica</strong>, <strong>Oséias Farias</strong>. 
 
 <h3 align=center><strong>Membros Atuais</strong> ✨</h3>
 

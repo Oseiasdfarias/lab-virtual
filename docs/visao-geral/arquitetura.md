@@ -11,6 +11,21 @@ físico, firmware, interface gráfica e gêmeo digital.
 
 ## Como os dados fluem
 
+```mermaid
+flowchart TB
+  HW["<b>Protótipo físico</b><br/>potenciômetro · motor CC + hélice · ponte H"]
+  FW["<b>Firmware · ESP32</b><br/>A/D → PID (malha fechada) ou PRBS (malha aberta) → PWM"]
+  GUI["<b>Interface gráfica</b><br/>CustomTkinter + PySerial"]
+  SIM["<b>Gêmeo digital</b><br/>VPython + Matplotlib"]
+  CSV[("CSV do ensaio")]
+  HW -- "tensão do potenciômetro" --> FW
+  FW -- "PWM" --> HW
+  FW -- "serial: 7 valores por ciclo" --> GUI
+  GUI -. "serial: configuração do ensaio" .-> FW
+  GUI -- "chamada de método<br/>(mesmo processo Python)" --> SIM
+  GUI -- "Pandas" --> CSV
+```
+
 O laço de controle roda inteiramente dentro do firmware, a cada período de amostragem: o
 microcontrolador lê a tensão do potenciômetro pelo conversor A/D, converte essa leitura
 para o ângulo da haste, calcula o sinal de referência (onda quadrada, senoidal ou dente de
@@ -49,3 +64,4 @@ independentes.
 
 **Ver também:** [← O que é o Laboratório Virtual](index.md) ·
 [Modelagem Matemática →](../modelagem/index.md)
+{ .lv-see-also }

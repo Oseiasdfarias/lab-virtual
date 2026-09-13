@@ -54,3 +54,4 @@ gráfica quanto no protótipo físico.
 ---
 
 **Ver também:** [← Controlador PID](pid.md)
+{ .lv-see-also }
