@@ -33,8 +33,11 @@ O laboratório é composto por quatro subsistemas que operam de forma integrada:
 
 O firmware e a interface gráfica trocam dados por porta serial: o microcontrolador envia
 posição angular, referência, erro e sinal de controle; a interface envia comandos de
-configuração, ganhos do controlador e parâmetros do sinal de excitação. A interface
-gráfica também pode ser usada sem o protótipo — o gêmeo digital opera de forma autônoma,
+configuração e parâmetros do sinal de excitação (amplitude, frequência, offset, forma de
+onda) e de operação (malha aberta/fechada, executar). Os ganhos do controlador PID são
+fixos no firmware, definidos em tempo de compilação — mudá-los exige recompilar e
+regravar o microcontrolador, não é feito pela interface. A interface gráfica também pode
+ser usada sem o protótipo — o gêmeo digital opera de forma autônoma,
 o que permite usar a plataforma em aulas mesmo sem acesso ao hardware.
 
 ## O fluxo completo
