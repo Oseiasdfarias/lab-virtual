@@ -1,0 +1,15 @@
+# Bibliotecas de terceiros
+
+Carregadas somente pela página Início. Hospedadas aqui para o site não depender de CDN.
+
+| Arquivo | Pacote | Origem |
+| --- | --- | --- |
+| `three/three.module.min.js` | three 0.186.0 (MIT) | `build/three.module.js` minificado pelo jsDelivr (Terser) |
+| `three/three.core.js` | three 0.186.0 (MIT) | `build/three.core.js` minificado pelo jsDelivr (Terser); mantém o nome importado por `three.module.min.js` |
+| `three/addons/controls/OrbitControls.js` | three 0.186.0 (MIT) | `examples/jsm/controls/OrbitControls.js`, idêntico ao pacote npm |
+| `d3/d3.min.js` | d3 7.9.0 (ISC) | `dist/d3.min.js` do pacote npm |
+
+O pacote `three` não publica mais builds minificados; os dois primeiros arquivos vêm de
+`https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.min.js` e
+`.../three.core.min.js`. Para atualizar, troque a versão nesses endereços e confira a página
+Início no navegador.

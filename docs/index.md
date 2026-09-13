@@ -1,62 +1,156 @@
 ---
+title: Início
 hide:
-    - toc
+  - navigation
+  - toc
 ---
 
-# Laboratório Virtual { .lv-visually-hidden }
+<div class="lv-home">
 
-<div class="lv-hero" markdown>
+<section class="lv-home-hero" aria-labelledby="lv-home-title">
+  <div class="lv-home-hero__text">
+    <p class="lv-home-eyebrow">Plataforma didática · Sistemas dinâmicos e controle</p>
+    <h1 id="lv-home-title">Laboratório Virtual</h1>
+    <p class="lv-home-lead">Protótipo, gêmeo digital e identificação de sistemas aplicados a um
+    aeropêndulo — um mapa completo do desenvolvimento, da física ao código.</p>
+    <div class="lv-home-actions">
+      <a class="lv-btn lv-btn--primary" href="visao-geral/">Explorar o laboratório</a>
+      <a class="lv-btn" href="https://github.com/Oseiasdfarias/lab-virtual" target="_blank" rel="noopener">Código no GitHub</a>
+    </div>
+  </div>
+  <figure class="lv-home-hero__visual">
+    <div class="lv-hero3d" data-lv-hero3d>
+      <div class="lv-hero3d__fallback" hidden>
+        <img src="favicon.svg" alt="Ícone do Laboratório Virtual" width="160" height="160">
+      </div>
+      <div class="lv-hero3d__hud" aria-live="off">
+        <span data-lv-theta>θ = 0,0°</span>
+        <span data-lv-volt>V = 0,0 V</span>
+      </div>
+    </div>
+    <figcaption>Arraste para girar. O braço responde a degraus de 0 a 2,5 V segundo o modelo
+    linearizado da <a href="modelagem/">Modelagem Matemática</a> — uma simulação ilustrativa,
+    não dados do protótipo.</figcaption>
+  </figure>
+</section>
 
-:lab-logo-horizontal:{ .lv-hero-logo }
+<section class="lv-home-stats" aria-label="O laboratório em números">
+  <div class="lv-stat"><strong>4</strong><span>subsistemas integrados</span></div>
+  <div class="lv-stat"><strong>20 ms</strong><span>período de amostragem do controle</span></div>
+  <div class="lv-stat"><strong>7</strong><span>sinais enviados pela serial a cada amostra</span></div>
+  <div class="lv-stat"><strong>78,3%</strong><span>ajuste NRMSE do modelo ARX de 10ª ordem —
+  <a href="identificacao/validacao/">análise posterior à monografia</a></span></div>
+</section>
 
-<p class="lv-tagline">Protótipo, gêmeo digital e identificação de sistemas aplicados a um
-aeropêndulo — um mapa completo do desenvolvimento, da física ao código.</p>
+<section class="lv-home-section" aria-labelledby="lv-home-arq">
+  <header class="lv-home-section__head">
+    <p class="lv-home-eyebrow">Arquitetura</p>
+    <h2 id="lv-home-arq">Como o laboratório funciona</h2>
+    <p>Quatro subsistemas trocam dados continuamente. Selecione um bloco para ver o que ele faz
+    e seguir para a documentação completa.</p>
+  </header>
+  <div class="lv-arq" data-lv-arq>
+    <div class="lv-arq__canvas" data-lv-arq-canvas role="group" aria-label="Diagrama da arquitetura"></div>
+    <aside class="lv-arq__panel" data-lv-arq-panel aria-live="polite"></aside>
+  </div>
+  <noscript><p>O diagrama interativo precisa de JavaScript. A mesma informação está em
+  <a href="visao-geral/arquitetura/">Arquitetura do sistema</a>.</p></noscript>
+</section>
+
+<section class="lv-home-section" aria-labelledby="lv-home-fluxo">
+  <header class="lv-home-section__head">
+    <p class="lv-home-eyebrow">Metodologia</p>
+    <h2 id="lv-home-fluxo">Do ensaio ao controle</h2>
+    <p>A documentação segue o mesmo ciclo experimental do desenvolvimento.</p>
+  </header>
+  <ol class="lv-timeline">
+    <li class="lv-timeline__step">
+      <span class="lv-timeline__num">01</span>
+      <h3>Protótipo</h3>
+      <p>Haste articulada, motor CC série com hélice e potenciômetro medindo o ângulo.</p>
+      <a href="prototipo/">Ver protótipo →</a>
+    </li>
+    <li class="lv-timeline__step">
+      <span class="lv-timeline__num">02</span>
+      <h3>Modelagem</h3>
+      <p>Equações da física, linearização e a função de transferência do braço.</p>
+      <a href="modelagem/">Ver modelagem →</a>
+    </li>
+    <li class="lv-timeline__step">
+      <span class="lv-timeline__num">03</span>
+      <h3>Identificação</h3>
+      <p>Ensaio PRBS em malha aberta e modelo ARX estimado por mínimos quadrados.</p>
+      <a href="identificacao/excitacao/">Ver identificação →</a>
+    </li>
+    <li class="lv-timeline__step">
+      <span class="lv-timeline__num">04</span>
+      <h3>Controle</h3>
+      <p>PID no ESP32, com ganhos sintonizados no protótipo e ensaios em malha fechada.</p>
+      <a href="controle/pid/">Ver controle →</a>
+    </li>
+    <li class="lv-timeline__step">
+      <span class="lv-timeline__num">05</span>
+      <h3>Gêmeo digital</h3>
+      <p>Réplica 3D que acompanha, em tempo real, o movimento medido no protótipo.</p>
+      <a href="gemeo-digital/">Ver gêmeo digital →</a>
+    </li>
+  </ol>
+</section>
+
+<section class="lv-home-section" aria-labelledby="lv-home-comece">
+  <header class="lv-home-section__head">
+    <p class="lv-home-eyebrow">Por onde começar</p>
+    <h2 id="lv-home-comece">Comece por aqui</h2>
+  </header>
+  <div class="lv-paths">
+    <a class="lv-path" href="visao-geral/">
+      <span class="lv-path__q">Quer uma visão rápida?</span>
+      <span class="lv-path__a">O que é o Laboratório Virtual →</span>
+    </a>
+    <a class="lv-path" href="modelagem/">
+      <span class="lv-path__q">Quer aprender o processo científico?</span>
+      <span class="lv-path__a">Modelagem → Identificação → Controle →</span>
+    </a>
+    <a class="lv-path" href="prototipo/">
+      <span class="lv-path__q">Quer reproduzir ou modificar o hardware/software?</span>
+      <span class="lv-path__a">Protótipo e Software →</span>
+    </a>
+  </div>
+</section>
+
+<section class="lv-home-section" aria-labelledby="lv-home-demo">
+  <header class="lv-home-section__head">
+    <p class="lv-home-eyebrow">Em funcionamento</p>
+    <h2 id="lv-home-demo">Demonstração</h2>
+  </header>
+  <div class="lv-video">
+    <iframe src="https://player.vimeo.com/video/893039111?h=80089a63c1&amp;autoplay=1&amp;loop=1&amp;muted=1" title="Demonstração do Laboratório Virtual" loading="lazy" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+  </div>
+</section>
+
+<section class="lv-home-section lv-home-about" aria-labelledby="lv-home-sobre">
+  <div class="lv-home-about__text">
+    <p class="lv-home-eyebrow">Origem</p>
+    <h2 id="lv-home-sobre">Sobre o projeto</h2>
+    <p>Esse projeto surgiu do desenvolvimento de um <strong>trabalho de conclusão de curso</strong>, intitulado, <strong>Desenvolvimento de Protótipo e Gêmeo Digital como Ferramenta para um Laboratório Virtual com Foco em Modelagem e Controle de Sistemas Dinâmicos</strong>, desenvolvido na <strong>Universidade Federal do Pará</strong> no <strong>Campus de Tucuruí</strong>, pelo discente da <strong>Faculdade de Engenharia Elétrica</strong>, <strong>Oséias Farias</strong>.</p>
+  </div>
+  <div class="lv-team">
+    <a class="lv-person" href="https://github.com/Oseiasdfarias" target="_blank" rel="noopener">
+      <img src="https://avatars.githubusercontent.com/u/52744236" alt="" width="64" height="64" loading="lazy">
+      <span><strong>Oséias Farias</strong><small>Autor</small></span>
+    </a>
+    <a class="lv-person" href="https://github.com/raphateixeira" target="_blank" rel="noopener">
+      <img src="https://avatars.githubusercontent.com/u/13009893?v=4" alt="" width="64" height="64" loading="lazy">
+      <span><strong>Raphael Teixeira</strong><small>Orientador</small></span>
+    </a>
+  </div>
+</section>
 
 </div>
 
-## Comece por aqui
-
-<div class="grid cards" markdown>
-
--   :material-compass-outline:{ .lg .middle } **Quer uma visão rápida?**
-
-    ---
-
-    [O que é o Laboratório Virtual](visao-geral/index.md)
-
--   :material-sine-wave:{ .lg .middle } **Quer aprender o processo científico?**
-
-    ---
-
-    [Modelagem Matemática](modelagem/index.md) →
-    [Identificação de Sistemas](identificacao/excitacao.md) →
-    [Projeto de Controle](controle/pid.md)
-
--   :material-tools:{ .lg .middle } **Quer reproduzir ou modificar o hardware/software?**
-
-    ---
-
-    [Protótipo](prototipo/index.md) e [Software](software/interface-grafica.md)
-
-</div>
-
-## Sobre o projeto
-
-Esse projeto surgiu do desenvolvimento de um <strong>trabalho de conclusão de curso</strong>, intitulado, <strong>Desenvolvimento de Protótipo e Gêmeo Digital como Ferramenta para um Laboratório Virtual com Foco em Modelagem e Controle de Sistemas Dinâmicos</strong>, desenvolvido na <strong>Universidade Federal do Pará</strong> no <strong>Campus de Tucuruí</strong>, pelo discente da <strong>Faculdade de Engenharia Elétrica</strong>, <strong>Oséias Farias</strong>. 
-
-<h3 align=center><strong>Membros Atuais</strong> ✨</h3>
-
-<div align="center">
-<table align="center">
-      <tbody>
-        <tr>
-          <td align="center"><a href="https://github.com/raphateixeira"  target="_blank"><img src="https://avatars.githubusercontent.com/u/13009893?v=4?s=100" width="100px;" alt="Raphael"/><br /><sub><b>Raphael Teixeira</b></sub></a><br /><a href="https://github.com/raphateixeira/LabVirtual/commits?author=raphateixeira"  target="_blank" title="Code">⚡</a></td>
-          <td align="center"><a href="https://github.com/Oseiasdfarias"  target="_blank"><img src="https://avatars.githubusercontent.com/u/52744236" width="100px;" alt="Oséias Farias"/><br /><sub><b>Oséias Farias</b></sub></a><br /><a href="https://github.com/raphateixeira/LabVirtual/commits?author=Oseiasdfarias"  target="_blank" title="Code">⚡</a></td>
-        </tr>
-      </tbody>
-    </table>
-</div>
-
-## Demonstração
-
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/893039111?h=80089a63c1&autoplay=1&loop=1" style="position:absolute;top:0;left:0;width:90%;height:90%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<script type="importmap">
+{ "imports": { "three": "./javascripts/vendor/three/three.module.min.js" } }
+</script>
+<script type="module" src="javascripts/home/hero3d.js"></script>
+<script src="javascripts/vendor/d3/d3.min.js" defer></script>
+<script src="javascripts/home/arquitetura.js" defer></script>

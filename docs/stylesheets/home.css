@@ -1,0 +1,616 @@
+/* Página Início. Tudo fica sob .lv-home para não afetar as demais páginas. */
+
+.md-content__inner:has(> .lv-home) {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.md-content__inner:has(> .lv-home)::before {
+  display: none;
+}
+
+.lv-home {
+  --lv-home-radius: 1rem;
+  --lv-home-gap: clamp(1rem, 3vw, 2rem);
+}
+
+.md-typeset .lv-home h1,
+.md-typeset .lv-home h2,
+.md-typeset .lv-home h3 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.md-typeset .lv-home a {
+  text-decoration: none;
+}
+
+.lv-home-eyebrow {
+  margin: 0 0 0.6rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---------- Hero ---------- */
+
+.lv-home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: var(--lv-home-gap);
+  min-height: min(38rem, 78vh);
+  padding-block: clamp(1.5rem, 5vw, 3rem);
+}
+
+.md-typeset .lv-home-hero h1 {
+  color: var(--lv-ink);
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+.lv-home-lead {
+  max-width: 30rem;
+  margin: 1.1rem 0 1.8rem;
+  color: var(--md-default-fg-color--light);
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  line-height: 1.55;
+}
+
+.lv-home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.md-typeset .lv-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.65rem 1.15rem;
+  color: var(--lv-ink);
+  border: 1px solid var(--lv-border);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+.md-typeset .lv-btn:hover,
+.md-typeset .lv-btn:focus-visible {
+  border-color: var(--lv-ink);
+  box-shadow: var(--lv-shadow);
+  transform: translateY(-1px);
+}
+
+.md-typeset .lv-btn--primary {
+  color: var(--lv-bg);
+  background-color: var(--lv-ink);
+  border-color: var(--lv-ink);
+}
+
+.md-typeset .lv-btn--primary:hover,
+.md-typeset .lv-btn--primary:focus-visible {
+  color: var(--lv-bg);
+}
+
+.lv-home-hero__visual {
+  margin: 0;
+}
+
+.lv-hero3d {
+  position: relative;
+  aspect-ratio: 1 / 0.9;
+  max-width: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 40%, var(--lv-surface) 0%, transparent 70%),
+    var(--lv-bg);
+  border: 1px solid var(--lv-border);
+  border-radius: var(--lv-home-radius);
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.lv-hero3d:active {
+  cursor: grabbing;
+}
+
+.lv-hero3d canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* display: grid/flex venceria o atributo hidden sem esta regra. */
+.lv-hero3d [hidden] {
+  display: none !important;
+}
+
+.lv-hero3d__fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.lv-hero3d__hud {
+  position: absolute;
+  left: 0.9rem;
+  bottom: 0.8rem;
+  display: flex;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.lv-hero3d__hud span {
+  padding: 0.2rem 0.55rem;
+  color: var(--lv-ink);
+  background-color: var(--lv-header-bg);
+  border: 1px solid var(--lv-border);
+  border-radius: 999px;
+  font-family: var(--md-code-font-family);
+  font-size: 0.62rem;
+  font-variant-numeric: tabular-nums;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.md-typeset .lv-home-hero__visual figcaption {
+  max-width: none;
+  margin: 0.7rem 0 0;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.64rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.md-typeset .lv-home-hero__visual figcaption a {
+  text-decoration: underline;
+  text-decoration-color: var(--lv-faint);
+}
+
+/* ---------- Números ---------- */
+
+.lv-home-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-block: 1px solid var(--lv-border);
+}
+
+.lv-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.3rem 1.2rem;
+}
+
+.lv-stat + .lv-stat {
+  border-left: 1px solid var(--lv-border);
+}
+
+.lv-stat strong {
+  color: var(--lv-ink);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.lv-stat span {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
+
+.md-typeset .lv-stat a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--lv-faint);
+}
+
+/* ---------- Seções ---------- */
+
+.lv-home-section {
+  padding-block: clamp(2.5rem, 7vw, 4.5rem) 0;
+}
+
+.lv-home-section__head {
+  max-width: 38rem;
+  margin-bottom: 1.8rem;
+}
+
+.md-typeset .lv-home-section__head h2 {
+  color: var(--lv-ink);
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.md-typeset .lv-home-section__head p:not(.lv-home-eyebrow) {
+  margin: 0.7rem 0 0;
+  color: var(--md-default-fg-color--light);
+}
+
+/* ---------- Diagrama da arquitetura ---------- */
+
+.lv-arq {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.lv-arq__canvas {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: 0.5rem;
+  background-color: var(--lv-bg);
+  border: 1px solid var(--lv-border);
+  border-radius: var(--lv-home-radius);
+}
+
+.lv-arq__canvas svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.lv-arq-node {
+  cursor: pointer;
+  outline: none;
+}
+
+.lv-arq-node rect {
+  fill: var(--lv-bg);
+  stroke: var(--lv-border);
+  stroke-width: 1.5;
+  transition: fill 160ms ease, stroke 160ms ease;
+}
+
+.lv-arq-node:hover rect,
+.lv-arq-node:focus-visible rect {
+  stroke: var(--lv-ink);
+}
+
+.lv-arq-node .lv-arq-node__title {
+  fill: var(--lv-ink);
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.lv-arq-node .lv-arq-node__sub {
+  fill: var(--lv-muted);
+  font-size: 13.5px;
+}
+
+.lv-arq-node.is-selected rect {
+  fill: var(--lv-ink);
+  stroke: var(--lv-ink);
+}
+
+.lv-arq-node.is-selected .lv-arq-node__title,
+.lv-arq-node.is-selected .lv-arq-node__sub {
+  fill: var(--lv-bg);
+}
+
+.lv-arq-edge {
+  fill: none;
+  stroke: var(--lv-faint);
+  stroke-width: 1.5;
+}
+
+.lv-arq-edge--config {
+  stroke-dasharray: 5 5;
+}
+
+.lv-arq-edge-label rect {
+  fill: var(--lv-bg);
+}
+
+.lv-arq-edge-label text {
+  fill: var(--lv-muted);
+  font-size: 13px;
+}
+
+.lv-arq-dot {
+  fill: var(--lv-ink);
+}
+
+.lv-arq__panel {
+  display: flex;
+  flex-direction: column;
+  padding: 1.3rem 1.3rem 1.2rem;
+  background-color: var(--lv-surface);
+  border: 1px solid var(--lv-border);
+  border-radius: var(--lv-home-radius);
+}
+
+.md-typeset .lv-arq__panel h3 {
+  color: var(--lv-ink);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.md-typeset .lv-arq__panel p {
+  margin: 0.6rem 0 0.9rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.74rem;
+  line-height: 1.6;
+}
+
+.md-typeset .lv-arq__panel ul {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+[dir] .md-typeset .lv-arq__panel ul li {
+  margin: 0;
+  padding: 0.45rem 0;
+  border-top: 1px solid var(--lv-border);
+  font-size: 0.7rem;
+}
+
+.md-typeset .lv-arq__panel .lv-btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* ---------- Linha do tempo ---------- */
+
+/* [dir] .md-typeset vence as regras de lista do Material (display: flow-root, recuo). */
+[dir] .md-typeset .lv-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+[dir] .md-typeset .lv-timeline .lv-timeline__step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 1.1rem 1rem 1rem;
+  background-color: var(--lv-bg);
+  border: 1px solid var(--lv-border);
+  border-radius: var(--lv-home-radius);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.md-typeset .lv-timeline__step:hover {
+  border-color: var(--lv-faint);
+  box-shadow: var(--lv-shadow);
+}
+
+.md-typeset .lv-timeline__step::after {
+  content: "";
+  position: absolute;
+  top: 1.55rem;
+  right: -0.8rem;
+  width: 0.8rem;
+  border-top: 1px dashed var(--lv-faint);
+}
+
+.md-typeset .lv-timeline__step:last-child::after {
+  display: none;
+}
+
+.lv-timeline__num {
+  color: var(--md-default-fg-color--lighter);
+  font-family: var(--md-code-font-family);
+  font-size: 0.66rem;
+  font-weight: 600;
+}
+
+.md-typeset .lv-timeline__step h3 {
+  margin-top: 0.35rem;
+  color: var(--lv-ink);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.md-typeset .lv-timeline__step p {
+  flex-grow: 1;
+  margin: 0.45rem 0 0.8rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.md-typeset .lv-timeline__step a {
+  color: var(--lv-ink);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* ---------- Caminhos ---------- */
+
+.lv-paths {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.md-typeset .lv-path {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.2rem 1.2rem 1.1rem;
+  color: var(--lv-ink);
+  background-color: var(--lv-bg);
+  border: 1px solid var(--lv-border);
+  border-radius: var(--lv-home-radius);
+  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+.md-typeset .lv-path:hover,
+.md-typeset .lv-path:focus-visible {
+  border-color: var(--lv-ink);
+  box-shadow: var(--lv-shadow);
+  transform: translateY(-2px);
+}
+
+.lv-path__q {
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.lv-path__a {
+  margin-top: auto;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+}
+
+/* ---------- Vídeo ---------- */
+
+.lv-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  overflow: hidden;
+  background-color: var(--lv-surface);
+  border: 1px solid var(--lv-border);
+  border-radius: var(--lv-home-radius);
+}
+
+.lv-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- Sobre e equipe ---------- */
+
+.lv-home-about {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  align-items: end;
+  gap: var(--lv-home-gap);
+  padding-bottom: 1rem;
+}
+
+.md-typeset .lv-home-about h2 {
+  color: var(--lv-ink);
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.md-typeset .lv-home-about__text p:not(.lv-home-eyebrow) {
+  margin: 0.8rem 0 0;
+}
+
+.lv-team {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.md-typeset .lv-person {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.7rem 0.9rem;
+  color: var(--lv-ink);
+  background-color: var(--lv-bg);
+  border: 1px solid var(--lv-border);
+  border-radius: var(--lv-home-radius);
+  transition: border-color 150ms ease;
+}
+
+.md-typeset .lv-person:hover {
+  border-color: var(--lv-ink);
+}
+
+.md-typeset .lv-person img {
+  width: 2.6rem;
+  height: 2.6rem;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border-radius: 50%;
+}
+
+.lv-person span {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+.lv-person small {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.66rem;
+}
+
+/* ---------- Responsivo ---------- */
+
+@media screen and (max-width: 76.1875em) {
+  [dir] .md-typeset .lv-timeline {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md-typeset .lv-timeline__step::after {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 60em) {
+  .lv-home-hero,
+  .lv-arq,
+  .lv-home-about {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lv-home-hero {
+    min-height: 0;
+  }
+
+  .lv-home-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lv-stat:nth-child(3) {
+    border-left: 0;
+  }
+
+  .lv-stat:nth-child(n + 3) {
+    border-top: 1px solid var(--lv-border);
+  }
+
+  .lv-paths {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media screen and (max-width: 36em) {
+  [dir] .md-typeset .lv-timeline {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lv-stat {
+    padding: 1rem 0.8rem;
+  }
+}
+
+/* O extra.css dá moldura clara às figuras no modo escuro; aqui não se aplica. */
+[data-md-color-scheme] .md-typeset .lv-hero3d__fallback img {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+}
