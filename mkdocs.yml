@@ -64,3 +64,32 @@ plugins:
           - https://docs.python-requests.org/en/master/objects.inv
 
 copyright: Copyright &copy; 2023 Oséias Farias
+
+nav:
+  - Início: index.md
+  - Visão Geral:
+      - O que é o Laboratório Virtual: visao-geral/index.md
+      - Arquitetura do sistema: visao-geral/arquitetura.md
+  - Protótipo: prototipo/index.md
+  - Modelagem Matemática: modelagem/index.md
+  - Identificação de Sistemas:
+      - Excitação e aquisição (PRBS): identificacao/excitacao.md
+      - Estimação por mínimos quadrados: identificacao/estimacao.md
+      - Validação do modelo: identificacao/validacao.md
+  - Projeto de Controle:
+      - Controlador PID: controle/pid.md
+      - Resultados em malha fechada: controle/resultados.md
+  - Gêmeo Digital: gemeo-digital/index.md
+  - Software:
+      - Interface Gráfica: software/interface-grafica.md
+      - Firmware: software/firmware.md
+      - Instalação:
+          - Visão geral: software/instalacao/python/index.md
+          - Python (Ubuntu): software/instalacao/python/ubuntu.md
+          - Python (Windows): software/instalacao/python/windows.md
+          - Python (macOS): software/instalacao/python/macos.md
+          - Dependências: software/instalacao/dependencias.md
+  - Referência de Código:
+      - animacao_aeropendulo: referencia/animacao-aeropendulo.md
+      - graficos_aeropendulo: referencia/graficos-aeropendulo.md
+      - interface_interativa: referencia/interface-interativa.md

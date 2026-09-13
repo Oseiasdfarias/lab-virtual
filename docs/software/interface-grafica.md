@@ -55,7 +55,7 @@ leitura e do pré-processamento dos dados vindos da porta serial, e outra detect
 automaticamente o microcontrolador conectado à USB.
 
 Para realizar ensaios, ajustar parâmetros do sinal de referência e coletar dados, o
-microcontrolador precisa estar rodando o [firmware](../M%C3%B3dulo%20Firmware/aeropendulo_doc.md)
+microcontrolador precisa estar rodando o [firmware](firmware.md)
 correspondente — é ele que fornece à interface os dados a serem pré-processados e plotados.
 
 ## Como executar

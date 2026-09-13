@@ -72,7 +72,7 @@ O simulador é dividido em três módulos:
   referência, erro, sinal de controle).
 - **Módulo de animação 3D** — desenha e movimenta a estrutura do Aeropêndulo.
 - **Módulo Simulador** — integra os dois anteriores e atualiza seus estados a partir dos
-  dados recebidos da [Interface Gráfica de Usuário](interface_grafica_usuario.md), que
+  dados recebidos da [Interface Gráfica de Usuário](../software/interface-grafica.md), que
   fornece a velocidade angular real do protótipo. É essa integração que faz o Gêmeo Digital
   reproduzir a dinâmica do protótipo físico.
 
@@ -81,11 +81,11 @@ A classe principal (`Simulador`, em
 recebe como parâmetros uma instância de gráficos e uma de animação, e expõe métodos para
 rotacionar o braço e atualizar os estados do sistema (ângulo, referência e tempo) a cada
 novo dado recebido do protótipo — veja a
-[referência dos módulos](../M%C3%B3dulos%20G%C3%AAmeo%20Digital/animacao_aeropendulo_reference.md)
+[referência dos módulos](../referencia/animacao-aeropendulo.md)
 para os detalhes de cada classe.
 
 Para reproduzir a dinâmica no Gêmeo Digital, a classe `Simulador` é importada pelo software
 que implementa a comunicação com o protótipo real — ver
-[Interface Gráfica de Usuário](interface_grafica_usuario.md).
+[Interface Gráfica de Usuário](../software/interface-grafica.md).
 
 <br/>

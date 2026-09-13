@@ -4,17 +4,28 @@ hide:
 ---
 
 <p align="center">
-  <img src="logo-horizontal.png" alt="Laboratório Virtual" style="max-width: 420px; width: 70%;"/>
+  <img src="logo.svg" alt="Laboratório Virtual" width="90">
 </p>
 
-<p align="center" height="30px">
-  <img style="height: 30px" src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/logos_lg/UFPA-removebg-preview.png?raw=true">
-</p>
+<h1 align="center">Laboratório Virtual</h1>
+
+<p align="center"><i>Protótipo, gêmeo digital e identificação de sistemas aplicados a um
+aeropêndulo — um mapa completo do desenvolvimento, da física ao código.</i></p>
+
+## Comece por aqui
+
+- **Quer uma visão rápida?** → [O que é o Laboratório Virtual](visao-geral/index.md)
+- **Quer aprender o processo científico?** → [Modelagem Matemática](modelagem/index.md) →
+  [Identificação de Sistemas](identificacao/excitacao.md) →
+  [Projeto de Controle](controle/pid.md)
+- **Quer reproduzir ou modificar o hardware/software?** →
+  [Protótipo](prototipo/index.md) e [Software](software/interface-grafica.md)
+
+## Sobre o projeto
 
 Esse projeto surgiu do desenvolvimento de um <strong>trabalho de conclusão de curso</strong>, intitulado, <strong>Desenvolvimento de Protótipo e Gêmeo Digital como Ferramenta para um Laboratório Virtual com Foco em Modelagem e Controle de Sistemas Dinâmicos</strong>, desennvolvido na <strong>Universidade Federal do Pará</strong> no <strong>Campus de Tucuruí</strong>, pelo discente da <strong>Faculdade de Engenharia Elétrica</strong>, <strong>Oséias Farias</strong>. 
 
-
-<h1 align=center><strong>Membros Atuais</strong> ✨</h1>
+<h3 align=center><strong>Membros Atuais</strong> ✨</h3>
 
 <div align="center">
 <table align="center">
@@ -27,70 +38,6 @@ Esse projeto surgiu do desenvolvimento de um <strong>trabalho de conclusão de c
     </table>
 </div>
 
----
-
-
-## Demonstração do Laboratório Virtual
+## Demonstração
 
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/893039111?h=80089a63c1&autoplay=1&loop=1" style="position:absolute;top:0;left:0;width:90%;height:90%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-
-
-
-### <a href="https://github.com/Oseiasdfarias/lab-virtual" target="_blank">
-Projeto no GitHub</a>
-
-
-<!--
-
-<center>
-<div class="figure" >
-    <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/brand/png/icone-256.png?raw=true"
-           width="80">  
-</div>
-</center>
-
-<center>
-<b>Universidade Federal do Pará</b>
-</center>
-<center>
-<b>Campus Universitário de Tucuruí</b>
-</center>
-<center>
-<b>Faculdade de Engenharia Elétrica</b>
-</center>
-
--->
-
-# Ferramentas Desenvolvidas
-
-### Protótipo Aeropêndulo
-
-Implementa um aeropêndulo real, pode ser usado para estudos e testes de controladores e identificação de sistemas etc.
-
-<figure markdown>
-<img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/img_aeropendulo.png?raw=true" alt="Protótipo Aeropêndulo" style="height: 70%; width:70%;"/>
-</figure>
-
-
-### Gêmeo Digital
-Usa o sinal de saída (ângulo) para realizar a dinâmica do sinulador.
-
-<figure markdown>
-<img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/gemeo_digital.png?raw=true" alt="Gêmeo Digital" style="height: 70%; width:70%;"/>
-</figure>
-
-
-### Interface Gráfica de Usuário
-Usada para iteragir em tempo real com o protótipo, esse sistema plotado os gráficos da posição angular, erro, sinal de referência, sinal PRBS e sinal de controle em malha fechada.
-
-<figure markdown>
-<img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/demo_interface_light.png?raw=true" alt="Interface Gráfica de Usuário" style="height: 70%; width:70%;"/>
-</figure>
-
-### Firmware
-Implementa o controlador, envio e recebimento de dados inteface gráfica / microcontrolador, geração de sinal de referência, leitura do sensor potenciômetro.
-
-<figure markdown>
-<img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/arquitetura_firmware-1.png?raw=true" alt="Firmware" style="height: 70%; width:70%;"/>
-</figure>
-
