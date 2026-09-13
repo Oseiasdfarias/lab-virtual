@@ -42,7 +42,12 @@ float PID::atualiza_pid(float erro, float theta, float Ts)
       // lastProcess = millis();
       this -> P = erro * this -> Kp;
       this -> I += (erro * this -> Ki) * Ts;
-      this -> D = this -> Kd * erro* (this -> lastTheta - theta) * Ts;
+      // Derivada sobre a medida (theta), nao sobre o erro: evita "derivative
+      // kick" em mudancas de referencia. Discretizacao correta divide por Ts
+      // (nao multiplica) -- a formula anterior multiplicava por "erro" e por
+      // "Ts", o que fazia o termo D encolher com o passo de amostragem em vez
+      // de crescer, e o acoplava indevidamente ao erro proporcional.
+      this -> D = this -> Kd * (this -> lastTheta - theta) / Ts;
       this -> lastTheta = theta;
 
       return (this -> P + this -> I + this -> D);

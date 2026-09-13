@@ -54,11 +54,17 @@ float Conversor::converte_escala(float x_converter, float x_min, float x_max,
 
 float Conversor::converte_tensao_ciclo(float sinal_controle)
 {
+    // "0.0 <= sinal_controle <= 3.3" nao faz o que parece em C++: e avaliado
+    // como "(0.0 <= sinal_controle) <= 3.3", ou seja, um bool (0 ou 1)
+    // comparado a 3.3 -- sempre verdadeiro. Isso deixava o clamp de 255
+    // inalcancavel e nao limitava valores negativos.
     int ciclo_trabalho = 0; // Ciclo de trabalho.
-    if (0.0 <= sinal_controle <= 3.3)
-        ciclo_trabalho = (sinal_controle * 255.0) / 3.3;
-    else if (sinal_controle > 3.3)
+    if (sinal_controle <= 0.0)
+        ciclo_trabalho = 0;
+    else if (sinal_controle >= 3.3)
         ciclo_trabalho = 255;
+    else
+        ciclo_trabalho = (sinal_controle * 255.0) / 3.3;
     return ciclo_trabalho;
 }
 
