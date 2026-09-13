@@ -61,3 +61,7 @@ Federal do Pará, Campus Universitário de Tucuruí, sob orientação do **Prof.
 Teixeira**. O trabalho foi defendido em 11 de dezembro de 2023 e está publicado em acesso
 aberto na Biblioteca Digital de Monografias da UFPA, em
 [bdm.ufpa.br/handle/prefix/6944](https://bdm.ufpa.br/handle/prefix/6944).
+
+---
+
+**Ver também:** [Arquitetura do Sistema →](arquitetura.md)

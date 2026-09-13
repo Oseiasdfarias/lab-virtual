@@ -79,3 +79,8 @@ Esses 14 números — 4 do numerador e 10 do denominador — são o modelo que d
 para [projetar o controlador](../controle/pid.md). A confirmação de que essa escolha de
 ordem foi a certa vem da comparação entre a saída simulada por esse modelo e a saída real
 do sistema, documentada em [Validação do Modelo](validacao.md).
+
+---
+
+**Ver também:** [← Excitação e Aquisição](excitacao.md) ·
+[Validação do Modelo →](validacao.md)

@@ -71,3 +71,8 @@ conjuntos: 60% para identificação (usados para ajustar os coeficientes do mode
 validação, mantidos fora do ajuste. Esse segundo conjunto simula dados que o modelo nunca viu,
 permitindo comparar a saída simulada com a saída real e verificar se o modelo generaliza — ver
 [Validação do Modelo](validacao.md).
+
+---
+
+**Ver também:** [← Modelagem Matemática](../modelagem/index.md) ·
+[Estimação por Mínimos Quadrados →](estimacao.md)

@@ -124,3 +124,8 @@ O modelo linearizado acima é implementado e simulado em
 usando as bibliotecas NumPy e Python-Control. A [identificação de sistemas](../identificacao/excitacao.md)
 usa uma abordagem diferente — ajustar o modelo a dados reais em vez de derivá-lo
 puramente da física — e chega a um modelo mais preciso, usado de fato no controlador.
+
+---
+
+**Ver também:** [← Arquitetura do Sistema](../visao-geral/arquitetura.md) ·
+[Identificação de Sistemas →](../identificacao/excitacao.md)

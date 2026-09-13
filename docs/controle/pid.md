@@ -61,3 +61,8 @@ mas não os ganhos do PID.
 O controlador está implementado em
 [`controlador_pid.cpp`](https://github.com/Oseiasdfarias/lab-virtual/blob/main/softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/Esp32_ttgo_modulos/lib/controlador_pid/src/controlador_pid.cpp)
 e é chamado a cada iteração do loop principal do [firmware](../software/firmware.md).
+
+---
+
+**Ver também:** [← Validação do Modelo](../identificacao/validacao.md) ·
+[Resultados em Malha Fechada →](resultados.md)

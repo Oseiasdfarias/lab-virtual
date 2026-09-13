@@ -50,3 +50,7 @@ outros métodos de identificação de sistemas, projetar controladores por abord
 clássicas ou por inteligência artificial -- incluindo aprendizagem por reforço e deep
 Q-learning -- e expandir o laboratório virtual com novas funcionalidades tanto na interface
 gráfica quanto no protótipo físico.
+
+---
+
+**Ver também:** [← Controlador PID](pid.md)
