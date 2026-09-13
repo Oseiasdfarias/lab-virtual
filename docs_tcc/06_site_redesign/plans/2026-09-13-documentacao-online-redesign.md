@@ -272,7 +272,7 @@ hide:
 ---
 
 <p align="center">
-  <img src="../brand/png/icone-256.png" alt="Laboratório Virtual" width="90">
+  <img src="logo.svg" alt="Laboratório Virtual" width="90">
 </p>
 
 <h1 align="center">Laboratório Virtual</h1>
