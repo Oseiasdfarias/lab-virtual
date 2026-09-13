@@ -59,7 +59,8 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          import:
+          paths: [.]
+          inventories:
           - https://docs.python-requests.org/en/master/objects.inv
 
 copyright: Copyright &copy; 2023 Oséias Farias
