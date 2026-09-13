@@ -58,7 +58,7 @@ class ListaPortasUsb(object):
         monitor.filter_by(subsystem='usb')
 
         for device in iter(monitor.poll, None):
-            if device.action == 'add' or 'remove':
+            if device.action in ('add', 'remove'):
                 self.atualizar_dados_menu()
                 print(f"USB Conectado!!! : {self.monitora_conexao_usb}")
 

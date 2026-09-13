@@ -1,0 +1,46 @@
+name: Testes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "softwares_aeropendulo/**"
+      - "materiais_complementares/**/*.py"
+      - ".github/workflows/testes.yml"
+  pull_request:
+    paths:
+      - "softwares_aeropendulo/**"
+      - "materiais_complementares/**/*.py"
+      - ".github/workflows/testes.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: testes-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: softwares_aeropendulo
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar Poetry
+        run: pipx install poetry==1.8.5
+
+      - name: Instalar dependências
+        run: |
+          poetry env use python3.11
+          poetry install --no-root --with test
+
+      - name: Rodar testes
+        run: poetry run pytest -q

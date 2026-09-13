@@ -24,9 +24,19 @@ from .interfaces.simulador import SimuladorInterface
 
 class Simulador(SimuladorInterface):
 
+    """Gêmeo digital: espelha no VPython o movimento medido no protótipo.
+
+    Recebe da interface o tempo, o ângulo e a referência de cada amostra, gira o modelo 3D
+    e a hélice e atualiza os gráficos de ângulo e referência. Não integra um modelo da
+    planta: o movimento vem dos dados medidos.
+    """
     def __init__(
             self, graficos: GraficosInterface,
             animacao_aeropendulo: AnimacaoAeropenduloInterface) -> None:
+        """Args:
+            graficos: objeto que cria os gráficos do gêmeo digital (`Graficos`).
+            animacao_aeropendulo: modelo 3D do aeropêndulo (`AnimacaoAeropendulo`).
+        """
         self.t = 0
         self.t_ant = 0
         self.ts = 0
@@ -42,9 +52,15 @@ class Simulador(SimuladorInterface):
         self.graf, self.plot1, self.plot2 = self.g.graficos()  # noqa
 
     def grau2rad(self, graus):
+        """Converte um ângulo de graus para radianos."""
         return (graus)*(vp.pi/180.0)
 
-    def rotate(self, angle) -> None:
+    def rotate(self, angle: float) -> None:
+        """Gira o braço do modelo 3D e a hélice em torno do pivô.
+
+        Args:
+            angle: ângulo de rotação, em graus.
+        """
         self.valor_angle = self.grau2rad(angle)
         self.animacao_aeropendulo.aeropendulo.rotate(
             axis=vp.vec(0, 0, 1),
@@ -52,7 +68,18 @@ class Simulador(SimuladorInterface):
             origin=vp.vec(0, 5.2, 0))
         self.animacao_aeropendulo.set_posicao_helice(self.valor_angle)
 
-    def atualizar_estados(self, t, theta, ref):
+    def atualizar_estados(self, t: float, theta: float, ref: float) -> None:
+        """Atualiza o gêmeo digital com uma nova amostra.
+
+        Calcula a velocidade angular por diferença finita em relação à amostra anterior,
+        gira o braço e a hélice de forma correspondente e acrescenta o ângulo e a referência
+        aos gráficos.
+
+        Args:
+            t: instante da amostra, em segundos.
+            theta: ângulo medido, em graus.
+            ref: referência, em graus.
+        """
         self.t = t
         self.ts = self.t - self.t_ant
         self.theta_rad = self.grau2rad(theta)

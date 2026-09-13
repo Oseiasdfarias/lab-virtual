@@ -23,6 +23,9 @@ sympy = "^1.12"
 # vpython 7.6.5 importa pkg_resources, que o setuptools removeu na versão 82.
 setuptools = ">=78.1.1,<82"
 
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
