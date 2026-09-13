@@ -47,6 +47,14 @@ correspondente — é ele que fornece à interface os dados a serem pré-process
 
 ## Como executar
 
+Os comandos rodam a partir da pasta `softwares_aeropendulo`, onde fica o `rungui.py`, com as
+[dependências instaladas](instalacao/dependencias.md) (ou com `poetry install`, prefixando
+os comandos abaixo com `poetry run`):
+
+```bash
+cd lab-virtual/softwares_aeropendulo
+```
+
 Para rodar a interface gráfica junto com o Gêmeo Digital:
 
 ```bash
@@ -58,6 +66,9 @@ Para rodar só a interface gráfica, sem o simulador 3D:
 ```bash
 python rungui.py
 ```
+
+Em ambos os casos o protótipo precisa estar conectado à USB com o [firmware](firmware.md)
+gravado: a interface e o gêmeo digital exibem os dados que chegam pela serial.
 
 ## Bibliotecas utilizadas
 

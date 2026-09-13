@@ -85,9 +85,3 @@ identificação (usados para ajustar os coeficientes do modelo) e 40% para valid
 prática, a validação usada neste laboratório roda o modelo sobre o mesmo sinal de entrada do
 ensaio de identificação e compara a saída simulada com a saída real medida — ver
 [Validação do Modelo](validacao.md).
-
----
-
-**Ver também:** [← Modelagem Matemática](../modelagem/index.md) ·
-[Estimação por Mínimos Quadrados →](estimacao.md)
-{ .lv-see-also }

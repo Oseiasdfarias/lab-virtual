@@ -1,0 +1,60 @@
+<div class="md-copyright lv-footer">
+  <div class="lv-footer__grid">
+    <div class="lv-footer__brand">
+      <a class="lv-footer__logo" href="{{ nav.homepage.url | url }}">
+        <span class="lv-footer__icon">{% include ".icons/lab/icone.svg" %}</span>
+        <span>Laboratório Virtual</span>
+      </a>
+      <p class="lv-footer__tagline">
+        Protótipo, gêmeo digital e identificação de sistemas aplicados a um aeropêndulo.
+      </p>
+      <a class="lv-footer__repo" href="{{ config.repo_url }}" target="_blank" rel="noopener">
+        <span class="lv-footer__repo-icon">{% include ".icons/fontawesome/brands/github.svg" %}</span>
+        <span>{{ config.repo_name }}</span>
+      </a>
+    </div>
+
+    <nav class="lv-footer__col" aria-label="Documentação">
+      <p class="lv-footer__title">Documentação</p>
+      <ul>
+        <li><a href="{{ 'visao-geral/' | url }}">Visão geral</a></li>
+        <li><a href="{{ 'prototipo/' | url }}">Protótipo</a></li>
+        <li><a href="{{ 'modelagem/' | url }}">Modelagem matemática</a></li>
+        <li><a href="{{ 'identificacao/excitacao/' | url }}">Identificação de sistemas</a></li>
+        <li><a href="{{ 'controle/pid/' | url }}">Projeto de controle</a></li>
+        <li><a href="{{ 'gemeo-digital/' | url }}">Gêmeo digital</a></li>
+      </ul>
+    </nav>
+
+    <nav class="lv-footer__col" aria-label="Software">
+      <p class="lv-footer__title">Software</p>
+      <ul>
+        <li><a href="{{ 'software/interface-grafica/' | url }}">Interface gráfica</a></li>
+        <li><a href="{{ 'software/firmware/' | url }}">Firmware</a></li>
+        <li><a href="{{ 'software/instalacao/python/' | url }}">Instalação</a></li>
+        <li><a href="{{ 'referencia/animacao-aeropendulo/' | url }}">Referência de código</a></li>
+      </ul>
+    </nav>
+
+    <div class="lv-footer__col">
+      <p class="lv-footer__title">Projeto</p>
+      <ul>
+        <li><a href="https://bdm.ufpa.br/handle/prefix/6944" target="_blank" rel="noopener">Monografia (BDM/UFPA)</a></li>
+        <li><a href="{{ config.repo_url }}" target="_blank" rel="noopener">Código-fonte</a></li>
+        <li><a href="{{ config.repo_url }}/tree/main/brand" target="_blank" rel="noopener">Identidade visual</a></li>
+        <li><a href="{{ config.repo_url }}/tree/main/docs_tcc" target="_blank" rel="noopener">Resumos do projeto</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lv-footer__bottom">
+    <p>
+      {% if config.copyright %}{{ config.copyright }} · {% endif %}Trabalho de Conclusão de Curso em
+      Engenharia Elétrica — UFPA, Campus Tucuruí · Orientação: Prof. Raphael Barros Teixeira
+    </p>
+    <p>
+      Feito com <a href="https://www.mkdocs.org/" target="_blank" rel="noopener">MkDocs</a> e
+      <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">Material for MkDocs</a>
+    </p>
+  </div>
+</div>

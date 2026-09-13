@@ -59,9 +59,3 @@ junto com a interface e passada a ela como parâmetro, que passa a chamar os mé
 classe diretamente a cada novo dado recebido do protótipo — uma chamada de método dentro do
 mesmo programa, mais simples e mais rápida do que uma comunicação via rede entre processos
 independentes.
-
----
-
-**Ver também:** [← O que é o Laboratório Virtual](index.md) ·
-[Modelagem Matemática →](../modelagem/index.md)
-{ .lv-see-also }

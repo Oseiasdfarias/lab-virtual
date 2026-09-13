@@ -1,5 +1,5 @@
 ---
-title: Desenvolvimento do Firmaware para ESP32
+title: Desenvolvimento do Firmware para ESP32
 author: Oséias Farias
 
 ---
@@ -27,7 +27,7 @@ author: Oséias Farias
 <div class="figure" >
   <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/arquitetura_firmware-1.png?raw=true"
        width="900">  
-  <p>Figura 1 - Diagrama de blocos do Sistema em Malha Fechada.</p>
+  <p>Figura 1 - Organização do firmware: bibliotecas importadas pelo <code>main.cpp</code>.</p>
 </div>
 </center>
 
@@ -67,6 +67,20 @@ dados pela porta serial, e execução do controlador.
 
 Com o firmware pronto, a gravação no ESP32 é feita pelo próprio PlatformIO, que compila o
 código e grava no microcontrolador via porta serial.
+
+## Como compilar e gravar
+
+A variante mais completa do firmware é `Esp32_ttgo_modulos`, configurada para a placa
+TTGO T1 (ambiente `ttgo-t1` no `platformio.ini`). Com o ESP32 conectado à USB e o
+[PlatformIO](https://platformio.org/install/cli) instalado:
+
+```bash
+cd softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/Esp32_ttgo_modulos
+pio run --target upload
+```
+
+Para acompanhar a saída serial depois da gravação, use `pio device monitor` — o projeto já
+define `monitor_speed = 115200`, a mesma taxa usada pela interface gráfica.
 
 ## Um ciclo do laço principal
 

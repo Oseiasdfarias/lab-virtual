@@ -125,9 +125,3 @@ usando as bibliotecas NumPy e Python-Control. A [identificação de sistemas](..
 usa uma abordagem diferente — ajustar o modelo a dados reais em vez de derivá-lo
 puramente da física — e chega a um modelo mais preciso, validado comparando a saída
 simulada com a saída real do protótipo.
-
----
-
-**Ver também:** [← Arquitetura do Sistema](../visao-geral/arquitetura.md) ·
-[Identificação de Sistemas →](../identificacao/excitacao.md)
-{ .lv-see-also }

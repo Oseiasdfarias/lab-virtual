@@ -41,9 +41,3 @@ Esta validação é **qualitativa** (comparação visual dos gráficos), sem uma
 numérica de erro (RMSE/EQM) calculada no trabalho original. Isso é uma limitação conhecida
 -- ver [pendências de documentação](https://github.com/Oseiasdfarias/lab-virtual/blob/main/docs_tcc/05_plano_publicacoes/pendencias_documentacao.md)
 no repositório para o item em aberto sobre validação quantitativa.
-
----
-
-**Ver também:** [← Estimação por Mínimos Quadrados](estimacao.md) ·
-[Projeto de Controle →](../controle/pid.md)
-{ .lv-see-also }

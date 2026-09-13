@@ -80,9 +80,3 @@ sistema. A confirmação de que essa escolha de ordem foi a certa vem da compara
 saída simulada por esse modelo e a saída real do sistema, documentada em
 [Validação do Modelo](validacao.md); o [controlador PID](../controle/pid.md) em si foi
 sintonizado por um método separado, direto no protótipo.
-
----
-
-**Ver também:** [← Excitação e Aquisição](excitacao.md) ·
-[Validação do Modelo →](validacao.md)
-{ .lv-see-also }

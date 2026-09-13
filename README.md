@@ -81,7 +81,7 @@ documentada e serve de referência comparativa para o modelo identificado.
 
 ## Instalação e execução
 
-Requer Python 3.8 a 3.12. As dependências são gerenciadas por [Poetry](https://python-poetry.org/):
+Requer Python 3.8 a 3.11. As dependências são gerenciadas por [Poetry](https://python-poetry.org/):
 
 ```bash
 git clone https://github.com/Oseiasdfarias/lab-virtual.git
@@ -100,8 +100,9 @@ cd softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/Esp32_ttgo_modu
 pio run --target upload
 ```
 
-A interface gráfica pode ser utilizada sem o protótipo: o gêmeo digital opera de forma
-autônoma, o que permite usar a plataforma em aulas mesmo sem acesso ao hardware.
+O gêmeo digital é opcional (`poetry run python rungui.py -simular sim`) e é alimentado pelos
+dados do protótipo: ele reproduz o movimento medido, a partir do ângulo recebido pela serial,
+e por isso precisa do protótipo conectado.
 
 ## Documentação
 

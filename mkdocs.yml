@@ -20,6 +20,7 @@ theme:
     - navigation.sections
     - navigation.path
     - navigation.top
+    - navigation.footer
     - search.suggest
     - search.highlight
     - toc.follow
