@@ -72,6 +72,15 @@ e o amortecimento $c$ do pivô do braço, são difíceis de obter numericamente 
 dificuldade como motivação para a [identificação de sistemas](../identificacao/excitacao.md),
 que chega a um modelo a partir dos dados de ensaio.
 
+!!! note "Duas formulações de $K_m$"
+    Esta página segue o notebook
+    `Modelagem_matematica_do_aeropendulo.ipynb`, em que $K_m$ liga diretamente a tensão do
+    motor ao torque de entrada do braço ($K_mV$). Na monografia, o braço recebe o empuxo
+    $F_e$ da hélice, e $K_m$ liga a velocidade angular do motor a esse empuxo pela
+    aproximação linear $F_e = K_m\omega$ da relação $F_e = K_m\omega^2$; a função de
+    transferência do braço fica então $\theta(s)/\omega(s)$, encadeada à saída do modelo do
+    motor. Os valores numéricos da tabela abaixo são os do notebook.
+
 ## Linearização
 
 A equação não linear acima é fiel à física do sistema, mas a maior parte das técnicas
