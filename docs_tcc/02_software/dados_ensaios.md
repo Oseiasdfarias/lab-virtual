@@ -15,19 +15,27 @@ CSVs gerados por `ColetaDados.salvar_dados_colhidos()` (`src_interface/coleta_da
 1,30.0,29.538,0.462,5.27,1.3,1.3,79.159
 ```
 
-Mapeamento das 7 colunas (deduzido a partir do protocolo serial do firmware e do buffer `self.fila`/`self.salvar_dados` em `coleta_dados.py` — ver `firmware_microcontroladores.md`):
+**Mapeamento confirmado em 2026-09-13** lendo o código-fonte de
+`enviar_dados_serial()` em
+`firmwares_microcontroladores/PlatformIo/Esp32_ttgo_modulos/lib/ler_escrever_serial/src/ler_escrever_serial.cpp`
+(chamada em `main.cpp`) — a ordem dos `Serial.print` bate exatamente com as 7 colunas lidas
+por `coleta_dados.py` (`dados1.split(",")` → array de 7 floats):
 
-| Coluna | Conteúdo provável | Unidade |
-|---|---|---|
-| 0 | Sinal de referência (setpoint) | graus |
-| 1 | Ângulo medido (saída, potenciômetro) | graus |
-| 2 | Sinal de erro | graus |
-| 3 | Sinal de controle aplicado ao motor | Volts |
-| 4 | Amplitude/sinal de entrada em malha aberta (ex.: PRBS) | Volts RMS |
-| 5 | Repetição da coluna 4 (o firmware envia o mesmo valor duas vezes) | Volts RMS |
-| 6 | Tempo (crescente, incrementos ~0.02s = `Ts`) | segundos |
+| Coluna | Conteúdo | Unidade | Origem no firmware |
+| --- | --- | --- | --- |
+| 0 | Sinal de referência (setpoint), **já somado a um offset fixo de +31** | graus | `*sinal_ref + 31` |
+| 1 | Ângulo medido (saída do potenciômetro, convertido em `Conversor::converte_escala`) | graus | `*theta_saida` |
+| 2 | Sinal de erro (`sinal_ref - (theta_saida - 31)` em malha fechada; `0` em malha aberta) | graus | `*erro` |
+| 3 | Sinal de controle **antes** da conversão para ciclo PWM | Volts | `*sinal_controle` |
+| 4 | Sinal de entrada em malha aberta (PRBS, `OndaPrbs::onda_prbs()`); `0` em malha fechada | Volts | `*sinal_entrada_ma` (o parâmetro da função chama-se `ampl`, mas quem chama passa `sinal_entrada_ma` — nome interno enganoso) |
+| 5 | **Repetição exata da coluna 4** — o firmware imprime a mesma variável duas vezes; comentário no código diz "estruturas reservas de envio de dados" (reservado para uso futuro, não usado hoje) | Volts | `*ampl` (mesmo valor da coluna 4) |
+| 6 | Tempo decorrido do ensaio, incrementos de `Ts = 0,02` s | segundos | `*t` |
 
-Esse mapeamento é consistente entre os 3 arquivos amostrados (cabeçalho idêntico em todos).
+**Ressalva:** essa é a variante de firmware mais completa e atual do repositório
+(`Esp32_ttgo_modulos`), confirmada por leitura de código. Os 9 arquivos de ensaio são de
+2023 (jun–set) e podem ter sido gravados com uma versão anterior do firmware — o mapeamento
+acima é a melhor fonte disponível, mas não foi possível confirmar bit a bit contra o
+firmware exato que rodava em cada data.
 
 ## Arquivos disponíveis (9 ensaios)
 

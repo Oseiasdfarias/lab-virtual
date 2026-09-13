@@ -4,37 +4,44 @@ repo_url: https://github.com/Oseiasdfarias/lab-virtual
 repo_name: lab-virtual
 
 theme:
-  logo: logo.svg
+  name: "material"
+  custom_dir: overrides
+  language: pt-BR
   favicon: favicon.svg
   icon:
-    repo: fontawesome/brands/github 
-  name: "material"
+    logo: lab/icone
+    repo: fontawesome/brands/github
+  font: false
   features:
     - content.code.copy
     - content.code.select
     - content.code.annotate
     - navigation.tracking
-    - navigation.tabs.sticky
     - navigation.sections
     - navigation.path
     - navigation.top
-    - header.autohide
+    - search.suggest
+    - search.highlight
+    - toc.follow
   palette:
-    - scheme: light
-      primary: white
-      toggle:
-        icon: material/lightbulb-outline
-        name: Modo Noturno
-    - scheme: slate
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: custom
+      accent: custom
       toggle:
-        icon: material/lightbulb
-        name: Modo Claro
+        icon: material/weather-night
+        name: Modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Modo claro
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
   - javascripts/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 markdown_extensions:
@@ -44,8 +51,14 @@ markdown_extensions:
   - pymdownx.highlight      # suporte a código
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.betterem
+  - admonition
+  - pymdownx.details
   - attr_list
   - md_in_html
   - pymdownx.arithmatex:
@@ -53,13 +66,46 @@ markdown_extensions:
   - pymdownx.emoji:          # suporte a emojis
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
 
 plugins:
   - search:
   - mkdocstrings:
       handlers:
         python:
-          import:
+          paths: [.]
+          inventories:
           - https://docs.python-requests.org/en/master/objects.inv
 
 copyright: Copyright &copy; 2023 Oséias Farias
+
+nav:
+  - Início: index.md
+  - Visão Geral:
+      - O que é o Laboratório Virtual: visao-geral/index.md
+      - Arquitetura do sistema: visao-geral/arquitetura.md
+  - Protótipo: prototipo/index.md
+  - Modelagem Matemática: modelagem/index.md
+  - Identificação de Sistemas:
+      - Excitação e aquisição (PRBS): identificacao/excitacao.md
+      - Estimação por mínimos quadrados: identificacao/estimacao.md
+      - Validação do modelo: identificacao/validacao.md
+  - Projeto de Controle:
+      - Controlador PID: controle/pid.md
+      - Resultados em malha fechada: controle/resultados.md
+  - Gêmeo Digital: gemeo-digital/index.md
+  - Software:
+      - Interface Gráfica: software/interface-grafica.md
+      - Firmware: software/firmware.md
+      - Instalação:
+          - Visão geral: software/instalacao/python/index.md
+          - Python (Ubuntu): software/instalacao/python/ubuntu.md
+          - Python (Windows): software/instalacao/python/windows.md
+          - Python (macOS): software/instalacao/python/macos.md
+          - Dependências: software/instalacao/dependencias.md
+  - Referência de Código:
+      - animacao_aeropendulo: referencia/animacao-aeropendulo.md
+      - graficos_aeropendulo: referencia/graficos-aeropendulo.md
+      - interface_interativa: referencia/interface-interativa.md

@@ -1,11 +1,14 @@
 ---
 fonte: síntese de todo docs_tcc/ — este arquivo é um ESQUELETO, plano ainda não definido com o usuário
-gerado_em: 2026-09-12
+gerado_em: 2026-09-13
 ---
 
-# Plano do artigo (rascunho a definir)
+# Plano do artigo (planejado do zero)
 
-> Este arquivo é um ponto de partida, não um plano fechado. As seções "A decidir com o usuário" precisam de uma conversa antes de virar plano de fato.
+> Decisão de 2026-09-13: existe um rascunho antigo (COBENGE 2023, coautoria com outro
+> orientando) em `softwares_aeropendulo/simulador_aeropendulo/docs/utils/Template_Artigos_ST_COBENGE-2023.docx.pdf`.
+> Foi decidido **não usá-lo como base** — o artigo será planejado do zero, focado só no
+> trabalho próprio (Aeropêndulo). O arquivo antigo continua no repositório sem uso.
 
 ## Material já disponível que sustenta um artigo
 
@@ -21,7 +24,7 @@ gerado_em: 2026-09-12
 
 ## A decidir com o usuário
 
-- [ ] Público-alvo / periódico ou evento de destino (ex.: COBENGE, já aparece um template `Template_Artigos_ST_COBENGE-2023.docx.pdf` em `softwares_aeropendulo/simulador_aeropendulo/docs/utils/` — sinal de que já houve intenção de submeter a esse evento).
+- [ ] Público-alvo / periódico ou evento de destino.
 - [ ] Escopo: recorte do TCC (um capítulo específico) ou síntese do trabalho todo.
 - [ ] Se serão necessários novos experimentos/dados para fortalecer a validação quantitativa.
-- [ ] Coautoria (orientador Raphael Teixeira / revisor "André").
+- [ ] Coautoria (orientador Raphael Barros Teixeira).

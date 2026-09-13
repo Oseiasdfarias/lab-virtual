@@ -43,8 +43,8 @@ class AnimacaoAeropendulo(AnimacaoAeropenduloInterface):
         """
         Classe que implementa o Aeropêndulo.
 
-        Args:
-            comprimento_braco: tamanho do braço do Aeropêndulo.
+        Usa o `self.comprimento_braco` definido em `__init__`.
+
         Returns:
             Retorna um objeto (vpython) que contêm a estrutura do Aeropêndulo.
         """

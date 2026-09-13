@@ -160,16 +160,22 @@ documentos:
     tags: [plano, pendencias, punch_list, proximos_passos]
 
   - path: docs_tcc/05_plano_publicacoes/plano_artigo.md
-    titulo: "Plano do artigo (esqueleto, não definido)"
-    resumo: "Inventário do material que já sustenta um artigo (modelagem, identificação de sistemas, protótipo+firmware+interface+gêmeo digital) e perguntas em aberto para definir escopo/veículo com o usuário."
+    titulo: "Plano do artigo (planejado do zero)"
+    resumo: "Inventário do material que já sustenta um artigo (modelagem, identificação de sistemas, protótipo+firmware+interface+gêmeo digital) e perguntas em aberto para definir escopo/veículo com o usuário. Existe um rascunho antigo do COBENGE 2023 (coautoria com outro orientando) em softwares_aeropendulo/simulador_aeropendulo/docs/utils/, mas foi decidido (2026-09-13) não usá-lo como base."
     tags: [plano, artigo, publicacao, a_definir]
 
   - path: docs_tcc/05_plano_publicacoes/plano_livro.md
     titulo: "Plano do livro (esqueleto, não definido)"
-    resumo: "Inventário do material que sustenta um livro mais amplo que o artigo (fundamentação, identificação aplicada, construção do protótipo do zero, simulação) e perguntas em aberto sobre público-alvo e formato."
+    resumo: "Inventário do material que sustenta um livro mais amplo que o artigo (fundamentação, identificação aplicada, construção do protótipo do zero, simulação); tabela de 2 direções possíveis (técnico-acadêmico vs. guia prático) e perguntas em aberto sobre público-alvo e formato."
     tags: [plano, livro, publicacao, a_definir]
 
+  - path: docs_tcc/05_plano_publicacoes/00_fluxo_trabalho.md
+    titulo: "Fluxo de trabalho — abrir primeiro ao retomar"
+    resumo: "Sequencia as fases (fechar pendências → finalizar documentação → artigo/livro em sessões separadas), com definição de pronto de cada uma e o que não fazer ainda."
+    tags: [plano, roadmap, navegacao, entry_point]
+
 alertas_criticos:
+  - "Há um rascunho antigo de artigo (COBENGE 2023, coautoria com outro orientando) em softwares_aeropendulo/simulador_aeropendulo/docs/utils/Template_Artigos_ST_COBENGE-2023.docx.pdf. Decisão de 2026-09-13: não usar como base — o artigo é planejado do zero (ver plano_artigo.md)."
   - "main_aeropendulo.py quebrado (softwares_aeropendulo/) — importa classes inexistentes; usar rungui.py como entry point."
   - "2 equações do Cap.3 da monografia final com \\frac{numerador}{denominador} literal em vez dos coeficientes reais."
   - "4 páginas do site MkDocs publicado estão vazias ('EM DESENVOLVIMENTO')."
