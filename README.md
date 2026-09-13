@@ -1,5 +1,8 @@
 <p align="center">
-  <img height="130" src="./brand/png/logo-vertical-800.png" alt="Laboratório Virtual">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./brand/png/logo-vertical-800.png">
+    <img height="130" src="./brand/png/logo-vertical-solido-800.png" alt="Laboratório Virtual">
+  </picture>
 </p>
 
 <p align="center">
@@ -76,9 +79,9 @@ Laplace, com os parâmetros abaixo:
 G(s) = \frac{\theta(s)}{V(s)} = \frac{K_m/J}{s^2 + (c/J)\,s + mgd/J} = \frac{2{,}792}{s^2 + 0{,}717\,s + 9{,}985}
 ```
 
-Os polos ficam em $s = -0{,}358 \pm 3{,}139\,j$: a planta linearizada é **estável e pouco
-amortecida** ($\omega_n \approx 3{,}16$ rad/s, $\zeta \approx 0{,}11$), com ganho estático de
-$\approx 0{,}28$ rad/V.
+Os polos ficam em −0,358 ± 3,139j: a planta linearizada é **estável e pouco amortecida**
+(frequência natural $\omega_n$ ≈ 3,16 rad/s e amortecimento $\zeta$ ≈ 0,11), com ganho estático
+de ≈ 0,28 rad/V.
 
 <details>
 <summary><b>Parâmetros do modelo</b></summary>
@@ -158,7 +161,7 @@ em mudanças bruscas de referência):
 u[k] = K_p\, e[k] + K_i\, T_s \sum_{n=0}^{k} e[n] + K_d\, \frac{\theta[k-1] - \theta[k]}{T_s}
 ```
 
-com $K_p = 0{,}02$, $K_i = 0{,}055$ e $K_d = 0{,}35$, **sintonizados por tentativa e erro**
+com $K_p$ = 0,02, $K_i$ = 0,055 e $K_d$ = 0,35, **sintonizados por tentativa e erro**
 diretamente no protótipo. A malha foi avaliada com referências em onda quadrada (0,5 Hz,
 15°, offset de 1 V) e dente de serra.
 
