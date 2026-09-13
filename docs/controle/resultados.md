@@ -31,15 +31,34 @@ entrada do tipo degrau. Um detalhe honesto observado nos dois sinais: aparece um
 nas extremidades da forma de onda (visível como um aumento do sinal de erro nesses pontos),
 análogo ao que se espera de uma resposta a um degrau.
 
-## Limitações reconhecidas
+## Métricas a partir dos ensaios gravados
 
-A avaliação em malha fechada também foi qualitativa (inspeção visual dos gráficos), sem
-métricas numéricas como tempo de acomodação, sobressinal ou erro em regime permanente
-calculadas explicitamente. Isso, junto com a validação quantitativa do modelo (ver
-[Validação do Modelo](../identificacao/validacao.md)), é a lacuna mais importante para
-quem quiser transformar este trabalho em um artigo científico -- os dados brutos dos
-ensaios já existem (`softwares_aeropendulo/src_interface/dados_de_ensaio/`), falta somente
-processá-los.
+A monografia avaliou a malha fechada de forma **qualitativa**, pela inspeção dos gráficos.
+Entre os [dados de ensaio](https://github.com/Oseiasdfarias/lab-virtual/tree/main/softwares_aeropendulo/src_interface/dados_de_ensaio)
+há dois ensaios completos em malha fechada, ambos com referência em onda quadrada entre 0° e
+10°: `arquivo_13_9_2023_23_48_56.csv` (troca a cada 2,5 s) e
+`arquivo_14_9_2023_20_31_13.csv` (troca a cada 3,3 s). Os parâmetros desses arquivos não são
+os citados no texto da monografia (0,5 Hz e 15°), e não há ensaio com dente de serra
+gravado; as métricas abaixo valem, portanto, para esses dois ensaios.
+
+Cada troca de nível foi tratada como um degrau de ±10°. Os valores são a **mediana** dos
+degraus de cada ensaio:
+
+| Ensaio | Degrau | Sobressinal | Tempo de subida (10–90 %) | Acomodação (±5 %) | Erro em regime |
+| --- | --- | :---: | :---: | :---: | :---: |
+| 13/09/2023 (42 degraus) | subida | 5,8 % | 0,64 s | 1,36 s | 0,27° |
+| 13/09/2023 | descida | 25,5 % | 0,40 s | 1,40 s | 0,91° |
+| 14/09/2023 (25 degraus) | subida | 5,9 % | 0,44 s | 2,66 s | 0,29° |
+| 14/09/2023 | descida | 26,9 % | 0,34 s | 1,76 s | 0,51° |
+
+O comportamento é assimétrico: ao erguer o braço, o sobressinal fica perto de 6 %; ao
+baixá-lo, com a gravidade a favor, passa de 25 %. O erro residual fica abaixo de 1°, medido
+nos últimos 20 % de cada janela de 2,5 a 3,3 s entre trocas.
+
+Essas métricas são uma análise posterior à defesa, com os ganhos e o termo derivativo da
+época dos ensaios. O script que as reproduz está em
+[`metricas_malha_fechada.py`](https://github.com/Oseiasdfarias/lab-virtual/blob/main/materiais_complementares/analise_malha_fechada/metricas_malha_fechada.py),
+e as definições de cada métrica estão no cabeçalho do arquivo.
 
 ## Trabalhos futuros sugeridos
 

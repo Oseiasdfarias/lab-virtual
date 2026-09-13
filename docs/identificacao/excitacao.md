@@ -72,11 +72,11 @@ serial:
 | 1 | Ângulo medido (saída do potenciômetro, convertido em `Conversor::converte_escala`) | graus | `*theta_saida` |
 | 2 | Sinal de erro (`sinal_ref - (theta_saida - 31)` em malha fechada; `0` em malha aberta) | graus | `*erro` |
 | 3 | Sinal de controle **antes** da conversão para ciclo PWM | Volts | `*sinal_controle` |
-| 4 | Sinal de entrada em malha aberta (PRBS, `OndaPrbs::onda_prbs()`); `0` em malha fechada | Volts | `*sinal_entrada_ma` (o parâmetro da função chama-se `ampl`, mas quem chama passa `sinal_entrada_ma` — nome interno enganoso) |
+| 4 | Sinal de entrada em malha aberta (PRBS, `OndaPrbs::onda_prbs()`); em malha fechada, mantém o último valor da malha aberta, pois o firmware não zera a variável | Volts | `*sinal_entrada_ma` (o parâmetro da função chama-se `ampl`, mas quem chama passa `sinal_entrada_ma` — nome interno enganoso) |
 | 5 | **Repetição exata da coluna 4** — o firmware imprime a mesma variável duas vezes; comentário no código diz "estruturas reservas de envio de dados" (reservado para uso futuro, não usado hoje) | Volts | `*ampl` (mesmo valor da coluna 4) |
 | 6 | Tempo decorrido do ensaio, incrementos de `Ts = 0,02` s | segundos | `*t` |
 
-Os arquivos de cada ensaio ficam em `softwares_aeropendulo/src_interface/dados_de_ensaio/`.
+Os arquivos de cada ensaio ficam em `softwares_aeropendulo/src_interface/dados_de_ensaio/`, com um [catálogo](https://github.com/Oseiasdfarias/lab-virtual/tree/main/softwares_aeropendulo/src_interface/dados_de_ensaio#catálogo-dos-ensaios) que indica a malha, a excitação e o uso de cada um.
 
 ## Separação treino/teste
 
