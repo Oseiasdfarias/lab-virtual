@@ -1,159 +1,191 @@
 <p align="center">
-  <img height="120px" src="./brand/png/logo-vertical-800.png" alt="Laboratório Virtual">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./brand/png/logo-vertical-800.png">
+    <img height="230" src="./brand/png/logo-vertical-solido-800.png" alt="Laboratório Virtual">
+  </picture>
 </p>
 
 <p align="center">
-  <strong>Plataforma didática para modelagem, identificação e controle de sistemas dinâmicos</strong><br>
-  <sub>Universidade Federal do Pará · Campus Universitário de Tucuruí · Faculdade de Engenharia Elétrica</sub>
+  <strong>Protótipo físico, gêmeo digital e identificação de sistemas aplicados a um aeropêndulo</strong><br>
+  <sub>Uma plataforma aberta para estudar modelagem, identificação e controle de sistemas dinâmicos</sub>
 </p>
 
 <p align="center">
-  <a href="https://oseiasdfarias.github.io/lab-virtual/"><img alt="Documentação" src="https://img.shields.io/badge/documenta%C3%A7%C3%A3o-online-1D1D1F?style=flat-square"></a>
-  <img alt="Python" src="https://img.shields.io/badge/python-3.10%E2%80%933.11-3776AB?style=flat-square&logo=python&logoColor=white">
-  <img alt="Firmware" src="https://img.shields.io/badge/firmware-ESP32%20%7C%20PlatformIO-FF7F00?style=flat-square">
+  <a href="https://oseiasdfarias.github.io/lab-virtual/"><img alt="Documentação online" src="https://img.shields.io/badge/documenta%C3%A7%C3%A3o-online-1D1D1F?style=for-the-badge&logo=materialformkdocs&logoColor=white"/></a>
+  <a href="https://github.com/Oseiasdfarias/lab-virtual/actions/workflows/docs.yml"><img alt="Build da documentação" src="https://img.shields.io/github/actions/workflow/status/Oseiasdfarias/lab-virtual/docs.yml?branch=main&style=for-the-badge&label=build%20docs&logo=githubactions&logoColor=white"/></a>
+  <a href="https://bdm.ufpa.br/handle/prefix/6944"><img alt="Monografia na BDM/UFPA" src="https://img.shields.io/badge/monografia-BDM%2FUFPA-0B5CAD?style=for-the-badge&logo=bookstack&logoColor=white"/></a>
 </p>
 
----
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"/>
+  <img alt="NumPy" src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white"/>
+  <img alt="Pandas" src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white"/>
+  <img alt="Jupyter" src="https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white"/>
+  <img alt="C++" src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=cplusplus&logoColor=white"/>
+  <img alt="ESP32" src="https://img.shields.io/badge/ESP32-E7352C?style=for-the-badge&logo=espressif&logoColor=white"/>
+  <img alt="PlatformIO" src="https://img.shields.io/badge/PlatformIO-F5822A?style=for-the-badge&logo=platformio&logoColor=white"/>
+  <img alt="Arduino" src="https://img.shields.io/badge/arduino-%2300979D.svg?style=for-the-badge&logo=arduino&logoColor=white"/>
+  <img alt="LaTeX" src="https://img.shields.io/badge/latex-%23008080.svg?style=for-the-badge&logo=latex&logoColor=white"/>
+  <img alt="Material for MkDocs" src="https://img.shields.io/badge/material%20for%20mkdocs-526CFE?style=for-the-badge&logo=materialformkdocs&logoColor=white"/>
+  <img alt="Three.js" src="https://img.shields.io/badge/three.js-%23000000.svg?style=for-the-badge&logo=threedotjs&logoColor=white"/>
+  <img alt="D3.js" src="https://img.shields.io/badge/d3.js-F9A03C?style=for-the-badge&logo=d3&logoColor=white"/>
+  <img alt="GitHub Actions" src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white"/>
+  <img alt="Git" src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white"/>
+</p>
 
-## Resumo
+<p align="center">
+  <a href="#sobre-a-plataforma">Sobre</a> ·
+  <a href="#como-funciona">Como funciona</a> ·
+  <a href="#começando">Começando</a> ·
+  <a href="https://oseiasdfarias.github.io/lab-virtual/">Documentação</a> ·
+  <a href="#publicação">Publicação</a>
+</p>
 
-Este repositório reúne o resultado de um Trabalho de Conclusão de Curso em Engenharia
-Elétrica cujo objetivo foi construir uma plataforma completa — física e computacional —
-para o ensino e a experimentação em modelagem e controle de sistemas dinâmicos.
+<table>
+  <tr>
+    <td width="33%"><img src="./docs/prototipo/img/prototipo-aeropendulo.jpg" alt="Protótipo do aeropêndulo"></td>
+    <td width="33%"><img src="./docs/software/img/interface-grafica.png" alt="Interface gráfica"></td>
+    <td width="33%"><img src="./docs/gemeo-digital/img/gemeo-digital.png" alt="Gêmeo digital"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub><b>Protótipo</b> — planta física</sub></td>
+    <td align="center"><sub><b>Interface gráfica</b> — aquisição e ensaios</sub></td>
+    <td align="center"><sub><b>Gêmeo digital</b> — réplica 3D</sub></td>
+  </tr>
+</table>
 
-O sistema adotado como planta é um **aeropêndulo**: uma haste articulada em um pivô, com
-um motor CC e hélice acoplados à extremidade. O empuxo gerado pela hélice produz torque em
-torno do pivô e eleva a haste a partir do repouso; a variável controlada é o ângulo da
-haste em relação à vertical. É uma planta de primeira escolha para ensino por ser
-não linear, instável em malha aberta em parte da faixa de operação e de construção
-acessível.
+## Sobre a plataforma
 
-A plataforma cobre o ciclo experimental completo: **excitação e aquisição** de dados no
-protótipo real, **identificação do modelo** a partir desses dados, **controle em malha
-fechada** com PID no firmware, e um **gêmeo digital** que reproduz em 3D, em tempo real, o
-movimento medido no protótipo.
+O **Laboratório Virtual** é uma plataforma aberta para ensinar e experimentar modelagem,
+identificação e controle de sistemas dinâmicos. Ela junta, num mesmo ambiente, um sistema
+físico real e as ferramentas de software para operá-lo, observá-lo e estudá-lo.
 
-## Arquitetura
+A planta escolhida é um **aeropêndulo**: uma haste articulada num pivô, com um motor e uma
+hélice na ponta. O empuxo da hélice ergue a haste, e o ângulo dela é medido e controlado em
+tempo real. É um sistema simples de construir e de visualizar, mas com dinâmica rica o
+bastante para percorrer todo o conteúdo de um curso de controle — da física do sistema ao
+controlador rodando no hardware.
 
-O sistema é composto por quatro subsistemas que operam de forma integrada:
+O projeto nasceu como Trabalho de Conclusão de Curso em Engenharia Elétrica na UFPA (2023) e
+é mantido como material aberto: hardware, firmware, software, dados de ensaio e documentação
+estão todos neste repositório.
 
-| Subsistema | Função | Tecnologia |
+## Como funciona
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./.github/assets/arquitetura-escuro.png">
+    <img width="820" src="./.github/assets/arquitetura-claro.png" alt="Arquitetura da plataforma: o firmware no centro, ligado ao protótipo, à interface gráfica e ao gêmeo digital">
+  </picture>
+</p>
+
+A plataforma é formada por quatro subsistemas, com o **firmware** no centro:
+
+| Subsistema | O que faz | Tecnologia |
 | --- | --- | --- |
-| **Protótipo** | Planta física: haste, motor CC com hélice, potenciômetro como sensor de ângulo, ponte H | Estrutura em madeira e fibra de carbono |
-| **Firmware** | Leitura do sensor, controle PID em malha fechada, geração do sinal de referência e comunicação serial | C++ · ESP32 TTGO · PlatformIO |
-| **Interface gráfica** | Aquisição em tempo real, visualização dos sinais e registro dos ensaios em CSV | Python · CustomTkinter · PySerial |
-| **Gêmeo digital** | Réplica virtual do protótipo: animação tridimensional e gráficos atualizados com o ângulo medido | Python · VPython · Matplotlib |
+| **Protótipo** | A planta física: haste, motor CC com hélice, potenciômetro medindo o ângulo e ponte H acionando o motor | Compensado e fibra de carbono |
+| **Firmware** | Lê o ângulo, gera o sinal de referência, executa o controlador PID e aciona o motor — o laço de controle roda inteiro no microcontrolador | C++ · ESP32 · PlatformIO |
+| **Interface gráfica** | Configura e inicia os ensaios, mostra os sinais em tempo real e grava os dados em CSV | Python · CustomTkinter · Matplotlib |
+| **Gêmeo digital** | Uma réplica 3D do aeropêndulo que acompanha, na tela, o movimento medido no protótipo | Python · VPython |
 
-O firmware e a interface gráfica trocam dados por porta serial: o microcontrolador envia
-referência, posição angular, erro, sinal de controle, entrada e tempo; a interface envia
-amplitude, frequência e offset do sinal de referência, a forma de onda, o modo de malha e o
-comando de execução. Os ganhos do PID são fixos no firmware, definidos em tempo de compilação.
+O firmware conversa com o protótipo pelo sensor e pelo PWM, e com o computador pela porta
+serial: envia os sinais de cada amostra para a interface e recebe dela apenas a configuração
+do ensaio. A interface, por sua vez, repassa os dados ao gêmeo digital, que roda no mesmo
+programa Python.
 
-## Metodologia
+## O que dá para fazer
 
-A obtenção do modelo seguiu a abordagem de **identificação de sistemas** a partir de dados
-experimentais, em vez de modelagem exclusivamente analítica:
+- **Conduzir ensaios** em malha aberta ou fechada, escolhendo a forma de onda da referência (quadrada, senoidal ou dente de serra) e ajustando amplitude, frequência e offset pela interface.
+- **Acompanhar o sistema em tempo real**, com gráficos de referência, ângulo, erro e sinal de controle, e com a animação 3D do gêmeo digital.
+- **Registrar ensaios** em CSV para análise posterior — o repositório já traz os ensaios usados no trabalho.
+- **Estudar o ciclo completo de um projeto de controle** com a documentação: modelagem a partir da física, identificação de sistemas a partir dos dados e projeto do controlador.
+- **Modificar e estender** o firmware, a interface ou o gêmeo digital, todos organizados em módulos.
 
-1. **Excitação** — aplicação de sinal PRBS (*Pseudo-Random Binary Sequence*) na entrada do
-   sistema em malha aberta, somado a um offset que mantém a operação em torno do ponto de
-   trabalho.
-2. **Aquisição** — registro dos pares entrada–saída pela interface gráfica, com divisão do
-   ensaio em 60% para identificação e 40% para validação.
-3. **Estimação** — ajuste de modelos ARX discretos pelo método dos **mínimos quadrados**; a
-   estrutura de 10ª ordem foi a adotada.
-4. **Validação** — simulação livre do modelo com a entrada do ensaio e comparação com a
-   saída real no trecho de validação.
-5. **Controle** — PID no firmware, com ganhos sintonizados por tentativa e erro no protótipo,
-   avaliado em malha fechada com referências em onda quadrada e dente de serra.
+## Documentação
 
-A dedução analítica do modelo por subsistemas (motor CC série e braço) também está
-documentada; a dificuldade de obter numericamente alguns de seus parâmetros é o que motiva a
-identificação a partir de dados.
+A documentação completa está em **[oseiasdfarias.github.io/lab-virtual](https://oseiasdfarias.github.io/lab-virtual/)**, organizada na mesma ordem do desenvolvimento:
 
-## Estrutura do repositório
+| Seção | Conteúdo |
+| --- | --- |
+| [Visão geral](https://oseiasdfarias.github.io/lab-virtual/visao-geral/) | O que é a plataforma e como os subsistemas se conectam |
+| [Protótipo](https://oseiasdfarias.github.io/lab-virtual/prototipo/) | Estrutura, eletrônica e montagem |
+| [Modelagem matemática](https://oseiasdfarias.github.io/lab-virtual/modelagem/) | Equações do sistema a partir da física |
+| [Identificação de sistemas](https://oseiasdfarias.github.io/lab-virtual/identificacao/excitacao/) | Ensaios, estimação do modelo e validação |
+| [Projeto de controle](https://oseiasdfarias.github.io/lab-virtual/controle/pid/) | Controlador PID e ensaios em malha fechada |
+| [Gêmeo digital](https://oseiasdfarias.github.io/lab-virtual/gemeo-digital/) | Simulador 3D e integração com a interface |
+| [Software](https://oseiasdfarias.github.io/lab-virtual/software/interface-grafica/) | Interface gráfica, firmware, instalação e referência de código |
 
-```
-.
-├── brand/                      # Identidade visual (SVG, PNG e scripts geradores)
-├── docs/                       # Fonte do site de documentação (MkDocs)
-├── docs_tcc/                   # Resumos e índice do projeto para consulta rápida
-├── materiais_complementares/   # Bibliografia, estudos de identificação e modelagem
-├── revisao_tcc/                # Monografia em LaTeX e versões de revisão
-├── softwares_aeropendulo/      # Interface gráfica, gêmeo digital e firmware
-└── utils/                      # Figuras e diagramas
-```
+## Começando
 
-## Instalação e execução
+**Você vai precisar de:** o protótipo montado, uma placa ESP32 (TTGO T1), Python 3.10 ou 3.11,
+[Poetry](https://python-poetry.org/) e [PlatformIO](https://platformio.org/).
 
-Requer Python 3.10 ou 3.11. As dependências são gerenciadas por [Poetry](https://python-poetry.org/):
-
-```bash
-git clone https://github.com/Oseiasdfarias/lab-virtual.git
-cd lab-virtual/softwares_aeropendulo
-poetry install
-poetry run python rungui.py
-```
-
-O firmware está em `softwares_aeropendulo/firmwares_microcontroladores/`. A variante mais
-completa é `PlatformIo/Esp32_ttgo_modulos`, organizada em bibliotecas separadas para
-controlador PID, conversão de unidades, geração de referência e comunicação serial.
-Compilação e gravação pelo PlatformIO:
+**1. Gravar o firmware**
 
 ```bash
 cd softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/Esp32_ttgo_modulos
 pio run --target upload
 ```
 
-O gêmeo digital é opcional (`poetry run python rungui.py -simular sim`) e é alimentado pelos
-dados do protótipo: ele reproduz o movimento medido, a partir do ângulo recebido pela serial,
-e por isso precisa do protótipo conectado.
+**2. Instalar e abrir a interface**
 
-## Documentação
+```bash
+git clone https://github.com/Oseiasdfarias/lab-virtual.git
+cd lab-virtual/softwares_aeropendulo
+poetry install
+poetry run python rungui.py               # interface gráfica
+poetry run python rungui.py -simular sim  # interface + gêmeo digital
+```
 
-A documentação técnica está publicada em
-**[oseiasdfarias.github.io/lab-virtual](https://oseiasdfarias.github.io/lab-virtual/)** e
-inclui guias de instalação e a referência dos módulos do gêmeo digital. O site é publicado
-automaticamente a cada push na `main`; para visualizá-lo localmente:
+Com o protótipo conectado à USB, selecione a porta na interface, configure o ensaio e clique em executar.
+
+**3. Rodar a documentação localmente** *(opcional)*
 
 ```bash
 pip install -r requirements-docs.txt
 mkdocs serve
 ```
 
-Para uma visão consolidada do projeto — resumo por capítulo da monografia, arquitetura do
-software, catálogo dos materiais complementares e pendências —, consulte
-[`docs_tcc/`](./docs_tcc/), que traz um índice em YAML e resumos em Markdown.
+## Estrutura do repositório
+
+```
+.
+├── softwares_aeropendulo/      # Interface gráfica, gêmeo digital, firmware e dados de ensaio
+├── docs/                       # Site de documentação (MkDocs Material)
+├── revisao_tcc/                # Monografia em LaTeX
+├── materiais_complementares/   # Notebooks, estudos de modelagem e identificação, prototipagem
+├── docs_tcc/                   # Resumos do projeto e planejamento de publicações
+├── brand/                      # Identidade visual
+└── utils/                      # Figuras avulsas
+```
 
 ## Publicação
 
-A monografia está publicada em acesso aberto na Biblioteca Digital de Monografias da UFPA:
+A monografia que originou a plataforma está em acesso aberto na Biblioteca Digital de
+Monografias da UFPA: **[bdm.ufpa.br/handle/prefix/6944](https://bdm.ufpa.br/handle/prefix/6944)**.
 
-**[bdm.ufpa.br/handle/prefix/6944](https://bdm.ufpa.br/handle/prefix/6944)** — defendida em
-11 de dezembro de 2023.
-
-## Como citar
+<details>
+<summary><b>Como citar</b></summary>
 
 ```bibtex
 @mastersthesis{farias2023labvirtual,
-  author       = {Farias, Oséias Dias de},
-  title        = {Desenvolvimento de protótipo e gêmeo digital como ferramenta para um
-                  laboratório virtual com foco em modelagem e controle de sistemas dinâmicos},
-  school       = {Universidade Federal do Pará},
-  type         = {Trabalho de Conclusão de Curso (Bacharelado em Engenharia Elétrica)},
-  address      = {Tucuruí, Brasil},
-  year         = {2023},
-  url          = {https://bdm.ufpa.br/handle/prefix/6944}
+  author  = {Farias, Oséias Dias de},
+  title   = {Desenvolvimento de protótipo e gêmeo digital como ferramenta para um
+             laboratório virtual com foco em modelagem e controle de sistemas dinâmicos},
+  school  = {Universidade Federal do Pará},
+  type    = {Trabalho de Conclusão de Curso (Bacharelado em Engenharia Elétrica)},
+  address = {Tucuruí, Brasil},
+  year    = {2023},
+  url     = {https://bdm.ufpa.br/handle/prefix/6944}
 }
 ```
-
-**Palavras-chave:** aeropêndulo · identificação de sistemas · protótipo · simulador ·
-gêmeo digital
+</details>
 
 ## Autoria
 
-Desenvolvido por **Oséias Dias de Farias**, Bacharelado em Engenharia Elétrica da
-Faculdade de Engenharia Elétrica — UFPA, Campus Universitário de Tucuruí, sob orientação
-do **Prof. Raphael Barros Teixeira**.
+Desenvolvido por **[Oséias Dias de Farias](https://github.com/Oseiasdfarias)** no Bacharelado em
+Engenharia Elétrica da UFPA, Campus Universitário de Tucuruí, sob orientação do
+**[Prof. Raphael Barros Teixeira](https://github.com/raphateixeira)**.
 
 <p align="center">
   <img height="34" src="./utils/logos_lg/UFPA-removebg-preview.png" alt="UFPA">
