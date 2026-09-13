@@ -162,10 +162,21 @@ mkdocs serve
 ## Publicação
 
 A monografia que originou a plataforma está em acesso aberto na Biblioteca Digital de
-Monografias da UFPA: **[bdm.ufpa.br/handle/prefix/6944](https://bdm.ufpa.br/handle/prefix/6944)**.
+Monografias da UFPA: **[bdm.ufpa.br/handle/prefix/6944](https://bdm.ufpa.br/handle/prefix/6944)**. Para citá-la, veja [Como citar](#como-citar).
 
-<details>
-<summary><b>Como citar</b></summary>
+## Autoria
+
+Desenvolvido por **[Oséias Dias de Farias](https://github.com/Oseiasdfarias)** no Bacharelado em
+Engenharia Elétrica da UFPA, Campus Universitário de Tucuruí, sob orientação do
+**[Prof. Raphael Barros Teixeira](https://github.com/raphateixeira)**.
+
+<p align="center">
+  <img height="34" src="./utils/logos_lg/UFPA-removebg-preview.png" alt="UFPA">
+</p>
+
+## Como citar
+
+Se este trabalho for útil na sua pesquisa ou nas suas aulas, cite a monografia:
 
 ```bibtex
 @mastersthesis{farias2023labvirtual,
@@ -179,14 +190,3 @@ Monografias da UFPA: **[bdm.ufpa.br/handle/prefix/6944](https://bdm.ufpa.br/hand
   url     = {https://bdm.ufpa.br/handle/prefix/6944}
 }
 ```
-</details>
-
-## Autoria
-
-Desenvolvido por **[Oséias Dias de Farias](https://github.com/Oseiasdfarias)** no Bacharelado em
-Engenharia Elétrica da UFPA, Campus Universitário de Tucuruí, sob orientação do
-**[Prof. Raphael Barros Teixeira](https://github.com/raphateixeira)**.
-
-<p align="center">
-  <img height="34" src="./utils/logos_lg/UFPA-removebg-preview.png" alt="UFPA">
-</p>
