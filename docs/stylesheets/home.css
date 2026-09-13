@@ -26,6 +26,24 @@
   text-decoration: none;
 }
 
+/* Símbolo da marca no hero: >= 48 px (brand/README.md) e respiro maior que a altura do pivô. */
+.lv-home-mark {
+  display: block;
+  --lv-mark: 4.5rem;
+  width: var(--lv-mark);
+  height: var(--lv-mark);
+  /* A borda esquerda do pivô fica em 16/163 da largura do viewBox: alinha o círculo ao texto. */
+  margin: 0 0 1.4rem calc(var(--lv-mark) * -16 / 163);
+  color: var(--lv-ink);
+}
+
+@media screen and (max-width: 60em) {
+  .lv-home-mark {
+    --lv-mark: 3.5rem;
+    margin-bottom: 1.1rem;
+  }
+}
+
 .lv-home-eyebrow {
   margin: 0 0 0.6rem;
   color: var(--md-default-fg-color--light);
