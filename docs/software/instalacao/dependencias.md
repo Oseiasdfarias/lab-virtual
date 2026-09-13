@@ -1,41 +1,53 @@
 ---
-title: Instalação das Dependências do Python
-author: Oséias Farias
-
+title: Dependências do projeto
 ---
 
-# Tutorial: Instalando Dependências do Python a partir do arquivo requirements.txt
+# Dependências do projeto
 
-Quando trabalhamos em projetos Python, é comum listar todas as dependências necessárias em um arquivo chamado `requirements.txt`. Este tutorial mostrará como instalar essas dependências utilizando o `pip`.
+As dependências Python ficam em `softwares_aeropendulo/pyproject.toml` e são fixadas no
+`poetry.lock`. O `requirements.txt` da mesma pasta é gerado a partir desse lock, então os
+dois caminhos abaixo instalam as mesmas versões.
 
-## Instalação a partir do requirements.txt
+## Com Poetry (recomendado)
 
-1. Abra o Terminal ou Prompt de Comando no seu sistema operacional.
+Com o [Poetry](https://python-poetry.org/docs/#installation) instalado e o Python 3.10 ou
+3.11 disponível:
 
-2. Navegue até a pasta `softwares_aeropendulo` do repositório, onde fica o `requirements.txt`. Por exemplo:
+```bash
+git clone https://github.com/Oseiasdfarias/lab-virtual.git
+cd lab-virtual/softwares_aeropendulo
+poetry install
+```
 
-    ```bash
-    cd /caminho/do/seu/projeto/lab-virtual/softwares_aeropendulo
-    ```
+Os comandos do projeto passam a rodar com `poetry run`:
 
-3. Execute o seguinte comando para instalar as dependências listadas no `requirements.txt`:
+```bash
+poetry run python rungui.py               # interface gráfica
+poetry run python rungui.py -simular sim  # interface + gêmeo digital
+```
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+## Com pip
 
-   Este comando instrui o `pip` a ler o arquivo `requirements.txt` e instalar todas as dependências listadas com as versões especificadas.
+Sem Poetry, crie um ambiente virtual e instale a partir do `requirements.txt`:
 
-4. Após a execução bem-sucedida do comando, todas as dependências do seu projeto serão instaladas.
+```bash
+git clone https://github.com/Oseiasdfarias/lab-virtual.git
+cd lab-virtual/softwares_aeropendulo
+python3.11 -m venv .venv
+source .venv/bin/activate        # no Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+python rungui.py
+```
 
-5. Para verificar as dependências instaladas, você pode executar:
+Em ambos os casos, execute os comandos a partir da pasta `softwares_aeropendulo`: a coleta de
+dados usa caminhos relativos a ela.
 
-    ```bash
-    pip freeze
-    ```
+## Conferindo a instalação
 
-   Isso exibirá uma lista das dependências instaladas, incluindo suas versões.
+A suíte de testes não precisa do protótipo: confere o protocolo serial, a gravação dos
+ensaios, a importação dos módulos e a reprodução das métricas publicadas nesta documentação.
 
-## Conclusão
-
-Agora, você instalou com sucesso as dependências do seu projeto Python a partir do arquivo `requirements.txt`. Certifique-se de compartilhar e manter atualizado esse arquivo conforme necessário para garantir que todos no seu projeto estejam usando as mesmas versões das bibliotecas. Este é um passo importante para garantir a consistência do ambiente de desenvolvimento entre membros da equipe e ao implantar seu aplicativo em diferentes ambientes.
+```bash
+poetry install --with test
+poetry run pytest
+```
