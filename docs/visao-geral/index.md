@@ -17,8 +17,8 @@ A planta escolhida para este laboratório foi um **aeropêndulo**: uma haste art
 pivô, com um motor CC e hélice acoplados à extremidade. O empuxo gerado pela hélice produz
 torque em torno do pivô e eleva a haste a partir do repouso; a variável controlada é o
 ângulo da haste em relação à vertical. É uma planta de primeira escolha para ensino por ser
-não linear, instável em malha aberta em parte da faixa de operação e de construção
-acessível.
+não linear, pouco amortecida — no modelo linearizado, $\zeta \approx 0{,}11$ — e de
+construção acessível.
 
 ## O que este projeto entrega
 
