@@ -4,34 +4,10 @@ author: Oséias Farias
 
 ---
 
-<style>
-        .tab {
-            display: inline-block;
-            margin-left: 40px;
-        }
-        .tab1 {
-            display: inline-block;
-            margin-left: 80px;
-        }
-</style>
-
-
-<center>
-<div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/brand/png/icone-256.png?raw=true"
-       width="80">  
-</div>
-</center>
-
-<center>
-<div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/img_aeropendulo.png?raw=true"
-       width="900">  
-  <p>Figura 1 - Protótipo do Aeropêndulo.</p>
-</div>
-</center>
-
-<br/>
+<figure markdown="span">
+  ![Protótipo do Aeropêndulo](img/prototipo-aeropendulo.jpg)
+  <figcaption>Figura 1 — Protótipo do Aeropêndulo.</figcaption>
+</figure>
 
 ## Parte estrutural
 
@@ -85,5 +61,3 @@ potenciômetro e se comunica com o computador via porta serial. O driver L298N �
 pela fonte de 5 V e amplifica o sinal de controle aplicado ao motor CC série, gerando a
 variação angular do braço por meio do empuxo das hélices — o que, por sua vez, altera a
 leitura do potenciômetro, fechando a malha.
-
-<br/>

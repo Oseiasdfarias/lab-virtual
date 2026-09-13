@@ -4,21 +4,6 @@ author: Oséias Farias
 
 ---
 
-<style>
-        .tab {
-            display: inline-block;
-            margin-left: 40px;
-        }
-        .tab1 {
-            display: inline-block;
-            margin-left: 80px;
-        }
-</style>
-
-
-<br>
-
-
 Neste tutorial, vamos guiar você através do processo de instalação do Python 3.10 no sistema operacional Ubuntu. O Python é uma linguagem de programação poderosa e versátil, e ter a versão mais recente pode proporcionar acesso a recursos e melhorias mais recentes. 
 
 #### Passo 1: Atualize o sistema
@@ -68,6 +53,3 @@ Você deverá ver a versão do Python 3.10.
 #### Conclusão
 
 Agora, você tem o Python 3.10 instalado no seu sistema Ubuntu. Lembre-se de que a instalação manual pode ter suas vantagens, mas também significa que você é responsável por manter as atualizações do Python. Se preferir, pode optar por instalar o Python 3.10 usando ferramentas como `pyenv` ou `deadsnakes`. Certifique-se de escolher o método que melhor atenda às suas necessidades.
-
-
-<br/>

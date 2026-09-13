@@ -4,34 +4,10 @@ author: Oséias Farias
 
 ---
 
-<style>
-        .tab {
-            display: inline-block;
-            margin-left: 40px;
-        }
-        .tab1 {
-            display: inline-block;
-            margin-left: 80px;
-        }
-</style>
-
-
-<center>
-<div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/brand/png/icone-256.png?raw=true"
-       width="80">  
-</div>
-</center>
-
-<center>
-<div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/arquitetura_firmware-1.png?raw=true"
-       width="900">  
-  <p>Figura 1 - Organização do firmware: bibliotecas importadas pelo <code>main.cpp</code>.</p>
-</div>
-</center>
-
-</br>
+<figure markdown="span">
+  ![Bibliotecas do firmware importadas pelo main.cpp](img/firmware-bibliotecas.png)
+  <figcaption>Figura 1 — Organização do firmware: bibliotecas importadas pelo <code>main.cpp</code>.</figcaption>
+</figure>
 
 ## O que é
 
@@ -145,5 +121,3 @@ sequenceDiagram
 Não existe código de parada: uma vez recebido o `12000`, o firmware continua executando o
 laço até ser reiniciado. Os ganhos do PID também não fazem parte do protocolo — são fixos
 no código (ver [Controlador PID](../controle/pid.md#ganhos)).
-
-<br>

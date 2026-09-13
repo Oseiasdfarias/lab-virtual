@@ -4,34 +4,10 @@ author: Oséias Farias
 
 ---
 
-<style>
-        .tab {
-            display: inline-block;
-            margin-left: 40px;
-        }
-        .tab1 {
-            display: inline-block;
-            margin-left: 80px;
-        }
-</style>
-
-
-<center>
-<div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/brand/png/icone-256.png?raw=true"
-       width="80">  
-</div>
-</center>
-
-<center>
-<div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/demo_interface_light.png?raw=true"
-       width="900">  
-  <p>Figura 1 - Interface Gráfica de Usuário.</p>
-</div>
-</center>
-
-<br/>
+<figure markdown="span">
+  ![Interface Gráfica de Usuário](img/interface-grafica.png)
+  <figcaption>Figura 1 — Interface Gráfica de Usuário.</figcaption>
+</figure>
 
 ## O que é
 
@@ -98,5 +74,3 @@ gravado: a interface e o gêmeo digital exibem os dados que chegam pela serial.
    qual usar no ensaio.
 9. **Selecionar tema** — alterna entre tema claro e escuro.
 10. **Quit** — encerra a aplicação.
-
-<br/>

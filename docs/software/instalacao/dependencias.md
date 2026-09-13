@@ -4,21 +4,6 @@ author: Oséias Farias
 
 ---
 
-<style>
-        .tab {
-            display: inline-block;
-            margin-left: 40px;
-        }
-        .tab1 {
-            display: inline-block;
-            margin-left: 80px;
-        }
-</style>
-
-
-<br>
-
-
 # Tutorial: Instalando Dependências do Python a partir do arquivo requirements.txt
 
 Quando trabalhamos em projetos Python, é comum listar todas as dependências necessárias em um arquivo chamado `requirements.txt`. Este tutorial mostrará como instalar essas dependências utilizando o `pip`.

@@ -46,6 +46,14 @@
   --md-footer-bg-color--dark: #141416;
   --md-footer-fg-color: var(--lv-paper);
 
+  --lv-footer-bg: #f5f5f7;
+  --lv-footer-fg: #1d1d1f;
+  --lv-footer-text: rgba(29, 29, 31, 0.66);
+  --lv-footer-link: rgba(29, 29, 31, 0.82);
+  --lv-footer-line: rgba(29, 29, 31, 0.12);
+  --lv-footer-pill: rgba(29, 29, 31, 0.2);
+  --lv-footer-pill-hover: rgba(29, 29, 31, 0.6);
+
   --md-mermaid-font-family: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
   --md-mermaid-edge-color: var(--lv-muted);
   --md-mermaid-node-bg-color: var(--lv-surface);
@@ -107,6 +115,14 @@
   --md-footer-bg-color: #0e0e10;
   --md-footer-bg-color--dark: #0a0a0b;
   --md-footer-fg-color: var(--lv-ink);
+
+  --lv-footer-bg: #0a0a0b;
+  --lv-footer-fg: #f5f5f7;
+  --lv-footer-text: rgba(245, 245, 247, 0.62);
+  --lv-footer-link: rgba(245, 245, 247, 0.82);
+  --lv-footer-line: rgba(245, 245, 247, 0.12);
+  --lv-footer-pill: rgba(245, 245, 247, 0.2);
+  --lv-footer-pill-hover: rgba(245, 245, 247, 0.6);
 }
 
 /* ---------- Cabeçalho ---------- */
@@ -289,15 +305,28 @@
 
 /* ---------- Figuras e equações ---------- */
 
-.md-typeset p > img {
+.md-typeset p > img,
+.md-typeset figure img {
   display: block;
   margin: 1.5em auto;
   border-radius: 0.5rem;
 }
 
+.md-typeset figure img {
+  margin-bottom: 0.4em;
+}
+
+.md-typeset figcaption {
+  max-width: 36rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+  font-style: normal;
+}
+
 /* As figuras da monografia têm fundo branco: no modo escuro elas ganham uma moldura
    clara em vez de ficarem coladas no fundo escuro. */
-[data-md-color-scheme="slate"] .md-typeset p > img {
+[data-md-color-scheme="slate"] .md-typeset p > img,
+[data-md-color-scheme="slate"] .md-typeset figure img {
   background-color: #f5f5f7;
   padding: 0.75rem;
 }
@@ -518,7 +547,8 @@
 /* ---------- Rodapé do site ---------- */
 
 .md-footer-meta {
-  background-color: var(--md-footer-bg-color--dark);
+  background-color: var(--lv-footer-bg);
+  border-top: 1px solid var(--lv-footer-line);
 }
 
 .md-footer-meta__inner {
@@ -530,20 +560,20 @@
   width: auto;
   margin: 0;
   padding: 2.6rem 1rem 1.2rem;
-  color: rgba(245, 245, 247, 0.62);
+  color: var(--lv-footer-text);
   font-size: 0.68rem;
   line-height: 1.6;
 }
 
-.lv-footer a {
-  color: rgba(245, 245, 247, 0.82);
+.md-footer-meta.md-typeset .lv-footer a {
+  color: var(--lv-footer-link);
   text-decoration: none;
   transition: color 120ms ease;
 }
 
-.lv-footer a:hover,
-.lv-footer a:focus-visible {
-  color: #f5f5f7;
+.md-footer-meta.md-typeset .lv-footer a:hover,
+.md-footer-meta.md-typeset .lv-footer a:focus-visible {
+  color: var(--lv-footer-fg);
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
@@ -558,7 +588,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  color: #f5f5f7 !important;
+  color: var(--lv-footer-fg) !important;
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -569,7 +599,7 @@
   display: block;
   width: 2rem;
   height: 2rem;
-  color: #f5f5f7;
+  color: var(--lv-footer-fg);
 }
 
 .lv-footer__tagline {
@@ -582,13 +612,13 @@
   align-items: center;
   gap: 0.45rem;
   padding: 0.35rem 0.8rem;
-  border: 1px solid rgba(245, 245, 247, 0.2);
+  border: 1px solid var(--lv-footer-pill);
   border-radius: 999px;
 }
 
-.lv-footer__repo:hover,
-.lv-footer__repo:focus-visible {
-  border-color: rgba(245, 245, 247, 0.6);
+.md-footer-meta.md-typeset .lv-footer__repo:hover,
+.md-footer-meta.md-typeset .lv-footer__repo:focus-visible {
+  border-color: var(--lv-footer-pill-hover);
   text-decoration: none !important;
 }
 
@@ -601,7 +631,7 @@
 
 .lv-footer__title {
   margin: 0 0 0.7rem;
-  color: #f5f5f7;
+  color: var(--lv-footer-fg);
   font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -629,7 +659,7 @@
   gap: 0.4rem 1.5rem;
   margin-top: 2.2rem;
   padding-top: 1.1rem;
-  border-top: 1px solid rgba(245, 245, 247, 0.12);
+  border-top: 1px solid var(--lv-footer-line);
   font-size: 0.62rem;
 }
 
