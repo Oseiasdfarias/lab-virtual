@@ -195,7 +195,7 @@ A partir de uma análise qualitativa, pode-se supor que o grau da função de tr
 
 
 \begin{align}
-H(z) = \frac{numerador}{denominador}\label{eq3:eq3}
+H(z) = \dfrac{b_1z^{-1}+b_2z^{-2}+b_3z^{-3}+b_4z^{-4}}{1+a_1z^{-1}+a_2z^{-2}+a_3z^{-3}+a_4z^{-4}+a_5z^{-5}+a_6z^{-6}+a_7z^{-7}+a_8z^{-8}+a_9z^{-9}+a_{10}z^{-10}}\label{eq3:eq3}
 \end{align}
 
 
@@ -249,7 +249,7 @@ Hz = ct.tf(Ba, Aa, Ts)
 Assim, obtém-se a função de transferência discreta, equação \ref{eq3:eq4}, com os valores encontrado a partir do método de mínimos quadrados, com período de amostragem de $dt = 0,02$ segundos. Com numerador dados pelos valores, $[-0.0029 z^3 + 0.0023z^2 + 0.0016 z + 0.0097]$ e denominador dado pelos valores, $[z^{10} - 0.9 z^9 - 0.3 z^8 - 0.014 z^7 + 0.13 z^6 + 0.15 z^5 + 0.012 z^4 - 0.05 z^3 - 0.12 z^2 - 0.02 z + 0.15]$.
 
 \begin{align}
-Hz = \frac{numerador}{denominador} \label{eq3:eq4}
+Hz = \dfrac{-0{,}0029z^3+0{,}0023z^2+0{,}0016z+0{,}0097}{z^{10}-0{,}9z^9-0{,}3z^8-0{,}014z^7+0{,}13z^6+0{,}15z^5+0{,}012z^4-0{,}05z^3-0{,}12z^2-0{,}02z+0{,}15} \label{eq3:eq4}
 \end{align}
 
 Por fim, realizou-se novamente a simulação do modelo encontrado, com o propósito de compará-lo aos dados de saída obtidos durante o ensaio do sistema real, a célula de código abaixo implementa a simulação.
