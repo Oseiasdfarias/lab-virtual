@@ -22,42 +22,44 @@ da sessão atual        (monografia/software/site) └ Fase 4 ─ Livro    (sess
 
 ## Fase 1 — Fechar pendências da sessão de rebranding
 
-Curto prazo, mecânico, sem decisões de conteúdo pendentes.
+**Status em 2026-09-13: concluída, exceto a decisão de dependências (adiada de propósito).**
 
-- [ ] Merge da branch `docs/metadados-ufpa` (metadados oficiais da BDM/UFPA no README).
-- [ ] Merge desta branch (`docs/roadmap-artigo-livro`).
-- [ ] Renomear a pasta `docs/Componentes do Pendulab/` — a marca antiga ainda aparece na
-      navegação do site publicado.
-- [ ] Rodar `mkdocs build --strict` para confirmar que o site compila com as mudanças de
-      marca e de nome do repositório. Não validado ainda por falta de `mkdocs` instalado na
-      máquina onde o trabalho foi feito.
-- [ ] Decidir o que fazer com as dependências do software (ver nota abaixo) e, se optar por
-      atualizar, testar a interface gráfica e a comunicação serial antes de mesclar — isso
-      não pode ser validado por um assistente sem acesso ao protótipo físico.
+- [x] Branches `docs/metadados-ufpa` e `docs/roadmap-artigo-livro` consolidadas na branch de
+      trabalho `fechamento-fase-1-2` (merge sem conflitos). Falta só o merge final na `main`.
+- [x] Pasta `docs/Componentes do Pendulab/` renomeada para `docs/Componentes do Aeropêndulo/`.
+- [x] `mkdocs build --strict` **passa sem avisos** — mkdocs foi instalado num venv
+      (`/tmp/mkdocs_venv`, fora do repo) para validar. No caminho, achou e corrigiu 2 bugs
+      reais que não estavam no radar: config obsoleta do mkdocstrings (`import:` →
+      `inventories:`, faltava `paths: [.]`) e uma docstring com parâmetro inexistente. Ver
+      "Achados extras" em [`pendencias_documentacao.md`](pendencias_documentacao.md).
+- [ ] **Decisão sobre dependências: adiada.** O `poetry.lock` tem ~294 alertas do
+      Dependabot, todos vindos de `aiohttp`/`tornado`/`jupyterlab`/etc. — dependências
+      transitivas reais do `vpython` (usado no gêmeo digital), não resíduo. `poetry update`
+      sozinho não resolve porque o piso `python >=3.8` força versões antigas dessas
+      dependências; seria preciso subir o piso para `>=3.10` e então atualizar. Ambas as
+      mudanças foram tentadas e revertidas nesta sessão por não terem como ser testadas sem
+      o hardware (GUI e comunicação serial precisam ser verificadas no protótipo real antes
+      do merge). Retomar como tarefa própria.
 
-**Nota sobre dependências:** o `poetry.lock` tem ~294 alertas do Dependabot, todos vindos de
-`aiohttp`/`tornado`/`jupyterlab`/etc. — dependências transitivas do `vpython` (usado no
-gêmeo digital), não de código próprio do projeto. `poetry update` sozinho não resolve
-porque o piso `python >=3.8` força versões antigas dessas dependências; seria preciso subir
-o piso para `>=3.10` e então atualizar. Ambas as mudanças foram tentadas e revertidas nesta
-sessão por não terem como ser testadas sem o hardware. Retomar como tarefa própria, testando
-a GUI e a serial antes do merge.
-
-**Definição de pronto:** as 3 branches abertas mescladas na `main`, site publicando sem
-erro, decisão registrada sobre as dependências (mesmo que a decisão seja "manter como
-está" — registrar o porquê).
+**Definição de pronto:** branch de trabalho mesclada na `main`, site publicando sem erro
+(ambos confirmados nesta sessão) — falta só a decisão de dependências, adiada com
+justificativa registrada.
 
 ## Fase 2 — Finalizar a documentação
 
-Lista completa e detalhada em [`pendencias_documentacao.md`](pendencias_documentacao.md).
-Resumo por frente:
+**Status em 2026-09-13: quase concluída.** Lista completa e detalhada em
+[`pendencias_documentacao.md`](pendencias_documentacao.md). Resumo por frente:
 
-| Frente | Itens | Bloqueia o quê |
+| Frente | Itens | Status |
 | --- | --- | --- |
-| Monografia (texto/fonte LaTeX) | 7 itens — equações incompletas no Cap. 3, siglas/símbolos genéricos, `.bib` com entradas erradas, etc. | Nada externo; é o registro histórico, corrige-se para futuras recompilações |
-| Software | 7 itens — script quebrado, firmware que não compila, nome enganoso de uma variante, bugs suspeitos no PID | Credibilidade técnica do artigo e reprodutibilidade do livro |
-| Site publicado | 2 itens — 4 páginas vazias, depende de docstrings completas | Nada externo, mas é a face pública do projeto |
-| Organização do repo | 3 itens, opcionais/cosméticos | Nada |
+| Monografia (texto/fonte LaTeX) | 7 itens | 5 feitos e verificados (compilação real com pdflatex+bibtex); 2 em aberto (padronização de terminologia, sugestões do orientador) |
+| Software | 7 itens | Todos os 7 feitos; PID e conversor corrigidos mas **não testados em hardware** |
+| Site publicado | 2 itens | Ambos feitos e verificados (`mkdocs build --strict` limpo) |
+| Organização do repo | 3 itens, opcionais | Nenhum feito — baixa prioridade, sem impacto em nada externo |
+
+Achados que não estavam no radar original (ver punch list para detalhes): config quebrada
+do mkdocstrings, um binário Linux solto dentro do firmware, e um script morto
+(`main_aeropendulo.py`) cujos parâmetros físicos já estavam documentados em outro lugar.
 
 **O item que realmente importa para a Fase 3:** calcular métricas quantitativas de erro
 (RMSE / NRMSE) do modelo identificado e de desempenho em malha fechada (tempo de
