@@ -15,10 +15,9 @@ da sessão atual        (monografia/software/site) └ Fase 4 ─ Livro    (sess
 ```
 
 - **Fase 1 → Fase 2**: sequencial. Fase 2 assume que o repositório está num estado limpo.
-- **Fase 2 → Fases 3 e 4**: em grande parte independentes, e podem começar **em paralelo**,
-  antes mesmo da Fase 2 terminar. O livro não depende de nada específico da Fase 2. O
-  artigo — ver atualização abaixo — também não depende mais das métricas quantitativas para
-  *começar*, só para *fortalecer* uma seção específica.
+- **Fase 2 → Fase 3**: sequencial. O artigo depende das métricas quantitativas da Fase 2.
+- **Fase 2 → Fase 4**: o livro não depende de nada específico da Fase 2 além do que já está
+  pronto hoje — **pode começar em paralelo**, inclusive antes da Fase 2 terminar.
 - **Fases 3 e 4 entre si**: independentes. Trabalhar uma não bloqueia a outra.
 
 ## Fase 1 — Fechar pendências da sessão de rebranding
@@ -74,19 +73,13 @@ documentadas em algum lugar de `docs_tcc/`.
 
 ## Fase 3 — Artigo (sessão dedicada separada)
 
-**Atualização de 2026-09-13 — isto muda a prioridade da fase:** não é preciso escrever um
-artigo do zero. Existe um **rascunho de 21 páginas quase pronto**
-(`softwares_aeropendulo/simulador_aeropendulo/docs/utils/Template_Artigos_ST_COBENGE-2023.docx.pdf`),
-com Introdução, Metodologia, Resultados e Conclusão já escritos, cobrindo dois módulos
-(MAGLEV, de um colega, e Aeropêndulo, seu). Faltam ajustes pontuais, não um artigo novo.
-Ver [`plano_artigo.md`](plano_artigo.md) para o checklist completo — essa é a versão
-atualizada do plano, não a original.
+**Decisão de 2026-09-13:** existe um rascunho antigo do COBENGE 2023, em coautoria com outro
+orientando (`softwares_aeropendulo/simulador_aeropendulo/docs/utils/Template_Artigos_ST_COBENGE-2023.docx.pdf`),
+mas ele **não será usado como base** — o artigo é planejado do zero, focado só no trabalho
+próprio. Ver [`plano_artigo.md`](plano_artigo.md).
 
-Dado esse achado, a Fase 3 pode começar **antes** das métricas quantitativas da Fase 2
-estarem prontas — a primeira sessão de artigo é sobre decidir se o rascunho ainda serve
-(enfoque, coautoria, evento-alvo), não sobre calcular resultados. As métricas continuam
-valiosas para fortalecer a seção de Resultados do módulo Aeropêndulo, mas não bloqueiam o
-início do trabalho.
+Não abrir essa sessão antes das métricas quantitativas da Fase 2 estarem prontas — sem elas
+não há o que revisor de artigo aceite como resultado.
 
 ## Fase 4 — Livro (sessão dedicada separada)
 

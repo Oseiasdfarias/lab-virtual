@@ -43,9 +43,9 @@ Este diretório é um **cache de contexto** para não precisar reabrir os fontes
 ## Os 3 objetivos declarados pelo usuário (para orientar próximos passos)
 
 1. **Finalizar a documentação do TCC** — ver punch list consolidado em [`05_plano_publicacoes/pendencias_documentacao.md`](05_plano_publicacoes/pendencias_documentacao.md).
-2. **Escrever um artigo com base no TCC** — já existe um rascunho de 21 páginas quase pronto
-   (achado em 2026-09-13, ver alerta crítico abaixo) — plano atualizado em
-   [`05_plano_publicacoes/plano_artigo.md`](05_plano_publicacoes/plano_artigo.md).
+2. **Escrever um artigo com base no TCC** — planejado do zero (decisão de 2026-09-13: um
+   rascunho antigo do COBENGE 2023 existe no repositório, mas não será usado como base) —
+   esqueleto/inventário em [`05_plano_publicacoes/plano_artigo.md`](05_plano_publicacoes/plano_artigo.md).
 3. **Escrever um livro com base no TCC** — esqueleto/inventário de material em [`05_plano_publicacoes/plano_livro.md`](05_plano_publicacoes/plano_livro.md) (plano ainda não definido com o usuário).
 
 **Para retomar o trabalho em qualquer sessão futura, comece por
