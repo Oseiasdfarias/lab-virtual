@@ -46,6 +46,14 @@
   --md-footer-bg-color--dark: #141416;
   --md-footer-fg-color: var(--lv-paper);
 
+  --lv-footer-bg: #f5f5f7;
+  --lv-footer-fg: #1d1d1f;
+  --lv-footer-text: rgba(29, 29, 31, 0.66);
+  --lv-footer-link: rgba(29, 29, 31, 0.82);
+  --lv-footer-line: rgba(29, 29, 31, 0.12);
+  --lv-footer-pill: rgba(29, 29, 31, 0.2);
+  --lv-footer-pill-hover: rgba(29, 29, 31, 0.6);
+
   --md-mermaid-font-family: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
   --md-mermaid-edge-color: var(--lv-muted);
   --md-mermaid-node-bg-color: var(--lv-surface);
@@ -107,6 +115,14 @@
   --md-footer-bg-color: #0e0e10;
   --md-footer-bg-color--dark: #0a0a0b;
   --md-footer-fg-color: var(--lv-ink);
+
+  --lv-footer-bg: #0a0a0b;
+  --lv-footer-fg: #f5f5f7;
+  --lv-footer-text: rgba(245, 245, 247, 0.62);
+  --lv-footer-link: rgba(245, 245, 247, 0.82);
+  --lv-footer-line: rgba(245, 245, 247, 0.12);
+  --lv-footer-pill: rgba(245, 245, 247, 0.2);
+  --lv-footer-pill-hover: rgba(245, 245, 247, 0.6);
 }
 
 /* ---------- Cabeçalho ---------- */
@@ -289,15 +305,28 @@
 
 /* ---------- Figuras e equações ---------- */
 
-.md-typeset p > img {
+.md-typeset p > img,
+.md-typeset figure img {
   display: block;
   margin: 1.5em auto;
   border-radius: 0.5rem;
 }
 
+.md-typeset figure img {
+  margin-bottom: 0.4em;
+}
+
+.md-typeset figcaption {
+  max-width: 36rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+  font-style: normal;
+}
+
 /* As figuras da monografia têm fundo branco: no modo escuro elas ganham uma moldura
    clara em vez de ficarem coladas no fundo escuro. */
-[data-md-color-scheme="slate"] .md-typeset p > img {
+[data-md-color-scheme="slate"] .md-typeset p > img,
+[data-md-color-scheme="slate"] .md-typeset figure img {
   background-color: #f5f5f7;
   padding: 0.75rem;
 }
@@ -325,8 +354,9 @@
 
 /* ---------- Admonitions ---------- */
 
-.md-typeset .admonition,
-.md-typeset details {
+/* Classes dobradas para vencer as cores por tipo do Material (.warning, .note...). */
+.md-typeset .admonition.admonition,
+.md-typeset details[class] {
   border: 1px solid var(--lv-border);
   border-left: 3px solid var(--lv-ink);
   border-radius: 0.5rem;
@@ -334,39 +364,15 @@
   font-size: 0.76rem;
 }
 
-.md-typeset .admonition-title,
-.md-typeset summary {
+.md-typeset .admonition.admonition > .admonition-title,
+.md-typeset details[class] > summary {
   background-color: var(--lv-surface);
   font-weight: 600;
 }
 
-.md-typeset .admonition-title::before,
-.md-typeset summary::before {
+.md-typeset .admonition.admonition > .admonition-title::before,
+.md-typeset details[class] > summary::before {
   background-color: var(--lv-ink);
-}
-
-/* ---------- Rodapé "Ver também" ---------- */
-
-.md-typeset .lv-see-also {
-  margin-top: 2.5em;
-  padding: 0.9rem 1.1rem;
-  background-color: var(--lv-surface);
-  border: 1px solid var(--lv-border);
-  border-radius: 0.75rem;
-  font-size: 0.76rem;
-}
-
-.md-typeset .lv-see-also strong {
-  display: block;
-  margin-bottom: 0.2rem;
-  color: var(--md-default-fg-color--light);
-  font-size: 0.62rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.md-typeset .lv-see-also a {
-  font-weight: 500;
 }
 
 /* ---------- Página inicial ---------- */
@@ -430,12 +436,250 @@
   margin: 0.6em 0;
 }
 
+/* ---------- Navegação anterior/próximo ---------- */
+
+.md-footer {
+  background-color: var(--lv-bg);
+  color: var(--lv-ink);
+}
+
+.md-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem 1rem 2.5rem;
+  border-top: 1px solid var(--lv-border);
+}
+
+.md-footer__link {
+  display: flex;
+  flex: 0 1 17rem;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0.7rem 1rem;
+  color: var(--lv-ink);
+  background-color: var(--lv-bg);
+  border: 1px solid var(--lv-border);
+  border-radius: 999px;
+  opacity: 1;
+  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease,
+    background-color 150ms ease;
+}
+
+.md-footer__link--prev {
+  justify-content: flex-start;
+}
+
+[dir] .md-footer__link--next {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.md-footer__link--next {
+  justify-content: flex-end;
+  text-align: right;
+  color: var(--lv-bg);
+  background-color: var(--lv-ink);
+  border-color: var(--lv-ink);
+}
+
+.md-footer__link:hover,
+.md-footer__link:focus-visible {
+  opacity: 1;
+  border-color: var(--lv-ink);
+  box-shadow: var(--lv-shadow);
+  transform: translateY(-1px);
+}
+
+.md-footer__link--prev:hover,
+.md-footer__link--prev:focus-visible {
+  background-color: var(--lv-surface);
+}
+
+.md-footer__button.md-icon {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.md-footer__button.md-icon svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: currentColor;
+}
+
+.md-footer__title {
+  flex-grow: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.md-footer__direction {
+  position: static;
+  display: block;
+  margin: 0 0 0.1rem;
+  padding: 0;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+/* O Material esconde o título do link "anterior" em telas pequenas; aqui ele continua
+   visível e os dois botões empilham, cada um ocupando a largura toda. */
+@media screen and (max-width: 44.984375em) {
+  .md-footer__link {
+    flex-basis: 100%;
+  }
+
+  .md-footer__link--prev .md-footer__title {
+    display: block;
+  }
+}
+
 /* ---------- Rodapé do site ---------- */
 
 .md-footer-meta {
-  background-color: var(--md-footer-bg-color--dark);
+  background-color: var(--lv-footer-bg);
+  border-top: 1px solid var(--lv-footer-line);
 }
 
 .md-footer-meta__inner {
+  display: block;
+  padding: 0;
+}
+
+.md-footer-meta .md-copyright.lv-footer {
+  width: auto;
+  margin: 0;
+  padding: 2.6rem 1rem 1.2rem;
+  color: var(--lv-footer-text);
+  font-size: 0.68rem;
+  line-height: 1.6;
+}
+
+.md-footer-meta.md-typeset .lv-footer a {
+  color: var(--lv-footer-link);
+  text-decoration: none;
+  transition: color 120ms ease;
+}
+
+.md-footer-meta.md-typeset .lv-footer a:hover,
+.md-footer-meta.md-typeset .lv-footer a:focus-visible {
+  color: var(--lv-footer-fg);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.lv-footer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.lv-footer__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--lv-footer-fg) !important;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none !important;
+}
+
+.lv-footer__icon svg {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  color: var(--lv-footer-fg);
+}
+
+.lv-footer__tagline {
+  max-width: 18rem;
+  margin: 0.8rem 0 1rem;
+}
+
+.lv-footer__repo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--lv-footer-pill);
+  border-radius: 999px;
+}
+
+.md-footer-meta.md-typeset .lv-footer__repo:hover,
+.md-footer-meta.md-typeset .lv-footer__repo:focus-visible {
+  border-color: var(--lv-footer-pill-hover);
+  text-decoration: none !important;
+}
+
+.lv-footer__repo-icon svg {
+  display: block;
+  width: 0.85rem;
+  height: 0.85rem;
+  fill: currentColor;
+}
+
+.lv-footer__title {
+  margin: 0 0 0.7rem;
+  color: var(--lv-footer-fg);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lv-footer__col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+[dir] .md-typeset .lv-footer__col ul {
+  margin: 0;
+}
+
+[dir] .md-typeset .lv-footer__col ul li {
+  margin: 0 0 0.4rem;
+}
+
+.lv-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem 1.5rem;
+  margin-top: 2.2rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--lv-footer-line);
   font-size: 0.62rem;
+}
+
+.lv-footer__bottom p {
+  margin: 0;
+}
+
+@media screen and (max-width: 60em) {
+  .lv-footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lv-footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media screen and (max-width: 30em) {
+  .lv-footer__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
