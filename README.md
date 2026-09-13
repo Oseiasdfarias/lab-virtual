@@ -164,6 +164,13 @@ mkdocs serve
 A monografia que originou a plataforma está em acesso aberto na Biblioteca Digital de
 Monografias da UFPA: **[bdm.ufpa.br/handle/prefix/6944](https://bdm.ufpa.br/handle/prefix/6944)**. Para citá-la, veja [Como citar](#como-citar).
 
+## Licença
+
+- **Código e firmware** (`softwares_aeropendulo/`, scripts e código do site): [MIT](./LICENSE).
+- **Documentação e figuras próprias** (`docs/`, `docs_tcc/`): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.pt-br).
+- **Monografia** (`revisao_tcc/`): segue os termos de publicação da [BDM/UFPA](https://bdm.ufpa.br/handle/prefix/6944).
+- **Material de terceiros** (bibliografia em `materiais_complementares/`, bibliotecas em `docs/javascripts/vendor/`): mantém a licença original de cada autor.
+
 ## Autoria
 
 Desenvolvido por **[Oséias Dias de Farias](https://github.com/Oseiasdfarias)** no Bacharelado em

@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "Se este trabalho for útil na sua pesquisa ou nas suas aulas, cite-o como abaixo."
+title: "Laboratório Virtual: protótipo, gêmeo digital e identificação de sistemas aplicados a um aeropêndulo"
+type: software
+authors:
+  - family-names: "Farias"
+    given-names: "Oséias Dias de"
+repository-code: "https://github.com/Oseiasdfarias/lab-virtual"
+url: "https://oseiasdfarias.github.io/lab-virtual/"
+license: MIT
+version: "1.0.0"
+keywords:
+  - aeropêndulo
+  - identificação de sistemas
+  - gêmeo digital
+  - sistemas de controle
+  - laboratório virtual
+preferred-citation:
+  type: thesis
+  thesis-type: "Trabalho de Conclusão de Curso (Bacharelado em Engenharia Elétrica)"
+  title: "Desenvolvimento de protótipo e gêmeo digital como ferramenta para um laboratório virtual com foco em modelagem e controle de sistemas dinâmicos"
+  authors:
+    - family-names: "Farias"
+      given-names: "Oséias Dias de"
+  institution:
+    name: "Universidade Federal do Pará"
+    city: "Tucuruí"
+    country: "BR"
+  year: 2023
+  url: "https://bdm.ufpa.br/handle/prefix/6944"

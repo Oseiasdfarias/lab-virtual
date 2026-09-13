@@ -18,4 +18,4 @@ from .animacao_aeropendulo import AnimacaoAeropendulo       # noqa: F401
 from .simulador import Simulador                            # noqa: F401
 
 
-__version__ = "0.5.0"
+__version__ = "1.0.0"
