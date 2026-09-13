@@ -4,34 +4,10 @@ author: Oséias Farias
 
 ---
 
-<style>
-        .tab {
-            display: inline-block;
-            margin-left: 40px;
-        }
-        .tab1 {
-            display: inline-block;
-            margin-left: 80px;
-        }
-</style>
-
-
-<center>
-<div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/brand/png/icone-256.png?raw=true"
-       width="80">  
-</div>
-</center>
-
-<center>
-<div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/demo_interface_light.png?raw=true"
-       width="900">  
-  <p>Figura 1 - Interface Gráfica de Usuário.</p>
-</div>
-</center>
-
-<br/>
+<figure markdown="span">
+  ![Interface Gráfica de Usuário](img/interface-grafica.png)
+  <figcaption>Figura 1 — Interface Gráfica de Usuário.</figcaption>
+</figure>
 
 ## O que é
 
@@ -47,6 +23,14 @@ correspondente — é ele que fornece à interface os dados a serem pré-process
 
 ## Como executar
 
+Os comandos rodam a partir da pasta `softwares_aeropendulo`, onde fica o `rungui.py`, com as
+[dependências instaladas](instalacao/dependencias.md) (ou com `poetry install`, prefixando
+os comandos abaixo com `poetry run`):
+
+```bash
+cd lab-virtual/softwares_aeropendulo
+```
+
 Para rodar a interface gráfica junto com o Gêmeo Digital:
 
 ```bash
@@ -58,6 +42,9 @@ Para rodar só a interface gráfica, sem o simulador 3D:
 ```bash
 python rungui.py
 ```
+
+Em ambos os casos o protótipo precisa estar conectado à USB com o [firmware](firmware.md)
+gravado: a interface e o gêmeo digital exibem os dados que chegam pela serial.
 
 ## Bibliotecas utilizadas
 
@@ -87,5 +74,3 @@ python rungui.py
    qual usar no ensaio.
 9. **Selecionar tema** — alterna entre tema claro e escuro.
 10. **Quit** — encerra a aplicação.
-
-<br/>

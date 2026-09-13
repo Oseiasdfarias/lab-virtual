@@ -40,10 +40,16 @@ Depois de alguns testes, uma estrutura de décima ordem se mostrou capaz de apro
 dinâmica real. Em forma simbólica, a função de transferência discreta é:
 
 $$
-H(z) = \frac{b_1z^{-1}+b_2z^{-2}+b_3z^{-3}+b_4z^{-4}}{1+a_1z^{-1}+a_2z^{-2}+a_3z^{-3}+a_4z^{-4}+a_5z^{-5}+a_6z^{-6}+a_7z^{-7}+a_8z^{-8}+a_9z^{-9}+a_{10}z^{-10}}
+H(z) = \frac{b_0+b_1z^{-1}+b_2z^{-2}+b_3z^{-3}}{1-a_1z^{-1}-a_2z^{-2}-a_3z^{-3}-a_4z^{-4}-a_5z^{-5}-a_6z^{-6}-a_7z^{-7}-a_8z^{-8}-a_9z^{-9}-a_{10}z^{-10}}
 $$
 
-O numerador tem 4 coeficientes ($b_1$ a $b_4$) e o denominador tem 10 ($a_1$ a $a_{10}$) —
+que corresponde à equação de diferenças
+
+$$
+y[k] = a_1y[k-1] + \dots + a_{10}y[k-10] + b_0u[k] + b_1u[k-1] + b_2u[k-2] + b_3u[k-3]
+$$
+
+O numerador tem 4 coeficientes ($b_0$ a $b_3$) e o denominador tem 10 ($a_1$ a $a_{10}$) —
 daí a estrutura ser chamada de décima ordem. Cada termo $z^{-n}$ representa um atraso de
 $n$ amostras: $z^{-1}$ é o valor da amostra anterior, $z^{-2}$ o de duas amostras atrás, e
 assim por diante. Ao todo, são 14 coeficientes a determinar a partir dos dados.
@@ -54,9 +60,10 @@ Para encontrar esses 14 coeficientes, o problema é reescrito como uma regressã
 Cada linha de uma matriz $M$ de regressores reúne amostras passadas da saída ($y[k-1]$ até
 $y[k-10]$, correspondendo aos termos do denominador) e da entrada ($u[k]$ até $u[k-3]$,
 correspondendo aos termos do numerador). O vetor de coeficientes $\theta$ — os mesmos
-$b_1..b_4$ e $a_1..a_{10}$ da estrutura acima — é aquele que minimiza o erro quadrático
+$a_1..a_{10}$ e $b_0..b_3$ da estrutura acima — é aquele que minimiza o erro quadrático
 entre a saída prevista por essa regressão e a saída real observada nos dados de
-identificação. Essa solução tem forma fechada, dada pela equação normal dos mínimos
+identificação: a matriz $M$ só usa as primeiras 60% das amostras do ensaio (2404 linhas),
+e as 40% restantes ficam de fora para a [validação](validacao.md). Essa solução tem forma fechada, dada pela equação normal dos mínimos
 quadrados ordinários (sem nenhuma regularização):
 
 $$
@@ -75,14 +82,18 @@ $$
 Hz = \frac{-0{,}0029z^3+0{,}0023z^2+0{,}0016z+0{,}0097}{z^{10}-0{,}9z^9-0{,}3z^8-0{,}014z^7+0{,}13z^6+0{,}15z^5+0{,}012z^4-0{,}05z^3-0{,}12z^2-0{,}02z+0{,}15}
 $$
 
-Esses 14 números — 4 do numerador e 10 do denominador — descrevem a dinâmica identificada do
-sistema. A confirmação de que essa escolha de ordem foi a certa vem da comparação entre a
-saída simulada por esse modelo e a saída real do sistema, documentada em
-[Validação do Modelo](validacao.md); o [controlador PID](../controle/pid.md) em si foi
+Esses 14 números — 4 do numerador e 10 do denominador — são os coeficientes estimados,
+arredondados, na forma em que aparecem na monografia.
+
+!!! warning "Atenção à montagem desta função de transferência"
+    No notebook de identificação, a função acima é criada com
+    `ct.tf([b0, b1, b2, b3], [1, -a1, ..., -a10], Ts)`. O python-control interpreta esses
+    vetores em potências **positivas** de $z$, então o numerador de grau 3 sobre o
+    denominador de grau 10 equivale a $b_0z^{-7} + \dots + b_3z^{-10}$: um atraso de 7
+    amostras (0,14 s) que não existe na equação de diferenças estimada, onde o termo mais
+    recente é $u[k]$. Para simular exatamente o modelo ajustado, o numerador precisa ser
+    completado com zeros até o tamanho do denominador. O efeito disso no ajuste está medido
+    em [Validação do Modelo](validacao.md#metricas-de-ajuste).
+
+A comparação entre a saída simulada e a saída real está em [Validação do Modelo](validacao.md); o [controlador PID](../controle/pid.md) em si foi
 sintonizado por um método separado, direto no protótipo.
-
----
-
-**Ver também:** [← Excitação e Aquisição](excitacao.md) ·
-[Validação do Modelo →](validacao.md)
-{ .lv-see-also }

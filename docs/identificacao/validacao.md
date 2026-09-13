@@ -6,9 +6,11 @@ title: Validação do Modelo
 
 Depois de estimar os coeficientes (ver [Estimação por Mínimos Quadrados](estimacao.md)), é
 preciso confirmar que o modelo reproduz a dinâmica real. O teste usado aqui é a validação
-por simulação livre: a mesma entrada $u(n)$ usada no ensaio de identificação é aplicada à
-função de transferência discreta obtida, gerando uma saída simulada que é então sobreposta
-à saída real $y(n)$ medida no sistema.
+por simulação livre: a entrada $u(n)$ do ensaio inteiro é aplicada à função de
+transferência discreta obtida, gerando uma saída simulada que é então sobreposta à saída
+real $y(n)$. Como os coeficientes foram estimados só com as primeiras 60% das amostras, o
+trecho final de 40% — marcado como "Dados de Validação" nos gráficos — mostra o modelo
+diante de dados que a estimação não usou.
 
 ## Modelo de 2ª ordem: insuficiente
 
@@ -32,18 +34,36 @@ real ao longo de todo o intervalo mostrado: os picos e vales coincidem em amplit
 instante de tempo, inclusive nos trechos em que o modelo de 2ª ordem havia divergido mais.
 O modelo identificado ainda não reproduz a pequena ondulação de alta frequência presente na
 saída real (visível como um leve serrilhado sobre a curva azul), mas captura bem a dinâmica
-dominante do sistema, o que foi considerado suficiente para seguir adiante com o projeto do
-controlador.
+dominante do sistema, o que a monografia considerou suficiente para encerrar a etapa de
+identificação.
 
-## Limitação reconhecida
+## Métricas de ajuste
 
-Esta validação é **qualitativa** (comparação visual dos gráficos), sem uma métrica
-numérica de erro (RMSE/EQM) calculada no trabalho original. Isso é uma limitação conhecida
--- ver [pendências de documentação](https://github.com/Oseiasdfarias/lab-virtual/blob/main/docs_tcc/05_plano_publicacoes/pendencias_documentacao.md)
-no repositório para o item em aberto sobre validação quantitativa.
+A monografia apresenta esta validação de forma **qualitativa**, pela comparação visual dos
+gráficos. O notebook de identificação, porém, já calculava o ajuste NRMSE sobre o trecho de
+validação, e os números abaixo foram reproduzidos a partir do mesmo arquivo de ensaio
+(`arquivo_9_9_2023_13_33_24.csv`) — os coeficientes recalculados coincidem com os do
+notebook:
 
----
+$$
+\text{NRMSE} = \left(1 - \frac{\lVert y - \hat{y} \rVert}{\lVert y - \bar{y} \rVert}\right) \times 100\,\%
+$$
 
-**Ver também:** [← Estimação por Mínimos Quadrados](estimacao.md) ·
-[Projeto de Controle →](../controle/pid.md)
-{ .lv-see-also }
+em que $y$ é a saída real, $\hat{y}$ a saída simulada e $\bar{y}$ a média da saída real, tudo
+restrito às 40% de amostras de validação. O RMSE está em graus, sobre o sinal sem o offset.
+
+| Modelo | NRMSE | RMSE |
+| --- | --- | --- |
+| 2ª ordem | 51,35 % | 1,62° |
+| 10ª ordem, montada como na monografia | 55,97 % | 1,47° |
+| 10ª ordem, montada como a equação de diferenças estimada | 78,30 % | 0,72° |
+
+A segunda linha corresponde à função de transferência publicada, que inclui o atraso de 7
+amostras descrito em [Estimação por Mínimos Quadrados](estimacao.md#resultado); a figura de
+10ª ordem acima também foi gerada com ela. Com o numerador completado com zeros — ou seja,
+simulando exatamente o modelo que os mínimos quadrados ajustaram —, o ajuste sobe para
+78,30 % e o erro médio cai pela metade.
+
+Essas métricas são uma análise posterior à defesa e não fazem parte da monografia. O script
+que as reproduz está em
+[`metricas_validacao.py`](https://github.com/Oseiasdfarias/lab-virtual/blob/main/materiais_complementares/Identificacao_de_Sistemas/identificacao_aeropendulo/ident_up/metricas_validacao.py).

@@ -61,8 +61,10 @@ usando Pandas.
 
 ## Formato dos dados coletados
 
-Os arquivos CSV não têm cabeçalho — cada linha traz 7 colunas de dados, na ordem em que o
-firmware as envia pela serial:
+Os arquivos CSV são gravados com o `to_csv` padrão do pandas: a primeira linha é um
+cabeçalho que só numera as colunas (`,0,1,2,3,4,5,6`) e cada linha começa com o índice da
+amostra. Depois do índice vêm 7 colunas de dados, na ordem em que o firmware as envia pela
+serial:
 
 | Coluna | Conteúdo | Unidade | Origem no firmware |
 | --- | --- | --- | --- |
@@ -80,14 +82,8 @@ Os arquivos de cada ensaio ficam em `softwares_aeropendulo/src_interface/dados_d
 
 ![Divisão dos dados em identificação e validação](img/dados-treino-teste-1.png)
 
-A monografia descreve a divisão dos dados do ensaio em dois conjuntos: 60% para
-identificação (usados para ajustar os coeficientes do modelo) e 40% para validação. Na
-prática, a validação usada neste laboratório roda o modelo sobre o mesmo sinal de entrada do
-ensaio de identificação e compara a saída simulada com a saída real medida — ver
+Os dados do ensaio são divididos em dois trechos: as primeiras 60% das amostras, usadas para
+estimar os coeficientes do modelo, e as 40% finais, reservadas para validação. A estimação
+só enxerga o primeiro trecho; na validação, o modelo é simulado com a entrada do ensaio
+inteiro e o erro é medido no segundo trecho, que ele não viu durante o ajuste — ver
 [Validação do Modelo](validacao.md).
-
----
-
-**Ver também:** [← Modelagem Matemática](../modelagem/index.md) ·
-[Estimação por Mínimos Quadrados →](estimacao.md)
-{ .lv-see-also }

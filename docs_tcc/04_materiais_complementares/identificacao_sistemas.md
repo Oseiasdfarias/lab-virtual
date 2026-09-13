@@ -32,9 +32,7 @@ Conjunto de relatórios de laboratório (disciplina "Laboratório de Controle 20
 - `Relatorio_2_Lab_Sistemas_Controle_Controle_P_PI_Final.ipynb`, `Relatorio_3_Implementação_Controlador_P_e_PI.ipynb`, `Relatorio_6_..._Implementacao.ipynb` — projeto e implementação de controladores P e PI para o sistema Motor/Gerador.
 - `relatorio_5_prbs.ipynb` — ensaio com sinal PRBS.
 - `identificacao_aeropendulo_modelo_lab_controle.ipynb` — relatório de laboratório de controle, mesmo grupo, mesma disciplina.
-- `identificacao_aeropendulo copy.ipynb` — cópia de notebook de geração de sinais (PRBS/senoidal/quadrada), com uma FT identificada do sistema Motor/Gerador.
 - `Identificação_LS_e_Otimização_Massa_Mola_Amortecedor.ipynb` — duplicata do notebook da raiz.
-- `Analise_sinal_sys_malha_aberta_onda_quadrada.ipynb` — duplicata do notebook em `analise_de_sinais/`.
 
 Subpasta `ident_up/` (versão mais avançada/atualizada, já focada no aeropêndulo em si):
 - `Ensaio2-identificacao_aeropendulo.ipynb` — parâmetros de ensaio do aeropêndulo.

@@ -1,37 +1,13 @@
 ---
-title: Desenvolvimento do Firmaware para ESP32
+title: Desenvolvimento do Firmware para ESP32
 author: Oséias Farias
 
 ---
 
-<style>
-        .tab {
-            display: inline-block;
-            margin-left: 40px;
-        }
-        .tab1 {
-            display: inline-block;
-            margin-left: 80px;
-        }
-</style>
-
-
-<center>
-<div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/brand/png/icone-256.png?raw=true"
-       width="80">  
-</div>
-</center>
-
-<center>
-<div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/arquitetura_firmware-1.png?raw=true"
-       width="900">  
-  <p>Figura 1 - Diagrama de blocos do Sistema em Malha Fechada.</p>
-</div>
-</center>
-
-</br>
+<figure markdown="span">
+  ![Bibliotecas do firmware importadas pelo main.cpp](img/firmware-bibliotecas.png)
+  <figcaption>Figura 1 — Organização do firmware: bibliotecas importadas pelo <code>main.cpp</code>.</figcaption>
+</figure>
 
 ## O que é
 
@@ -67,6 +43,20 @@ dados pela porta serial, e execução do controlador.
 
 Com o firmware pronto, a gravação no ESP32 é feita pelo próprio PlatformIO, que compila o
 código e grava no microcontrolador via porta serial.
+
+## Como compilar e gravar
+
+A variante mais completa do firmware é `Esp32_ttgo_modulos`, configurada para a placa
+TTGO T1 (ambiente `ttgo-t1` no `platformio.ini`). Com o ESP32 conectado à USB e o
+[PlatformIO](https://platformio.org/install/cli) instalado:
+
+```bash
+cd softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/Esp32_ttgo_modulos
+pio run --target upload
+```
+
+Para acompanhar a saída serial depois da gravação, use `pio device monitor` — o projeto já
+define `monitor_speed = 115200`, a mesma taxa usada pela interface gráfica.
 
 ## Um ciclo do laço principal
 
@@ -131,5 +121,3 @@ sequenceDiagram
 Não existe código de parada: uma vez recebido o `12000`, o firmware continua executando o
 laço até ser reiniciado. Os ganhos do PID também não fazem parte do protocolo — são fixos
 no código (ver [Controlador PID](../controle/pid.md#ganhos)).
-
-<br>

@@ -4,21 +4,6 @@ author: Oséias Farias
 
 ---
 
-<style>
-        .tab {
-            display: inline-block;
-            margin-left: 40px;
-        }
-        .tab1 {
-            display: inline-block;
-            margin-left: 80px;
-        }
-</style>
-
-
-<br>
-
-
 # Tutorial: Instalando Dependências do Python a partir do arquivo requirements.txt
 
 Quando trabalhamos em projetos Python, é comum listar todas as dependências necessárias em um arquivo chamado `requirements.txt`. Este tutorial mostrará como instalar essas dependências utilizando o `pip`.
@@ -27,10 +12,10 @@ Quando trabalhamos em projetos Python, é comum listar todas as dependências ne
 
 1. Abra o Terminal ou Prompt de Comando no seu sistema operacional.
 
-2. Navegue até o diretório do seu projeto usando o comando `cd`. Por exemplo:
+2. Navegue até a pasta `softwares_aeropendulo` do repositório, onde fica o `requirements.txt`. Por exemplo:
 
     ```bash
-    cd /caminho/do/seu/projeto/lab-virtual
+    cd /caminho/do/seu/projeto/lab-virtual/softwares_aeropendulo
     ```
 
 3. Execute o seguinte comando para instalar as dependências listadas no `requirements.txt`:

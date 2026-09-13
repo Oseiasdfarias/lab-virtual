@@ -20,7 +20,13 @@ uma nota de como foram verificados — nada foi marcado como feito sem checagem 
       conferindo visualmente as páginas 55–56 do PDF gerado.
 - [x] **2026-09-13** — Corrigida a concordância verbal no Cap. 4 ("Os subsistemas
       concebido...foi..." → "concebidos...foram...").
-- [ ] Padronizar terminologia: "ecossistema" vs "estrutura", "subsistemas" vs "laboratório virtual" usados sem consistência entre capítulos. *(Não mexido — decisão editorial de estilo, não um erro objetivo.)*
+- [ ] **Terminologia — diagnóstico refeito em 2026-09-13.** A contagem nos arquivos
+      compilados mostra que "ecossistema" não aparece no texto (só no nome do arquivo
+      `3_5_ecossistema.tex` e da figura) e que "estrutura" quase sempre se refere à
+      estrutura física. A inconsistência real é **"simulador" (36×) vs "gêmeo digital"
+      (30×)** para o mesmo software. Sugestão para o artigo e o livro: "gêmeo digital" para
+      o conceito e `Simulador` só para a classe Python. Não alterado na monografia
+      registrada.
 - [x] **2026-09-13 (investigado, não alterado)** — As listas de siglas/símbolos
       (`elementos_pretextuais/siglas.tex`, `simbolos.tex`) têm conteúdo genérico de template,
       mas **estão comentadas no arquivo mestre** (`%\input{...}`) — nunca aparecem no PDF
@@ -35,8 +41,23 @@ uma nota de como foram verificados — nada foi marcado como feito sem checagem 
       `2_4_modelagem_identificacao_sistemas.tex`) ganharam um comentário no topo explicando
       que estão excluídos da compilação (`\input` comentado em `Cap_2_Desenvolvimento.tex`)
       e para onde o conteúdo real migrou. Não apagados — mantidos como histórico.
-- [ ] Decidir se vale acrescentar métricas quantitativas de erro (RMSE/EQM) na seção de Resultados — segue em aberto, é o item mais valioso para o artigo (ver [`00_fluxo_trabalho.md`](00_fluxo_trabalho.md), Fase 2 → Fase 3).
-- [ ] Checar sugestões do orientador ainda não incorporadas — comparar `revisao_tcc/andre/Sugestões TCC - Oseias.docx` ponto a ponto com a versão final. Não feito nesta rodada.
+- [x] **2026-09-13** — Métricas de erro calculadas como análise posterior (não entram na
+      monografia registrada): o script
+      `materiais_complementares/.../ident_up/metricas_validacao.py` refaz a identificação a
+      partir do CSV original, com coeficientes idênticos aos do notebook, e mede NRMSE/RMSE
+      no trecho de validação — 2ª ordem 51,35%/1,62°, 10ª ordem publicada 55,97%/1,47°,
+      10ª ordem ARX simulada corretamente 78,30%/0,72°. Publicado em
+      `docs/identificacao/validacao.md`.
+- [ ] **Achado para o artigo:** a função de 10ª ordem da monografia foi montada com
+      `ct.tf([b0..b3], [1, -a1..-a10])`, que o python-control lê em potências positivas de
+      $z$ — 7 amostras de atraso que não existem no ARX estimado. É o que separa 55,97% de
+      78,30% de ajuste. A figura de validação de 10ª ordem e a equação numérica do Cap. 3
+      refletem o modelo com atraso.
+- [x] **2026-09-13** — Sugestões da banca conferidas ponto a ponto contra os arquivos
+      compilados e o PDF: ver [`../01_monografia/sugestoes_banca.md`](../01_monografia/sugestoes_banca.md).
+      O documento é do **Prof. André Cruz** (banca), não do orientador. Resultado: 7
+      incorporadas (+1 provável), 3 parciais, 8 não incorporadas, 2 perguntas não
+      respondidas no texto, 4 não verificáveis automaticamente.
 
 ## Software
 
@@ -119,6 +140,51 @@ uma nota de como foram verificados — nada foi marcado como feito sem checagem 
 
 ## Organização do repositório (limpeza, opcional)
 
-- [ ] Decidir o destino de `revisao_tcc/TCC-Oseas/` e `revisao_tcc/andre/` (cópias de revisão desatualizadas) — manter como histórico ou arquivar fora do repo principal.
-- [ ] `materiais_complementares/Identificacao_de_Sistemas/` tem forte duplicação de notebooks entre a raiz, `identificacao_aeropendulo/` e `identificacao_aeropendulo/ident_up/` (esta última é a mais avançada) — vale consolidar.
-- [ ] Vários nomes de arquivo com encoding corrompido (ex.: `Identifica├з├гo.py`) dentro de `materiais_complementares/` — renomear para evitar problemas de portabilidade.
+- [ ] Decidir o destino de `revisao_tcc/TCC-Oseas/` (18 MB) e `revisao_tcc/andre/` (19 MB) —
+      manter como histórico ou arquivar fora do repo principal. *(Decisão do autor.)*
+- [x] **2026-09-13** — Duplicação resolvida: 119 arquivos duplicados removidos (≈ 60 MB), sempre
+      mantendo ao menos uma cópia de cada conteúdo — verificado arquivo a arquivo, e a
+      monografia compilada depois das remoções (65 páginas, sem citação indefinida nem
+      arquivo ausente). Saíram as figuras repetidas em `revisao_tcc/TCC-Oseas/` e em
+      `Template_TCC_FEE/elementos_textuais/` (ficaram os `.tex`), o `revisao_tcc/TCC-Oseas.zip`
+      (todo o conteúdo existe em arquivos do repositório), as cópias soltas em `utils/`, dois
+      notebooks "copy", um `.dxf~` de backup e outras cópias pontuais. Mantidas de propósito:
+      as figuras em `Template_TCC_FEE/Capitulos/` (a compilação precisa delas) e seus
+      originais em `materiais_complementares/`, os arquivos-padrão de cada projeto
+      PlatformIO/Arduino, os `__init__.py` vazios e as cópias da marca que o MkDocs exige
+      dentro de `docs/` e `overrides/`.
+- [x] **2026-09-13** — Os dois nomes com codificação corrompida em
+      `Identificacao_de_Sistemas/Programa Python/` foram renomeados para
+      `identificacao.py` e `analise_grafica.py` (nenhum arquivo os referenciava).
+- [x] **2026-09-13** — Removido `utils/Oseias_Fariascertificado_horas_complementares.pdf`
+      (certificado pessoal). Continua no histórico do git; tirá-lo de lá exige reescrever o
+      histórico com force push.
+
+## Rodada de 2026-09-13 (tarde) — site, software e infraestrutura
+
+- [x] Site: botões anterior/próximo em todas as páginas, footer completo e sensível ao tema,
+      páginas antigas sem `<style>`/ícone solto, figuras de `utils/` trazidas para `docs/`
+      (foto do protótipo de 12,9 MB para 189 KB).
+- [x] Site e README: corrigidas afirmações sem base no código ou na monografia — gêmeo digital
+      "autônomo"/"simulando a dinâmica identificada", ganhos do PID enviados pela serial,
+      controlador projetado a partir do modelo, conversão de Tustin.
+- [x] Site: legenda da Figura 1 do firmware, instruções de gravação, pasta de execução do
+      `rungui.py`, caminho do `requirements.txt`, formato real dos CSVs (têm cabeçalho e
+      índice), notação ARX, unidade de $K_m$, seção do motor CC série, nota sobre as duas
+      formulações de $K_m$ (notebook × monografia).
+- [x] Referência de código com as 7 classes usadas pelo `rungui.py`; removido
+      `interface_interativa.py` (código morto).
+- [x] Deploy do site automatizado (`.github/workflows/docs.yml`), com build estrito em PRs e
+      versões fixadas em `requirements-docs.txt`.
+- [x] Dependências: piso em Python 3.10; os 151 alertas do Dependabot aplicáveis ao lock caem
+      para 1. Validado em Python 3.11 (instalação, imports do `rungui.py`, script de métricas).
+- [ ] **Alerta restante:** `setuptools < 83` (médio). Não dá para fechar enquanto o `vpython`
+      7.6.5 importar `pkg_resources`, removido no setuptools 82.
+- [ ] **Validar em hardware:** a interface gráfica e o gêmeo digital com as dependências novas
+      só foram testados até o import; e os fixes do PID/conversor no firmware continuam sem
+      teste no protótipo.
+- [ ] **Apagar branches já mescladas na `main`** (a exclusão foi bloqueada pela ferramenta e
+      fica com o autor): `site-estilo-marca`, `site-redesign-plano`,
+      `site-redesign-plano-exec`, `docs/metadados-ufpa`, `docs/roadmap-artigo-livro`,
+      `fechamento-fase-1-2` (esta tem só um commit fora da `main`, já aplicado por
+      cherry-pick).

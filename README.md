@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://oseiasdfarias.github.io/lab-virtual/"><img alt="Documentação" src="https://img.shields.io/badge/documenta%C3%A7%C3%A3o-online-1D1D1F?style=flat-square"></a>
-  <img alt="Python" src="https://img.shields.io/badge/python-3.8%E2%80%933.12-3776AB?style=flat-square&logo=python&logoColor=white">
+  <img alt="Python" src="https://img.shields.io/badge/python-3.10%E2%80%933.11-3776AB?style=flat-square&logo=python&logoColor=white">
   <img alt="Firmware" src="https://img.shields.io/badge/firmware-ESP32%20%7C%20PlatformIO-FF7F00?style=flat-square">
 </p>
 
@@ -29,8 +29,9 @@ não linear, instável em malha aberta em parte da faixa de operação e de cons
 acessível.
 
 A plataforma cobre o ciclo experimental completo: **excitação e aquisição** de dados no
-protótipo real, **identificação do modelo** a partir desses dados, **projeto e validação do
-controlador**, e **simulação** em um gêmeo digital que reproduz a dinâmica identificada.
+protótipo real, **identificação do modelo** a partir desses dados, **controle em malha
+fechada** com PID no firmware, e um **gêmeo digital** que reproduz em 3D, em tempo real, o
+movimento medido no protótipo.
 
 ## Arquitetura
 
@@ -41,11 +42,12 @@ O sistema é composto por quatro subsistemas que operam de forma integrada:
 | **Protótipo** | Planta física: haste, motor CC com hélice, potenciômetro como sensor de ângulo, ponte H | Estrutura em madeira e fibra de carbono |
 | **Firmware** | Leitura do sensor, controle PID em malha fechada, geração do sinal de referência e comunicação serial | C++ · ESP32 TTGO · PlatformIO |
 | **Interface gráfica** | Aquisição em tempo real, visualização dos sinais e registro dos ensaios em CSV | Python · CustomTkinter · PySerial |
-| **Gêmeo digital** | Simulação da dinâmica identificada, com animação tridimensional e gráficos | Python · VPython · Matplotlib |
+| **Gêmeo digital** | Réplica virtual do protótipo: animação tridimensional e gráficos atualizados com o ângulo medido | Python · VPython · Matplotlib |
 
 O firmware e a interface gráfica trocam dados por porta serial: o microcontrolador envia
-posição angular, referência, erro e sinal de controle; a interface envia comandos de
-configuração, ganhos do controlador e parâmetros do sinal de excitação.
+referência, posição angular, erro, sinal de controle, entrada e tempo; a interface envia
+amplitude, frequência e offset do sinal de referência, a forma de onda, o modo de malha e o
+comando de execução. Os ganhos do PID são fixos no firmware, definidos em tempo de compilação.
 
 ## Metodologia
 
@@ -53,18 +55,20 @@ A obtenção do modelo seguiu a abordagem de **identificação de sistemas** a p
 experimentais, em vez de modelagem exclusivamente analítica:
 
 1. **Excitação** — aplicação de sinal PRBS (*Pseudo-Random Binary Sequence*) na entrada do
-   sistema, com nível de offset ajustado para manter a operação em torno do ponto de
-   trabalho desejado.
+   sistema em malha aberta, somado a um offset que mantém a operação em torno do ponto de
+   trabalho.
 2. **Aquisição** — registro dos pares entrada–saída pela interface gráfica, com divisão do
-   conjunto em dados de treino e de teste.
-3. **Estimação** — ajuste dos parâmetros do modelo pelo método dos **mínimos quadrados**.
-4. **Conversão e validação** — passagem do modelo discreto para o contínuo pela
-   transformação de Tustin e verificação da aderência frente aos dados de teste.
-5. **Controle** — projeto do controlador a partir do modelo identificado e avaliação em
-   malha fechada, tanto no gêmeo digital quanto no protótipo real.
+   ensaio em 60% para identificação e 40% para validação.
+3. **Estimação** — ajuste de modelos ARX discretos pelo método dos **mínimos quadrados**; a
+   estrutura de 10ª ordem foi a adotada.
+4. **Validação** — simulação livre do modelo com a entrada do ensaio e comparação com a
+   saída real no trecho de validação.
+5. **Controle** — PID no firmware, com ganhos sintonizados por tentativa e erro no protótipo,
+   avaliado em malha fechada com referências em onda quadrada e dente de serra.
 
-Uma dedução analítica do modelo, por subsistemas (motor CC e braço), também está
-documentada e serve de referência comparativa para o modelo identificado.
+A dedução analítica do modelo por subsistemas (motor CC série e braço) também está
+documentada; a dificuldade de obter numericamente alguns de seus parâmetros é o que motiva a
+identificação a partir de dados.
 
 ## Estrutura do repositório
 
@@ -81,7 +85,7 @@ documentada e serve de referência comparativa para o modelo identificado.
 
 ## Instalação e execução
 
-Requer Python 3.8 a 3.12. As dependências são gerenciadas por [Poetry](https://python-poetry.org/):
+Requer Python 3.10 ou 3.11. As dependências são gerenciadas por [Poetry](https://python-poetry.org/):
 
 ```bash
 git clone https://github.com/Oseiasdfarias/lab-virtual.git
@@ -100,14 +104,21 @@ cd softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/Esp32_ttgo_modu
 pio run --target upload
 ```
 
-A interface gráfica pode ser utilizada sem o protótipo: o gêmeo digital opera de forma
-autônoma, o que permite usar a plataforma em aulas mesmo sem acesso ao hardware.
+O gêmeo digital é opcional (`poetry run python rungui.py -simular sim`) e é alimentado pelos
+dados do protótipo: ele reproduz o movimento medido, a partir do ângulo recebido pela serial,
+e por isso precisa do protótipo conectado.
 
 ## Documentação
 
 A documentação técnica está publicada em
 **[oseiasdfarias.github.io/lab-virtual](https://oseiasdfarias.github.io/lab-virtual/)** e
-inclui guias de instalação e a referência dos módulos do gêmeo digital.
+inclui guias de instalação e a referência dos módulos do gêmeo digital. O site é publicado
+automaticamente a cada push na `main`; para visualizá-lo localmente:
+
+```bash
+pip install -r requirements-docs.txt
+mkdocs serve
+```
 
 Para uma visão consolidada do projeto — resumo por capítulo da monografia, arquitetura do
 software, catálogo dos materiais complementares e pendências —, consulte

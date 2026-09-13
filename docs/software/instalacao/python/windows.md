@@ -4,21 +4,6 @@ author: Oséias Farias
 
 ---
 
-<style>
-        .tab {
-            display: inline-block;
-            margin-left: 40px;
-        }
-        .tab1 {
-            display: inline-block;
-            margin-left: 80px;
-        }
-</style>
-
-
-<br>
-
-
 Neste tutorial, vamos orientar você pelo processo de instalação do Python 3.10 no sistema operacional Windows. O Python é uma linguagem de programação poderosa e versátil, e a instalação no Windows é um processo relativamente simples.
 
 #### Passo 1: Baixe o instalador do Python

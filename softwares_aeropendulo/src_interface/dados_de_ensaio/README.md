@@ -1,8 +1,9 @@
 # Dados de ensaio
 
 CSVs gravados por `ColetaDados.salvar_dados_colhidos()`
-(`src_interface/coleta_dados.py`), sem cabeçalho — a primeira coluna é o índice de linha do
-pandas; as 7 colunas seguintes vêm, na mesma ordem, do protocolo serial do firmware
+(`src_interface/coleta_dados.py`) com o `to_csv` padrão do pandas: a primeira linha é um
+cabeçalho que só numera as colunas (`,0,1,2,3,4,5,6`) e a primeira coluna é o índice de
+linha. As 7 colunas seguintes vêm, na mesma ordem, do protocolo serial do firmware
 (`enviar_dados_serial()` em
 `firmwares_microcontroladores/PlatformIo/Esp32_ttgo_modulos/lib/ler_escrever_serial/`):
 

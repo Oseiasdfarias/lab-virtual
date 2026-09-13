@@ -60,7 +60,7 @@ documentos:
   - path: docs_tcc/01_monografia/cap3_resultados.md
     titulo: "Capítulo 3 — Resultados e Discussões"
     fonte: "Cap_3_Resultados_e_Discussoes.tex"
-    resumo: "Ensaios e identificação de sistemas (PRBS + mínimos quadrados). Validação qualitativa/visual, sem métricas quantitativas de erro (RMSE/EQM) — limitação reconhecida pelo autor."
+    resumo: "Ensaios e identificação de sistemas (PRBS + mínimos quadrados). Validação qualitativa/visual na monografia; NRMSE/RMSE reproduzidos depois em docs/identificacao/validacao.md (a TF de 10ª ordem publicada tem 7 amostras de atraso a mais que o ARX estimado)."
     tags: [monografia, cap3, resultados, identificacao_sistemas]
 
   - path: docs_tcc/01_monografia/cap4_conclusao.md
@@ -68,6 +68,12 @@ documentos:
     fonte: "Cap_4_ Conclusao.tex"
     resumo: "Contribuições, limitações reconhecidas pelo autor, trabalhos futuros sugeridos."
     tags: [monografia, cap4, conclusao]
+
+  - path: docs_tcc/01_monografia/sugestoes_banca.md
+    titulo: "Sugestões da banca (Prof. André Cruz) × versão final"
+    fonte: "revisao_tcc/andre/Sugestões TCC - Oseias.docx; arquivos incluídos por tcc_oseias_farias.tex; texto do PDF registrado"
+    resumo: "Conferência ponto a ponto: 7 incorporadas (+1 provável), 3 parciais, 8 não incorporadas, 2 perguntas sem resposta no texto. Inclui o achado do atraso de 7 amostras na TF de 10ª ordem."
+    tags: [monografia, banca, revisao]
 
   - path: docs_tcc/01_monografia/pretextual.md
     titulo: "Elementos pré-textuais (resumo, abstract, siglas, símbolos)"

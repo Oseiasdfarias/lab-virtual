@@ -4,21 +4,6 @@ author: Oséias Farias
 
 ---
 
-<style>
-        .tab {
-            display: inline-block;
-            margin-left: 40px;
-        }
-        .tab1 {
-            display: inline-block;
-            margin-left: 80px;
-        }
-</style>
-
-
-<br>
-
-
 Neste tutorial, vamos guiar você pelo processo de instalação do Python 3.10 no sistema operacional macOS. O Python é uma linguagem de programação poderosa e versátil, e a instalação no macOS é relativamente simples.
 
 
@@ -68,6 +53,3 @@ Você deverá ver a versão do Python 3.10.
 #### Conclusão
 
 Agora você tem o Python 3.10 instalado no seu sistema macOS. Pode começar a desenvolver e executar seus scripts Python. Lembre-se de que o Python 3.10 inclui o pip, então você pode usar o pip para instalar pacotes adicionais conforme necessário para seus projetos.
-
-
-<br/>

@@ -4,34 +4,10 @@ author: Oséias Farias
 
 ---
 
-<style>
-        .tab {
-            display: inline-block;
-            margin-left: 40px;
-        }
-        .tab1 {
-            display: inline-block;
-            margin-left: 80px;
-        }
-</style>
-
-
-<center>
-<div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/brand/png/icone-256.png?raw=true"
-       width="80">  
-</div>
-</center>
-
-<center>
-<div class="figure" >
-  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/gemeo_digital.png?raw=true"
-       width="900">  
-  <p>Figura 1 - Gêmeo Digital.</p>
-</div>
-</center>
-
-<br/>
+<figure markdown="span">
+  ![Gêmeo Digital](img/gemeo-digital.png)
+  <figcaption>Figura 1 — Gêmeo Digital.</figcaption>
+</figure>
 
 ## O que é
 
@@ -75,5 +51,3 @@ para os detalhes de cada classe.
 Para reproduzir a dinâmica no Gêmeo Digital, a classe `Simulador` é importada pelo software
 que implementa a comunicação com o protótipo real — ver
 [Interface Gráfica de Usuário](../software/interface-grafica.md).
-
-<br/>

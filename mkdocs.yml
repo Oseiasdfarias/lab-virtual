@@ -20,6 +20,7 @@ theme:
     - navigation.sections
     - navigation.path
     - navigation.top
+    - navigation.footer
     - search.suggest
     - search.highlight
     - toc.follow
@@ -76,6 +77,10 @@ plugins:
       handlers:
         python:
           paths: [.]
+          options:
+            show_if_no_docstring: true
+            show_signature_annotations: true
+            members_order: source
           inventories:
           - https://docs.python-requests.org/en/master/objects.inv
 
@@ -106,6 +111,12 @@ nav:
           - Python (macOS): software/instalacao/python/macos.md
           - Dependências: software/instalacao/dependencias.md
   - Referência de Código:
-      - animacao_aeropendulo: referencia/animacao-aeropendulo.md
-      - graficos_aeropendulo: referencia/graficos-aeropendulo.md
-      - interface_interativa: referencia/interface-interativa.md
+      - Gêmeo digital:
+          - Simulador: referencia/simulador.md
+          - AnimacaoAeropendulo: referencia/animacao-aeropendulo.md
+          - Graficos: referencia/graficos-aeropendulo.md
+      - Interface gráfica:
+          - InterfaceAeropendulo: referencia/interface-aeropendulo.md
+          - ColetaDados: referencia/coleta-dados.md
+          - GraficosSinais: referencia/graficos-sinais.md
+          - ListaPortasUsb: referencia/lista-portas-usb.md

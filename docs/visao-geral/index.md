@@ -29,16 +29,17 @@ O laboratório é composto por quatro subsistemas que operam de forma integrada:
 | **Protótipo** | Planta física: haste, motor CC com hélice, potenciômetro como sensor de ângulo, ponte H | Estrutura em madeira e fibra de carbono |
 | **Firmware** | Leitura do sensor, controle PID em malha fechada, geração do sinal de referência e comunicação serial | C++ · ESP32 TTGO · PlatformIO |
 | **Interface gráfica** | Aquisição em tempo real, visualização dos sinais e registro dos ensaios em CSV | Python · CustomTkinter · PySerial |
-| **Gêmeo digital** | Simulação da dinâmica identificada, com animação tridimensional e gráficos | Python · VPython · Matplotlib |
+| **Gêmeo digital** | Réplica virtual do protótipo: animação tridimensional e gráficos atualizados com o ângulo medido | Python · VPython · Matplotlib |
 
 O firmware e a interface gráfica trocam dados por porta serial: o microcontrolador envia
 posição angular, referência, erro e sinal de controle; a interface envia comandos de
 configuração e parâmetros do sinal de excitação (amplitude, frequência, offset, forma de
 onda) e de operação (malha aberta/fechada, executar). Os ganhos do controlador PID são
 fixos no firmware, definidos em tempo de compilação — mudá-los exige recompilar e
-regravar o microcontrolador, não é feito pela interface. A interface gráfica também pode
-ser usada sem o protótipo — o gêmeo digital opera de forma autônoma,
-o que permite usar a plataforma em aulas mesmo sem acesso ao hardware.
+regravar o microcontrolador, não é feito pela interface. O gêmeo digital é opcional
+(`python rungui.py -simular sim`) e depende desses dados: ele reproduz na tela o movimento
+que o protótipo está fazendo, a partir do ângulo recebido pela serial, e não integra um
+modelo por conta própria — sem o protótipo conectado, não há o que animar.
 
 ## O fluxo completo
 
@@ -72,8 +73,3 @@ Federal do Pará, Campus Universitário de Tucuruí, sob orientação do **Prof.
 Teixeira**. O trabalho foi defendido em 11 de dezembro de 2023 e está publicado em acesso
 aberto na Biblioteca Digital de Monografias da UFPA, em
 [bdm.ufpa.br/handle/prefix/6944](https://bdm.ufpa.br/handle/prefix/6944).
-
----
-
-**Ver também:** [Arquitetura do Sistema →](arquitetura.md)
-{ .lv-see-also }

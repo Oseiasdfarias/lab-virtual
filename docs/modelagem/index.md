@@ -41,6 +41,46 @@ divisão.
 
 ![Subsistemas: motor CC e braço](img/subsistemas-aeropendulo-1.png)
 
+### O subsistema motor
+
+O motor do protótipo é um motor CC **série**: o enrolamento de campo está ligado em série com
+o de armadura, então a mesma corrente $i = i_a = i_f$ passa pelos dois. O diagrama abaixo
+mostra as resistências e indutâncias de campo ($R_f$, $L_f$) e de armadura ($R_a$, $L_a$), a
+velocidade angular $\omega$ do eixo, o torque eletromagnético $T_e$ e o torque de carga $T_c$.
+
+![Diagrama elétrico e mecânico do motor CC série](img/diagrama-motor-cc-1.png)
+
+Pela lei das tensões de Kirchhoff, com $R = R_a + R_f$ e $L = L_a + L_f$, e pelo balanço de
+torques no eixo, com momento de inércia $J_m$ e amortecimento viscoso $b$:
+
+$$
+V = Ri + L\frac{di}{dt} + E_a \qquad\qquad J_m\dot\omega = T_e - b\omega - T_c
+$$
+
+Tanto a força contraeletromotriz $E_a$ quanto o torque $T_e$ dependem do fluxo magnético,
+que no motor série é produzido pela própria corrente. Desprezando a saturação, o fluxo é
+aproximado por $K_0 i$, o que dá $E_a = K_0\omega i$ e
+
+$$
+T_e = K_0 i^2
+$$
+
+O torque cresce com o **quadrado** da corrente, então o motor é, por si só, um subsistema
+não linear. O modelo do braço usado nesta página contorna isso resumindo o motor a um ganho
+constante $K_m$ entre tensão e torque. A monografia também aponta que parâmetros como $J_m$,
+e o amortecimento $c$ do pivô do braço, são difíceis de obter numericamente — e usa essa
+dificuldade como motivação para a [identificação de sistemas](../identificacao/excitacao.md),
+que chega a um modelo a partir dos dados de ensaio.
+
+!!! note "Duas formulações de $K_m$"
+    Esta página segue o notebook
+    `Modelagem_matematica_do_aeropendulo.ipynb`, em que $K_m$ liga diretamente a tensão do
+    motor ao torque de entrada do braço ($K_mV$). Na monografia, o braço recebe o empuxo
+    $F_e$ da hélice, e $K_m$ liga a velocidade angular do motor a esse empuxo pela
+    aproximação linear $F_e = K_m\omega$ da relação $F_e = K_m\omega^2$; a função de
+    transferência do braço fica então $\theta(s)/\omega(s)$, encadeada à saída do modelo do
+    motor. Os valores numéricos da tabela abaixo são os do notebook.
+
 ## Linearização
 
 A equação não linear acima é fiel à física do sistema, mas a maior parte das técnicas
@@ -89,7 +129,7 @@ do protótipo, medidos ou estimados a partir da geometria e da massa do braço:
 
 | Parâmetro | Valor | Unidade |
 | --- | --- | --- |
-| $K_m$ | 0,0296 | — |
+| $K_m$ | 0,0296 | N·m/V |
 | $d$ | 0,03 | m |
 | $J$ | 0,0106 | kg·m² |
 | $m$ | 0,36 | kg |
@@ -125,9 +165,3 @@ usando as bibliotecas NumPy e Python-Control. A [identificação de sistemas](..
 usa uma abordagem diferente — ajustar o modelo a dados reais em vez de derivá-lo
 puramente da física — e chega a um modelo mais preciso, validado comparando a saída
 simulada com a saída real do protótipo.
-
----
-
-**Ver também:** [← Arquitetura do Sistema](../visao-geral/arquitetura.md) ·
-[Identificação de Sistemas →](../identificacao/excitacao.md)
-{ .lv-see-also }
