@@ -31,3 +31,6 @@ apresentacao/
 
 # Sessões do companheiro visual (Claude Code / superpowers)
 .superpowers/
+
+# Worktrees de execução (superpowers:using-git-worktrees)
+.worktrees/
