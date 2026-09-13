@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./brand/png/logo-vertical-800.png">
-    <img height="130" src="./brand/png/logo-vertical-solido-800.png" alt="Laboratório Virtual">
+    <img height="230" src="./brand/png/logo-vertical-solido-800.png" alt="Laboratório Virtual">
   </picture>
 </p>
 
@@ -11,11 +11,26 @@
 </p>
 
 <p align="center">
-  <a href="https://oseiasdfarias.github.io/lab-virtual/"><img alt="Documentação" src="https://img.shields.io/badge/documenta%C3%A7%C3%A3o-online-1D1D1F?style=flat-square"></a>
-  <a href="https://github.com/Oseiasdfarias/lab-virtual/actions/workflows/docs.yml"><img alt="Build da documentação" src="https://github.com/Oseiasdfarias/lab-virtual/actions/workflows/docs.yml/badge.svg"></a>
-  <a href="https://bdm.ufpa.br/handle/prefix/6944"><img alt="Monografia" src="https://img.shields.io/badge/monografia-BDM%2FUFPA-0B5CAD?style=flat-square"></a>
-  <img alt="Python" src="https://img.shields.io/badge/python-3.10%E2%80%933.11-3776AB?style=flat-square&logo=python&logoColor=white">
-  <img alt="Firmware" src="https://img.shields.io/badge/firmware-ESP32%20%C2%B7%20PlatformIO-FF7F00?style=flat-square">
+  <a href="https://oseiasdfarias.github.io/lab-virtual/"><img alt="Documentação online" src="https://img.shields.io/badge/documenta%C3%A7%C3%A3o-online-1D1D1F?style=for-the-badge&logo=materialformkdocs&logoColor=white"/></a>
+  <a href="https://github.com/Oseiasdfarias/lab-virtual/actions/workflows/docs.yml"><img alt="Build da documentação" src="https://img.shields.io/github/actions/workflow/status/Oseiasdfarias/lab-virtual/docs.yml?branch=main&style=for-the-badge&label=build%20docs&logo=githubactions&logoColor=white"/></a>
+  <a href="https://bdm.ufpa.br/handle/prefix/6944"><img alt="Monografia na BDM/UFPA" src="https://img.shields.io/badge/monografia-BDM%2FUFPA-0B5CAD?style=for-the-badge&logo=bookstack&logoColor=white"/></a>
+</p>
+
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"/>
+  <img alt="NumPy" src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white"/>
+  <img alt="Pandas" src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white"/>
+  <img alt="Jupyter" src="https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white"/>
+  <img alt="C++" src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=cplusplus&logoColor=white"/>
+  <img alt="ESP32" src="https://img.shields.io/badge/ESP32-E7352C?style=for-the-badge&logo=espressif&logoColor=white"/>
+  <img alt="PlatformIO" src="https://img.shields.io/badge/PlatformIO-F5822A?style=for-the-badge&logo=platformio&logoColor=white"/>
+  <img alt="Arduino" src="https://img.shields.io/badge/arduino-%2300979D.svg?style=for-the-badge&logo=arduino&logoColor=white"/>
+  <img alt="LaTeX" src="https://img.shields.io/badge/latex-%23008080.svg?style=for-the-badge&logo=latex&logoColor=white"/>
+  <img alt="Material for MkDocs" src="https://img.shields.io/badge/material%20for%20mkdocs-526CFE?style=for-the-badge&logo=materialformkdocs&logoColor=white"/>
+  <img alt="Three.js" src="https://img.shields.io/badge/three.js-%23000000.svg?style=for-the-badge&logo=threedotjs&logoColor=white"/>
+  <img alt="D3.js" src="https://img.shields.io/badge/d3.js-F9A03C?style=for-the-badge&logo=d3&logoColor=white"/>
+  <img alt="GitHub Actions" src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white"/>
+  <img alt="Git" src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white"/>
 </p>
 
 <p align="center">
