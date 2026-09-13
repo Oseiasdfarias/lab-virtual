@@ -27,9 +27,9 @@ atualiza a animação 3D e os gráficos do gêmeo digital.
 
 O caminho de volta carrega apenas dados de configuração: a interface envia ao firmware os
 parâmetros do sinal de referência (amplitude, frequência, offset), a forma de onda
-selecionada, o modo de operação (malha aberta ou malha fechada) e o comando de
-início/parada do ensaio. Os ganhos do controlador PID não trafegam pela porta serial —
-permanecem fixos no firmware.
+selecionada, o modo de operação (malha aberta ou malha fechada) e o comando de início do
+ensaio. Os ganhos do controlador PID não trafegam pela porta serial — permanecem fixos no
+firmware.
 
 ## Por que essa divisão
 
