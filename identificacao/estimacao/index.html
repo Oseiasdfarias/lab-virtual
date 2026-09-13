@@ -9,24 +9,28 @@
       
       
       
+        <link rel="prev" href="../excitacao/">
+      
+      
+        <link rel="next" href="../validacao/">
       
       
         
       
       
-      <link rel="icon" href="/favicon.svg">
+      <link rel="icon" href="../../favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Laboratório Virtual</title>
+        <title>Estimação por Mínimos Quadrados - Laboratório Virtual</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -39,11 +43,11 @@
       
     
     
-      <link rel="stylesheet" href="/assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#estimacao-por-minimos-quadrados" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -79,7 +88,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
-    <a href="/." title="Laboratório Virtual" class="md-header__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
+    <a href="../.." title="Laboratório Virtual" class="md-header__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.14 163.14" width="163" height="163" role="img" aria-label="Laboratório Virtual">
@@ -107,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Estimação por Mínimos Quadrados
             
           </span>
         </div>
@@ -225,7 +234,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Laboratório Virtual" class="md-nav__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
+    <a href="../.." title="Laboratório Virtual" class="md-nav__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.14 163.14" width="163" height="163" role="img" aria-label="Laboratório Virtual">
@@ -263,7 +272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -342,7 +351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/visao-geral/" class="md-nav__link">
+      <a href="../../visao-geral/" class="md-nav__link">
         
   
   
@@ -370,7 +379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/visao-geral/arquitetura/" class="md-nav__link">
+      <a href="../../visao-geral/arquitetura/" class="md-nav__link">
         
   
   
@@ -405,7 +414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/prototipo/" class="md-nav__link">
+      <a href="../../prototipo/" class="md-nav__link">
         
   
   
@@ -432,7 +441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/modelagem/" class="md-nav__link">
+      <a href="../../modelagem/" class="md-nav__link">
         
   
   
@@ -456,8 +465,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -468,11 +479,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
@@ -493,7 +504,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -511,7 +522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/identificacao/excitacao/" class="md-nav__link">
+      <a href="../excitacao/" class="md-nav__link">
         
   
   
@@ -536,10 +547,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/identificacao/estimacao/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estimação por mínimos quadrados
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -555,6 +593,81 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-um-modelo-discreto-nao-o-modelo-analitico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por que um modelo discreto (não o modelo analítico)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#primeira-tentativa-modelo-de-2a-ordem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primeira tentativa: modelo de 2ª ordem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estrutura-arx-de-10a-ordem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrutura ARX de 10ª ordem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#montando-o-problema-de-minimos-quadrados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Montando o problema de mínimos quadrados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultado
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -567,7 +680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/identificacao/validacao/" class="md-nav__link">
+      <a href="../validacao/" class="md-nav__link">
         
   
   
@@ -654,7 +767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/controle/pid/" class="md-nav__link">
+      <a href="../../controle/pid/" class="md-nav__link">
         
   
   
@@ -682,7 +795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/controle/resultados/" class="md-nav__link">
+      <a href="../../controle/resultados/" class="md-nav__link">
         
   
   
@@ -717,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/gemeo-digital/" class="md-nav__link">
+      <a href="../../gemeo-digital/" class="md-nav__link">
         
   
   
@@ -796,7 +909,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/interface-grafica/" class="md-nav__link">
+      <a href="../../software/interface-grafica/" class="md-nav__link">
         
   
   
@@ -824,7 +937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/firmware/" class="md-nav__link">
+      <a href="../../software/firmware/" class="md-nav__link">
         
   
   
@@ -901,7 +1014,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/" class="md-nav__link">
+      <a href="../../software/instalacao/python/" class="md-nav__link">
         
   
   
@@ -929,7 +1042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/ubuntu/" class="md-nav__link">
+      <a href="../../software/instalacao/python/ubuntu/" class="md-nav__link">
         
   
   
@@ -957,7 +1070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/windows/" class="md-nav__link">
+      <a href="../../software/instalacao/python/windows/" class="md-nav__link">
         
   
   
@@ -985,7 +1098,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/macos/" class="md-nav__link">
+      <a href="../../software/instalacao/python/macos/" class="md-nav__link">
         
   
   
@@ -1013,7 +1126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/dependencias/" class="md-nav__link">
+      <a href="../../software/instalacao/dependencias/" class="md-nav__link">
         
   
   
@@ -1108,7 +1221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/referencia/animacao-aeropendulo/" class="md-nav__link">
+      <a href="../../referencia/animacao-aeropendulo/" class="md-nav__link">
         
   
   
@@ -1136,7 +1249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/referencia/graficos-aeropendulo/" class="md-nav__link">
+      <a href="../../referencia/graficos-aeropendulo/" class="md-nav__link">
         
   
   
@@ -1164,7 +1277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/referencia/interface-interativa/" class="md-nav__link">
+      <a href="../../referencia/interface-interativa/" class="md-nav__link">
         
   
   
@@ -1209,6 +1322,71 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-um-modelo-discreto-nao-o-modelo-analitico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por que um modelo discreto (não o modelo analítico)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#primeira-tentativa-modelo-de-2a-ordem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primeira tentativa: modelo de 2ª ordem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estrutura-arx-de-10a-ordem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrutura ARX de 10ª ordem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#montando-o-problema-de-minimos-quadrados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Montando o problema de mínimos quadrados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultado
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1226,11 +1404,134 @@
   
 
 
+  <nav class="md-path" aria-label="Navegação" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Início
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../excitacao/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Identificação de Sistemas
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="estimacao-por-minimos-quadrados">Estimação por Mínimos Quadrados</h1>
+<p>Com os dados de <a href="../excitacao/">excitação e aquisição</a> em mãos, o próximo passo é ajustar
+os parâmetros de um modelo discreto que reproduza a relação entrada/saída observada.</p>
+<h2 id="por-que-um-modelo-discreto-nao-o-modelo-analitico">Por que um modelo discreto (não o modelo analítico)</h2>
+<p>O modelo obtido na <a href="../../modelagem/">Modelagem Matemática</a> é contínuo e linearizado —
+uma aproximação válida numa vizinhança do ponto de operação, deduzida a partir das leis da
+física. O modelo identificado aqui é outra coisa: é discreto, o que é natural já que os
+dados de ensaio são amostrados a um período de amostragem fixo, e não depende de conhecer
+de antemão nenhum parâmetro físico do sistema. Em vez de partir de torques, massas e
+constantes do motor, o modelo discreto "aprende" a dinâmica direto dos dados — o que inclui,
+de quebra, efeitos que o modelo analítico não captura, como atrito seco e folga mecânica no
+pivô do braço.</p>
+<h2 id="primeira-tentativa-modelo-de-2a-ordem">Primeira tentativa: modelo de 2ª ordem</h2>
+<p>O candidato natural para a ordem do modelo discreto é a mesma ordem do modelo analítico:
+segunda ordem, com três coeficientes no numerador e dois no denominador (fora o 1
+implícito). Ajustando esses coeficientes pelo método dos mínimos quadrados aos dados de
+identificação, chega-se à função de transferência discreta:</p>
+<div class="arithmatex">\[
+Hz = \frac{-0{,}002602z^2+0{,}004962z+0{,}0163}{z^2-1{,}176z+0{,}1849}
+\]</div>
+<p>Na prática, porém, esse modelo não aproximou bem a dinâmica real do Aeropêndulo — ver
+<a href="../validacao/">Validação do Modelo</a> para o motivo qualitativo. O grau escolhido, embora
+coerente com a física do sistema, não é suficiente para descrever o comportamento
+observado nos dados, o que motivou tentar uma ordem mais alta.</p>
+<h2 id="estrutura-arx-de-10a-ordem">Estrutura ARX de 10ª ordem</h2>
+<p>Depois de alguns testes, uma estrutura de décima ordem se mostrou capaz de aproximar bem a
+dinâmica real. Em forma simbólica, a função de transferência discreta é:</p>
+<div class="arithmatex">\[
+H(z) = \frac{b_1z^{-1}+b_2z^{-2}+b_3z^{-3}+b_4z^{-4}}{1+a_1z^{-1}+a_2z^{-2}+a_3z^{-3}+a_4z^{-4}+a_5z^{-5}+a_6z^{-6}+a_7z^{-7}+a_8z^{-8}+a_9z^{-9}+a_{10}z^{-10}}
+\]</div>
+<p>O numerador tem 4 coeficientes (<span class="arithmatex">\(b_1\)</span> a <span class="arithmatex">\(b_4\)</span>) e o denominador tem 10 (<span class="arithmatex">\(a_1\)</span> a <span class="arithmatex">\(a_{10}\)</span>) —
+daí a estrutura ser chamada de décima ordem. Cada termo <span class="arithmatex">\(z^{-n}\)</span> representa um atraso de
+<span class="arithmatex">\(n\)</span> amostras: <span class="arithmatex">\(z^{-1}\)</span> é o valor da amostra anterior, <span class="arithmatex">\(z^{-2}\)</span> o de duas amostras atrás, e
+assim por diante. Ao todo, são 14 coeficientes a determinar a partir dos dados.</p>
+<h2 id="montando-o-problema-de-minimos-quadrados">Montando o problema de mínimos quadrados</h2>
+<p>Para encontrar esses 14 coeficientes, o problema é reescrito como uma regressão linear.
+Cada linha de uma matriz <span class="arithmatex">\(M\)</span> de regressores reúne amostras passadas da saída (<span class="arithmatex">\(y[k-1]\)</span> até
+<span class="arithmatex">\(y[k-10]\)</span>, correspondendo aos termos do denominador) e da entrada (<span class="arithmatex">\(u[k]\)</span> até <span class="arithmatex">\(u[k-3]\)</span>,
+correspondendo aos termos do numerador). O vetor de coeficientes <span class="arithmatex">\(\theta\)</span> — os mesmos
+<span class="arithmatex">\(b_1..b_4\)</span> e <span class="arithmatex">\(a_1..a_{10}\)</span> da estrutura acima — é aquele que minimiza o erro quadrático
+entre a saída prevista por essa regressão e a saída real observada nos dados de
+identificação. Essa solução tem forma fechada, dada pela equação normal dos mínimos
+quadrados ordinários (sem nenhuma regularização):</p>
+<div class="arithmatex">\[
+\theta = (M^TM)^{-1}M^Ty
+\]</div>
+<p>em que <span class="arithmatex">\(y\)</span> é o vetor com as amostras reais da saída. Resolver esse sistema é uma operação
+de álgebra linear direta, sem iteração nem ajuste manual de hiperparâmetros.</p>
+<h2 id="resultado">Resultado</h2>
+<p>Aplicando a equação normal aos dados de identificação, com período de amostragem
+<span class="arithmatex">\(dt = 0{,}02\)</span> s, obtém-se a função de transferência discreta numérica:</p>
+<div class="arithmatex">\[
+Hz = \frac{-0{,}0029z^3+0{,}0023z^2+0{,}0016z+0{,}0097}{z^{10}-0{,}9z^9-0{,}3z^8-0{,}014z^7+0{,}13z^6+0{,}15z^5+0{,}012z^4-0{,}05z^3-0{,}12z^2-0{,}02z+0{,}15}
+\]</div>
+<p>Esses 14 números — 4 do numerador e 10 do denominador — descrevem a dinâmica identificada do
+sistema. A confirmação de que essa escolha de ordem foi a certa vem da comparação entre a
+saída simulada por esse modelo e a saída real do sistema, documentada em
+<a href="../validacao/">Validação do Modelo</a>; o <a href="../../controle/pid/">controlador PID</a> em si foi
+sintonizado por um método separado, direto no protótipo.</p>
+<hr />
+<p class="lv-see-also"><strong>Ver também:</strong> <a href="../excitacao/">← Excitação e Aquisição</a> ·
+<a href="../validacao/">Validação do Modelo →</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -1277,12 +1578,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.tracking", "navigation.sections", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.tracking", "navigation.sections", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="/javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       

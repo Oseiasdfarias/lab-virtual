@@ -1,11 +1,441 @@
-:root {
-    --md-primary-fg-color:        #14151A;
-    --md-primary-fg-color--light: #ECB7B7;
-    --md-primary-fg-color--dark:  #bcc1dd;
-  }
+/* Laboratório Virtual — tema da documentação.
+   Cores e tipografia vêm de brand/README.md: tinta #1D1D1F, papel #F5F5F7,
+   cinzas de anotação #616162/#BBBBBC (claro) e #B4B4B6/#5E5E60 (escuro). */
 
-  [data-md-color-scheme="light"] {
-    --md-primary-fg-color:        #f0f0f0;
-    --md-primary-fg-color--light: #ECB7B7;
-    --md-primary-fg-color--dark:  #90030C;
-  }
+/* O Material só baixa os pesos 300/400/700; a marca usa SemiBold (600). */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+:root {
+  --md-text-font: "IBM Plex Sans";
+  --md-code-font: "IBM Plex Mono";
+}
+
+/* ---------- Tokens ---------- */
+
+:root,
+[data-md-color-scheme="default"] {
+  --lv-ink: #1d1d1f;
+  --lv-paper: #f5f5f7;
+  --lv-bg: #ffffff;
+  --lv-surface: #f5f5f7;
+  --lv-border: #e3e3e6;
+  --lv-muted: #616162;
+  --lv-faint: #bbbbbc;
+  --lv-header-bg: rgba(255, 255, 255, 0.82);
+  --lv-shadow: 0 1px 2px rgba(29, 29, 31, 0.04), 0 4px 16px rgba(29, 29, 31, 0.06);
+
+  --md-default-bg-color: var(--lv-bg);
+  --md-default-fg-color: rgba(29, 29, 31, 1);
+  --md-default-fg-color--light: rgba(29, 29, 31, 0.72);
+  --md-default-fg-color--lighter: rgba(29, 29, 31, 0.36);
+  --md-default-fg-color--lightest: rgba(29, 29, 31, 0.08);
+
+  --md-primary-fg-color: var(--lv-ink);
+  --md-primary-fg-color--light: var(--lv-muted);
+  --md-primary-fg-color--dark: var(--lv-ink);
+  --md-primary-bg-color: var(--lv-bg);
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
+  --md-accent-fg-color: var(--lv-ink);
+  --md-accent-fg-color--transparent: rgba(29, 29, 31, 0.07);
+
+  --md-typeset-color: var(--lv-ink);
+  --md-typeset-a-color: var(--lv-ink);
+  --md-code-bg-color: var(--lv-surface);
+  --md-code-fg-color: var(--lv-ink);
+  --md-footer-bg-color: var(--lv-ink);
+  --md-footer-bg-color--dark: #141416;
+  --md-footer-fg-color: var(--lv-paper);
+
+  --md-mermaid-font-family: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+  --md-mermaid-edge-color: var(--lv-muted);
+  --md-mermaid-node-bg-color: var(--lv-surface);
+  --md-mermaid-node-fg-color: var(--lv-ink);
+  --md-mermaid-label-bg-color: var(--lv-bg);
+  --md-mermaid-label-fg-color: var(--lv-ink);
+  --md-mermaid-sequence-actor-bg-color: var(--lv-surface);
+  --md-mermaid-sequence-actor-border-color: var(--lv-ink);
+  --md-mermaid-sequence-actor-fg-color: var(--lv-ink);
+  --md-mermaid-sequence-actor-line-color: var(--lv-faint);
+  --md-mermaid-sequence-actorman-bg-color: var(--lv-surface);
+  --md-mermaid-sequence-actorman-line-color: var(--lv-ink);
+  --md-mermaid-sequence-box-bg-color: var(--lv-surface);
+  --md-mermaid-sequence-box-fg-color: var(--lv-ink);
+  --md-mermaid-sequence-label-bg-color: var(--lv-surface);
+  --md-mermaid-sequence-label-fg-color: var(--lv-ink);
+  --md-mermaid-sequence-loop-bg-color: var(--lv-bg);
+  --md-mermaid-sequence-loop-border-color: var(--lv-faint);
+  --md-mermaid-sequence-loop-fg-color: var(--lv-muted);
+  --md-mermaid-sequence-message-fg-color: var(--lv-ink);
+  --md-mermaid-sequence-message-line-color: var(--lv-muted);
+  --md-mermaid-sequence-note-bg-color: var(--lv-bg);
+  --md-mermaid-sequence-note-border-color: var(--lv-faint);
+  --md-mermaid-sequence-note-fg-color: var(--lv-ink);
+  --md-mermaid-sequence-number-bg-color: var(--lv-ink);
+  --md-mermaid-sequence-number-fg-color: var(--lv-paper);
+}
+
+[data-md-color-scheme="slate"] {
+  --lv-ink: #f5f5f7;
+  --lv-paper: #1d1d1f;
+  --lv-bg: #141416;
+  --lv-surface: #1d1d1f;
+  --lv-border: #2c2c2f;
+  --lv-muted: #b4b4b6;
+  --lv-faint: #5e5e60;
+  --lv-header-bg: rgba(20, 20, 22, 0.82);
+  --lv-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.35);
+
+  --md-hue: 240;
+  --md-default-bg-color: var(--lv-bg);
+  --md-default-fg-color: rgba(245, 245, 247, 1);
+  --md-default-fg-color--light: rgba(245, 245, 247, 0.72);
+  --md-default-fg-color--lighter: rgba(245, 245, 247, 0.36);
+  --md-default-fg-color--lightest: rgba(245, 245, 247, 0.08);
+
+  --md-primary-fg-color: var(--lv-ink);
+  --md-primary-fg-color--light: var(--lv-muted);
+  --md-primary-fg-color--dark: var(--lv-ink);
+  --md-primary-bg-color: var(--lv-bg);
+  --md-primary-bg-color--light: rgba(20, 20, 22, 0.7);
+  --md-accent-fg-color: var(--lv-ink);
+  --md-accent-fg-color--transparent: rgba(245, 245, 247, 0.08);
+
+  --md-typeset-color: var(--lv-ink);
+  --md-typeset-a-color: var(--lv-ink);
+  --md-code-bg-color: var(--lv-surface);
+  --md-code-fg-color: var(--lv-ink);
+  --md-footer-bg-color: #0e0e10;
+  --md-footer-bg-color--dark: #0a0a0b;
+  --md-footer-fg-color: var(--lv-ink);
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.md-header {
+  background-color: var(--lv-header-bg);
+  color: var(--lv-ink);
+  border-bottom: 1px solid var(--lv-border);
+  box-shadow: none;
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+}
+
+.md-header--shadow {
+  box-shadow: none;
+}
+
+.md-header__title {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.md-header__button.md-logo svg {
+  height: 1.6rem;
+}
+
+.md-search__form {
+  background-color: var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+}
+
+.md-search__form:hover {
+  background-color: var(--md-accent-fg-color--transparent);
+}
+
+.md-search__input,
+.md-search__input::placeholder,
+.md-search__icon {
+  color: var(--lv-ink);
+}
+
+.md-search__input::placeholder {
+  color: var(--md-default-fg-color--light);
+}
+
+[dir] .md-search__output {
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+/* ---------- Navegação ---------- */
+
+.md-nav__link--active,
+.md-nav__item .md-nav__link--active {
+  color: var(--lv-ink);
+  font-weight: 600;
+}
+
+.md-nav__link:hover,
+.md-nav__link:focus {
+  color: var(--lv-ink);
+}
+
+.md-nav--primary .md-nav__item--section > .md-nav__link {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.md-nav--secondary .md-nav__title {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---------- Tipografia ---------- */
+
+.md-typeset {
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  color: var(--lv-ink);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.md-typeset h1 {
+  font-size: 2.1em;
+  line-height: 1.15;
+  margin-bottom: 0.9em;
+}
+
+.md-typeset h2 {
+  font-size: 1.45em;
+  margin-top: 2.2em;
+  padding-top: 1.1em;
+  border-top: 1px solid var(--lv-border);
+}
+
+.md-typeset h3 {
+  font-size: 1.15em;
+}
+
+.md-typeset a {
+  color: var(--lv-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--lv-faint);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 120ms ease;
+}
+
+.md-typeset a:hover,
+.md-typeset a:focus {
+  color: var(--lv-ink);
+  text-decoration-color: currentColor;
+}
+
+.md-typeset .headerlink {
+  text-decoration: none;
+}
+
+.md-typeset hr {
+  border-bottom-color: var(--lv-border);
+}
+
+/* ---------- Código ---------- */
+
+.md-typeset code {
+  border-radius: 0.3rem;
+  font-size: 0.85em;
+}
+
+.md-typeset :not(pre) > code {
+  padding: 0.1em 0.35em;
+  border: 1px solid var(--lv-border);
+}
+
+.md-typeset pre > code {
+  border: 1px solid var(--lv-border);
+  border-radius: 0.5rem;
+}
+
+/* ---------- Tabelas ---------- */
+
+.md-typeset table:not([class]) {
+  border: 1px solid var(--lv-border);
+  border-radius: 0.5rem;
+  box-shadow: none;
+  font-size: 0.72rem;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--lv-surface);
+  color: var(--lv-ink);
+  font-weight: 600;
+}
+
+.md-typeset table:not([class]) td,
+.md-typeset table:not([class]) th {
+  border-top: 1px solid var(--lv-border);
+}
+
+.md-typeset table:not([class]) tr:first-child th {
+  border-top: none;
+}
+
+.md-typeset table:not([class]) tbody tr:hover {
+  background-color: var(--md-accent-fg-color--transparent);
+  box-shadow: none;
+}
+
+/* ---------- Figuras e equações ---------- */
+
+.md-typeset p > img {
+  display: block;
+  margin: 1.5em auto;
+  border-radius: 0.5rem;
+}
+
+/* As figuras da monografia têm fundo branco: no modo escuro elas ganham uma moldura
+   clara em vez de ficarem coladas no fundo escuro. */
+[data-md-color-scheme="slate"] .md-typeset p > img {
+  background-color: #f5f5f7;
+  padding: 0.75rem;
+}
+
+.md-typeset .arithmatex {
+  overflow-x: auto;
+}
+
+.md-typeset div.arithmatex {
+  margin: 1.4em 0;
+  padding: 0.6em 0;
+}
+
+/* ---------- Mermaid ---------- */
+
+.md-typeset .mermaid {
+  margin: 1.8em 0;
+  padding: 1.2rem 1rem;
+  background-color: var(--lv-bg);
+  border: 1px solid var(--lv-border);
+  border-radius: 0.75rem;
+  text-align: center;
+  overflow-x: auto;
+}
+
+/* ---------- Admonitions ---------- */
+
+.md-typeset .admonition,
+.md-typeset details {
+  border: 1px solid var(--lv-border);
+  border-left: 3px solid var(--lv-ink);
+  border-radius: 0.5rem;
+  box-shadow: none;
+  font-size: 0.76rem;
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  background-color: var(--lv-surface);
+  font-weight: 600;
+}
+
+.md-typeset .admonition-title::before,
+.md-typeset summary::before {
+  background-color: var(--lv-ink);
+}
+
+/* ---------- Rodapé "Ver também" ---------- */
+
+.md-typeset .lv-see-also {
+  margin-top: 2.5em;
+  padding: 0.9rem 1.1rem;
+  background-color: var(--lv-surface);
+  border: 1px solid var(--lv-border);
+  border-radius: 0.75rem;
+  font-size: 0.76rem;
+}
+
+.md-typeset .lv-see-also strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.md-typeset .lv-see-also a {
+  font-weight: 500;
+}
+
+/* ---------- Página inicial ---------- */
+
+.lv-visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.lv-hero {
+  margin: 1.5rem 0 2.5rem;
+  text-align: center;
+}
+
+.md-typeset .lv-hero .twemoji.lv-hero-logo,
+.md-typeset .lv-hero .lv-hero-logo {
+  display: inline-block;
+  height: auto;
+  width: min(100%, 22rem);
+  color: var(--lv-ink);
+}
+
+.md-typeset .lv-hero .lv-hero-logo svg {
+  width: 100%;
+  height: auto;
+  max-height: none;
+}
+
+.md-typeset .lv-hero .lv-tagline {
+  max-width: 34rem;
+  margin: 1.2rem auto 0;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid > .card {
+  border: 1px solid var(--lv-border);
+  border-radius: 0.75rem;
+  background-color: var(--lv-bg);
+  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+.md-typeset .grid.cards > ul > li:hover,
+.md-typeset .grid > .card:hover {
+  border-color: var(--lv-faint);
+  box-shadow: var(--lv-shadow);
+  transform: translateY(-1px);
+}
+
+.md-typeset .grid.cards .lg {
+  color: var(--lv-ink);
+}
+
+.md-typeset .grid.cards hr {
+  margin: 0.6em 0;
+}
+
+/* ---------- Rodapé do site ---------- */
+
+.md-footer-meta {
+  background-color: var(--md-footer-bg-color--dark);
+}
+
+.md-footer-meta__inner {
+  font-size: 0.62rem;
+}

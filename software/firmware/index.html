@@ -7,26 +7,32 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
+        <meta name="author" content="Oséias Farias">
       
       
+      
+        <link rel="prev" href="../interface-grafica/">
+      
+      
+        <link rel="next" href="../instalacao/python/">
       
       
         
       
       
-      <link rel="icon" href="/favicon.svg">
+      <link rel="icon" href="../../favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Laboratório Virtual</title>
+        <title>Desenvolvimento do Firmaware para ESP32 - Laboratório Virtual</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -39,11 +45,11 @@
       
     
     
-      <link rel="stylesheet" href="/assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#o-que-e" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -79,7 +90,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
-    <a href="/." title="Laboratório Virtual" class="md-header__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
+    <a href="../.." title="Laboratório Virtual" class="md-header__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.14 163.14" width="163" height="163" role="img" aria-label="Laboratório Virtual">
@@ -107,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Desenvolvimento do Firmaware para ESP32
             
           </span>
         </div>
@@ -225,7 +236,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Laboratório Virtual" class="md-nav__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
+    <a href="../.." title="Laboratório Virtual" class="md-nav__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.14 163.14" width="163" height="163" role="img" aria-label="Laboratório Virtual">
@@ -263,7 +274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -342,7 +353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/visao-geral/" class="md-nav__link">
+      <a href="../../visao-geral/" class="md-nav__link">
         
   
   
@@ -370,7 +381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/visao-geral/arquitetura/" class="md-nav__link">
+      <a href="../../visao-geral/arquitetura/" class="md-nav__link">
         
   
   
@@ -405,7 +416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/prototipo/" class="md-nav__link">
+      <a href="../../prototipo/" class="md-nav__link">
         
   
   
@@ -432,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/modelagem/" class="md-nav__link">
+      <a href="../../modelagem/" class="md-nav__link">
         
   
   
@@ -511,7 +522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/identificacao/excitacao/" class="md-nav__link">
+      <a href="../../identificacao/excitacao/" class="md-nav__link">
         
   
   
@@ -539,7 +550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/identificacao/estimacao/" class="md-nav__link">
+      <a href="../../identificacao/estimacao/" class="md-nav__link">
         
   
   
@@ -567,7 +578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/identificacao/validacao/" class="md-nav__link">
+      <a href="../../identificacao/validacao/" class="md-nav__link">
         
   
   
@@ -654,7 +665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/controle/pid/" class="md-nav__link">
+      <a href="../../controle/pid/" class="md-nav__link">
         
   
   
@@ -682,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/controle/resultados/" class="md-nav__link">
+      <a href="../../controle/resultados/" class="md-nav__link">
         
   
   
@@ -717,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/gemeo-digital/" class="md-nav__link">
+      <a href="../../gemeo-digital/" class="md-nav__link">
         
   
   
@@ -741,8 +752,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -753,11 +766,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
@@ -778,7 +791,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -796,7 +809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/interface-grafica/" class="md-nav__link">
+      <a href="../interface-grafica/" class="md-nav__link">
         
   
   
@@ -821,10 +834,35 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/software/firmware/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -840,6 +878,79 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que é
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bibliotecas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bibliotecas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquivo-principal-maincpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquivo principal (main.cpp)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#um-ciclo-do-laco-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Um ciclo do laço principal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocolo-serial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocolo serial
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -901,7 +1012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/" class="md-nav__link">
+      <a href="../instalacao/python/" class="md-nav__link">
         
   
   
@@ -929,7 +1040,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/ubuntu/" class="md-nav__link">
+      <a href="../instalacao/python/ubuntu/" class="md-nav__link">
         
   
   
@@ -957,7 +1068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/windows/" class="md-nav__link">
+      <a href="../instalacao/python/windows/" class="md-nav__link">
         
   
   
@@ -985,7 +1096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/macos/" class="md-nav__link">
+      <a href="../instalacao/python/macos/" class="md-nav__link">
         
   
   
@@ -1013,7 +1124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/dependencias/" class="md-nav__link">
+      <a href="../instalacao/dependencias/" class="md-nav__link">
         
   
   
@@ -1108,7 +1219,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/referencia/animacao-aeropendulo/" class="md-nav__link">
+      <a href="../../referencia/animacao-aeropendulo/" class="md-nav__link">
         
   
   
@@ -1136,7 +1247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/referencia/graficos-aeropendulo/" class="md-nav__link">
+      <a href="../../referencia/graficos-aeropendulo/" class="md-nav__link">
         
   
   
@@ -1164,7 +1275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/referencia/interface-interativa/" class="md-nav__link">
+      <a href="../../referencia/interface-interativa/" class="md-nav__link">
         
   
   
@@ -1210,6 +1321,69 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que é
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bibliotecas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bibliotecas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquivo-principal-maincpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquivo principal (main.cpp)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#um-ciclo-do-laco-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Um ciclo do laço principal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocolo-serial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocolo serial
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1226,11 +1400,183 @@
   
 
 
+  <nav class="md-path" aria-label="Navegação" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Início
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../interface-grafica/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Software
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+  <h1>Firmware</h1>
+
+<style>
+        .tab {
+            display: inline-block;
+            margin-left: 40px;
+        }
+        .tab1 {
+            display: inline-block;
+            margin-left: 80px;
+        }
+</style>
+
+<center>
+<div class="figure" >
+  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/brand/png/icone-256.png?raw=true"
+       width="80">  
+</div>
+</center>
+
+<center>
+<div class="figure" >
+  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/arquitetura_firmware-1.png?raw=true"
+       width="900">  
+  <p>Figura 1 - Diagrama de blocos do Sistema em Malha Fechada.</p>
+</div>
+</center>
+
+<p></br></p>
+<h2 id="o-que-e">O que é</h2>
+<p>O firmware do Aeropêndulo foi desenvolvido em bibliotecas separadas por funcionalidade,
+tornando o projeto mais flexível — cada parte pode ser atualizada ou substituída sem
+interferir na lógica do arquivo principal (<code>main.cpp</code>).</p>
+<p>O desenvolvimento usa o <a href="https://platformio.org/">PlatformIO</a>, ferramenta multiplataforma
+que centraliza a programação de diferentes microcontroladores (ESP32, família Arduino,
+STM32, entre outros), tornando o projeto mais portável.</p>
+<h2 id="bibliotecas">Bibliotecas</h2>
+<ul>
+<li><strong><code>ler_escrever_serial</code></strong> — configura os parâmetros do sinal de referência em tempo real e
+  envia os estados do sistema pela porta serial, centralizando a comunicação com o
+  computador sem misturar essa lógica ao <code>main.cpp</code>.</li>
+<li><strong><code>referencia</code></strong> — implementa os sinais de referência que o controlador rastreia em malha
+  fechada: onda quadrada, onda senoidal e onda dente de serra, cada um configurável em
+  amplitude, frequência e offset. Novos sinais podem ser adicionados como módulos
+  independentes.</li>
+<li><strong><code>conversor</code></strong> — reúne as conversões de grandezas usadas no firmware: sinal do
+  potenciômetro para ângulo, sinal de controle para ciclo PWM, grau para radiano e radiano
+  para grau.</li>
+<li><strong><code>controlador_pid</code></strong> — implementa o controlador PID usado quando a interface gráfica está
+  configurada para malha fechada.</li>
+</ul>
+<h2 id="arquivo-principal-maincpp">Arquivo principal (<code>main.cpp</code>)</h2>
+<p>O PlatformIO organiza o projeto em bibliotecas mais um arquivo <code>main.cpp</code>, que importa essas
+bibliotecas e implementa o algoritmo principal. No caso do Aeropêndulo, o <code>main.cpp</code> reúne:
+geração do sinal de referência, leitura do sensor (potenciômetro), envio e recebimento de
+dados pela porta serial, e execução do controlador.</p>
+<p>Com o firmware pronto, a gravação no ESP32 é feita pelo próprio PlatformIO, que compila o
+código e grava no microcontrolador via porta serial.</p>
+<h2 id="um-ciclo-do-laco-principal">Um ciclo do laço principal</h2>
+<p>Enquanto a interface não envia o comando de execução, o <code>loop()</code> só verifica se chegaram
+dados pela serial. Depois do comando, cada iteração segue o caminho abaixo — o ramo de malha
+fechada ou o de malha aberta, conforme a configuração recebida da interface:</p>
+<pre class="mermaid"><code>flowchart TD
+  A{"executar?"}
+  A -- não --&gt; R["lê a serial, se houver dados"] --&gt; A
+  A -- sim --&gt; B["analogRead: tensão do potenciômetro"]
+  B --&gt; C["converte_escala: ângulo θ em graus"]
+  C --&gt; D{"malha fechada?"}
+  D -- sim --&gt; E["gera a referência&lt;br/&gt;quadrada · seno · dente de serra"]
+  E --&gt; F["erro = referência − (θ − 31)"]
+  F --&gt; G["PID: u = P + I + D"]
+  G --&gt; H["ciclo PWM ← u + offset"]
+  D -- não --&gt; I["entrada = PRBS"]
+  I --&gt; J["ciclo PWM ← PRBS"]
+  H --&gt; K["ledcWrite: aplica o PWM ao motor"]
+  J --&gt; K
+  K --&gt; L["envia 7 valores pela serial"]
+  L --&gt; M["delay(1000 · Ts)"]
+  M --&gt; N["lê a serial, se houver dados"]
+  N --&gt; O["t += Ts"]
+  O --&gt; A</code></pre>
+<p>O intervalo entre iterações é imposto pelo <code>delay(1000 · Ts)</code> no fim do laço, com
+<code>Ts = 0,02</code> s; o tempo <code>t</code> enviado à interface avança de <code>Ts</code> em <code>Ts</code>.</p>
+<h2 id="protocolo-serial">Protocolo serial</h2>
+<p>A comunicação usa 115200 baud. No sentido interface → firmware, cada comando é um único
+número, lido com <code>Serial.parseFloat()</code> e interpretado pela faixa em que cai: três faixas
+carregam valores contínuos (amplitude, frequência e offset, reescalados no firmware) e os
+demais são códigos fixos. No sentido firmware → interface, cada iteração envia uma linha com
+7 valores separados por vírgula — a mesma ordem das colunas descrita em
+<a href="../../identificacao/excitacao/#formato-dos-dados-coletados">Excitação e Aquisição</a>.</p>
+<pre class="mermaid"><code>%%{init: {"themeVariables": {"actorLineColor": "#8e8e90", "signalColor": "#8e8e90", "labelBoxBorderColor": "#8e8e90"}}}%%
+sequenceDiagram
+  participant GUI as Interface gráfica
+  participant ESP as Firmware (ESP32)
+  Note over GUI,ESP: Configuração — um número por comando, em qualquer ordem
+  GUI-&gt;&gt;ESP: entre 1000 e 2001 · amplitude
+  GUI-&gt;&gt;ESP: entre 2001 e 3001 · frequência
+  GUI-&gt;&gt;ESP: entre 3001 e 4001 · offset
+  GUI-&gt;&gt;ESP: 7000 / 8000 / 9000 · dente de serra / seno / quadrada
+  GUI-&gt;&gt;ESP: 10000 / 11000 · malha fechada / malha aberta
+  GUI-&gt;&gt;ESP: 12000 · executar
+  loop a cada iteração do laço
+    ESP-&gt;&gt;GUI: referência + 31, ângulo, erro, controle, entrada, entrada, t
+    opt se houver dados na serial
+      GUI-&gt;&gt;ESP: novo parâmetro (mesma codificação)
+    end
+  end</code></pre>
+<p>Não existe código de parada: uma vez recebido o <code>12000</code>, o firmware continua executando o
+laço até ser reiniciado. Os ganhos do PID também não fazem parte do protocolo — são fixos
+no código (ver <a href="../../controle/pid/#ganhos">Controlador PID</a>).</p>
+<p><br></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -1277,12 +1623,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.tracking", "navigation.sections", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.tracking", "navigation.sections", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="/javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       

@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="pt" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -10,22 +10,25 @@
       
       
       
-        <link rel="next" href="1%20Instala%C3%A7%C3%B5es%20e%20Configura%C3%A7%C3%B5es/1.1%20Instalacao_python/">
+        <link rel="next" href="visao-geral/">
       
-      
-      <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
-    
-    
-      
-        <title>Documentação PenduLab</title>
-      
-    
-    
-      <link rel="stylesheet" href="assets/stylesheets/main.50c56a3b.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+      <link rel="icon" href="favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Laboratório Virtual</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -35,12 +38,6 @@
       
     
     
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
@@ -48,11 +45,10 @@
     
       <link rel="stylesheet" href="stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
-    
     
     
   </head>
@@ -65,7 +61,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="light" data-md-color-primary="white" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -74,8 +70,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#demostracao-pendulab" class="md-skip">
-          Skip to content
+        <a href="#laboratorio-virtual" class="md-skip">
+          Pular para conteúdo
         </a>
       
     </div>
@@ -88,28 +84,37 @@
 
   
 
-<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Documentação PenduLab" class="md-header__button md-logo" aria-label="Documentação PenduLab" data-md-component="logo">
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="." title="Laboratório Virtual" class="md-header__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
       
-  <img src="favicon_aeropendulo_png.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.14 163.14" width="163" height="163" role="img" aria-label="Laboratório Virtual">
+  <line x1="26.71" y1="36.04" x2="26.71" y2="136.04" stroke="currentColor" stroke-width="3.57" stroke-dasharray="7.14 7.14" stroke-linecap="butt" opacity="0.3"/>
+  <line x1="26.71" y1="36.04" x2="103.32" y2="100.31" stroke="currentColor" stroke-width="8.93" stroke-linecap="round"/>
+  <line x1="103.32" y1="100.31" x2="121.68" y2="78.43" stroke="currentColor" stroke-width="16.07" stroke-linecap="round"/>
+  <line x1="99.80" y1="60.06" x2="143.57" y2="96.79" stroke="currentColor" stroke-width="7.14" stroke-linecap="round"/>
+  <circle cx="26.71" cy="36.04" r="10.71" fill="currentColor"/>
+  <path d="M 33.18 82.01 A 46.43 46.43 0 0 0 58.97 69.43" fill="none" stroke="currentColor" stroke-width="4.46" stroke-linecap="round" opacity="0.7"/>
+  <polygon points="0,-6.43 14.29,0 0,6.43" fill="currentColor" opacity="0.7" stroke="currentColor" stroke-width="0.00" stroke-linejoin="round" transform="translate(58.97 69.43) rotate(-46.00)"/>
+</svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Documentação PenduLab
+            Laboratório Virtual
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Início
             
           </span>
         </div>
@@ -122,20 +127,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="light" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Modo Noturno"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Modo escuro"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Modo Noturno" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+      <label class="md-header__button md-icon" title="Modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Modo Claro"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Modo Claro" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
   
@@ -143,39 +148,43 @@
       
     
     
-      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="Pesquisar">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            Inicializando busca
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -183,29 +192,30 @@
     </div>
   </div>
 </div>
+      
     
     
       <div class="md-header__source">
-        <a href="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/Oseiasdfarias/lab-virtual" title="Ir para repositório" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
   </div>
   <div class="md-source__repository">
-    Projeto_Tcc_Oseias_Oficial
+    lab-virtual
   </div>
 </a>
       </div>
     
   </nav>
   
-    
-  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -222,24 +232,33 @@
 
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Documentação PenduLab" class="md-nav__button md-logo" aria-label="Documentação PenduLab" data-md-component="logo">
+    <a href="." title="Laboratório Virtual" class="md-nav__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
       
-  <img src="favicon_aeropendulo_png.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.14 163.14" width="163" height="163" role="img" aria-label="Laboratório Virtual">
+  <line x1="26.71" y1="36.04" x2="26.71" y2="136.04" stroke="currentColor" stroke-width="3.57" stroke-dasharray="7.14 7.14" stroke-linecap="butt" opacity="0.3"/>
+  <line x1="26.71" y1="36.04" x2="103.32" y2="100.31" stroke="currentColor" stroke-width="8.93" stroke-linecap="round"/>
+  <line x1="103.32" y1="100.31" x2="121.68" y2="78.43" stroke="currentColor" stroke-width="16.07" stroke-linecap="round"/>
+  <line x1="99.80" y1="60.06" x2="143.57" y2="96.79" stroke="currentColor" stroke-width="7.14" stroke-linecap="round"/>
+  <circle cx="26.71" cy="36.04" r="10.71" fill="currentColor"/>
+  <path d="M 33.18 82.01 A 46.43 46.43 0 0 0 58.97 69.43" fill="none" stroke="currentColor" stroke-width="4.46" stroke-linecap="round" opacity="0.7"/>
+  <polygon points="0,-6.43 14.29,0 0,6.43" fill="currentColor" opacity="0.7" stroke="currentColor" stroke-width="0.00" stroke-linejoin="round" transform="translate(58.97 69.43) rotate(-46.00)"/>
+</svg>
 
     </a>
-    Documentação PenduLab
+    Laboratório Virtual
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/Oseiasdfarias/lab-virtual" title="Ir para repositório" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
   </div>
   <div class="md-source__repository">
-    Projeto_Tcc_Oseias_Oficial
+    lab-virtual
   </div>
 </a>
     </div>
@@ -259,13 +278,22 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
+  
   <span class="md-ellipsis">
-    Home
+    
+  
+    Início
+  
+
+    
   </span>
+  
   
 
           <span class="md-nav__icon md-icon"></span>
@@ -274,98 +302,65 @@
       <a href="." class="md-nav__link md-nav__link--active">
         
   
+  
   <span class="md-ellipsis">
-    Home
+    
+  
+    Início
+  
+
+    
   </span>
+  
   
 
       </a>
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      Índice
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#demostracao-pendulab" class="md-nav__link">
+  <a href="#comece-por-aqui" class="md-nav__link">
     <span class="md-ellipsis">
-      Demostração Pendulab
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Demostração Pendulab">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
+      
+        Comece por aqui
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ferramentas-desenvolvidas" class="md-nav__link">
+  <a href="#sobre-o-projeto" class="md-nav__link">
     <span class="md-ellipsis">
-      Ferramentas Desenvolvidas
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Ferramentas Desenvolvidas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prototipo-aeropendulo" class="md-nav__link">
-    <span class="md-ellipsis">
-      Protótipo Aeropêndulo
+      
+        Sobre o projeto
+      
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#gemeo-digital" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#demonstracao" class="md-nav__link">
     <span class="md-ellipsis">
-      Gêmeo Digital
+      
+        Demonstração
+      
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#interface-grafica-de-usuario" class="md-nav__link">
-    <span class="md-ellipsis">
-      Interface Gráfica de Usuário
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
-    <span class="md-ellipsis">
-      Firmware
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -387,13 +382,14 @@
     
     
     
+      
+        
+        
+      
     
-      
-      
     
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
-        
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
@@ -402,9 +398,16 @@
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
+  
   <span class="md-ellipsis">
-    1 Instalações e Configurações
+    
+  
+    Visão Geral
+  
+
+    
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -413,44 +416,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            1 Instalações e Configurações
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
             
   
-  <span class="md-ellipsis">
-    1.1 Instalacao python
-  </span>
+    Visão Geral
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_1">
-            <span class="md-nav__icon md-icon"></span>
-            1.1 Instalacao python
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -461,12 +431,19 @@
   
   
     <li class="md-nav__item">
-      <a href="1%20Instala%C3%A7%C3%B5es%20e%20Configura%C3%A7%C3%B5es/1.1%20Instalacao_python/" class="md-nav__link">
+      <a href="visao-geral/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
-    Instalação do Python
+    
+  
+    O que é o Laboratório Virtual
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -482,131 +459,22 @@
   
   
     <li class="md-nav__item">
-      <a href="1%20Instala%C3%A7%C3%B5es%20e%20Configura%C3%A7%C3%B5es/1.1%20Instalacao_python/1.1%20Instalacao_python_ubuntu/" class="md-nav__link">
+      <a href="visao-geral/arquitetura/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
-    Tutorial - Instalando o Python 3.10 no Ubuntu
+    
+  
+    Arquitetura do sistema
+  
+
+    
   </span>
+  
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="1%20Instala%C3%A7%C3%B5es%20e%20Configura%C3%A7%C3%B5es/1.1%20Instalacao_python/1.2%20Instalacao_python_windows/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Tutorial - Instalando o Python 3.10 no Windows
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="1%20Instala%C3%A7%C3%B5es%20e%20Configura%C3%A7%C3%B5es/1.1%20Instalacao_python/1.3%20Instalacao_python_macos/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Tutorial - Instalando o Python 3.10 no macOS
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    1.2 Instalacao dependencias python
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_2">
-            <span class="md-nav__icon md-icon"></span>
-            1.2 Instalacao dependencias python
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="1%20Instala%C3%A7%C3%B5es%20e%20Configura%C3%A7%C3%B5es/1.2%20Instalacao_dependencias_python/1.2%20Instalacao_dependencias_python/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Instalação das Dependências do Python
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -625,195 +493,72 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="prototipo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
+  
+    Protótipo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="modelagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelagem Matemática
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     
     
     
     
       
+        
+        
       
+    
     
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
-            
-  
-  <span class="md-ellipsis">
-    Componentes do Pendulab
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            Componentes do Pendulab
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="Componentes%20do%20Pendulab/aeropendulo_doc/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Desenvolvimento do Protótipo
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="Componentes%20do%20Pendulab/gemeo_digital/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Gêmeo Digital
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="Componentes%20do%20Pendulab/interface_grafica_usuario/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Interface Gráfica de Usuário
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
-            
-  
-  <span class="md-ellipsis">
-    Módulo Firmware
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            Módulo Firmware
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="M%C3%B3dulo%20Firmware/aeropendulo_doc/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Desenvolvimento do Firmaware para ESP32
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
@@ -822,9 +567,16 @@
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
+  
   <span class="md-ellipsis">
-    Módulos Gêmeo Digital
+    
+  
+    Identificação de Sistemas
+  
+
+    
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -833,7 +585,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Módulos Gêmeo Digital
+            
+  
+    Identificação de Sistemas
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -844,12 +600,19 @@
   
   
     <li class="md-nav__item">
-      <a href="M%C3%B3dulos%20G%C3%AAmeo%20Digital/animacao_aeropendulo_reference/" class="md-nav__link">
+      <a href="identificacao/excitacao/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
-    Docs Módulo animacao_aeropendulo
+    
+  
+    Excitação e aquisição (PRBS)
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -865,12 +628,19 @@
   
   
     <li class="md-nav__item">
-      <a href="M%C3%B3dulos%20G%C3%AAmeo%20Digital/graficos_aeropendulo_reference/" class="md-nav__link">
+      <a href="identificacao/estimacao/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
-    Docs Módulo graficos_aeropendulo
+    
+  
+    Estimação por mínimos quadrados
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -886,12 +656,616 @@
   
   
     <li class="md-nav__item">
-      <a href="M%C3%B3dulos%20G%C3%AAmeo%20Digital/interface_interativa_reference/" class="md-nav__link">
+      <a href="identificacao/validacao/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
-    Docs Módulo interface_interativa
+    
+  
+    Validação do modelo
+  
+
+    
   </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projeto de Controle
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projeto de Controle
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controle/pid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Controlador PID
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controle/resultados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resultados em malha fechada
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gemeo-digital/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gêmeo Digital
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Software
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="software/interface-grafica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interface Gráfica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="software/firmware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instalação
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Instalação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="software/instalacao/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="software/instalacao/python/ubuntu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python (Ubuntu)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="software/instalacao/python/windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="software/instalacao/python/macos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python (macOS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="software/instalacao/dependencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependências
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência de Código
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Referência de Código
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="referencia/animacao-aeropendulo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    animacao_aeropendulo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="referencia/graficos-aeropendulo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    graficos_aeropendulo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="referencia/interface-interativa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    interface_interativa
+  
+
+    
+  </span>
+  
   
 
       </a>
@@ -922,89 +1296,49 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      Índice
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#demostracao-pendulab" class="md-nav__link">
+  <a href="#comece-por-aqui" class="md-nav__link">
     <span class="md-ellipsis">
-      Demostração Pendulab
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Demostração Pendulab">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
+      
+        Comece por aqui
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ferramentas-desenvolvidas" class="md-nav__link">
+  <a href="#sobre-o-projeto" class="md-nav__link">
     <span class="md-ellipsis">
-      Ferramentas Desenvolvidas
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Ferramentas Desenvolvidas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prototipo-aeropendulo" class="md-nav__link">
-    <span class="md-ellipsis">
-      Protótipo Aeropêndulo
+      
+        Sobre o projeto
+      
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#gemeo-digital" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#demonstracao" class="md-nav__link">
     <span class="md-ellipsis">
-      Gêmeo Digital
+      
+        Demonstração
+      
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#interface-grafica-de-usuario" class="md-nav__link">
-    <span class="md-ellipsis">
-      Interface Gráfica de Usuário
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
-    <span class="md-ellipsis">
-      Firmware
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1018,26 +1352,69 @@
           
           
             <div class="md-content" data-md-component="content">
+              
+                
+
+  
+
+
+
+  
+
+
+              
               <article class="md-content__inner md-typeset">
                 
                   
+  
+
+
 
   
   
 
 
-<p align="center">
-<img src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/favicon_aeropendulo_png.png?raw=true" alt="Protótipo Aeropêndulo" style="height: 10%; width:10%;"/>
-</p>
-
-<p align="center" height="30px">
-  <img style="height: 30px" src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/logos_lg/UFPA-removebg-preview.png?raw=true"> & <img style="height: 30px" src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/logos_lg/Pendulab_lg-removebg-preview.png?raw=true">
-</p>
-
-<h1 align=center><strong>Documentação PenduLab</strong></h1>
-
-<p>Esse projeto surgiu do desenvolvimento de um <strong>trabalho de conclusão de curso</strong>, intitulado, <strong>Desenvolvimento de Protótipo e Gêmeo Digital como Ferramenta para um Laboratório Virtual com Foco em Modelagem e Controle de Sistemas Dinâmicos</strong>, desennvolvido na <strong>Universidade Federal do Pará</strong> no <strong>Campus de Tucuruí</strong>, pelo discente da <strong>Faculdade de Engenharia Elétrica</strong>, <strong>Oséias Farias</strong>. </p>
-<h1 align=center><strong>Membros Atuais</strong> ✨</h1>
+<h1 class="lv-visually-hidden" id="laboratorio-virtual">Laboratório Virtual</h1>
+<div class="lv-hero">
+<p><span class="twemoji lv-hero-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 741.91 148.50" width="742" height="148" role="img" aria-label="Laboratório Virtual">
+  <line x1="28.71" y1="28.71" x2="28.71" y2="128.71" stroke="currentColor" stroke-width="3.57" stroke-dasharray="7.14 7.14" stroke-linecap="butt" opacity="0.3"/>
+  <line x1="28.71" y1="28.71" x2="105.32" y2="92.99" stroke="currentColor" stroke-width="8.93" stroke-linecap="round"/>
+  <line x1="105.32" y1="92.99" x2="123.68" y2="71.11" stroke="currentColor" stroke-width="16.07" stroke-linecap="round"/>
+  <line x1="101.80" y1="52.74" x2="145.57" y2="89.47" stroke="currentColor" stroke-width="7.14" stroke-linecap="round"/>
+  <circle cx="28.71" cy="28.71" r="10.71" fill="currentColor"/>
+  <path d="M 35.18 74.69 A 46.43 46.43 0 0 0 60.97 62.11" fill="none" stroke="currentColor" stroke-width="4.46" stroke-linecap="round" opacity="0.7"/>
+  <polygon points="0,-6.43 14.29,0 0,6.43" fill="currentColor" opacity="0.7" stroke="currentColor" stroke-width="0.00" stroke-linejoin="round" transform="translate(60.97 62.11) rotate(-46.00)"/>
+  <path d="M5.08 0.00V-43.28H13.27V-7.25H30.32V0.00ZM60.70 0.00Q58.09 0.00 56.58 -1.52Q55.06 -3.04 54.68 -5.58H54.31Q53.51 -2.42 51.03 -0.84Q48.55 0.74 44.89 0.74Q39.93 0.74 37.26 -1.86Q34.60 -4.46 34.60 -8.80Q34.60 -13.83 38.19 -16.27Q41.79 -18.72 48.42 -18.72H53.94V-21.08Q53.94 -23.81 52.51 -25.30Q51.09 -26.78 47.93 -26.78Q45.14 -26.78 43.43 -25.57Q41.73 -24.37 40.55 -22.69L35.84 -26.91Q37.63 -29.70 40.61 -31.40Q43.59 -33.11 48.48 -33.11Q55.06 -33.11 58.47 -30.13Q61.88 -27.16 61.88 -21.58V-6.32H65.10V0.00ZM47.55 -5.02Q50.22 -5.02 52.08 -6.20Q53.94 -7.38 53.94 -9.67V-13.95H48.86Q42.66 -13.95 42.66 -9.98V-8.93Q42.66 -6.94 43.93 -5.98Q45.20 -5.02 47.55 -5.02ZM71.55 -45.88H79.48V-27.03H79.73Q80.60 -29.82 83.02 -31.46Q85.44 -33.11 88.66 -33.11Q94.86 -33.11 98.12 -28.74Q101.37 -24.37 101.37 -16.24Q101.37 -8.06 98.12 -3.66Q94.86 0.74 88.66 0.74Q85.44 0.74 83.05 -0.93Q80.66 -2.60 79.73 -5.39H79.48V0.00H71.55ZM86.12 -5.83Q89.22 -5.83 91.14 -7.87Q93.06 -9.92 93.06 -13.39V-18.97Q93.06 -22.44 91.14 -24.52Q89.22 -26.60 86.12 -26.60Q83.27 -26.60 81.38 -25.17Q79.48 -23.75 79.48 -21.39V-11.10Q79.48 -8.56 81.38 -7.19Q83.27 -5.83 86.12 -5.83ZM121.58 0.74Q118.11 0.74 115.35 -0.43Q112.59 -1.61 110.64 -3.84Q108.69 -6.08 107.63 -9.21Q106.58 -12.34 106.58 -16.24Q106.58 -20.15 107.63 -23.25Q108.69 -26.35 110.64 -28.55Q112.59 -30.75 115.35 -31.93Q118.11 -33.11 121.58 -33.11Q125.05 -33.11 127.84 -31.93Q130.63 -30.75 132.59 -28.55Q134.54 -26.35 135.59 -23.25Q136.65 -20.15 136.65 -16.24Q136.65 -12.34 135.59 -9.21Q134.54 -6.08 132.59 -3.84Q130.63 -1.61 127.84 -0.43Q125.05 0.74 121.58 0.74ZM121.58 -5.64Q124.74 -5.64 126.54 -7.56Q128.34 -9.49 128.34 -13.21V-19.22Q128.34 -22.88 126.54 -24.80Q124.74 -26.72 121.58 -26.72Q118.48 -26.72 116.68 -24.80Q114.89 -22.88 114.89 -19.22V-13.21Q114.89 -9.49 116.68 -7.56Q118.48 -5.64 121.58 -5.64ZM143.65 0.00V-32.36H151.59V-25.67H151.90Q152.21 -26.97 152.86 -28.18Q153.51 -29.39 154.57 -30.32Q155.62 -31.25 157.08 -31.81Q158.53 -32.36 160.46 -32.36H162.19V-24.86H159.71Q155.68 -24.86 153.64 -23.68Q151.59 -22.51 151.59 -19.84V0.00ZM191.83 0.00Q189.22 0.00 187.71 -1.52Q186.19 -3.04 185.81 -5.58H185.44Q184.64 -2.42 182.16 -0.84Q179.68 0.74 176.02 0.74Q171.06 0.74 168.39 -1.86Q165.73 -4.46 165.73 -8.80Q165.73 -13.83 169.32 -16.27Q172.92 -18.72 179.55 -18.72H185.07V-21.08Q185.07 -23.81 183.64 -25.30Q182.22 -26.78 179.06 -26.78Q176.27 -26.78 174.56 -25.57Q172.86 -24.37 171.68 -22.69L166.97 -26.91Q168.76 -29.70 171.74 -31.40Q174.72 -33.11 179.61 -33.11Q186.19 -33.11 189.60 -30.13Q193.01 -27.16 193.01 -21.58V-6.32H196.23V0.00ZM178.68 -5.02Q181.35 -5.02 183.21 -6.20Q185.07 -7.38 185.07 -9.67V-13.95H179.99Q173.79 -13.95 173.79 -9.98V-8.93Q173.79 -6.94 175.06 -5.98Q176.33 -5.02 178.68 -5.02ZM212.78 0.00Q208.69 0.00 206.55 -2.14Q204.41 -4.28 204.41 -8.25V-26.04H199.64V-32.36H202.12Q203.92 -32.36 204.57 -33.20Q205.22 -34.04 205.22 -35.71V-41.23H212.35V-32.36H218.98V-26.04H212.35V-6.32H218.49V0.00ZM238.70 0.74Q235.23 0.74 232.47 -0.43Q229.71 -1.61 227.76 -3.84Q225.80 -6.08 224.75 -9.21Q223.70 -12.34 223.70 -16.24Q223.70 -20.15 224.75 -23.25Q225.80 -26.35 227.76 -28.55Q229.71 -30.75 232.47 -31.93Q235.23 -33.11 238.70 -33.11Q242.17 -33.11 244.96 -31.93Q247.75 -30.75 249.71 -28.55Q251.66 -26.35 252.71 -23.25Q253.77 -20.15 253.77 -16.24Q253.77 -12.34 252.71 -9.21Q251.66 -6.08 249.71 -3.84Q247.75 -1.61 244.96 -0.43Q242.17 0.74 238.70 0.74ZM238.70 -5.64Q241.86 -5.64 243.66 -7.56Q245.46 -9.49 245.46 -13.21V-19.22Q245.46 -22.88 243.66 -24.80Q241.86 -26.72 238.70 -26.72Q235.60 -26.72 233.80 -24.80Q232.00 -22.88 232.00 -19.22V-13.21Q232.00 -9.49 233.80 -7.56Q235.60 -5.64 238.70 -5.64ZM239.57 -36.02 234.79 -38.32 240.68 -49.91 247.38 -46.62ZM260.77 0.00V-32.36H268.71V-25.67H269.02Q269.33 -26.97 269.98 -28.18Q270.63 -29.39 271.68 -30.32Q272.74 -31.25 274.20 -31.81Q275.65 -32.36 277.57 -32.36H279.31V-24.86H276.83Q272.80 -24.86 270.75 -23.68Q268.71 -22.51 268.71 -19.84V0.00ZM289.11 -37.08Q286.63 -37.08 285.54 -38.19Q284.46 -39.31 284.46 -41.04V-42.28Q284.46 -44.02 285.54 -45.14Q286.63 -46.25 289.11 -46.25Q291.52 -46.25 292.64 -45.14Q293.76 -44.02 293.76 -42.28V-41.04Q293.76 -39.31 292.64 -38.19Q291.52 -37.08 289.11 -37.08ZM285.14 -32.36H293.07V0.00H285.14ZM315.08 0.74Q311.61 0.74 308.85 -0.43Q306.09 -1.61 304.14 -3.84Q302.19 -6.08 301.13 -9.21Q300.08 -12.34 300.08 -16.24Q300.08 -20.15 301.13 -23.25Q302.19 -26.35 304.14 -28.55Q306.09 -30.75 308.85 -31.93Q311.61 -33.11 315.08 -33.11Q318.56 -33.11 321.35 -31.93Q324.14 -30.75 326.09 -28.55Q328.04 -26.35 329.10 -23.25Q330.15 -20.15 330.15 -16.24Q330.15 -12.34 329.10 -9.21Q328.04 -6.08 326.09 -3.84Q324.14 -1.61 321.35 -0.43Q318.56 0.74 315.08 0.74ZM315.08 -5.64Q318.25 -5.64 320.04 -7.56Q321.84 -9.49 321.84 -13.21V-19.22Q321.84 -22.88 320.04 -24.80Q318.25 -26.72 315.08 -26.72Q311.98 -26.72 310.19 -24.80Q308.39 -22.88 308.39 -19.22V-13.21Q308.39 -9.49 310.19 -7.56Q311.98 -5.64 315.08 -5.64ZM362.33 0.00 348.19 -43.28H356.56L363.20 -22.20L367.04 -7.81H367.23L371.01 -22.20L377.64 -43.28H385.76L371.63 0.00ZM395.31 -37.08Q392.83 -37.08 391.75 -38.19Q390.66 -39.31 390.66 -41.04V-42.28Q390.66 -44.02 391.75 -45.14Q392.83 -46.25 395.31 -46.25Q397.73 -46.25 398.85 -45.14Q399.96 -44.02 399.96 -42.28V-41.04Q399.96 -39.31 398.85 -38.19Q397.73 -37.08 395.31 -37.08ZM391.34 -32.36H399.28V0.00H391.34ZM408.46 0.00V-32.36H416.39V-25.67H416.70Q417.01 -26.97 417.66 -28.18Q418.31 -29.39 419.37 -30.32Q420.42 -31.25 421.88 -31.81Q423.34 -32.36 425.26 -32.36H426.99V-24.86H424.51Q420.48 -24.86 418.44 -23.68Q416.39 -22.51 416.39 -19.84V0.00ZM442.93 0.00Q438.84 0.00 436.70 -2.14Q434.56 -4.28 434.56 -8.25V-26.04H429.78V-32.36H432.26Q434.06 -32.36 434.71 -33.20Q435.36 -34.04 435.36 -35.71V-41.23H442.49V-32.36H449.13V-26.04H442.49V-6.32H448.63V0.00ZM475.35 -5.39H475.04Q474.61 -4.15 473.90 -3.07Q473.18 -1.98 472.10 -1.12Q471.01 -0.25 469.50 0.25Q467.98 0.74 465.99 0.74Q460.97 0.74 458.30 -2.54Q455.64 -5.83 455.64 -11.90V-32.36H463.57V-12.71Q463.57 -9.36 464.88 -7.60Q466.18 -5.83 469.03 -5.83Q470.21 -5.83 471.36 -6.14Q472.50 -6.45 473.37 -7.10Q474.24 -7.75 474.80 -8.71Q475.35 -9.67 475.35 -10.97V-32.36H483.29V0.00H475.35ZM516.27 0.00Q513.67 0.00 512.15 -1.52Q510.63 -3.04 510.26 -5.58H509.89Q509.08 -2.42 506.60 -0.84Q504.12 0.74 500.46 0.74Q495.50 0.74 492.84 -1.86Q490.17 -4.46 490.17 -8.80Q490.17 -13.83 493.77 -16.27Q497.36 -18.72 504.00 -18.72H509.52V-21.08Q509.52 -23.81 508.09 -25.30Q506.66 -26.78 503.50 -26.78Q500.71 -26.78 499.01 -25.57Q497.30 -24.37 496.12 -22.69L491.41 -26.91Q493.21 -29.70 496.19 -31.40Q499.16 -33.11 504.06 -33.11Q510.63 -33.11 514.04 -30.13Q517.45 -27.16 517.45 -21.58V-6.32H520.68V0.00ZM503.13 -5.02Q505.80 -5.02 507.66 -6.20Q509.52 -7.38 509.52 -9.67V-13.95H504.43Q498.23 -13.95 498.23 -9.98V-8.93Q498.23 -6.94 499.50 -5.98Q500.77 -5.02 503.13 -5.02ZM535.06 0.00Q530.97 0.00 529.05 -2.05Q527.12 -4.09 527.12 -7.81V-45.88H535.06V-6.32H539.34V0.00Z" fill="currentColor" transform="translate(183.14 95.89)"/>
+</svg>
+</span></p>
+<p class="lv-tagline">Protótipo, gêmeo digital e identificação de sistemas aplicados a um
+aeropêndulo — um mapa completo do desenvolvimento, da física ao código.</p>
+</div>
+<h2 id="comece-por-aqui">Comece por aqui</h2>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m7 17 3.2-6.8L17 7l-3.2 6.8zm5-5.9a.9.9 0 0 0-.9.9.9.9 0 0 0 .9.9.9.9 0 0 0 .9-.9.9.9 0 0 0-.9-.9M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> <strong>Quer uma visão rápida?</strong></p>
+<hr />
+<p><a href="visao-geral/">O que é o Laboratório Virtual</a></p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 21c-3 0-4.19-4.24-5.45-8.72C10.14 9.04 9 5 7.5 5 4.11 5 4 11.93 4 12H2c0-.37.06-9 5.5-9 3 0 4.21 4.25 5.47 8.74C13.83 14.8 15 19 16.5 19c3.44 0 3.53-6.93 3.53-7h2c0 .37-.06 9-5.53 9"/></svg></span> <strong>Quer aprender o processo científico?</strong></p>
+<hr />
+<p><a href="modelagem/">Modelagem Matemática</a> →
+<a href="identificacao/excitacao/">Identificação de Sistemas</a> →
+<a href="controle/pid/">Projeto de Controle</a></p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.71 20.29-1.42 1.42a1 1 0 0 1-1.41 0L7 9.85A3.8 3.8 0 0 1 6 10a4 4 0 0 1-3.78-5.3l2.54 2.54.53-.53 1.42-1.42.53-.53L4.7 2.22A4 4 0 0 1 10 6a3.8 3.8 0 0 1-.15 1l11.86 11.88a1 1 0 0 1 0 1.41M2.29 18.88a1 1 0 0 0 0 1.41l1.42 1.42a1 1 0 0 0 1.41 0l5.47-5.46-2.83-2.83M20 2l-4 2v2l-2.17 2.17 2 2L18 8h2l2-4Z"/></svg></span> <strong>Quer reproduzir ou modificar o hardware/software?</strong></p>
+<hr />
+<p><a href="prototipo/">Protótipo</a> e <a href="software/interface-grafica/">Software</a></p>
+</li>
+</ul>
+</div>
+<h2 id="sobre-o-projeto">Sobre o projeto</h2>
+<p>Esse projeto surgiu do desenvolvimento de um <strong>trabalho de conclusão de curso</strong>, intitulado, <strong>Desenvolvimento de Protótipo e Gêmeo Digital como Ferramenta para um Laboratório Virtual com Foco em Modelagem e Controle de Sistemas Dinâmicos</strong>, desenvolvido na <strong>Universidade Federal do Pará</strong> no <strong>Campus de Tucuruí</strong>, pelo discente da <strong>Faculdade de Engenharia Elétrica</strong>, <strong>Oséias Farias</strong>. </p>
+<h3 align=center><strong>Membros Atuais</strong> ✨</h3>
 
 <div align="center">
 <table align="center">
@@ -1050,55 +1427,9 @@
     </table>
 </div>
 
-<hr />
-<h2 id="demostracao-pendulab">Demostração Pendulab</h2>
+<h2 id="demonstracao">Demonstração</h2>
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/893039111?h=80089a63c1&autoplay=1&loop=1" style="position:absolute;top:0;left:0;width:90%;height:90%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
 <script src="https://player.vimeo.com/api/player.js"></script>
-
-<h3 id="_1"><a href="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial" target="_blank"></h3>
-<p>Projeto no GitHub</a></p>
-<!--
-
-<center>
-<div class="figure" >
-    <img src="https://github.com/Oseiasdfarias/LabVirtual/blob/pipy_v1/utils/image.png?raw=true"
-           width="80">  
-</div>
-</center>
-
-<center>
-<b>Universidade Federal do Pará</b>
-</center>
-<center>
-<b>Campus Universitário de Tucuruí</b>
-</center>
-<center>
-<b>Faculdade de Engenharia Elétrica</b>
-</center>
-
--->
-
-<h1 id="ferramentas-desenvolvidas">Ferramentas Desenvolvidas</h1>
-<h3 id="prototipo-aeropendulo">Protótipo Aeropêndulo</h3>
-<p>Implementa um aeropêndulo real, pode ser usado para estudos e testes de controladores e identificação de sistemas etc.</p>
-<figure>
-<p><img src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/img_aeropendulo.png?raw=true" alt="Protótipo Aeropêndulo" style="height: 70%; width:70%;"/></p>
-</figure>
-<h3 id="gemeo-digital">Gêmeo Digital</h3>
-<p>Usa o sinal de saída (ângulo) para realizar a dinâmica do sinulador.</p>
-<figure>
-<p><img src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/gemeo_digital.png?raw=true" alt="Gêmeo Digital" style="height: 70%; width:70%;"/></p>
-</figure>
-<h3 id="interface-grafica-de-usuario">Interface Gráfica de Usuário</h3>
-<p>Usada para iteragir em tempo real com o protótipo, esse sistema plotado os gráficos da posição angular, erro, sinal de referência, sinal PRBS e sinal de controle em malha fechada.</p>
-<figure>
-<p><img src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/demo_interface_light.png?raw=true" alt="Interface Gráfica de Usuário" style="height: 70%; width:70%;"/></p>
-</figure>
-<h3 id="firmware">Firmware</h3>
-<p>Implementa o controlador, envio e recebimento de dados inteface gráfica / microcontrolador, geração de sinal de referência, leitura do sensor potenciômetro.</p>
-<figure>
-<p><img src="https://github.com/Oseiasdfarias/Projeto_Tcc_Oseias_Oficial/blob/main/utils/arquitetura_firmware-1.png?raw=true" alt="Firmware" style="height: 70%; width:70%;"/></p>
-</figure>
 
 
 
@@ -1126,8 +1457,8 @@
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-  Back to top
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
 </button>
         
       </main>
@@ -1160,14 +1491,15 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.tracking", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.top", "header.autohide"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.tracking", "navigation.sections", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.d7c377c4.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="javascripts/mathjax.js"></script>
-      
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       

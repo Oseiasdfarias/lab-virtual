@@ -9,24 +9,28 @@
       
       
       
+        <link rel="prev" href="../../identificacao/validacao/">
+      
+      
+        <link rel="next" href="../resultados/">
       
       
         
       
       
-      <link rel="icon" href="/favicon.svg">
+      <link rel="icon" href="../../favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Laboratório Virtual</title>
+        <title>Controlador PID - Laboratório Virtual</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -39,11 +43,11 @@
       
     
     
-      <link rel="stylesheet" href="/assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#controlador-pid" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -79,7 +88,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
-    <a href="/." title="Laboratório Virtual" class="md-header__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
+    <a href="../.." title="Laboratório Virtual" class="md-header__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.14 163.14" width="163" height="163" role="img" aria-label="Laboratório Virtual">
@@ -107,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Controlador PID
             
           </span>
         </div>
@@ -225,7 +234,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Laboratório Virtual" class="md-nav__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
+    <a href="../.." title="Laboratório Virtual" class="md-nav__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.14 163.14" width="163" height="163" role="img" aria-label="Laboratório Virtual">
@@ -263,7 +272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -342,7 +351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/visao-geral/" class="md-nav__link">
+      <a href="../../visao-geral/" class="md-nav__link">
         
   
   
@@ -370,7 +379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/visao-geral/arquitetura/" class="md-nav__link">
+      <a href="../../visao-geral/arquitetura/" class="md-nav__link">
         
   
   
@@ -405,7 +414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/prototipo/" class="md-nav__link">
+      <a href="../../prototipo/" class="md-nav__link">
         
   
   
@@ -432,7 +441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/modelagem/" class="md-nav__link">
+      <a href="../../modelagem/" class="md-nav__link">
         
   
   
@@ -511,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/identificacao/excitacao/" class="md-nav__link">
+      <a href="../../identificacao/excitacao/" class="md-nav__link">
         
   
   
@@ -539,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/identificacao/estimacao/" class="md-nav__link">
+      <a href="../../identificacao/estimacao/" class="md-nav__link">
         
   
   
@@ -567,7 +576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/identificacao/validacao/" class="md-nav__link">
+      <a href="../../identificacao/validacao/" class="md-nav__link">
         
   
   
@@ -599,8 +608,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -611,11 +622,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
@@ -636,7 +647,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -651,10 +662,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/controle/pid/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Controlador PID
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -670,6 +708,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por que PID
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementacao-no-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementação no firmware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ganhos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ganhos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onde-esta-o-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onde está o código
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -682,7 +784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/controle/resultados/" class="md-nav__link">
+      <a href="../resultados/" class="md-nav__link">
         
   
   
@@ -717,7 +819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/gemeo-digital/" class="md-nav__link">
+      <a href="../../gemeo-digital/" class="md-nav__link">
         
   
   
@@ -796,7 +898,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/interface-grafica/" class="md-nav__link">
+      <a href="../../software/interface-grafica/" class="md-nav__link">
         
   
   
@@ -824,7 +926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/firmware/" class="md-nav__link">
+      <a href="../../software/firmware/" class="md-nav__link">
         
   
   
@@ -901,7 +1003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/" class="md-nav__link">
+      <a href="../../software/instalacao/python/" class="md-nav__link">
         
   
   
@@ -929,7 +1031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/ubuntu/" class="md-nav__link">
+      <a href="../../software/instalacao/python/ubuntu/" class="md-nav__link">
         
   
   
@@ -957,7 +1059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/windows/" class="md-nav__link">
+      <a href="../../software/instalacao/python/windows/" class="md-nav__link">
         
   
   
@@ -985,7 +1087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/macos/" class="md-nav__link">
+      <a href="../../software/instalacao/python/macos/" class="md-nav__link">
         
   
   
@@ -1013,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/dependencias/" class="md-nav__link">
+      <a href="../../software/instalacao/dependencias/" class="md-nav__link">
         
   
   
@@ -1108,7 +1210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/referencia/animacao-aeropendulo/" class="md-nav__link">
+      <a href="../../referencia/animacao-aeropendulo/" class="md-nav__link">
         
   
   
@@ -1136,7 +1238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/referencia/graficos-aeropendulo/" class="md-nav__link">
+      <a href="../../referencia/graficos-aeropendulo/" class="md-nav__link">
         
   
   
@@ -1164,7 +1266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/referencia/interface-interativa/" class="md-nav__link">
+      <a href="../../referencia/interface-interativa/" class="md-nav__link">
         
   
   
@@ -1209,6 +1311,60 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por que PID
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementacao-no-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementação no firmware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ganhos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ganhos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onde-esta-o-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onde está o código
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1226,11 +1382,141 @@
   
 
 
+  <nav class="md-path" aria-label="Navegação" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Início
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Projeto de Controle
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="controlador-pid">Controlador PID</h1>
+<p>Depois de <a href="../../identificacao/validacao/">identificar e validar um modelo</a> do sistema, o
+próximo passo é projetar um controlador que leve o ângulo do Aeropêndulo até a referência
+desejada e o mantenha lá, rejeitando perturbações.</p>
+<h2 id="por-que-pid">Por que PID</h2>
+<p>O PID é a escolha natural para essa planta: o termo proporcional reage ao erro atual,
+empurrando o ângulo na direção da referência; o termo integral elimina o erro em regime
+permanente, compensando efeitos como o peso da haste que um termo puramente proporcional
+não zera; e o termo derivativo antecipa a tendência do movimento, amortecendo a resposta e
+reduzindo oscilação. Além disso, rodar um PID em um microcontrolador de baixo custo com
+atualização a cada 20 ms é barato computacionalmente, o que o torna viável para um sistema
+embarcado como o do Aeropêndulo.</p>
+<h2 id="implementacao-no-firmware">Implementação no firmware</h2>
+<p>A cada iteração, o controlador calcula os três termos e os soma para obter o sinal de
+controle:</p>
+<div class="arithmatex">\[
+P = K_p \cdot e[k] \qquad
+I \mathrel{+}= K_i \cdot e[k] \cdot T_s \qquad
+D = K_d \cdot \frac{\theta[k-1] - \theta[k]}{T_s}
+\]</div>
+<div class="arithmatex">\[
+u[k] = P + I + D
+\]</div>
+<p>Onde <span class="arithmatex">\(e[k]\)</span> é o erro (referência − ângulo medido), <span class="arithmatex">\(\theta[k]\)</span> o ângulo medido na amostra
+atual, <span class="arithmatex">\(T_s=0,02\)</span>s o período de amostragem.</p>
+<p>Um detalhe importante: a derivada usa a diferença de <strong>ângulo medido</strong> (<span class="arithmatex">\(\theta[k-1] -
+\theta[k]\)</span>) entre duas amostras, não a diferença do erro. Derivar o erro amplificaria
+mudanças bruscas de referência — um "degrau" na referência viraria um pico artificial no
+termo derivativo, o chamado <em>derivative kick</em>. Como o termo D deriva a medida em vez do
+erro, uma mudança repentina na referência não afeta diretamente o termo derivativo.</p>
+<h2 id="ganhos">Ganhos</h2>
+<p>Os três ganhos abaixo <strong>não foram calculados a partir do modelo identificado</strong> — a sintonia
+usada foi a técnica de tentativa e erro, aplicada diretamente no protótipo real: o
+controlador foi testado em malha fechada e os ganhos foram ajustados manualmente, em uma
+série de experimentos, até se obter uma resposta satisfatória.</p>
+<table>
+<thead>
+<tr>
+<th>Ganho</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(K_p\)</span></td>
+<td>0,02</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(K_i\)</span></td>
+<td>0,055</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(K_d\)</span></td>
+<td>0,35</td>
+</tr>
+</tbody>
+</table>
+<p>Esses ganhos são fixos em tempo de compilação (<code>PID mypid(0.02, 0.055, 0.35);</code> em
+<code>main.cpp</code>) — mudar um ganho exige recompilar e regravar o microcontrolador. A
+<a href="../../software/interface-grafica/">Interface Gráfica</a> configura outros parâmetros em tempo
+real — amplitude, frequência, offset, forma de onda de referência, malha aberta/fechada —
+mas não os ganhos do PID.</p>
+<h2 id="onde-esta-o-codigo">Onde está o código</h2>
+<p>O controlador está implementado em
+<a href="https://github.com/Oseiasdfarias/lab-virtual/blob/main/softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/Esp32_ttgo_modulos/lib/controlador_pid/src/controlador_pid.cpp"><code>controlador_pid.cpp</code></a>
+e é chamado a cada iteração do loop principal do <a href="../../software/firmware/">firmware</a>.</p>
+<hr />
+<p class="lv-see-also"><strong>Ver também:</strong> <a href="../../identificacao/validacao/">← Validação do Modelo</a> ·
+<a href="../resultados/">Resultados em Malha Fechada →</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -1277,12 +1563,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.tracking", "navigation.sections", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.tracking", "navigation.sections", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="/javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       

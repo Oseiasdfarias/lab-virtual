@@ -7,26 +7,32 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
+        <meta name="author" content="Oséias Farias">
       
       
+      
+        <link rel="prev" href="../visao-geral/arquitetura/">
+      
+      
+        <link rel="next" href="../modelagem/">
       
       
         
       
       
-      <link rel="icon" href="/favicon.svg">
+      <link rel="icon" href="../favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Laboratório Virtual</title>
+        <title>Desenvolvimento do Protótipo - Laboratório Virtual</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -39,11 +45,11 @@
       
     
     
-      <link rel="stylesheet" href="/assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#parte-estrutural" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -79,7 +90,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
-    <a href="/." title="Laboratório Virtual" class="md-header__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
+    <a href=".." title="Laboratório Virtual" class="md-header__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.14 163.14" width="163" height="163" role="img" aria-label="Laboratório Virtual">
@@ -107,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Desenvolvimento do Protótipo
             
           </span>
         </div>
@@ -225,7 +236,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Laboratório Virtual" class="md-nav__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
+    <a href=".." title="Laboratório Virtual" class="md-nav__button md-logo" aria-label="Laboratório Virtual" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.14 163.14" width="163" height="163" role="img" aria-label="Laboratório Virtual">
@@ -263,7 +274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -342,7 +353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/visao-geral/" class="md-nav__link">
+      <a href="../visao-geral/" class="md-nav__link">
         
   
   
@@ -370,7 +381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/visao-geral/arquitetura/" class="md-nav__link">
+      <a href="../visao-geral/arquitetura/" class="md-nav__link">
         
   
   
@@ -402,10 +413,35 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/prototipo/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protótipo
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -421,6 +457,57 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parte-estrutural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parte estrutural
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-eletrica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parte elétrica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#montagem-do-prototipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Montagem do protótipo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -432,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/modelagem/" class="md-nav__link">
+      <a href="../modelagem/" class="md-nav__link">
         
   
   
@@ -511,7 +598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/identificacao/excitacao/" class="md-nav__link">
+      <a href="../identificacao/excitacao/" class="md-nav__link">
         
   
   
@@ -539,7 +626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/identificacao/estimacao/" class="md-nav__link">
+      <a href="../identificacao/estimacao/" class="md-nav__link">
         
   
   
@@ -567,7 +654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/identificacao/validacao/" class="md-nav__link">
+      <a href="../identificacao/validacao/" class="md-nav__link">
         
   
   
@@ -654,7 +741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/controle/pid/" class="md-nav__link">
+      <a href="../controle/pid/" class="md-nav__link">
         
   
   
@@ -682,7 +769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/controle/resultados/" class="md-nav__link">
+      <a href="../controle/resultados/" class="md-nav__link">
         
   
   
@@ -717,7 +804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/gemeo-digital/" class="md-nav__link">
+      <a href="../gemeo-digital/" class="md-nav__link">
         
   
   
@@ -796,7 +883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/interface-grafica/" class="md-nav__link">
+      <a href="../software/interface-grafica/" class="md-nav__link">
         
   
   
@@ -824,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/firmware/" class="md-nav__link">
+      <a href="../software/firmware/" class="md-nav__link">
         
   
   
@@ -901,7 +988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/" class="md-nav__link">
+      <a href="../software/instalacao/python/" class="md-nav__link">
         
   
   
@@ -929,7 +1016,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/ubuntu/" class="md-nav__link">
+      <a href="../software/instalacao/python/ubuntu/" class="md-nav__link">
         
   
   
@@ -957,7 +1044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/windows/" class="md-nav__link">
+      <a href="../software/instalacao/python/windows/" class="md-nav__link">
         
   
   
@@ -985,7 +1072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/python/macos/" class="md-nav__link">
+      <a href="../software/instalacao/python/macos/" class="md-nav__link">
         
   
   
@@ -1013,7 +1100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/instalacao/dependencias/" class="md-nav__link">
+      <a href="../software/instalacao/dependencias/" class="md-nav__link">
         
   
   
@@ -1108,7 +1195,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/referencia/animacao-aeropendulo/" class="md-nav__link">
+      <a href="../referencia/animacao-aeropendulo/" class="md-nav__link">
         
   
   
@@ -1136,7 +1223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/referencia/graficos-aeropendulo/" class="md-nav__link">
+      <a href="../referencia/graficos-aeropendulo/" class="md-nav__link">
         
   
   
@@ -1164,7 +1251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/referencia/interface-interativa/" class="md-nav__link">
+      <a href="../referencia/interface-interativa/" class="md-nav__link">
         
   
   
@@ -1210,6 +1297,47 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parte-estrutural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parte estrutural
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-eletrica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parte elétrica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#montagem-do-prototipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Montagem do protótipo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1229,8 +1357,98 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+  <h1>Protótipo</h1>
+
+<style>
+        .tab {
+            display: inline-block;
+            margin-left: 40px;
+        }
+        .tab1 {
+            display: inline-block;
+            margin-left: 80px;
+        }
+</style>
+
+<center>
+<div class="figure" >
+  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/brand/png/icone-256.png?raw=true"
+       width="80">  
+</div>
+</center>
+
+<center>
+<div class="figure" >
+  <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/img_aeropendulo.png?raw=true"
+       width="900">  
+  <p>Figura 1 - Protótipo do Aeropêndulo.</p>
+</div>
+</center>
+
+<p><br/></p>
+<h2 id="parte-estrutural">Parte estrutural</h2>
+<p>O material escolhido para a estrutura foi o compensado — chapas fabricadas a partir de
+finas lâminas de madeira coladas com fibras perpendiculares, o que confere maior
+estabilidade e resistência mecânica ao produto final.</p>
+<p>Já para o braço do Aeropêndulo foi usado um tubo de fibra de carbono de 3×3×2 mm, material
+que se destaca pela leveza e resistência física. Na extremidade do braço fica o conjunto
+motor/hélice responsável por impulsionar a dinâmica do sistema — por isso é essencial
+minimizar a massa do braço: quanto menor a massa, menores as forças de resistência que o
+empuxo precisa vencer, resultando numa dinâmica mais ágil e eficiente.</p>
+<h2 id="parte-eletrica">Parte elétrica</h2>
+<p>Componentes eletrônicos empregados no projeto: um potenciômetro de 50 kΩ, uma placa de
+desenvolvimento ESP32, um módulo driver L298N, um conjunto suporte/motor/hélice (originado
+de drones FPV racing quadcopter) e componentes passivos (resistor, capacitor).</p>
+<p><strong>Potenciômetro 50 kΩ</strong> — funciona como <em>encoder</em>, obtendo o ângulo de inclinação do braço.
+Conforme o braço se movimenta, a resistência do potenciômetro muda, o que altera a tensão
+em seus terminais — essa tensão é correlacionada ao ângulo de inclinação do braço.</p>
+<p><strong>Placa de desenvolvimento ESP32</strong> — integra o microcontrolador ESP32 (Espressif), com
+processador dual-core de 32 bits, Wi-Fi, Bluetooth e interfaces GPIO/I2C/SPI/UART. É o
+centro do sistema: implementa o controlador discreto, lê o sensor de ângulo, calcula o
+sinal de erro e gera o sinal de referência.</p>
+<p><strong>Fonte chaveada 5 V/5 A</strong> — alimenta o motor CC série.</p>
+<p><strong>Módulo driver L298N</strong> — regula a velocidade do eixo do motor CC série a partir de um sinal
+PWM aplicado à sua entrada, permitindo controlar de forma precisa a tensão entregue ao motor.</p>
+<p><strong>Conjunto suporte/motor/hélice</strong> — a força de empuxo na extremidade do braço vem de um
+conjunto originalmente projetado para drones FPV racing quadcopter, escolhido pela
+eficiência e desempenho em ambientes dinâmicos.</p>
+<p><strong>Componentes resistivos e capacitivos</strong> — um filtro RC série melhora a qualidade do sinal
+do sensor (potenciômetro) antes da leitura pelo microcontrolador.</p>
+<h2 id="montagem-do-prototipo">Montagem do protótipo</h2>
+<p><strong>Parte física</strong> — o protótipo foi projetado para ser desmontável, facilitando o transporte:
+a estrutura tem três componentes com pontos de conexão estratégicos, e o braço pode ser
+desacoplado no ponto de pivô, onde se conecta ao eixo do potenciômetro. A estrutura montada
+se mostrou estável, com rigidez suficiente para evitar vibrações indesejadas no braço
+durante o acionamento.</p>
+<p><strong>Parte elétrica</strong> — o microcontrolador gera o sinal de controle PWM, lê o sinal filtrado do
+potenciômetro e se comunica com o computador via porta serial. O driver L298N é alimentado
+pela fonte de 5 V e amplifica o sinal de controle aplicado ao motor CC série, gerando a
+variação angular do braço por meio do empuxo das hélices — o que, por sua vez, altera a
+leitura do potenciômetro, fechando a malha.</p>
+<p><br/></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -1277,12 +1495,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.tracking", "navigation.sections", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.tracking", "navigation.sections", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="/javascripts/mathjax.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
