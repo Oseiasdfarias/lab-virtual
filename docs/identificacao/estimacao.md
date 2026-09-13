@@ -21,9 +21,9 @@ pivô do braço.
 ## Primeira tentativa: modelo de 2ª ordem
 
 O candidato natural para a ordem do modelo discreto é a mesma ordem do modelo analítico:
-segunda ordem, com dois coeficientes no numerador e dois no denominador. Ajustando esses
-coeficientes pelo método dos mínimos quadrados aos dados de identificação, chega-se à
-função de transferência discreta:
+segunda ordem, com três coeficientes no numerador e dois no denominador (fora o 1
+implícito). Ajustando esses coeficientes pelo método dos mínimos quadrados aos dados de
+identificação, chega-se à função de transferência discreta:
 
 $$
 Hz = \frac{-0{,}002602z^2+0{,}004962z+0{,}0163}{z^2-1{,}176z+0{,}1849}
