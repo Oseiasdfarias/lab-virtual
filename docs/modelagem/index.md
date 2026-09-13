@@ -130,3 +130,4 @@ simulada com a saída real do protótipo.
 
 **Ver também:** [← Arquitetura do Sistema](../visao-geral/arquitetura.md) ·
 [Identificação de Sistemas →](../identificacao/excitacao.md)
+{ .lv-see-also }

@@ -81,4 +81,68 @@ dados pela porta serial, e execução do controlador.
 Com o firmware pronto, a gravação no ESP32 é feita pelo próprio PlatformIO, que compila o
 código e grava no microcontrolador via porta serial.
 
+## Um ciclo do laço principal
+
+Enquanto a interface não envia o comando de execução, o `loop()` só verifica se chegaram
+dados pela serial. Depois do comando, cada iteração segue o caminho abaixo — o ramo de malha
+fechada ou o de malha aberta, conforme a configuração recebida da interface:
+
+```mermaid
+flowchart TD
+  A{"executar?"}
+  A -- não --> R["lê a serial, se houver dados"] --> A
+  A -- sim --> B["analogRead: tensão do potenciômetro"]
+  B --> C["converte_escala: ângulo θ em graus"]
+  C --> D{"malha fechada?"}
+  D -- sim --> E["gera a referência<br/>quadrada · seno · dente de serra"]
+  E --> F["erro = referência − (θ − 31)"]
+  F --> G["PID: u = P + I + D"]
+  G --> H["ciclo PWM ← u + offset"]
+  D -- não --> I["entrada = PRBS"]
+  I --> J["ciclo PWM ← PRBS"]
+  H --> K["ledcWrite: aplica o PWM ao motor"]
+  J --> K
+  K --> L["envia 7 valores pela serial"]
+  L --> M["delay(1000 · Ts)"]
+  M --> N["lê a serial, se houver dados"]
+  N --> O["t += Ts"]
+  O --> A
+```
+
+O intervalo entre iterações é imposto pelo `delay(1000 · Ts)` no fim do laço, com
+`Ts = 0,02` s; o tempo `t` enviado à interface avança de `Ts` em `Ts`.
+
+## Protocolo serial
+
+A comunicação usa 115200 baud. No sentido interface → firmware, cada comando é um único
+número, lido com `Serial.parseFloat()` e interpretado pela faixa em que cai: três faixas
+carregam valores contínuos (amplitude, frequência e offset, reescalados no firmware) e os
+demais são códigos fixos. No sentido firmware → interface, cada iteração envia uma linha com
+7 valores separados por vírgula — a mesma ordem das colunas descrita em
+[Excitação e Aquisição](../identificacao/excitacao.md#formato-dos-dados-coletados).
+
+```mermaid
+%%{init: {"themeVariables": {"actorLineColor": "#8e8e90", "signalColor": "#8e8e90", "labelBoxBorderColor": "#8e8e90"}}}%%
+sequenceDiagram
+  participant GUI as Interface gráfica
+  participant ESP as Firmware (ESP32)
+  Note over GUI,ESP: Configuração — um número por comando, em qualquer ordem
+  GUI->>ESP: entre 1000 e 2001 · amplitude
+  GUI->>ESP: entre 2001 e 3001 · frequência
+  GUI->>ESP: entre 3001 e 4001 · offset
+  GUI->>ESP: 7000 / 8000 / 9000 · dente de serra / seno / quadrada
+  GUI->>ESP: 10000 / 11000 · malha fechada / malha aberta
+  GUI->>ESP: 12000 · executar
+  loop a cada iteração do laço
+    ESP->>GUI: referência + 31, ângulo, erro, controle, entrada, entrada, t
+    opt se houver dados na serial
+      GUI->>ESP: novo parâmetro (mesma codificação)
+    end
+  end
+```
+
+Não existe código de parada: uma vez recebido o `12000`, o firmware continua executando o
+laço até ser reiniciado. Os ganhos do PID também não fazem parte do protocolo — são fixos
+no código (ver [Controlador PID](../controle/pid.md#ganhos)).
+
 <br>
