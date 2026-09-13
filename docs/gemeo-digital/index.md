@@ -73,8 +73,9 @@ O simulador é dividido em três módulos:
 - **Módulo de animação 3D** — desenha e movimenta a estrutura do Aeropêndulo.
 - **Módulo Simulador** — integra os dois anteriores e atualiza seus estados a partir dos
   dados recebidos da [Interface Gráfica de Usuário](../software/interface-grafica.md), que
-  fornece a velocidade angular real do protótipo. É essa integração que faz o Gêmeo Digital
-  reproduzir a dinâmica do protótipo físico.
+  fornece o ângulo real do protótipo; a velocidade angular é calculada internamente pelo
+  próprio módulo, por diferença finita entre amostras consecutivas do ângulo. É essa
+  integração que faz o Gêmeo Digital reproduzir a dinâmica do protótipo físico.
 
 A classe principal (`Simulador`, em
 [`simulador_aeropendulo/simulador.py`](https://github.com/Oseiasdfarias/lab-virtual/blob/main/softwares_aeropendulo/simulador_aeropendulo/simulador.py))

@@ -4,9 +4,9 @@ title: Controlador PID
 
 # Controlador PID
 
-Com o [modelo identificado](../identificacao/validacao.md) validado, o próximo passo é
-projetar um controlador que leve o ângulo do Aeropêndulo até a referência desejada e o
-mantenha lá, rejeitando perturbações.
+Depois de [identificar e validar um modelo](../identificacao/validacao.md) do sistema, o
+próximo passo é projetar um controlador que leve o ângulo do Aeropêndulo até a referência
+desejada e o mantenha lá, rejeitando perturbações.
 
 ## Por que PID
 
@@ -43,6 +43,11 @@ termo derivativo, o chamado *derivative kick*. Como o termo D deriva a medida em
 erro, uma mudança repentina na referência não afeta diretamente o termo derivativo.
 
 ## Ganhos
+
+Os três ganhos abaixo **não foram calculados a partir do modelo identificado** — a sintonia
+usada foi a técnica de tentativa e erro, aplicada diretamente no protótipo real: o
+controlador foi testado em malha fechada e os ganhos foram ajustados manualmente, em uma
+série de experimentos, até se obter uma resposta satisfatória.
 
 | Ganho | Valor |
 | ----- | ----- |

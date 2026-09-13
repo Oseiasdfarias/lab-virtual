@@ -75,10 +75,11 @@ $$
 Hz = \frac{-0{,}0029z^3+0{,}0023z^2+0{,}0016z+0{,}0097}{z^{10}-0{,}9z^9-0{,}3z^8-0{,}014z^7+0{,}13z^6+0{,}15z^5+0{,}012z^4-0{,}05z^3-0{,}12z^2-0{,}02z+0{,}15}
 $$
 
-Esses 14 números — 4 do numerador e 10 do denominador — são o modelo que de fato foi usado
-para [projetar o controlador](../controle/pid.md). A confirmação de que essa escolha de
-ordem foi a certa vem da comparação entre a saída simulada por esse modelo e a saída real
-do sistema, documentada em [Validação do Modelo](validacao.md).
+Esses 14 números — 4 do numerador e 10 do denominador — descrevem a dinâmica identificada do
+sistema. A confirmação de que essa escolha de ordem foi a certa vem da comparação entre a
+saída simulada por esse modelo e a saída real do sistema, documentada em
+[Validação do Modelo](validacao.md); o [controlador PID](../controle/pid.md) em si foi
+sintonizado por um método separado, direto no protótipo.
 
 ---
 

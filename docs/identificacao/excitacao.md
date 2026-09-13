@@ -66,10 +66,10 @@ Os arquivos de cada ensaio ficam em `softwares_aeropendulo/src_interface/dados_d
 
 ![Divisão dos dados em identificação e validação](img/dados-treino-teste-1.png)
 
-Antes de estimar o modelo, os dados de entrada e saída do ensaio são divididos em dois
-conjuntos: 60% para identificação (usados para ajustar os coeficientes do modelo) e 40% para
-validação, mantidos fora do ajuste. Esse segundo conjunto simula dados que o modelo nunca viu,
-permitindo comparar a saída simulada com a saída real e verificar se o modelo generaliza — ver
+A monografia descreve a divisão dos dados do ensaio em dois conjuntos: 60% para
+identificação (usados para ajustar os coeficientes do modelo) e 40% para validação. Na
+prática, a validação usada neste laboratório roda o modelo sobre o mesmo sinal de entrada do
+ensaio de identificação e compara a saída simulada com a saída real medida — ver
 [Validação do Modelo](validacao.md).
 
 ---

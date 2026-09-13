@@ -123,7 +123,8 @@ O modelo linearizado acima é implementado e simulado em
 [`Modelagem_matematica_do_aeropendulo.ipynb`](https://github.com/Oseiasdfarias/lab-virtual/blob/main/softwares_aeropendulo/simulador_aeropendulo/docs/Modelagem_matematica_do_aeropendulo.ipynb),
 usando as bibliotecas NumPy e Python-Control. A [identificação de sistemas](../identificacao/excitacao.md)
 usa uma abordagem diferente — ajustar o modelo a dados reais em vez de derivá-lo
-puramente da física — e chega a um modelo mais preciso, usado de fato no controlador.
+puramente da física — e chega a um modelo mais preciso, validado comparando a saída
+simulada com a saída real do protótipo.
 
 ---
 
