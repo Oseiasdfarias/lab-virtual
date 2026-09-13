@@ -142,19 +142,23 @@ uma nota de como foram verificados — nada foi marcado como feito sem checagem 
 
 - [ ] Decidir o destino de `revisao_tcc/TCC-Oseas/` (18 MB) e `revisao_tcc/andre/` (19 MB) —
       manter como histórico ou arquivar fora do repo principal. *(Decisão do autor.)*
-- [ ] **Duplicação medida em 2026-09-13:** 62 grupos de arquivos byte a byte idênticos,
-      60,8 MB redundantes. A maior parte são figuras copiadas em `revisao_tcc/TCC-Oseas/`,
-      `Template_TCC_FEE/Capitulos/` e `Template_TCC_FEE/elementos_textuais/` (desta última,
-      só `Cap_1_introducao.tex` entra na compilação). Entre os notebooks, são idênticos:
-      `gerador_sinais/sinais_1.ipynb` = `identificacao_aeropendulo/identificacao_aeropendulo copy.ipynb`
-      e `analise_de_sinais/Analise_sinal_sys_malha_aberta_onda_quadrada.ipynb` = a cópia em
-      `identificacao_aeropendulo/`. Nada foi apagado — exclusão de material de pesquisa fica
-      a critério do autor.
+- [x] **2026-09-13** — Duplicação resolvida: 119 arquivos duplicados removidos (≈ 60 MB), sempre
+      mantendo ao menos uma cópia de cada conteúdo — verificado arquivo a arquivo, e a
+      monografia compilada depois das remoções (65 páginas, sem citação indefinida nem
+      arquivo ausente). Saíram as figuras repetidas em `revisao_tcc/TCC-Oseas/` e em
+      `Template_TCC_FEE/elementos_textuais/` (ficaram os `.tex`), o `revisao_tcc/TCC-Oseas.zip`
+      (todo o conteúdo existe em arquivos do repositório), as cópias soltas em `utils/`, dois
+      notebooks "copy", um `.dxf~` de backup e outras cópias pontuais. Mantidas de propósito:
+      as figuras em `Template_TCC_FEE/Capitulos/` (a compilação precisa delas) e seus
+      originais em `materiais_complementares/`, os arquivos-padrão de cada projeto
+      PlatformIO/Arduino, os `__init__.py` vazios e as cópias da marca que o MkDocs exige
+      dentro de `docs/` e `overrides/`.
 - [x] **2026-09-13** — Os dois nomes com codificação corrompida em
       `Identificacao_de_Sistemas/Programa Python/` foram renomeados para
       `identificacao.py` e `analise_grafica.py` (nenhum arquivo os referenciava).
-- [ ] `utils/Oseias_Fariascertificado_horas_complementares.pdf` é um certificado pessoal
-      publicado no repositório público. Avaliar se deve continuar lá.
+- [x] **2026-09-13** — Removido `utils/Oseias_Fariascertificado_horas_complementares.pdf`
+      (certificado pessoal). Continua no histórico do git; tirá-lo de lá exige reescrever o
+      histórico com force push.
 
 ## Rodada de 2026-09-13 (tarde) — site, software e infraestrutura
 
