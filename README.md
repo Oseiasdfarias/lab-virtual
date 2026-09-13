@@ -113,25 +113,36 @@ Para uma visão consolidada do projeto — resumo por capítulo da monografia, a
 software, catálogo dos materiais complementares e pendências —, consulte
 [`docs_tcc/`](./docs_tcc/), que traz um índice em YAML e resumos em Markdown.
 
+## Publicação
+
+A monografia está publicada em acesso aberto na Biblioteca Digital de Monografias da UFPA:
+
+**[bdm.ufpa.br/handle/prefix/6944](https://bdm.ufpa.br/handle/prefix/6944)** — defendida em
+11 de dezembro de 2023.
+
 ## Como citar
 
 ```bibtex
 @mastersthesis{farias2023labvirtual,
-  author       = {Oséias Farias},
-  title        = {Desenvolvimento de Protótipo e Gêmeo Digital como Ferramenta para um
-                  Laboratório Virtual com Foco em Modelagem e Controle de Sistemas Dinâmicos},
-  school       = {Universidade Federal do Pará, Campus Universitário de Tucuruí},
-  type         = {Trabalho de Conclusão de Curso},
+  author       = {Farias, Oséias Dias de},
+  title        = {Desenvolvimento de protótipo e gêmeo digital como ferramenta para um
+                  laboratório virtual com foco em modelagem e controle de sistemas dinâmicos},
+  school       = {Universidade Federal do Pará},
+  type         = {Trabalho de Conclusão de Curso (Bacharelado em Engenharia Elétrica)},
   address      = {Tucuruí, Brasil},
   year         = {2023},
-  url          = {https://github.com/Oseiasdfarias/lab-virtual}
+  url          = {https://bdm.ufpa.br/handle/prefix/6944}
 }
 ```
 
+**Palavras-chave:** aeropêndulo · identificação de sistemas · protótipo · simulador ·
+gêmeo digital
+
 ## Autoria
 
-Desenvolvido por **Oséias Farias**, discente da Faculdade de Engenharia Elétrica da
-UFPA — Campus Universitário de Tucuruí, sob orientação do **Prof. Raphael Teixeira**.
+Desenvolvido por **Oséias Dias de Farias**, Bacharelado em Engenharia Elétrica da
+Faculdade de Engenharia Elétrica — UFPA, Campus Universitário de Tucuruí, sob orientação
+do **Prof. Raphael Barros Teixeira**.
 
 <p align="center">
   <img height="34" src="./utils/logos_lg/UFPA-removebg-preview.png" alt="UFPA">
