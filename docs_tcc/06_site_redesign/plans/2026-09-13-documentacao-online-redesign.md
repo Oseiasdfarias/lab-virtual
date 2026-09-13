@@ -272,7 +272,7 @@ hide:
 ---
 
 <p align="center">
-  <img src="../brand/png/icone-256.png" alt="Laboratório Virtual" width="90">
+  <img src="logo.svg" alt="Laboratório Virtual" width="90">
 </p>
 
 <h1 align="center">Laboratório Virtual</h1>
@@ -868,8 +868,11 @@ atual, $T_s=0,02$s o período de amostragem. A derivada é sobre a **medida** ($
 sobre o erro — isso evita o "chute derivativo" (*derivative kick*) quando a referência muda
 de repente.
 
-Ganhos padrão no firmware (`main.cpp`, ajustáveis em tempo real pela interface gráfica):
-$K_p=0,02$, $K_i=0,055$, $K_d=0,35$.
+Ganhos no firmware (`main.cpp`, linha `PID mypid(0.02, 0.055, 0.35);`) — **fixos em tempo
+de compilação**, não recebidos por serial: $K_p=0,02$, $K_i=0,055$, $K_d=0,35$. Verificado
+lendo `ler_dados_serial()` em `ler_escrever_serial.cpp`: os únicos parâmetros que a
+interface gráfica envia ao firmware são amplitude, frequência, offset, forma de onda de
+referência, malha aberta/fechada e o comando de executar — nenhum ganho de PID.
 
 - [ ] **Step 1: Escrever a página**
 
@@ -900,9 +903,12 @@ um pico artificial no termo derivativo).
 
 ## Ganhos
 
-(Tabela com Kp=0,02, Ki=0,055, Kd=0,35 -- os valores padrão do firmware. Uma frase: esses
-ganhos são ajustáveis em tempo real pela [Interface Gráfica](../software/interface-grafica.md),
-sem precisar recompilar o firmware.)
+(Tabela com Kp=0,02, Ki=0,055, Kd=0,35 -- os valores fixos no firmware. Uma frase,
+importante não inverter isso: esses ganhos são fixos em tempo de compilação
+(`PID mypid(0.02, 0.055, 0.35);` em `main.cpp`) -- mudar um ganho exige recompilar e
+regravar o microcontrolador. A [Interface Gráfica](../software/interface-grafica.md)
+configura outros parâmetros em tempo real -- amplitude, frequência, offset, forma de
+onda, malha aberta/fechada -- mas não os ganhos do PID.)
 
 ## Onde está o código
 

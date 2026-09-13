@@ -24,19 +24,6 @@ author: Oséias Farias
 </center>
 
 <center>
-<b>Universidade Federal do Pará</b>
-</center>
-<center>
-<b>Campus Universitário de Tucuruí</b>
-</center>
-<center>
-<b>Faculdade de Engenharia Elétrica</b>
-</center>
-
-<br>
-
-
-<center>
 <div class="figure" >
   <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/gemeo_digital.png?raw=true"
        width="900">  
@@ -72,20 +59,21 @@ O simulador é dividido em três módulos:
   referência, erro, sinal de controle).
 - **Módulo de animação 3D** — desenha e movimenta a estrutura do Aeropêndulo.
 - **Módulo Simulador** — integra os dois anteriores e atualiza seus estados a partir dos
-  dados recebidos da [Interface Gráfica de Usuário](interface_grafica_usuario.md), que
-  fornece a velocidade angular real do protótipo. É essa integração que faz o Gêmeo Digital
-  reproduzir a dinâmica do protótipo físico.
+  dados recebidos da [Interface Gráfica de Usuário](../software/interface-grafica.md), que
+  fornece o ângulo real do protótipo; a velocidade angular é calculada internamente pelo
+  próprio módulo, por diferença finita entre amostras consecutivas do ângulo. É essa
+  integração que faz o Gêmeo Digital reproduzir a dinâmica do protótipo físico.
 
 A classe principal (`Simulador`, em
 [`simulador_aeropendulo/simulador.py`](https://github.com/Oseiasdfarias/lab-virtual/blob/main/softwares_aeropendulo/simulador_aeropendulo/simulador.py))
 recebe como parâmetros uma instância de gráficos e uma de animação, e expõe métodos para
 rotacionar o braço e atualizar os estados do sistema (ângulo, referência e tempo) a cada
 novo dado recebido do protótipo — veja a
-[referência dos módulos](../M%C3%B3dulos%20G%C3%AAmeo%20Digital/animacao_aeropendulo_reference.md)
+[referência dos módulos](../referencia/animacao-aeropendulo.md)
 para os detalhes de cada classe.
 
 Para reproduzir a dinâmica no Gêmeo Digital, a classe `Simulador` é importada pelo software
 que implementa a comunicação com o protótipo real — ver
-[Interface Gráfica de Usuário](interface_grafica_usuario.md).
+[Interface Gráfica de Usuário](../software/interface-grafica.md).
 
 <br/>
