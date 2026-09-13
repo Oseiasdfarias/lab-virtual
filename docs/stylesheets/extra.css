@@ -354,8 +354,9 @@
 
 /* ---------- Admonitions ---------- */
 
-.md-typeset .admonition,
-.md-typeset details {
+/* Classes dobradas para vencer as cores por tipo do Material (.warning, .note...). */
+.md-typeset .admonition.admonition,
+.md-typeset details[class] {
   border: 1px solid var(--lv-border);
   border-left: 3px solid var(--lv-ink);
   border-radius: 0.5rem;
@@ -363,14 +364,14 @@
   font-size: 0.76rem;
 }
 
-.md-typeset .admonition-title,
-.md-typeset summary {
+.md-typeset .admonition.admonition > .admonition-title,
+.md-typeset details[class] > summary {
   background-color: var(--lv-surface);
   font-weight: 600;
 }
 
-.md-typeset .admonition-title::before,
-.md-typeset summary::before {
+.md-typeset .admonition.admonition > .admonition-title::before,
+.md-typeset details[class] > summary::before {
   background-color: var(--lv-ink);
 }
 
