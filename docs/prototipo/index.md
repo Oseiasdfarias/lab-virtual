@@ -24,19 +24,6 @@ author: Oséias Farias
 </center>
 
 <center>
-<b>Universidade Federal do Pará</b>
-</center>
-<center>
-<b>Campus Universitário de Tucuruí</b>
-</center>
-<center>
-<b>Faculdade de Engenharia Elétrica</b>
-</center>
-
-<br>
-
-
-<center>
 <div class="figure" >
   <img src="https://github.com/Oseiasdfarias/lab-virtual/blob/main/utils/img_aeropendulo.png?raw=true"
        width="900">  
