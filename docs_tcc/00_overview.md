@@ -43,8 +43,15 @@ Este diretório é um **cache de contexto** para não precisar reabrir os fontes
 ## Os 3 objetivos declarados pelo usuário (para orientar próximos passos)
 
 1. **Finalizar a documentação do TCC** — ver punch list consolidado em [`05_plano_publicacoes/pendencias_documentacao.md`](05_plano_publicacoes/pendencias_documentacao.md).
-2. **Escrever um artigo com base no TCC** — esqueleto/inventário de material em [`05_plano_publicacoes/plano_artigo.md`](05_plano_publicacoes/plano_artigo.md) (plano ainda não definido com o usuário).
+2. **Escrever um artigo com base no TCC** — já existe um rascunho de 21 páginas quase pronto
+   (achado em 2026-09-13, ver alerta crítico abaixo) — plano atualizado em
+   [`05_plano_publicacoes/plano_artigo.md`](05_plano_publicacoes/plano_artigo.md).
 3. **Escrever um livro com base no TCC** — esqueleto/inventário de material em [`05_plano_publicacoes/plano_livro.md`](05_plano_publicacoes/plano_livro.md) (plano ainda não definido com o usuário).
+
+**Para retomar o trabalho em qualquer sessão futura, comece por
+[`05_plano_publicacoes/00_fluxo_trabalho.md`](05_plano_publicacoes/00_fluxo_trabalho.md)** —
+ele sequencia as 4 fases acima (fechar pendências → finalizar documentação → artigo/livro em
+sessões separadas) e diz o que é pré-requisito do quê.
 
 ## Achados críticos (não ignorar)
 
