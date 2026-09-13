@@ -66,10 +66,17 @@ uma nota de como foram verificados — nada foi marcado como feito sem checagem 
         avaliado como `(0.0 <= sinal_controle) <= 3.3`, um booleano comparado a 3.3, sempre
         verdadeiro. O clamp em 255 nunca era alcançado e valores negativos não eram limitados.
         Corrigido com `if/else if/else` explícito.
-      - **Nenhum dos dois foi validado em hardware** — são ganhos configurados em tempo de
-        execução pela interface gráfica (não há valor pré-calibrado embutido que o fix
-        invalidaria), mas o comportamento em malha fechada deve ser reavaliado/reajustado no
-        protótipo real antes de considerar isso definitivamente resolvido.
+      - **Nenhum dos dois foi validado em hardware.** Correção de 2026-09-13: este item
+        dizia antes que os ganhos do PID são "configurados em tempo de execução pela
+        interface gráfica" — **isso estava errado**. Verificado lendo `ler_dados_serial()`
+        em `ler_escrever_serial.cpp`: os únicos parâmetros que a interface envia ao
+        firmware são amplitude, frequência, offset, forma de onda, malha aberta/fechada e
+        o comando de executar — nenhum ganho de PID. Os ganhos são fixos em `main.cpp`
+        (`PID mypid(0.02, 0.055, 0.35);`), definidos em tempo de compilação. Isso significa
+        que esses 3 valores foram calibrados empiricamente contra a fórmula **antiga e
+        errada** do termo derivativo — o comportamento em malha fechada deve ser
+        reavaliado/reajustado (e os ganhos possivelmente recalibrados) no protótipo real
+        antes de considerar isso definitivamente resolvido.
 - [x] **2026-09-13** — `requirements.txt` regenerado com `poetry export` a partir do
       `poetry.lock` atual (148 pacotes). Ainda inclui a árvore do Jupyter — **isso é
       esperado, não é bug**: `vpython` depende de `ipykernel`/`jupyter`/`jupyter-server-proxy`
