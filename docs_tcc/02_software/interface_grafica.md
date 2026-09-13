@@ -1,6 +1,7 @@
 ---
 fonte: softwares_aeropendulo/src_interface/interface_grafica.py, softwares_aeropendulo/src_interface/coleta_dados.py, softwares_aeropendulo/src_interface/graficos_sinais.py, softwares_aeropendulo/src_interface/lista_portas_usb.py, softwares_aeropendulo/src_interface/test_serial.py, softwares_aeropendulo/src_interface/__init__.py, softwares_aeropendulo/src_interface/interfaces/
 gerado_em: 2026-09-12
+atualizado_em: 2026-09-13
 ---
 
 # Interface Gráfica (`src_interface`)
@@ -20,7 +21,7 @@ Assim como em `simulador_aeropendulo`, `src_interface/interfaces/` contém apena
 
 - Usa `serial.tools.list_ports` para listar portas disponíveis (`listar_portas_usb()`).
 - Usa **pyudev** (`Context`, `Monitor.from_netlink`, filtro `subsystem='usb'`) rodando em uma **thread separada** para detectar hot-plug/unplug de dispositivos USB em tempo real (Linux-only — dependência de `pyudev`/netlink não é portável para Windows/Mac).
-- Ao detectar mudança, atualiza automaticamente o menu dropdown da GUI (`atualiza_menu.configure(...)`) e a porta selecionada.
+- Ao detectar mudança, atualiza automaticamente o menu dropdown da GUI (`atualiza_menu.configure(...)`) e a porta selecionada. (A checagem `device.action == 'add' or 'remove'`, sempre verdadeira, virou `in ('add', 'remove')` em 2026-09-13.)
 
 ### `coleta_dados.py` — classe `ColetaDados`
 
@@ -33,7 +34,8 @@ class ColetaDados(ColetaDadosInterface):
 
 - Abre `serial.Serial(porta, baud_rate, timeout=0.005)`.
 - Loop de leitura: `readline()` → decodifica UTF-8 → `split(",")` → converte para `np.array(dados1, dtype="float64")` → acumula em `self.fila` (buffer circular de 7 sinais, mantém só as últimas `amostras` leituras, descarta a mais antiga via `np.delete`).
-- Se `flag_salvar_dados=True`, também acumula tudo (sem limite) em `self.salvar_dados`, que depois é salvo em CSV (`salvar_dados_colhidos()`, via `pandas.DataFrame.to_csv`) na pasta `dados_de_ensaio/` (criada automaticamente se não existir), com nome `arquivo_<dia>_<mes>_<ano>_<hora>_<min>_<seg>.csv`.
+- Se `flag_salvar_dados=True`, também acumula tudo (sem limite) em `self.salvar_dados`, que depois é salvo em CSV (`salvar_dados_colhidos()`, via `pandas.DataFrame.to_csv`, com cabeçalho e índice) na pasta `dados_de_ensaio/` (criada automaticamente se não existir), com nome `arquivo_<dia>_<mes>_<ano>_<hora>_<min>_<seg>.csv`.
+- **Corrigido em 2026-09-13:** `salvar_dados_colhidos()` agora esvazia o buffer depois de gravar. Antes, a interface zerava um atributo próprio, e uma segunda gravação na mesma sessão incluiria as amostras da anterior (os 9 CSVs existentes não foram afetados: cada um veio de uma sessão separada). Coberto por teste; falta ensaio no protótipo — ver `divida_tecnica.md`.
 - Reconexão automática em caso de `serial.SerialException` (`reconectar()`), com `sleep(2)` e reenvio do comando de sinal atual.
 - **Protocolo de envio para o microcontrolador** — escreve strings numéricas ASCII codificadas (não binário) que o firmware decodifica por faixa de valor:
   - `set_amplitude(amplitude)`: `((ampl*1000)/30) + 1000` → faixa ~1000-2000.

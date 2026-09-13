@@ -1,8 +1,10 @@
 projeto: "TCC - Identificação de Sistemas, Simulador Gráfico e Prototipagem de um Aeropêndulo"
 titulo_completo_site: "Desenvolvimento de Protótipo e Gêmeo Digital como Ferramenta para um Laboratório Virtual com Foco em Modelagem e Controle de Sistemas Dinâmicos"
-autor: "Oséias Farias"
+autor: "Oséias Dias de Farias"
+repositorio: "https://github.com/Oseiasdfarias/lab-virtual"
 instituicao: "UFPA - Campus Universitário de Tucuruí, Faculdade de Engenharia Elétrica"
 gerado_em: "2026-09-12"
+atualizado_em: "2026-09-13"
 
 uso:
   descricao: >
@@ -14,7 +16,7 @@ uso:
     2) Abra o .md correspondente (já é um resumo processado).
     3) Só abra o arquivo em `fonte` quando precisar de detalhe que não está no resumo.
   aviso: >
-    Estes resumos refletem o estado do projeto em 2026-09-12. Se a monografia, o código
+    Estes resumos refletem o estado do projeto em 2026-09-13 (revisados depois do redesenho do site, dos testes e da limpeza do repositório). Se a monografia, o código
     ou os materiais mudarem depois disso, os resumos ficam desatualizados até serem
     regenerados manualmente (não há regeneração automática).
 
@@ -22,7 +24,8 @@ fontes_principais:
   monografia_final_tex: "revisao_tcc/Template_TCC_FEE/tcc_oseias_farias.tex"
   monografia_final_pdf: "revisao_tcc/Template_TCC_FEE/tcc_oseias_farias.pdf"
   monografia_bibliografia_real: "revisao_tcc/Template_TCC_FEE/bibtex-referencias.bib"
-  monografia_copias_revisao_desatualizadas: ["revisao_tcc/TCC-Oseas/", "revisao_tcc/andre/"]
+  monografia_copias_revisao_desatualizadas: ["revisao_tcc/TCC-Oseas/ (só .tex de uma revisão antiga)", "revisao_tcc/andre/ (sugestões e PDF revisado pela banca)"]
+  divida_tecnica: "docs_tcc/divida_tecnica.md"
   software: "softwares_aeropendulo/"
   site_publicado: "docs/ (mkdocs.yml na raiz, publicado via GitHub Pages)"
   materiais_complementares: "materiais_complementares/"
@@ -36,7 +39,7 @@ documentos:
   - path: docs_tcc/01_monografia/resumo.md
     titulo: "Visão geral da monografia"
     fonte: "revisao_tcc/Template_TCC_FEE/tcc_oseias_farias.tex e includes"
-    resumo: "Estrutura de 4 capítulos, objetivos geral/específicos, status por capítulo. Nota crítica: arquivo mestre usa elementos_textuais/ e elementos_pretextuais/, não Capitulos/ e PreTextual/."
+    resumo: "Estrutura de 4 capítulos, objetivos geral/específicos, status por capítulo. Nota crítica: o arquivo mestre inclui a introdução de elementos_textuais/ e os capítulos 2 a 4 de Capitulos/; pré-textuais vêm de elementos_pretextuais/."
     tags: [monografia, overview, latex]
 
   - path: docs_tcc/01_monografia/cap1_introducao.md
@@ -95,39 +98,39 @@ documentos:
 
   - path: docs_tcc/02_software/visao_geral.md
     titulo: "Arquitetura geral do software"
-    fonte: "softwares_aeropendulo/ (pyproject.toml, README.md, main_aeropendulo.py, rungui.py)"
-    resumo: "rungui.py é o entry point real. main_aeropendulo.py está QUEBRADO (importa classes que não existem mais)."
+    fonte: "softwares_aeropendulo/ (pyproject.toml, README.md, rungui.py, tests/)"
+    resumo: "rungui.py é o entry point. Python 3.10–3.11, Poetry (grupo test), versão 1.0.0, MIT. Testes em tests/ rodam no CI. main_aeropendulo.py e interface_interativa.py foram removidos (código morto)."
     tags: [software, arquitetura, python, overview]
 
   - path: docs_tcc/02_software/simulador_aeropendulo.md
     titulo: "Simulador / gêmeo digital (Python)"
     fonte: "softwares_aeropendulo/simulador_aeropendulo/*.py"
-    resumo: "Modelo dinâmico do aeropêndulo, animação e geração de gráficos. Pasta interfaces/ contém só classes abstratas (ABC), não é duplicata."
+    resumo: "Gêmeo digital que espelha o ângulo medido (não integra a EDO da planta), animação VPython e gráficos. Pasta interfaces/ contém só classes abstratas (ABC), não é duplicata."
     tags: [software, simulador, gemeo_digital, python]
 
   - path: docs_tcc/02_software/interface_grafica.md
     titulo: "Interface gráfica (PC)"
     fonte: "softwares_aeropendulo/src_interface/*.py"
-    resumo: "Comunicação serial com o protótipo, plotagem em tempo real, coleta e persistência de dados de ensaio em CSV."
+    resumo: "Comunicação serial com o protótipo, plotagem em tempo real, coleta e persistência de dados de ensaio em CSV. Bug de acúmulo do buffer de gravação corrigido em 2026-09-13 (coberto por teste, sem ensaio real)."
     tags: [software, interface_grafica, serial, python]
 
   - path: docs_tcc/02_software/firmware_microcontroladores.md
     titulo: "Firmware (Arduino / ESP32)"
     fonte: "softwares_aeropendulo/firmwares_microcontroladores/ (Arduino_IDE/ e PlatformIo/)"
-    resumo: "Variante mais completa é PlatformIo/Esp32_ttgo_modulos (PID, malha aberta/fechada). Esp32_ttgo_modulos_freertos é enganoso: não usa FreeRTOS de fato e tem menos funcionalidade. Bugs: syntax error no Arduino_Nano/main.cpp, arquivos vazios em Esp32_ttgo/lib, possível bug de dimensionamento no PID e no clamp do conversor."
+    resumo: "Variante mais completa e única documentada no site é PlatformIo/Esp32_ttgo_modulos (PID, malha aberta/fechada). Esp32_ttgo_modulos_freertos não usa FreeRTOS. PID e clamp do conversor corrigidos sem teste em hardware; demais variantes e pino do sensor em divida_tecnica.md."
     tags: [software, firmware, esp32, arduino, pid, cpp]
 
   - path: docs_tcc/02_software/dados_ensaios.md
     titulo: "Dados de ensaio (CSV)"
-    fonte: "softwares_aeropendulo/src_interface/dados_de_ensaio/*.csv (9 arquivos)"
-    resumo: "Ensaios reais do aeropêndulo, sem cabeçalho nomeado (só índices). Mapeamento de colunas inferido do protocolo serial do firmware, não documentado formalmente em nenhum lugar do projeto."
+    fonte: "softwares_aeropendulo/src_interface/dados_de_ensaio/*.csv (9 arquivos) + README.md da pasta"
+    resumo: "9 ensaios reais (cabeçalho numérico + índice + 7 colunas do protocolo serial). Catalogados: 6 PRBS em malha aberta, 3 onda quadrada em malha fechada; arquivo_9_9_2023 é o da identificação, 13_9 e 14_9 alimentam as métricas de malha fechada."
     tags: [software, dados, ensaios, csv]
 
   - path: docs_tcc/03_docs_publicadas/resumo_mkdocs.md
     titulo: "Site de documentação publicado (MkDocs/GitHub Pages)"
     fonte: "docs/ + mkdocs.yml"
-    resumo: "Páginas de instalação e referência técnica (mkdocstrings) completas. 4 páginas ('Componentes do Pendulab', 'Módulo Firmware') marcadas 'EM DESENVOLVIMENTO', sem conteúdo real."
-    tags: [docs_publicadas, mkdocs, site, incompleto]
+    resumo: "Site completo organizado como mapa do laboratório (início interativa, protótipo com BOM/pinagem, modelagem, identificação e controle com métricas, gêmeo digital, software, referência). Deploy automático a partir da main."
+    tags: [docs_publicadas, mkdocs, site]
 
   - path: docs_tcc/04_materiais_complementares/identificacao_sistemas.md
     titulo: "Materiais de identificação de sistemas"
@@ -159,6 +162,12 @@ documentos:
     resumo: "Plano original previa ~6-8 capítulos; versão final consolidou em 4, fundindo protótipo+modelagem+controle no Cap.2 e resultados de identificação/controle no Cap.3."
     tags: [materiais_complementares, cronograma, estrutura, planejamento]
 
+  - path: docs_tcc/divida_tecnica.md
+    titulo: "Dívida técnica — o que só fecha com o protótipo real"
+    fonte: "firmwares_microcontroladores/, src_interface/, esquema elétrico da monografia, compilação com PlatformIO"
+    resumo: "Validações pendentes em hardware (PID, conversor, pino do sensor, dependências novas, gravação de ensaios), situação e compilação das 7 variantes de firmware não documentadas, e o alerta de setuptools preso ao vpython."
+    tags: [divida_tecnica, firmware, hardware, validacao]
+
   - path: docs_tcc/05_plano_publicacoes/pendencias_documentacao.md
     titulo: "Punch list — o que falta para finalizar a documentação"
     fonte: "síntese de 01_monografia/pendencias.md, 02_software/*, 03_docs_publicadas/resumo_mkdocs.md"
@@ -182,9 +191,8 @@ documentos:
 
 alertas_criticos:
   - "Há um rascunho antigo de artigo (COBENGE 2023, coautoria com outro orientando) em softwares_aeropendulo/simulador_aeropendulo/docs/utils/Template_Artigos_ST_COBENGE-2023.docx.pdf. Decisão de 2026-09-13: não usar como base — o artigo é planejado do zero (ver plano_artigo.md)."
-  - "main_aeropendulo.py quebrado (softwares_aeropendulo/) — importa classes inexistentes; usar rungui.py como entry point."
-  - "2 equações do Cap.3 da monografia final com \\frac{numerador}{denominador} literal em vez dos coeficientes reais."
-  - "4 páginas do site MkDocs publicado estão vazias ('EM DESENVOLVIMENTO')."
-  - "firmwares_microcontroladores/PlatformIo/Arduino_Nano/src/main.cpp não compila (erro de sintaxe)."
+  - "A TF de 10ª ordem publicada na monografia tem 7 amostras de atraso a mais que o ARX estimado (NRMSE 55,97 % × 78,30 %). Script: materiais_complementares/.../ident_up/metricas_validacao.py."
+  - "Nada do firmware foi validado no protótipo depois das correções de 2026-09-13; esquema elétrico (GPIO 12) e firmware (GPIO 2) divergem no pino do sensor. Ver divida_tecnica.md."
+  - "Os ensaios de malha fechada gravados (0–10°, 0,2 e 0,15 Hz) não correspondem aos parâmetros citados no texto da monografia (0,5 Hz, 15°)."
   - "Esp32_ttgo_modulos_freertos não usa FreeRTOS de fato, apesar do nome — não confundir com a variante mais completa (Esp32_ttgo_modulos)."
   - "Bibliografia real da monografia é revisao_tcc/Template_TCC_FEE/bibtex-referencias.bib, NÃO Capitulos/Referencias.bib."

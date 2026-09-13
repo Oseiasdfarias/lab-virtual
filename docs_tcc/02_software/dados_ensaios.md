@@ -1,6 +1,7 @@
 ---
 fonte: softwares_aeropendulo/src_interface/dados_de_ensaio/*.csv
 gerado_em: 2026-09-12
+atualizado_em: 2026-09-13
 ---
 
 # Dados de Ensaio (`src_interface/dados_de_ensaio/`)
@@ -27,7 +28,7 @@ por `coleta_dados.py` (`dados1.split(",")` → array de 7 floats):
 | 1 | Ângulo medido (saída do potenciômetro, convertido em `Conversor::converte_escala`) | graus | `*theta_saida` |
 | 2 | Sinal de erro (`sinal_ref - (theta_saida - 31)` em malha fechada; `0` em malha aberta) | graus | `*erro` |
 | 3 | Sinal de controle **antes** da conversão para ciclo PWM | Volts | `*sinal_controle` |
-| 4 | Sinal de entrada em malha aberta (PRBS, `OndaPrbs::onda_prbs()`); `0` em malha fechada | Volts | `*sinal_entrada_ma` (o parâmetro da função chama-se `ampl`, mas quem chama passa `sinal_entrada_ma` — nome interno enganoso) |
+| 4 | Sinal de entrada em malha aberta (PRBS, `OndaPrbs::onda_prbs()`); em malha fechada, mantém o último valor da malha aberta (o firmware não zera a variável) | Volts | `*sinal_entrada_ma` (o parâmetro da função chama-se `ampl`, mas quem chama passa `sinal_entrada_ma` — nome interno enganoso) |
 | 5 | **Repetição exata da coluna 4** — o firmware imprime a mesma variável duas vezes; comentário no código diz "estruturas reservas de envio de dados" (reservado para uso futuro, não usado hoje) | Volts | `*ampl` (mesmo valor da coluna 4) |
 | 6 | Tempo decorrido do ensaio, incrementos de `Ts = 0,02` s | segundos | `*t` |
 
@@ -64,3 +65,14 @@ Sem metadados explícitos nos arquivos, a natureza de cada ensaio só pode ser i
   - Blocos de 09/09 e 13-14/09/2023: novos ensaios, possivelmente com referência em degrau/onda quadrada (coluna 0 = 30.0 em vez de 0.0) sugerindo teste de **resposta ao degrau em malha fechada com PID** (validação do controlador após a etapa de identificação), já que o valor de referência aparece não-nulo desde o início.
 
 **Nota**: essa interpretação é uma inferência razoável a partir do código e dos primeiros valores lidos (não foi feita leitura integral dos 9 arquivos); para confirmar o tipo exato de cada ensaio (degrau/PRBS/senoidal) seria necessário plotar a coluna 0 (referência) e 4 (entrada MA) ao longo de cada arquivo completo.
+
+## Catálogo (2026-09-13)
+
+Classificação feita a partir dos próprios dados e publicada em
+`softwares_aeropendulo/src_interface/dados_de_ensaio/README.md`: 6 ensaios PRBS em malha aberta
+(níveis 1,0↔1,3 V ou 1,0↔1,5 V) e 3 em malha fechada com onda quadrada — dois completos entre
+0° e 10° (trocas a cada 2,5 s e 3,3 s), usados nas métricas de malha fechada, e um curto de 11 s.
+O ensaio de identificação é `arquivo_9_9_2023_13_33_24.csv`. Não há ensaio dente de serra ou
+senoidal gravado, e os parâmetros dos ensaios de malha fechada (0,2 e 0,15 Hz, 10°) diferem dos
+citados no texto da monografia (0,5 Hz, 15°).
+
