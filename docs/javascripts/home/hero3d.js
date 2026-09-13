@@ -119,14 +119,15 @@ function iniciar(el) {
   haste.position.y = -L / 2;
   braco.add(haste);
 
-  // Motor perpendicular à haste, no plano de rotação; hélice na ponta do motor.
+  // Motor perpendicular à haste, apontando para o lado em que o braço sobe (+x local, a
+  // tangente do movimento para θ crescente); a hélice na ponta do motor puxa nessa direção.
   const motor = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.26, 28), matTinta);
   motor.rotation.z = Math.PI / 2;
-  motor.position.set(-0.1, -L, 0);
+  motor.position.set(0.1, -L, 0);
   braco.add(motor);
 
   const helice = new THREE.Group();
-  helice.position.set(-0.25, -L, 0);
+  helice.position.set(0.25, -L, 0);
   braco.add(helice);
   const cuboHelice = new THREE.Mesh(new THREE.SphereGeometry(0.03, 16, 12), matTinta);
   helice.add(cuboHelice);
