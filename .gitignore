@@ -34,3 +34,9 @@ apresentacao/
 
 # Worktrees de execução (superpowers:using-git-worktrees)
 .worktrees/
+
+# Artifacts de execução do Superpowers
+artifacts/
+
+# Publicações (repositório privado separado)
+publicacoes/

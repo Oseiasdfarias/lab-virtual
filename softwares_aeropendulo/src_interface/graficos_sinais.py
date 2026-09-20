@@ -34,7 +34,10 @@ plt.rcParams.update({
     'axes.titlecolor': "#2B2B2B",
     'axes.titleweight': "bold"})
 
-mpl.use('TkAgg')
+try:
+    mpl.use('TkAgg')
+except ImportError:
+    pass
 
 
 class GraficosSinais(GraficosSinaisInterface):
