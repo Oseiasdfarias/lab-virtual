@@ -1505,18 +1505,10 @@
     </div>
   </div>
   <figure class="lv-home-hero__visual">
-    <div class="lv-hero3d" data-lv-hero3d>
-      <div class="lv-hero3d__fallback" hidden>
-        <img src="favicon.svg" alt="Ícone do Laboratório Virtual" width="160" height="160">
-      </div>
-      <div class="lv-hero3d__hud" aria-live="off">
-        <span data-lv-theta>θ = 0,0°</span>
-        <span data-lv-volt>V = 0,0 V</span>
-      </div>
+    <div class="lv-hero3d">
+      <iframe src="assets/simulador/aeropendulo_3d.html?min=1" style="width: 100%; height: 100%; border: none;" title="Gêmeo Digital 3D do Aeropêndulo"></iframe>
     </div>
-    <figcaption>Arraste para girar. O braço responde a degraus de 0 a 2,5 V segundo o modelo
-    linearizado da <a href="modelagem/">Modelagem Matemática</a> — uma simulação ilustrativa,
-    não dados do protótipo.</figcaption>
+    <figcaption>Arraste para orbitar, use o scroll para zoom. O modelo 3D mecatrônico reproduz o protótipo real com base naval, mastro, potenciômetro de precisão e eletrônica embarcada. Veja mais em <a href="gemeo-digital/">Gêmeo Digital</a>.</figcaption>
   </figure>
 </section>
 
@@ -1634,10 +1626,6 @@
 
 </div>
 
-<script type="importmap">
-{ "imports": { "three": "./javascripts/vendor/three/three.module.min.js" } }
-</script>
-<script type="module" src="javascripts/home/hero3d.js"></script>
 <script src="javascripts/vendor/d3/d3.min.js" defer></script>
 <script src="javascripts/home/arquitetura.js" defer></script>
 
@@ -1793,6 +1781,8 @@
         <script src="javascripts/mathjax.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="javascripts/theme_sync.js"></script>
       
     
   </body>

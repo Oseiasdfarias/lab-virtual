@@ -2034,13 +2034,62 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 <span class="normal">243</span>
 <span class="normal">244</span>
 <span class="normal">245</span>
-<span class="normal">246</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnimacaoAeropendulo</span><span class="p">(</span><span class="n">AnimacaoAeropenduloInterface</span><span class="p">):</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnimacaoAeropendulo</span><span class="p">(</span><span class="n">AnimacaoAeropenduloInterface</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Classe que implementa a aminação do Aeropêndulo.</span>
 
 <span class="sd">    Atributo:</span>
 <span class="sd">        comprimento_braco: tamanho do braço do Aeropêndulo.</span>
 <span class="sd">    """</span>
+
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comprimento_braco</span><span class="o">=</span><span class="mf">4.4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Parâmetros do Aeropêndulo</span>
 <span class="w">        </span><span class="sd">"""Cria a cena do VPython e desenha o aeropêndulo e a hélice.</span>
@@ -2049,13 +2098,18 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 <span class="sd">            comprimento_braco: comprimento do braço no modelo 3D, em unidades da cena.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">comprimento_braco</span> <span class="o">=</span> <span class="n">comprimento_braco</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">canvas</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"&lt;center&gt;&lt;h1&gt;Aeropêndulo&lt;/h1&gt;&lt;center/&gt;"</span><span class="p">,</span>
-                               <span class="n">width</span><span class="o">=</span><span class="mi">650</span><span class="p">,</span>
-                               <span class="n">height</span><span class="o">=</span><span class="mi">580</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">autoscale</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-                               <span class="n">center</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                               <span class="n">background</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="mf">1.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span>
-                               <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
-                               <span class="n">forward</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">canvas</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">"&lt;center&gt;&lt;h1&gt;Aeropêndulo&lt;/h1&gt;&lt;center/&gt;"</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="mi">650</span><span class="p">,</span>
+            <span class="n">height</span><span class="o">=</span><span class="mi">580</span><span class="p">,</span>
+            <span class="n">align</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span>
+            <span class="n">autoscale</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="nb">range</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+            <span class="n">center</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">background</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="mf">1.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
+            <span class="n">forward</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">range</span> <span class="o">=</span> <span class="mi">6</span>
         <span class="c1"># chamando a função para criar a aminação gráfica do Aeropêndulo.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">aeropendulo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__aminacao</span><span class="p">()</span>
@@ -2070,36 +2124,66 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 <span class="sd">        Returns:</span>
 <span class="sd">            Retorna um objeto (vpython) que contêm a estrutura do Aeropêndulo.</span>
 <span class="sd">        """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.85</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
-                           <span class="n">texture</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">textures</span><span class="o">.</span><span class="n">wood</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">parede</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.55</span><span class="p">),</span>
-                             <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
-                             <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="n">shininess</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sitio</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.45</span><span class="p">),</span>
-                             <span class="n">text</span><span class="o">=</span><span class="s2">"AEROPÊNDULO"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
-                             <span class="n">align</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.85</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+            <span class="n">texture</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">textures</span><span class="o">.</span><span class="n">wood</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parede</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.55</span><span class="p">),</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">),</span>
+            <span class="n">shininess</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sitio</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.45</span><span class="p">),</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">"AEROPÊNDULO"</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">),</span>
+            <span class="n">align</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span>
+            <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__desenhar_pendulo</span><span class="p">()</span>
 
-        <span class="c1"># Eixo de sustentação.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">eixo</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">cylinder</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span>
-                                <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span>
-                                <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+        <span class="c1"># Eixo de sustentação metálico.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eixo</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">cylinder</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span>
+            <span class="n">radius</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span>
+            <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">),</span>
+            <span class="n">shininess</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+        <span class="p">)</span>
 
-        <span class="c1"># Estrutura de sustentação do aeropêndulo.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">b1</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
-                         <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">))</span>
+        <span class="c1"># Estrutura vertical de compensado e travessa de suporte.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b1</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
+            <span class="n">texture</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">textures</span><span class="o">.</span><span class="n">wood</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.58</span><span class="p">),</span>
+        <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">b2</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span>
-                         <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b2</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">),</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span>
+            <span class="n">texture</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">textures</span><span class="o">.</span><span class="n">wood</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">),</span>
+        <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">logo</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.799</span><span class="p">),</span>
-                           <span class="n">texture</span><span class="o">=</span><span class="s2">"https://i.imgur.com/D2xnkpF.png"</span><span class="p">,</span>
-                           <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logo</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.699</span><span class="p">),</span>
+            <span class="n">texture</span><span class="o">=</span><span class="s2">"https://i.imgur.com/D2xnkpF.png"</span><span class="p">,</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+        <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">ufpa</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.7</span><span class="p">),</span> <span class="n">text</span><span class="o">=</span><span class="s2">"UFPA"</span><span class="p">,</span>
-                            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-                            <span class="n">align</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ufpa</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.6</span><span class="p">),</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">"UFPA"</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+            <span class="n">height</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">align</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span>
+            <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span>
 
@@ -2107,33 +2191,42 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 <span class="w">        </span><span class="sd">"""Cria as pás da hélice: uma sempre visível e três extras, inicialmente ocultas,</span>
 <span class="sd">        defasadas de 45° entre si.</span>
 <span class="sd">        """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                             <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-                             <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">),</span>
+            <span class="n">shininess</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+        <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                              <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-                              <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">),</span>
+            <span class="n">shininess</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                            <span class="n">angle</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                              <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-                              <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">),</span>
+            <span class="n">shininess</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                            <span class="n">angle</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                              <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-                              <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">),</span>
+            <span class="n">shininess</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                            <span class="n">angle</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">vp</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">4.</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mi">3</span> <span class="o">*</span> <span class="n">vp</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">4.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
@@ -2156,28 +2249,19 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 <span class="sd">        Args:</span>
 <span class="sd">            angle: ângulo de rotação, em radianos.</span>
 <span class="sd">        """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                           <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
-                           <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                            <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
-                            <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                            <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
-                            <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                            <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
-                            <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">update_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ts</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-
 <span class="w">        </span><span class="sd">"""Faz a hélice acompanhar o braço e girar.</span>
 
 <span class="sd">        Realinha as pás ao eixo do braço, gira-as em torno do pivô de `angle * ts` radianos</span>
@@ -2201,24 +2285,24 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
         <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                           <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="o">*</span><span class="n">ts</span><span class="p">,</span>
-                           <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
+            <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                            <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="o">*</span><span class="n">ts</span><span class="p">,</span>
-                            <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
+            <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                            <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="o">*</span><span class="n">ts</span><span class="p">,</span>
-                            <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
+            <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                            <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="o">*</span><span class="n">ts</span><span class="p">,</span>
-                            <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
+            <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
         <span class="c1"># obs tentando ajustar o diro das hélices apenas para um lado ....</span>
@@ -2227,7 +2311,7 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
         <span class="c1"># else:</span>
         <span class="c1">#     ag = -0.8</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.09</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.09</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.09</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.09</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.09</span><span class="p">)</span>
@@ -2235,28 +2319,40 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
     <span class="k">def</span><span class="w"> </span><span class="nf">__desenhar_pendulo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Braço do Aeropêndulo.</span>
 <span class="w">        </span><span class="sd">"""Desenha o braço e o conjunto do motor e os agrupa no objeto `self.pendulo`."""</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">barra</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                            <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">comprimento_braco</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
-                            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">barra</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.18</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">comprimento_braco</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">),</span>
+            <span class="n">shininess</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+        <span class="p">)</span>
 
-        <span class="c1"># Base que acopla o motor ao braço.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">base_motor</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">cylinder</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
-                                      <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                                      <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">))</span>
-        <span class="c1"># Armadura do motor.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">base2_motor</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                                  <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">),</span>
-                                  <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="c1"># Suporte que acopla o motor ao braço (usinagem em alumínio).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_motor</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">cylinder</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">radius</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span>
+            <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">),</span>
+            <span class="n">shininess</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># Carcaça do motor Coreless DC.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base2_motor</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">),</span>
+            <span class="n">shininess</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+        <span class="p">)</span>
 
-        <span class="c1"># Eixo que da hélice do motor</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">base_helice</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">cylinder</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-                                       <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                                       <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">))</span>
+        <span class="c1"># Eixo metálico da hélice do motor.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_helice</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">cylinder</span><span class="p">(</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">radius</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+            <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">),</span>
+            <span class="n">shininess</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="c1"># Motor completo.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">motor</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">compound</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">base_motor</span><span class="p">,</span>
-                                  <span class="bp">self</span><span class="o">.</span><span class="n">base2_motor</span><span class="p">,</span>
-                                  <span class="bp">self</span><span class="o">.</span><span class="n">base_helice</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">motor</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">compound</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">base_motor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">base2_motor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_helice</span><span class="p">])</span>
 
         <span class="c1"># Aeropêndulo</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">compound</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">barra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">motor</span><span class="p">])</span>
@@ -2317,111 +2413,43 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__aminacao</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">vp</span><span class="o">.</span><span class="n">compound</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Classe que implementa o Aeropêndulo.</span>
-
-<span class="sd">    Usa o `self.comprimento_braco` definido em `__init__`.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        Retorna um objeto (vpython) que contêm a estrutura do Aeropêndulo.</span>
-<span class="sd">    """</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.85</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
-                       <span class="n">texture</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">textures</span><span class="o">.</span><span class="n">wood</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">parede</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.55</span><span class="p">),</span>
-                         <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
-                         <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="n">shininess</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">sitio</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.45</span><span class="p">),</span>
-                         <span class="n">text</span><span class="o">=</span><span class="s2">"AEROPÊNDULO"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
-                         <span class="n">align</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">__desenhar_pendulo</span><span class="p">()</span>
-
-    <span class="c1"># Eixo de sustentação.</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">eixo</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">cylinder</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span>
-                            <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span>
-                            <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
-
-    <span class="c1"># Estrutura de sustentação do aeropêndulo.</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">b1</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
-                     <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">))</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">b2</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span>
-                     <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">))</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">logo</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.799</span><span class="p">),</span>
-                       <span class="n">texture</span><span class="o">=</span><span class="s2">"https://i.imgur.com/D2xnkpF.png"</span><span class="p">,</span>
-                       <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">))</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">ufpa</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.7</span><span class="p">),</span> <span class="n">text</span><span class="o">=</span><span class="s2">"UFPA"</span><span class="p">,</span>
-                        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-                        <span class="n">align</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="softwares_aeropendulo.simulador_aeropendulo.animacao_aeropendulo.AnimacaoAeropendulo.__helice" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">__helice</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
-
-</h2>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Cria as pás da hélice: uma sempre visível e três extras, inicialmente ocultas,
-defasadas de 45° entre si.</p>
-
-
-            <details class="mkdocstrings-source">
-              <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 89</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
 <span class="normal"> 90</span>
 <span class="normal"> 91</span>
 <span class="normal"> 92</span>
@@ -2454,37 +2482,183 @@ defasadas de 45° entre si.</p>
 <span class="normal">119</span>
 <span class="normal">120</span>
 <span class="normal">121</span>
-<span class="normal">122</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__helice</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">122</span>
+<span class="normal">123</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__aminacao</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">vp</span><span class="o">.</span><span class="n">compound</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Classe que implementa o Aeropêndulo.</span>
+
+<span class="sd">    Usa o `self.comprimento_braco` definido em `__init__`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Retorna um objeto (vpython) que contêm a estrutura do Aeropêndulo.</span>
+<span class="sd">    """</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.85</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+        <span class="n">texture</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">textures</span><span class="o">.</span><span class="n">wood</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">parede</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.55</span><span class="p">),</span>
+        <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">),</span>
+        <span class="n">shininess</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sitio</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.45</span><span class="p">),</span>
+        <span class="n">text</span><span class="o">=</span><span class="s2">"AEROPÊNDULO"</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">),</span>
+        <span class="n">align</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span>
+        <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">__desenhar_pendulo</span><span class="p">()</span>
+
+    <span class="c1"># Eixo de sustentação metálico.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">eixo</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">cylinder</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span>
+        <span class="n">radius</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span>
+        <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">),</span>
+        <span class="n">shininess</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Estrutura vertical de compensado e travessa de suporte.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">b1</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span>
+        <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
+        <span class="n">texture</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">textures</span><span class="o">.</span><span class="n">wood</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.58</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">b2</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">),</span>
+        <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span>
+        <span class="n">texture</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">textures</span><span class="o">.</span><span class="n">wood</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">logo</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.699</span><span class="p">),</span>
+        <span class="n">texture</span><span class="o">=</span><span class="s2">"https://i.imgur.com/D2xnkpF.png"</span><span class="p">,</span>
+        <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">ufpa</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.6</span><span class="p">),</span>
+        <span class="n">text</span><span class="o">=</span><span class="s2">"UFPA"</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+        <span class="n">height</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">align</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span>
+        <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="softwares_aeropendulo.simulador_aeropendulo.animacao_aeropendulo.AnimacaoAeropendulo.__helice" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">__helice</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Cria as pás da hélice: uma sempre visível e três extras, inicialmente ocultas,
+defasadas de 45° entre si.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__helice</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Cria as pás da hélice: uma sempre visível e três extras, inicialmente ocultas,</span>
 <span class="sd">    defasadas de 45° entre si.</span>
 <span class="sd">    """</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                         <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-                         <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">),</span>
+        <span class="n">shininess</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="p">)</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                          <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-                          <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">),</span>
+        <span class="n">shininess</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                        <span class="n">angle</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                          <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-                          <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">),</span>
+        <span class="n">shininess</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                        <span class="n">angle</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                          <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-                          <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">),</span>
+        <span class="n">shininess</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                        <span class="n">angle</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">vp</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">4.</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mi">3</span> <span class="o">*</span> <span class="n">vp</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">4.0</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
@@ -2510,11 +2684,11 @@ defasadas de 45° entre si.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">pause_giro</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">pause_giro</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Torna visíveis as três pás extras da hélice."""</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>
@@ -2541,11 +2715,11 @@ defasadas de 45° entre si.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">girar_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">girar_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Oculta as três pás extras da hélice."""</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
@@ -2603,54 +2777,38 @@ defasadas de 45° entre si.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span>
-<span class="normal">142</span>
-<span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span>
-<span class="normal">156</span>
-<span class="normal">157</span>
-<span class="normal">158</span>
-<span class="normal">159</span>
-<span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_posicao_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_posicao_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Gira as pás da hélice em torno do pivô.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        angle: ângulo de rotação, em radianos.</span>
 <span class="sd">    """</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                       <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
-                       <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                        <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
-                        <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                        <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
-                        <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                        <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
-                        <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2723,44 +2881,7 @@ e aplica um pequeno giro em torno do eixo do motor.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
-<span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span>
-<span class="normal">166</span>
-<span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span>
-<span class="normal">170</span>
-<span class="normal">171</span>
-<span class="normal">172</span>
-<span class="normal">173</span>
-<span class="normal">174</span>
-<span class="normal">175</span>
-<span class="normal">176</span>
-<span class="normal">177</span>
-<span class="normal">178</span>
-<span class="normal">179</span>
-<span class="normal">180</span>
-<span class="normal">181</span>
-<span class="normal">182</span>
-<span class="normal">183</span>
-<span class="normal">184</span>
-<span class="normal">185</span>
-<span class="normal">186</span>
-<span class="normal">187</span>
-<span class="normal">188</span>
-<span class="normal">189</span>
-<span class="normal">190</span>
-<span class="normal">191</span>
-<span class="normal">192</span>
-<span class="normal">193</span>
-<span class="normal">194</span>
-<span class="normal">195</span>
-<span class="normal">196</span>
-<span class="normal">197</span>
-<span class="normal">198</span>
-<span class="normal">199</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">199</span>
 <span class="normal">200</span>
 <span class="normal">201</span>
 <span class="normal">202</span>
@@ -2777,84 +2898,9 @@ e aplica um pequeno giro em torno do eixo do motor.</p>
 <span class="normal">213</span>
 <span class="normal">214</span>
 <span class="normal">215</span>
-<span class="normal">216</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ts</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="w">    </span><span class="sd">"""Faz a hélice acompanhar o braço e girar.</span>
-
-<span class="sd">    Realinha as pás ao eixo do braço, gira-as em torno do pivô de `angle * ts` radianos</span>
-<span class="sd">    e aplica um pequeno giro em torno do eixo do motor.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        angle: velocidade angular do braço, em rad/s.</span>
-<span class="sd">        ts: intervalo desde a amostra anterior, em segundos.</span>
-<span class="sd">    """</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                       <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="o">*</span><span class="n">ts</span><span class="p">,</span>
-                       <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                        <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="o">*</span><span class="n">ts</span><span class="p">,</span>
-                        <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                        <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="o">*</span><span class="n">ts</span><span class="p">,</span>
-                        <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                        <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="o">*</span><span class="n">ts</span><span class="p">,</span>
-                        <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-
-    <span class="c1"># obs tentando ajustar o diro das hélices apenas para um lado ....</span>
-    <span class="c1"># if x[1] + interface.valor_angle &lt; np.pi/2:</span>
-    <span class="c1">#     ag = 0.3</span>
-    <span class="c1"># else:</span>
-    <span class="c1">#     ag = -0.8</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.09</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.09</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.09</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.09</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="softwares_aeropendulo.simulador_aeropendulo.animacao_aeropendulo.AnimacaoAeropendulo.__desenhar_pendulo" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">__desenhar_pendulo</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
-
-</h2>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Desenha o braço e o conjunto do motor e os agrupa no objeto <code>self.pendulo</code>.</p>
-
-
-            <details class="mkdocstrings-source">
-              <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">218</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
 <span class="normal">219</span>
 <span class="normal">220</span>
 <span class="normal">221</span>
@@ -2882,31 +2928,165 @@ e aplica um pequeno giro em torno do eixo do motor.</p>
 <span class="normal">243</span>
 <span class="normal">244</span>
 <span class="normal">245</span>
-<span class="normal">246</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__desenhar_pendulo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ts</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Faz a hélice acompanhar o braço e girar.</span>
+
+<span class="sd">    Realinha as pás ao eixo do braço, gira-as em torno do pivô de `angle * ts` radianos</span>
+<span class="sd">    e aplica um pequeno giro em torno do eixo do motor.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        angle: velocidade angular do braço, em rad/s.</span>
+<span class="sd">        ts: intervalo desde a amostra anterior, em segundos.</span>
+<span class="sd">    """</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span><span class="o">.</span><span class="n">axis</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
+        <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
+        <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
+        <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
+        <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># obs tentando ajustar o diro das hélices apenas para um lado ....</span>
+    <span class="c1"># if x[1] + interface.valor_angle &lt; np.pi/2:</span>
+    <span class="c1">#     ag = 0.3</span>
+    <span class="c1"># else:</span>
+    <span class="c1">#     ag = -0.8</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.09</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.09</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.09</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.09</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="softwares_aeropendulo.simulador_aeropendulo.animacao_aeropendulo.AnimacaoAeropendulo.__desenhar_pendulo" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">__desenhar_pendulo</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Desenha o braço e o conjunto do motor e os agrupa no objeto <code>self.pendulo</code>.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__desenhar_pendulo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="c1"># Braço do Aeropêndulo.</span>
 <span class="w">    </span><span class="sd">"""Desenha o braço e o conjunto do motor e os agrupa no objeto `self.pendulo`."""</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">barra</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                        <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">comprimento_braco</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
-                        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">barra</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.18</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">comprimento_braco</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">),</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">),</span>
+        <span class="n">shininess</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+    <span class="p">)</span>
 
-    <span class="c1"># Base que acopla o motor ao braço.</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">base_motor</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">cylinder</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
-                                  <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                                  <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">))</span>
-    <span class="c1"># Armadura do motor.</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">base2_motor</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                              <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">),</span>
-                              <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="c1"># Suporte que acopla o motor ao braço (usinagem em alumínio).</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">base_motor</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">cylinder</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">radius</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span>
+        <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">),</span>
+        <span class="n">shininess</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># Carcaça do motor Coreless DC.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">base2_motor</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">),</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">),</span>
+        <span class="n">shininess</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="p">)</span>
 
-    <span class="c1"># Eixo que da hélice do motor</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">base_helice</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">cylinder</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-                                   <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                                   <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">))</span>
+    <span class="c1"># Eixo metálico da hélice do motor.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">base_helice</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">cylinder</span><span class="p">(</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">radius</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+        <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">),</span>
+        <span class="n">shininess</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+    <span class="p">)</span>
 
     <span class="c1"># Motor completo.</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">motor</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">compound</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">base_motor</span><span class="p">,</span>
-                              <span class="bp">self</span><span class="o">.</span><span class="n">base2_motor</span><span class="p">,</span>
-                              <span class="bp">self</span><span class="o">.</span><span class="n">base_helice</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">motor</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">compound</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">base_motor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">base2_motor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_helice</span><span class="p">])</span>
 
     <span class="c1"># Aeropêndulo</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">compound</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">barra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">motor</span><span class="p">])</span>
@@ -3089,6 +3269,8 @@ e aplica um pequeno giro em torno do eixo do motor.</p>
         <script src="../../javascripts/mathjax.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/theme_sync.js"></script>
       
     
   </body>

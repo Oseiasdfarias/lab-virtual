@@ -797,10 +797,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#biblioteca-vpython" class="md-nav__link">
+  <a href="#simulador-interativo-3d-em-tempo-real-threejs-pbr" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Biblioteca VPython
+        🚀 Simulador Interativo 3D em Tempo Real (Three.js / PBR)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Simulador Interativo 3D em Tempo Real (Three.js / PBR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#destaques-da-nova-modelagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Destaques da Nova Modelagem:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparacao-vpython-vs-webgl-nativo-threejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparação: VPython vs. WebGL Nativo (Three.js)
       
     </span>
   </a>
@@ -808,10 +836,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#arquitetura" class="md-nav__link">
+  <a href="#arquitetura-do-software-python-legado-vpython" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Arquitetura
+        Arquitetura do Software Python (Legado VPython)
       
     </span>
   </a>
@@ -1543,10 +1571,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#biblioteca-vpython" class="md-nav__link">
+  <a href="#simulador-interativo-3d-em-tempo-real-threejs-pbr" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Biblioteca VPython
+        🚀 Simulador Interativo 3D em Tempo Real (Three.js / PBR)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Simulador Interativo 3D em Tempo Real (Three.js / PBR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#destaques-da-nova-modelagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Destaques da Nova Modelagem:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparacao-vpython-vs-webgl-nativo-threejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparação: VPython vs. WebGL Nativo (Three.js)
       
     </span>
   </a>
@@ -1554,10 +1610,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#arquitetura" class="md-nav__link">
+  <a href="#arquitetura-do-software-python-legado-vpython" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Arquitetura
+        Arquitetura do Software Python (Legado VPython)
       
     </span>
   </a>
@@ -1604,36 +1660,84 @@
 protótipo físico. Isso permite virtualizar o Aeropêndulo — observar a mesma dinâmica do
 sistema real, agora num ambiente gráfico 3D — obtendo o estado atual do braço por meio da
 comunicação serial com o microcontrolador.</p>
-<h2 id="biblioteca-vpython">Biblioteca VPython</h2>
-<p>O simulador foi desenvolvido com a biblioteca <a href="https://vpython.org/">VPython</a>, que oferece
-funções para criar objetos 3D com movimentos rotacionais e translacionais, além de plotagem
-de gráficos em tempo real. A interface final é composta de duas partes: o ambiente 3D com o
-Aeropêndulo e os gráficos do sinal de referência e de saída.</p>
-<p>Sendo desenvolvido em Python, o VPython é fácil de aprender mesmo para quem tem pouca
-experiência em programação, mas também oferece recursos avançados para uso mais experiente.
-Ao rodar uma simulação, ela é renderizada no navegador padrão do sistema operacional.</p>
-<h2 id="arquitetura">Arquitetura</h2>
-<p>O simulador é dividido em três módulos:</p>
+<hr />
+<h2 id="simulador-interativo-3d-em-tempo-real-threejs-pbr">🚀 Simulador Interativo 3D em Tempo Real (Three.js / PBR)</h2>
+<p>A evolução do Gêmeo Digital adota uma arquitetura nativa em <strong>WebGL com Three.js e PBR (Physically Based Rendering)</strong>, eliminando dependências de servidores locais e proporcionando renderização de nível industrial diretamente no navegador:</p>
+<div style="position: relative; width: 100%; height: 680px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); margin: 1.5rem 0;">
+  <iframe src="../assets/simulador/aeropendulo_3d.html" style="width: 100%; height: 100%; border: none;" title="Demonstração 3D do Aeropêndulo"></iframe>
+</div>
+
+<blockquote>
+<p>[!TIP]
+<strong>Interação com o Modelo 3D</strong>: Arraste com o botão esquerdo para orbitar a câmera, utilize o scroll do mouse para zoom e segure <code>Shift + arraste</code> para transladar a visão. Use os botões do painel lateral para alternar entre sinais de entrada (<strong>Senoidal</strong>, <strong>Quadrada</strong>, <strong>PRBS</strong> ou <strong>Degrau</strong>) ou inspecionar detalhes com os botões de <strong>Foco Eletrônica</strong> e <strong>Foco Pivô/Sensor</strong>.</p>
+</blockquote>
+<h3 id="destaques-da-nova-modelagem">Destaques da Nova Modelagem:</h3>
+<ol>
+<li><strong>Fidelidade Mecatrônica Total</strong>: Mastro vertical com reforço triangular naval, eixo apoiado em mancal axial com transferidor angular graduado de <span class="arithmatex">\(0^\circ\)</span> a <span class="arithmatex">\(170^\circ\)</span>, haste em fibra de carbono 3K, motor Coreless e hélice bipá balanceada com rotação proporcional ao empuxo.</li>
+<li><strong>Painel Dinâmico Minimizável e Responsivo</strong>: O painel de controle lateral pode ser minimizado com um único clique no botão de seta ou no cabeçalho, recolhendo-se em uma pílula compacta de telemetria contínua (<span class="arithmatex">\(\theta\)</span> e <span class="arithmatex">\(V\)</span>) para desobstruir a visualização do modelo 3D. O estado inicial pode ser controlado via parâmetro de URL (<code>?min=1</code> ou <code>?compact=1</code>).</li>
+<li><strong>Sincronização Bidirecional de Tema (Claro / Escuro)</strong>: O simulador 3D sincroniza sua iluminação de estúdio, grid e plano de fundo automaticamente com o tema da documentação (<strong>MkDocs Material</strong>) via <code>postMessage</code> e <code>MutationObserver</code> (<code>javascripts/theme_sync.js</code>). Ao alternar o tema do site no canto superior da página, o ambiente 3D acompanha a transição em tempo real.</li>
+<li><strong>Arquitetura Eletroeletrônica Completa</strong>:</li>
+<li><strong>Estágio de Baixa Tensão (3.3V)</strong>: Módulo microcontrolador <strong>ESP32 TTGO T1</strong> com acabamento em verniz fosco, vias passantes metalizadas (PTH), serigrafia com pinout técnico detalhado, filtro antialiasing RC passivo (<span class="arithmatex">\(f_c \approx 80\text{ Hz}\)</span>) e optoacopladores lógicos.</li>
+<li><strong>Estágio de Alta Potência (5V/3A)</strong>: Placa <strong>Driver MOSFET Ponte H</strong> com barramentos maciços de corrente, dissipador térmico aletado de alto fluxo em alumínio anodizado preto e capacitores de filtro low-ESR.</li>
+<li><strong>Alimentação Industrial</strong>: Fonte chaveada industrial com chassi perfurado em colmeia (<em>honeycomb</em>) e chave geral iluminada.</li>
+<li><strong>Roteamento Limpo</strong>: Cabos de alta corrente 18 AWG e chicote blindado do sensor potenciômetro passando por canaletas estruturais sem sobreposição de sólidos.</li>
+</ol>
+<hr />
+<h2 id="comparacao-vpython-vs-webgl-nativo-threejs">Comparação: VPython vs. WebGL Nativo (Three.js)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Característica</th>
+<th style="text-align: left;">VPython (Legado)</th>
+<th style="text-align: left;">Three.js / WebGL (Atual &amp; Futuro)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Arquitetura</strong></td>
+<td style="text-align: left;">Processo Python local acoplado a backend WebSocket</td>
+<td style="text-align: left;">Motor WebGL cliente nativo rodando em GPU acelerada</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Fidelidade Visual</strong></td>
+<td style="text-align: left;">Formas geométricas simples (cores planas, sem PBR)</td>
+<td style="text-align: left;">Materiais PBR realistas com Normal/Bump Maps e serigrafia</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Eletrônica e Fiação</strong></td>
+<td style="text-align: left;">Apenas braço e mastro esquemáticos</td>
+<td style="text-align: left;">Eletrônica completa (ESP32, Driver, Fonte, Sensor, Chicotes)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Dependências</strong></td>
+<td style="text-align: left;">Requer <code>vpython</code>, <code>setuptools &lt; 82</code> e servidor local</td>
+<td style="text-align: left;">Roda diretamente em qualquer browser, WebViews ou Nuvem</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Portabilidade</strong></td>
+<td style="text-align: left;">Restrito ao ambiente Python desktop</td>
+<td style="text-align: left;">Universal (Desktop, Mobile, Tablet, LMS e Nuvem RLaaS)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="arquitetura-do-software-python-legado-vpython">Arquitetura do Software Python (Legado VPython)</h2>
+<p>O simulador original em Python é dividido em três módulos:</p>
 <ul>
 <li><strong>Módulo de gráficos de linha</strong> — plota os sinais em tempo real (posição angular,
   referência, erro, sinal de controle).</li>
-<li><strong>Módulo de animação 3D</strong> — desenha e movimenta a estrutura do Aeropêndulo.</li>
+<li><strong>Módulo de animação 3D</strong> — desenha e movimenta a estrutura do Aeropêndulo com primitivas VPython.</li>
 <li><strong>Módulo Simulador</strong> — integra os dois anteriores e atualiza seus estados a partir dos
   dados recebidos da <a href="../software/interface-grafica/">Interface Gráfica de Usuário</a>, que
   fornece o ângulo real do protótipo; a velocidade angular é calculada internamente pelo
-  próprio módulo, por diferença finita entre amostras consecutivas do ângulo. É essa
-  integração que faz o Gêmeo Digital reproduzir a dinâmica do protótipo físico.</li>
+  próprio módulo, por diferença finita entre amostras consecutivas do ângulo.</li>
 </ul>
 <p>A classe principal (<code>Simulador</code>, em
 <a href="https://github.com/Oseiasdfarias/lab-virtual/blob/main/softwares_aeropendulo/simulador_aeropendulo/simulador.py"><code>simulador_aeropendulo/simulador.py</code></a>)
 recebe como parâmetros uma instância de gráficos e uma de animação, e expõe métodos para
-rotacionar o braço e atualizar os estados do sistema (ângulo, referência e tempo) a cada
-novo dado recebido do protótipo — veja a
+rotacionar o braço e atualizar os estados do sistema a cada novo dado recebido do protótipo — veja a
 <a href="../referencia/animacao-aeropendulo/">referência dos módulos</a>
 para os detalhes de cada classe.</p>
-<p>Para reproduzir a dinâmica no Gêmeo Digital, a classe <code>Simulador</code> é importada pelo software
-que implementa a comunicação com o protótipo real — ver
-<a href="../software/interface-grafica/">Interface Gráfica de Usuário</a>.</p>
 
 
 
@@ -1799,6 +1903,8 @@ que implementa a comunicação com o protótipo real — ver
         <script src="../javascripts/mathjax.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/theme_sync.js"></script>
       
     
   </body>
