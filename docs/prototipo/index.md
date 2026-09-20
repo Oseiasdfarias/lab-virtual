@@ -22,8 +22,9 @@ author: Oséias Farias
 | Alimentação | Fonte chaveada de 5 V, 25 W | Alimenta o driver e o motor |
 | Filtro do sensor | Resistor e capacitor (filtro RC série) | Reduz o ruído do sinal do potenciômetro |
 
-<div class="lv-aeropendulo-container">
-<svg class="lv-aeropendulo-svg" viewBox="20 0 190 200" width="340" xmlns="http://www.w3.org/2000/svg">
+<figure class="lv-aeropendulo-figure" markdown="span">
+  <div class="lv-aeropendulo-card">
+<svg viewBox="20 0 190 200" width="340" xmlns="http://www.w3.org/2000/svg">
   <!-- Envelope dinâmico de oscilação angular -->
   <path d="M 110.4 100.7 A 60.6 60.6 0 0 0 163.6 100.7" fill="none" stroke="#D0D0D4" stroke-width="0.5" stroke-dasharray="2.5,2.5" />
   <line x1="137" y1="46.2" x2="110.4" y2="100.7" stroke="#E0E0E4" stroke-width="0.4" stroke-dasharray="1.5,2.5" />
@@ -101,8 +102,9 @@ author: Oséias Farias
   <circle cx="137" cy="106.8" r="1.8" fill="#F5F5F7" />
   <circle cx="137" cy="106.8" r="0.8" fill="#1D1D1F" />
 </svg>
-<p><em>Figura — Perfil técnico do protótipo com as dimensões reais: base hexagonal de compensado naval 15 mm de espessura (D = 220 mm), mastro vertical de compensado (H = 300 mm), travessa horizontal de alumínio (W = 45 mm), haste de fibra de carbono 3×3×2 mm (L = 96 mm por lado do eixo de rotação no pivô).</em></p>
-</div>
+  </div>
+  <figcaption>Figura — Perfil técnico do protótipo com as dimensões reais: base hexagonal de compensado naval 15 mm de espessura (D = 220 mm), mastro vertical de compensado (H = 300 mm), travessa horizontal de alumínio (W = 45 mm), haste de fibra de carbono 3×3×2 mm (L = 96 mm por lado do eixo de rotação no pivô).</figcaption>
+</figure>
 
 A monografia não informa os valores do resistor e do capacitor do filtro RC. Sobre a fonte, o
 título da figura fala em 2 A e o texto em 5 A; os 25 W correspondem a 5 V × 5 A.

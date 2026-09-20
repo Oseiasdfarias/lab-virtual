@@ -684,32 +684,48 @@
   }
 }
 
-/* ---------- Ilustração do Aeropêndulo (Modo Claro e Modo Escuro) ---------- */
+/* ---------- Ilustração Técnica do Aeropêndulo (Blueprint Card) ---------- */
 
-.lv-aeropendulo-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 1.5rem 0;
+.lv-aeropendulo-figure {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100% !important;
+  margin: 2rem auto !important;
+  clear: both !important;
 }
 
-.lv-aeropendulo-svg {
-  display: inline-block;
+.lv-aeropendulo-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid var(--lv-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  margin: 0 auto 0.75rem auto;
+}
+
+.lv-aeropendulo-card svg {
+  display: block;
+  margin: 0 auto;
   max-width: 100%;
   height: auto;
-  border-radius: 6px;
+}
+
+[data-md-color-scheme="slate"] .lv-aeropendulo-card {
   background-color: #ffffff;
-  padding: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.06);
-  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
-[data-md-color-scheme="slate"] .lv-aeropendulo-svg {
-  background-color: #1a1a1e;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-
-/* Inversão adaptativa suave para o desenho no dark mode */
-[data-md-color-scheme="slate"] .lv-aeropendulo-svg {
-  filter: invert(0.92) hue-rotate(180deg);
+.lv-aeropendulo-figure figcaption {
+  display: block !important;
+  text-align: center !important;
+  margin-top: 0.5rem !important;
+  font-size: 0.75rem !important;
+  color: var(--md-default-fg-color--light) !important;
 }

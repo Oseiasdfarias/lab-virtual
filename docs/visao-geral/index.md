@@ -24,8 +24,9 @@ construção acessível.
 
 O laboratório é composto por quatro subsistemas que operam de forma integrada:
 
-<div class="lv-aeropendulo-container">
-<svg class="lv-aeropendulo-svg" viewBox="20 0 190 200" width="320" xmlns="http://www.w3.org/2000/svg">
+<figure class="lv-aeropendulo-figure" markdown="span">
+  <div class="lv-aeropendulo-card">
+<svg viewBox="20 0 190 200" width="320" xmlns="http://www.w3.org/2000/svg">
   <!-- Envelope dinâmico de oscilação angular -->
   <path d="M 110.4 100.7 A 60.6 60.6 0 0 0 163.6 100.7" fill="none" stroke="#D0D0D4" stroke-width="0.5" stroke-dasharray="2.5,2.5" />
   <line x1="137" y1="46.2" x2="110.4" y2="100.7" stroke="#E0E0E4" stroke-width="0.4" stroke-dasharray="1.5,2.5" />
@@ -103,8 +104,9 @@ O laboratório é composto por quatro subsistemas que operam de forma integrada:
   <circle cx="137" cy="106.8" r="1.8" fill="#F5F5F7" />
   <circle cx="137" cy="106.8" r="0.8" fill="#1D1D1F" />
 </svg>
-<p><em>Figura — Ilustração técnica do aeropêndulo: base hexagonal de compensado naval (D = 220 mm), mastro (H = 300 mm), travessa de mancal (W = 45 mm), haste de fibra de carbono (L = 96 mm por lado do pivô) e conjunto motor/hélice na extremidade.</em></p>
-</div>
+  </div>
+  <figcaption>Figura — Ilustração técnica do aeropêndulo: base hexagonal de compensado naval (D = 220 mm), mastro (H = 300 mm), travessa de mancal (W = 45 mm), haste de fibra de carbono (L = 96 mm por lado do pivô) e conjunto motor/hélice na extremidade.</figcaption>
+</figure>
 
 | Subsistema | Função | Tecnologia |
 | --- | --- | --- |

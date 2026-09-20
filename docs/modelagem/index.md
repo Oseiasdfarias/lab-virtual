@@ -22,8 +22,9 @@ e a gravidade, que puxa o braço de volta para a posição de repouso na vertica
 esse balanço de torques com a segunda lei de Newton para rotação, chega-se ao modelo
 não linear do sistema:
 
-<div class="lv-aeropendulo-container">
-<svg class="lv-aeropendulo-svg" viewBox="20 0 190 200" width="340" xmlns="http://www.w3.org/2000/svg">
+<figure class="lv-aeropendulo-figure" markdown="span">
+  <div class="lv-aeropendulo-card">
+<svg viewBox="20 0 190 200" width="340" xmlns="http://www.w3.org/2000/svg">
   <!-- Envelope dinâmico de oscilação angular -->
   <path d="M 110.4 100.7 A 60.6 60.6 0 0 0 163.6 100.7" fill="none" stroke="#D0D0D4" stroke-width="0.5" stroke-dasharray="2.5,2.5" />
   <line x1="137" y1="46.2" x2="110.4" y2="100.7" stroke="#E0E0E4" stroke-width="0.4" stroke-dasharray="1.5,2.5" />
@@ -102,8 +103,9 @@ não linear do sistema:
   <!-- c·θ̇ — amortecimento no pivô -->
   <text x="150" y="50" font-size="6.5" font-weight="600" fill="#8A8A8C" font-family="IBM Plex Mono" text-anchor="start">c·θ̇</text>
 </svg>
-<p><em>Figura — Diagrama de corpo livre do aeropêndulo: θ é o ângulo da haste, τ_emp o torque de empuxo, τ_grav o torque gravitacional restaurador e c·θ̇ o amortecimento viscoso no pivô.</em></p>
-</div>
+  </div>
+  <figcaption>Figura — Diagrama de corpo livre do aeropêndulo: θ é o ângulo da haste, τ_emp o torque de empuxo, τ_grav o torque gravitacional restaurador e c·θ̇ o amortecimento viscoso no pivô.</figcaption>
+</figure>
 
 $$
 K_m V = J\ddot\theta + c\dot\theta + mgd\sin(\theta)
