@@ -93,44 +93,47 @@
       diag.classList.add("lv-zoomable-element");
       diag.setAttribute("title", "Clique para expandir o diagrama");
 
-      const modalId = "mermaid-zoom-modal-" + idx;
-      let modalHolder = document.getElementById(modalId);
-      if (!modalHolder) {
-        modalHolder = document.createElement("div");
-        modalHolder.id = modalId;
-        modalHolder.style.display = "none";
-        modalHolder.className = "lv-glightbox-inline-box lv-mermaid-modal";
-        document.body.appendChild(modalHolder);
-      }
-
       diag.addEventListener("click", (e) => {
         e.preventDefault();
         const svg = diag.querySelector("svg");
         if (!svg) return;
 
-        // Clona o SVG com todas as classes e estilos computados
+        // Clona e prepara o SVG com namespace e estilo de visualização
         const clonedSvg = svg.cloneNode(true);
-        clonedSvg.removeAttribute("id");
-        clonedSvg.style.maxWidth = "100%";
-        clonedSvg.style.height = "auto";
-        clonedSvg.style.display = "block";
+        clonedSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        
+        // Assegura largura e altura adequadas para visualização nítida
+        const bbox = svg.getBBox ? svg.getBBox() : null;
+        if (bbox && bbox.width && bbox.height) {
+          if (!clonedSvg.getAttribute("viewBox")) {
+            clonedSvg.setAttribute("viewBox", `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`);
+          }
+        }
 
-        modalHolder.innerHTML = "";
-        modalHolder.appendChild(clonedSvg);
+        const svgXml = new XMLSerializer().serializeToString(clonedSvg);
+        const svgBlob = new Blob([svgXml], { type: "image/svg+xml;charset=utf-8" });
+        const blobUrl = URL.createObjectURL(svgBlob);
 
         const lb = GLightbox({
           elements: [{
-            content: modalHolder,
-            width: "92vw",
-            height: "auto"
+            href: blobUrl,
+            type: "image",
+            title: "Diagrama de Fluxo (Mermaid)",
+            description: "Clique na imagem ou use o scroll para zoom; arraste para navegar."
           }],
           touchNavigation: true,
           zoomable: true,
           draggable: true
         });
+
+        lb.on("close", () => {
+          setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+        });
+
         lb.open();
       });
     });
+
   }
 
   // Executa após o carregamento da página e em navegações instantâneas do Material
