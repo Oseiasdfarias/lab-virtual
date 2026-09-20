@@ -1676,14 +1676,22 @@ não linear, pouco amortecida — no modelo linearizado, <span class="arithmatex
 construção acessível.</p>
 <h2 id="o-que-este-projeto-entrega">O que este projeto entrega</h2>
 <p>O laboratório é composto por quatro subsistemas que operam de forma integrada:</p>
-<div class="lv-aeropendulo-container">
-<svg class="lv-aeropendulo-svg" viewBox="20 0 190 200" width="320" xmlns="http://www.w3.org/2000/svg">
-  <!-- Envelope dinâmico de oscilação angular -->
+<figure class="lv-aeropendulo-figure">
+<br />
+<div class="lv-aeropendulo-card">
+<svg viewBox="20 0 190 200" width="320" xmlns="http://www.w3.org/2000/svg">
+  
+<!-- Envelope dinâmico de oscilação angular -->
+
+
   <path d="M 110.4 100.7 A 60.6 60.6 0 0 0 163.6 100.7" fill="none" stroke="#D0D0D4" stroke-width="0.5" stroke-dasharray="2.5,2.5" />
   <line x1="137" y1="46.2" x2="110.4" y2="100.7" stroke="#E0E0E4" stroke-width="0.4" stroke-dasharray="1.5,2.5" />
   <line x1="137" y1="46.2" x2="163.6" y2="100.7" stroke="#E0E0E4" stroke-width="0.4" stroke-dasharray="1.5,2.5" />
 
-  <!-- 1. BASE HEXAGONAL -->
+  
+<!-- 1. BASE HEXAGONAL -->
+
+
   <polygon points="58,154 78,142 144,142 166,154 144,166 78,166" fill="#F0F0F2" stroke="#1D1D1F" stroke-width="1.0" stroke-linejoin="round" />
   <polygon points="58,154 78,166 78,170 58,158" fill="#D8D8DA" stroke="#1D1D1F" stroke-width="1.0" stroke-linejoin="round" />
   <polygon points="78,166 144,166 144,170 78,170" fill="#E3E3E5" stroke="#1D1D1F" stroke-width="1.0" stroke-linejoin="round" />
@@ -1692,42 +1700,63 @@ construção acessível.</p>
   <line x1="58" y1="154" x2="166" y2="154" stroke="#BBBBBC" stroke-width="0.6" stroke-dasharray="3,2" />
   <line x1="110" y1="138" x2="110" y2="178" stroke="#D0D0D4" stroke-width="0.4" stroke-dasharray="2,2" />
   <circle cx="110" cy="154" r="1.5" fill="#1D1D1F" />
-  <!-- Cota D -->
+  
+<!-- Cota D -->
+
+
   <line x1="58" y1="180" x2="166" y2="180" stroke="#8A8A8C" stroke-width="0.5" />
   <line x1="58" y1="172" x2="58" y2="183" stroke="#8A8A8C" stroke-width="0.5" />
   <line x1="166" y1="156" x2="166" y2="183" stroke="#8A8A8C" stroke-width="0.5" />
   <rect x="101" y="181.5" width="22" height="7" fill="#F7F7F9" />
   <text x="112" y="187" font-size="6" font-weight="600" fill="#1D1D1F" font-family="IBM Plex Mono" text-anchor="middle">D=220</text>
 
-  <!-- 2. REFORÇO TRIANGULAR + MASTRO -->
+  
+<!-- 2. REFORÇO TRIANGULAR + MASTRO -->
+
+
   <polygon points="68,154 98,154 98,82" fill="#E3E3E5" stroke="#1D1D1F" stroke-width="1.1" />
   <line x1="78" y1="154" x2="98" y2="116" stroke="#C9C9CB" stroke-width="0.7"/>
   <line x1="88" y1="154" x2="98" y2="136" stroke="#C9C9CB" stroke-width="0.7"/>
   <line x1="68" y1="154" x2="108" y2="58" stroke="#D0D0D4" stroke-width="0.4" stroke-dasharray="2,3" />
   <rect x="98" y="44" width="7" height="110" fill="#E3E3E5" stroke="#1D1D1F" stroke-width="1.1" />
   <line x1="101.5" y1="28" x2="101.5" y2="175" stroke="#C0C0C4" stroke-width="0.4" stroke-dasharray="3,3" />
-  <!-- Cota H -->
+  
+<!-- Cota H -->
+
+
   <line x1="48" y1="44" x2="48" y2="154" stroke="#8A8A8C" stroke-width="0.5" />
   <line x1="45" y1="44" x2="96" y2="44" stroke="#8A8A8C" stroke-width="0.5" stroke-dasharray="1.5,1.5" />
   <line x1="45" y1="154" x2="58" y2="154" stroke="#8A8A8C" stroke-width="0.5" />
   <rect x="31" y="95" width="16" height="7" fill="#F7F7F9" />
   <text x="39" y="101" font-size="6" font-weight="600" fill="#1D1D1F" font-family="IBM Plex Mono" text-anchor="middle">H=300</text>
 
-  <!-- 3. TRAVESSA HORIZONTAL -->
+  
+<!-- 3. TRAVESSA HORIZONTAL -->
+
+
   <line x1="85" y1="46.2" x2="155" y2="46.2" stroke="#BBBBBC" stroke-width="0.5" stroke-dasharray="3,2" />
   <rect x="96" y="43" width="45" height="6.5" rx="1.5" fill="#1D1D1F" stroke="#1D1D1F" stroke-width="1.0" />
   <circle cx="101.5" cy="46.2" r="1.2" fill="#F5F5F7" />
   <circle cx="137.5" cy="46.2" r="1.2" fill="#F5F5F7" />
-  <!-- Cota W -->
+  
+<!-- Cota W -->
+
+
   <line x1="96" y1="36" x2="141" y2="36" stroke="#8A8A8C" stroke-width="0.5" />
   <line x1="96" y1="33" x2="96" y2="43" stroke="#8A8A8C" stroke-width="0.5" />
   <line x1="141" y1="33" x2="141" y2="43" stroke="#8A8A8C" stroke-width="0.5" />
   <rect x="109" y="32.5" width="19" height="7" fill="#F7F7F9" />
   <text x="118.5" y="38" font-size="6" font-weight="600" fill="#1D1D1F" font-family="IBM Plex Mono" text-anchor="middle">W=45</text>
 
-  <!-- 4. HASTE FIBRA DE CARBONO -->
+  
+<!-- 4. HASTE FIBRA DE CARBONO -->
+
+
   <rect x="136.1" y="6" width="1.8" height="96" rx="0.4" fill="#1D1D1F" />
-  <!-- Cota L -->
+  
+<!-- Cota L -->
+
+
   <line x1="172" y1="6" x2="172" y2="102" stroke="#8A8A8C" stroke-width="0.5" />
   <line x1="169" y1="6" x2="175" y2="6" stroke="#8A8A8C" stroke-width="0.5" />
   <line x1="169" y1="102" x2="175" y2="102" stroke="#8A8A8C" stroke-width="0.5" />
@@ -1735,13 +1764,19 @@ construção acessível.</p>
   <rect x="172" y="50" width="19" height="7" fill="#F7F7F9" />
   <text x="181.5" y="56" font-size="6" font-weight="600" fill="#1D1D1F" font-family="IBM Plex Mono" text-anchor="middle">L=96</text>
 
-  <!-- 5. EIXO DE ROTAÇÃO / MANCAL -->
+  
+<!-- 5. EIXO DE ROTAÇÃO / MANCAL -->
+
+
   <circle cx="137" cy="46.2" r="4.2" fill="#C9C9CB" stroke="#1D1D1F" stroke-width="1.1" />
   <circle cx="137" cy="46.2" r="2.0" fill="#1D1D1F" />
   <circle cx="137" cy="46.2" r="0.8" fill="#F5F5F7" />
   <line x1="137" y1="51" x2="137" y2="135" stroke="#8A8A8C" stroke-width="0.5" stroke-dasharray="3,3" />
 
-  <!-- 6. MOTOR + HÉLICE -->
+  
+<!-- 6. MOTOR + HÉLICE -->
+
+
   <rect x="133" y="99" width="8" height="7" rx="1.5" fill="#1D1D1F" stroke="#1D1D1F" stroke-width="0.8" />
   <circle cx="137" cy="102.5" r="1.5" fill="#F5F5F7" />
   <path d="M 134 106 C 127 102.0, 116 100.5, 109 103.0 C 107.5 104.5, 108 106.5, 111 107.5 C 120 110.5, 129 109.0, 134 107.5 Z" fill="#1D1D1F" stroke="#1D1D1F" stroke-width="0.8" stroke-linejoin="round" />
@@ -1755,9 +1790,11 @@ construção acessível.</p>
   <circle cx="137" cy="106.8" r="1.8" fill="#F5F5F7" />
   <circle cx="137" cy="106.8" r="0.8" fill="#1D1D1F" />
 </svg>
-<p><em>Figura — Ilustração técnica do aeropêndulo: base hexagonal de compensado naval (D = 220 mm), mastro (H = 300 mm), travessa de mancal (W = 45 mm), haste de fibra de carbono (L = 96 mm por lado do pivô) e conjunto motor/hélice na extremidade.</em></p>
-</div>
+  </div>
 
+<br />
+<figcaption>Figura — Ilustração técnica do aeropêndulo: base hexagonal de compensado naval (D = 220 mm), mastro (H = 300 mm), travessa de mancal (W = 45 mm), haste de fibra de carbono (L = 96 mm por lado do pivô) e conjunto motor/hélice na extremidade.</figcaption>
+</figure>
 <table>
 <thead>
 <tr>
