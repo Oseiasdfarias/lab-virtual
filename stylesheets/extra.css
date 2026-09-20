@@ -740,6 +740,8 @@
 .gslide-image img {
   border-radius: 8px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  background: #ffffff;
+  padding: 12px;
 }
 
 .gslide-title {
