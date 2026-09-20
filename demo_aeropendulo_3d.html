@@ -1,0 +1,2412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demonstração 3D — Aeropêndulo com Texturas Realistas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    body {
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      overflow: hidden;
+      background-color: #141416;
+      color: #F5F5F7;
+    }
+    .font-mono { font-family: 'IBM Plex Mono', monospace; }
+    canvas { outline: none; }
+    #painel-dinamico {
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #painel-dinamico.minimizado {
+      width: auto !important;
+      min-width: auto !important;
+      padding: 0.5rem 0.85rem !important;
+      background: rgba(29, 29, 31, 0.85) !important;
+      cursor: pointer;
+    }
+    #painel-dinamico.minimizado #painel-conteudo {
+      display: none !important;
+    }
+    #painel-dinamico.minimizado #painel-mini-tag {
+      display: inline-flex !important;
+    }
+  </style>
+  <!-- Import map para Three.js via CDN moderno -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body class="w-screen h-screen relative select-none">
+
+  <!-- CANVAS 3D CONTAINER -->
+  <div id="canvas-container" class="w-full h-full absolute inset-0"></div>
+
+  <!-- PAINEL SUPERIOR DE CONTROLE E TELEMETRIA (HUD) -->
+  <header class="absolute top-4 left-4 right-4 flex flex-col md:flex-row justify-between items-start md:items-center pointer-events-none gap-3 z-10">
+    <div class="bg-[#1D1D1F]/80 backdrop-blur-md border border-white/10 rounded-lg p-3.5 px-5 shadow-2xl pointer-events-auto">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="text-[10px] font-mono tracking-widest text-emerald-400 uppercase font-bold">Laboratório Virtual 3D</span>
+        <span class="text-[10px] text-white/40 font-mono">| Three.js PBR</span>
+      </div>
+      <h1 class="text-base font-bold text-white tracking-tight">Aeropêndulo Experimental — Modelo Físico 3D</h1>
+      <p class="text-xs text-white/60">Base hexagonal de compensado naval, braço contínuo em fibra de carbono e hélice de drone FPV.</p>
+    </div>
+
+    <div class="flex items-center gap-2 pointer-events-auto">
+      <!-- TAMPA DO GABINETE ELETRÔNICO (ABRIR/FECHAR PARA VER DETALHES) -->
+      <button id="btn-tampa" class="bg-[#1D1D1F]/80 hover:bg-[#2C2C2F] text-xs font-mono text-cyan-300 hover:text-white px-3.5 py-2.5 rounded-lg border border-cyan-500/30 backdrop-blur-md transition shadow-lg flex items-center gap-2">
+        <span id="tampa-status" class="w-2 h-2 rounded-full bg-cyan-400"></span> Tampa: Aberta
+      </button>
+
+      <!-- MUDANÇA DE TEMA DE FUNDO -->
+      <button id="btn-theme" class="bg-[#1D1D1F]/80 hover:bg-[#2C2C2F] text-xs font-mono text-white/80 hover:text-white px-3.5 py-2.5 rounded-lg border border-white/10 backdrop-blur-md transition shadow-lg flex items-center gap-2">
+        <span id="theme-icon">☀️</span> <span id="theme-text">Modo Claro</span>
+      </button>
+
+      <!-- AUTO-ROTAÇÃO DA CÂMERA -->
+      <button id="btn-orbit" class="bg-[#1D1D1F]/80 hover:bg-[#2C2C2F] text-xs font-mono text-white/80 hover:text-white px-3.5 py-2.5 rounded-lg border border-white/10 backdrop-blur-md transition shadow-lg flex items-center gap-2">
+        <span id="orbit-status" class="w-2 h-2 rounded-full bg-emerald-500"></span> Órbita Auto
+      </button>
+    </div>
+  </header>
+
+  <!-- PAINEL DE CONTROLE DE ENSAIO E MATERIAIS (LADO ESQUERDO) -->
+  <aside id="painel-dinamico" class="absolute bottom-6 left-4 bg-[#1D1D1F]/90 backdrop-blur-md border border-white/10 rounded-lg p-4 w-[320px] shadow-2xl z-10">
+    <!-- CABEÇALHO DO PAINEL COM BOTÃO MINIMIZAR/EXPANDIR -->
+    <div class="flex justify-between items-center border-b border-white/10 pb-2 cursor-pointer" id="painel-header-toggle" title="Clique para minimizar/expandir o painel">
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-mono font-semibold text-white/90 uppercase tracking-wider">Controle Dinâmico</span>
+        <span id="painel-mini-tag" class="hidden text-[10px] font-mono text-cyan-300 bg-cyan-950/60 px-1.5 py-0.5 rounded border border-cyan-500/30">
+          <span id="mini-val-theta">0.0°</span> | <span id="mini-val-volt">0.0V</span>
+        </span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-[10px] font-mono text-emerald-400" id="hud-sim-mode">Simulação Contínua</span>
+        <button id="btn-toggle-painel" type="button" class="text-white/60 hover:text-white p-1 rounded hover:bg-white/10 transition" title="Minimizar painel">
+          <svg id="icone-painel-toggle" class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- CONTEÚDO DO PAINEL (OCULTADO AO MINIMIZAR) -->
+    <div id="painel-conteudo" class="space-y-4 pt-3">
+
+    <!-- MEDIDAS EM TEMPO REAL -->
+    <div class="grid grid-cols-2 gap-2 text-center font-mono">
+      <div class="bg-black/30 border border-white/5 rounded p-2">
+        <div class="text-[10px] text-white/50 uppercase">Ângulo θ</div>
+        <div class="text-lg font-bold text-white" id="val-theta">0.0°</div>
+      </div>
+      <div class="bg-black/30 border border-white/5 rounded p-2">
+        <div class="text-[10px] text-white/50 uppercase">Tensão V</div>
+        <div class="text-lg font-bold text-amber-400" id="val-volt">0.0 V</div>
+      </div>
+    </div>
+
+    <!-- SELETOR DE FORMA DE ONDA / SINAL -->
+    <div class="space-y-1.5">
+      <div class="text-[10px] text-white/50 uppercase font-mono tracking-wider">Forma de Onda de Entrada</div>
+      <div class="grid grid-cols-2 gap-1.5 font-mono text-xs">
+        <button id="btn-onda-seno" class="bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 py-1.5 px-2 rounded transition text-center flex items-center justify-center gap-1">
+          <span>∿</span> Senoidal
+        </button>
+        <button id="btn-onda-quadrada" class="bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/40 py-1.5 px-2 rounded transition text-center flex items-center justify-center gap-1">
+          <span>⎍</span> Quadrada
+        </button>
+        <button id="btn-onda-prbs" class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 py-1.5 px-2 rounded transition text-center flex items-center justify-center gap-1">
+          <span>⚂</span> PRBS
+        </button>
+        <button id="btn-degrau" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 py-1.5 px-2 rounded transition text-center flex items-center justify-center gap-1">
+          <span>⌐</span> Degrau
+        </button>
+      </div>
+    </div>
+
+    <!-- CONTROLE MANUAL / SLIDER -->
+    <div class="space-y-2">
+      <div class="flex justify-between text-xs text-white/70">
+        <span>Tensão / Offset Manual</span>
+        <span id="slider-val" class="font-mono text-white font-semibold">2.2 V</span>
+      </div>
+      <input id="slider-voltage" type="range" min="0" max="3.2" step="0.1" value="2.2" class="w-full accent-amber-500 cursor-pointer h-1.5 bg-white/20 rounded-lg">
+    </div>
+
+    <div class="flex gap-2 pt-1">
+      <button id="btn-toggle-trail" class="flex-1 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/30 text-xs font-mono py-2 rounded transition">
+        Trajetória 3D: ON
+      </button>
+      <button id="btn-repouso" class="flex-1 bg-white/10 hover:bg-white/20 text-white/80 text-xs font-mono py-2 rounded transition">
+        Zerar Motor
+      </button>
+    </div>
+
+    <!-- ESPECIFICAÇÃO DE MATERIAIS E ELETRÔNICA RENDERIZADA -->
+    <div class="border-t border-white/10 pt-3 text-[11px] text-white/60 space-y-1.5 leading-relaxed">
+      <div class="font-semibold text-white/90 text-xs flex items-center justify-between">
+        <span>Arquitetura Eletroeletrônica:</span>
+        <span class="text-[9px] font-mono text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-500/30">ISOLAMENTO GALVÂNICO</span>
+      </div>
+      
+      <!-- SUBSISTEMA BAIXA TENSÃO -->
+      <div class="bg-black/30 p-2 rounded border border-cyan-500/20 space-y-1 mt-1">
+        <div class="text-[10px] font-mono font-bold text-cyan-400 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+          BAIXA TENSÃO / CONTROLE (3.3V)
+        </div>
+        <div class="text-[10px] text-white/70">
+          • <strong>MCU:</strong> ESP32 TTGO T1 (Dual-Core 240MHz, ADC 12-bit, PWM 20kHz)<br>
+          • <strong>Sensor:</strong> Potenciômetro de precisão no pivô + cabo blindado<br>
+          • <strong>Sinal:</strong> Filtro RC Antialiasing (80 Hz) e optoacopladores lógicos
+        </div>
+      </div>
+
+      <!-- SUBSISTEMA ALTA POTÊNCIA -->
+      <div class="bg-black/30 p-2 rounded border border-amber-500/20 space-y-1 mt-1">
+        <div class="text-[10px] font-mono font-bold text-amber-400 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          ALTA POTÊNCIA (POWER STAGE 5V/3A)
+        </div>
+        <div class="text-[10px] text-white/70">
+          • <strong>Driver:</strong> Ponte H MOSFET c/ dissipador aletado de alto fluxo<br>
+          • <strong>Fonte:</strong> Chaveada industrial perfurada com aterramento<br>
+          • <strong>Fiação:</strong> 18 AWG de alta corrente separado do sinal no mastro
+        </div>
+      </div>
+
+      <!-- BOTÕES DE CÂMERA / FOCO RÁPIDO -->
+      <div class="pt-2 flex gap-1.5 font-mono text-[10px]">
+        <button id="btn-cam-geral" class="flex-1 bg-white/10 hover:bg-white/20 text-white/90 py-1.5 rounded transition text-center">
+          Visão Geral
+        </button>
+        <button id="btn-cam-eletronica" class="flex-1 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/30 py-1.5 rounded transition text-center">
+          Foco Eletrônica
+        </button>
+        <button id="btn-cam-pivo" class="flex-1 bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/30 py-1.5 rounded transition text-center">
+          Foco Pivô/Sensor
+        </button>
+      </div>
+    </div>
+    </div> <!-- fim de #painel-conteudo -->
+  </aside>
+
+  <!-- DICA DE INTERAÇÃO -->
+  <div class="absolute bottom-6 right-4 bg-[#1D1D1F]/60 backdrop-blur-sm border border-white/10 px-3 py-1.5 rounded text-[11px] font-mono text-white/60 pointer-events-none hidden sm:block z-10">
+    Arraste para girar • Scroll para zoom • Shift + arraste para mover
+  </div>
+
+  <!-- SCRIPT THREE.JS E PROCEDURAL TEXTURE GENERATION -->
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+    // ------------------------------------------------------------------------
+    // 1. GERADORES DE TEXTURAS PROCEDURAIS ULTRA-LEVES EM CANVAS
+    // ------------------------------------------------------------------------
+
+    // Textura procedural de Madeira de Compensado Naval Hiper-Realista (Bétula Naval / Pinho)
+    function criarTexturaCompensado() {
+      const canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      const ctx = canvas.getContext("2d");
+
+      // Fundo degradê simulando lâminas de corte rotativo de madeira natural
+      const bgGrad = ctx.createLinearGradient(0, 0, 1024, 0);
+      bgGrad.addColorStop(0.0, "#d8ab74");
+      bgGrad.addColorStop(0.2, "#e6bc86");
+      bgGrad.addColorStop(0.4, "#cca069");
+      bgGrad.addColorStop(0.7, "#edd0a4");
+      bgGrad.addColorStop(0.9, "#d6a972");
+      bgGrad.addColorStop(1.0, "#dfb57e");
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, 1024, 1024);
+
+      // Veios amplos parabólicos naturais (anéis de crescimento cortados tangencialmente)
+      for (let n = 0; n < 28; n++) {
+        const centerY = 50 + n * 38 + (Math.random() - 0.5) * 20;
+        const thickness = 6 + Math.random() * 16;
+        const opacity = 0.05 + Math.random() * 0.09;
+        
+        ctx.strokeStyle = Math.random() > 0.35 
+          ? `rgba(138, 86, 40, ${opacity})` 
+          : `rgba(255, 235, 195, ${opacity * 1.3})`;
+        ctx.lineWidth = thickness;
+        ctx.beginPath();
+        ctx.moveTo(0, centerY);
+        
+        let py = centerY;
+        for (let x = 0; x <= 1024; x += 32) {
+          // Curvatura suave e imperfeições orgânicas de madeira
+          const wave = Math.sin((x + n * 80) * 0.006) * 18 + Math.cos((x + n * 40) * 0.015) * 6;
+          py = centerY + wave;
+          ctx.lineTo(x, py);
+        }
+        ctx.stroke();
+      }
+
+      // Micro-fibras longitudinais e estrias de madeira
+      for (let i = 0; i < 3500; i++) {
+        const x = Math.random() * 1024;
+        const y = Math.random() * 1024;
+        const len = 40 + Math.random() * 220;
+        const alpha = 0.04 + Math.random() * 0.08;
+        ctx.strokeStyle = Math.random() > 0.5 ? `rgba(120, 72, 30, ${alpha})` : `rgba(255, 240, 210, ${alpha * 1.2})`;
+        ctx.lineWidth = 0.6 + Math.random() * 0.8;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + len, y + (Math.random() - 0.5) * 2.5);
+        ctx.stroke();
+      }
+
+      // Poros e nódulos discretos naturais da madeira
+      for (let k = 0; k < 120; k++) {
+        const px = Math.random() * 1024;
+        const py = Math.random() * 1024;
+        const rx = 4 + Math.random() * 14;
+        const ry = 1.2 + Math.random() * 2.5;
+        ctx.fillStyle = "rgba(110, 65, 25, 0.09)";
+        ctx.beginPath();
+        ctx.ellipse(px, py, rx, ry, 0, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Bump map de poros e ranhuras tátil
+      const bumpCanvas = document.createElement("canvas");
+      bumpCanvas.width = 512;
+      bumpCanvas.height = 512;
+      const bCtx = bumpCanvas.getContext("2d");
+      bCtx.fillStyle = "#808080";
+      bCtx.fillRect(0, 0, 512, 512);
+      for (let i = 0; i < 1800; i++) {
+        const x = Math.random() * 512;
+        const y = Math.random() * 512;
+        const len = 20 + Math.random() * 100;
+        bCtx.strokeStyle = Math.random() > 0.5 ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)";
+        bCtx.lineWidth = 0.8;
+        bCtx.beginPath();
+        bCtx.moveTo(x, y);
+        bCtx.lineTo(x + len, y);
+        bCtx.stroke();
+      }
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      texture.repeat.set(1.5, 1.5);
+
+      const bumpTexture = new THREE.CanvasTexture(bumpCanvas);
+      bumpTexture.wrapS = THREE.RepeatWrapping;
+      bumpTexture.wrapT = THREE.RepeatWrapping;
+      bumpTexture.repeat.set(1.5, 1.5);
+
+      return { texture, bumpTexture };
+    }
+
+    // Textura procedural de Fibra de Carbono (Twill Weave 2x2 de alto contraste)
+    function criarTexturasFibraDeCarbono() {
+      const canvas = document.createElement("canvas");
+      canvas.width = 256;
+      canvas.height = 256;
+      const ctx = canvas.getContext("2d");
+
+      const tileSize = 32;
+      ctx.fillStyle = "#1e1e24";
+      ctx.fillRect(0, 0, 256, 256);
+
+      for (let x = 0; x < 256; x += tileSize) {
+        for (let y = 0; y < 256; y += tileSize) {
+          const isDiag = ((x / tileSize) + (y / tileSize)) % 2 === 0;
+          
+          const grad = isDiag 
+            ? ctx.createLinearGradient(x, y, x + tileSize, y + tileSize)
+            : ctx.createLinearGradient(x + tileSize, y, x, y + tileSize);
+
+          grad.addColorStop(0, "#2a2a32");
+          grad.addColorStop(0.5, "#484856");
+          grad.addColorStop(1, "#1c1c22");
+
+          ctx.fillStyle = grad;
+          ctx.fillRect(x, y, tileSize, tileSize);
+
+          // Micro-ranhuras direcionais prateadas da fibra
+          ctx.strokeStyle = "rgba(220, 220, 240, 0.18)";
+          ctx.lineWidth = 1;
+          for (let step = 0; step < tileSize; step += 4) {
+            ctx.beginPath();
+            if (isDiag) {
+              ctx.moveTo(x + step, y);
+              ctx.lineTo(x + tileSize, y + tileSize - step);
+            } else {
+              ctx.moveTo(x + tileSize - step, y);
+              ctx.lineTo(x, y + tileSize - step);
+            }
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Bump map para relevo do entrelaçado
+      const bumpCanvas = document.createElement("canvas");
+      bumpCanvas.width = 256;
+      bumpCanvas.height = 256;
+      const bCtx = bumpCanvas.getContext("2d");
+      bCtx.drawImage(canvas, 0, 0);
+
+      const colorTex = new THREE.CanvasTexture(canvas);
+      colorTex.wrapS = THREE.RepeatWrapping;
+      colorTex.wrapT = THREE.RepeatWrapping;
+      colorTex.repeat.set(6, 40);
+
+      const bumpTex = new THREE.CanvasTexture(bumpCanvas);
+      bumpTex.wrapS = THREE.RepeatWrapping;
+      bumpTex.wrapT = THREE.RepeatWrapping;
+      bumpTex.repeat.set(6, 40);
+
+      return { colorTex, bumpTex };
+    }
+
+    // Textura técnica para a travessa de suporte (alumínio anodizado com marcações serigrafadas e escala)
+    function criarTexturaTravessa() {
+      const canvas = document.createElement("canvas");
+      canvas.width = 512;
+      canvas.height = 128;
+      const ctx = canvas.getContext("2d");
+
+      // Fundo metal gunmetal / titânio escovado (não preto puro)
+      const grad = ctx.createLinearGradient(0, 0, 512, 128);
+      grad.addColorStop(0, "#272730");
+      grad.addColorStop(0.5, "#383844");
+      grad.addColorStop(1, "#25252c");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 512, 128);
+
+      // Micro-escovado horizontal
+      for (let i = 0; i < 600; i++) {
+        const y = Math.random() * 128;
+        const x = Math.random() * 512;
+        const len = 30 + Math.random() * 150;
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.04)";
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + len, y);
+        ctx.stroke();
+      }
+
+      // Linha técnica de destaque em ciano aeroespacial (accent line)
+      ctx.fillStyle = "#00d2ff";
+      ctx.fillRect(0, 120, 512, 4);
+
+      // Escala métrica graduada (milímetros)
+      ctx.fillStyle = "#e0e0ea";
+      ctx.font = "bold 10px monospace";
+      ctx.fillText("UFPA // LAB-VIRTUAL", 20, 30);
+      ctx.fillText("TCC-AEROPENDULO", 20, 48);
+
+      // Graduações da régua técnica
+      ctx.strokeStyle = "#a0a0b2";
+      ctx.lineWidth = 1;
+      for (let x = 20; x <= 490; x += 10) {
+        const h = (x % 50 === 0) ? 18 : ((x % 25 === 0) ? 12 : 7);
+        ctx.beginPath();
+        ctx.moveTo(x, 118);
+        ctx.lineTo(x, 118 - h);
+        ctx.stroke();
+        if (x % 50 === 0 && x >= 150) {
+          ctx.fillStyle = "#b0b0c2";
+          ctx.font = "9px monospace";
+          ctx.fillText(`${(x - 150) / 10}cm`, x - 12, 118 - h - 4);
+        }
+      }
+
+      const tex = new THREE.CanvasTexture(canvas);
+      return tex;
+    }
+
+    // Textura para as pás da hélice com faixas esportivas laranjas de alerta (alta visibilidade aerodinâmica)
+    function criarTexturaHelice() {
+      const canvas = document.createElement("canvas");
+      canvas.width = 256;
+      canvas.height = 64;
+      const ctx = canvas.getContext("2d");
+
+      // Corpo cinza grafite elegante (não preto puro)
+      const grad = ctx.createLinearGradient(0, 0, 256, 0);
+      grad.addColorStop(0, "#2c2c34");
+      grad.addColorStop(0.65, "#3b3b46");
+      grad.addColorStop(1, "#26262e");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 256, 64);
+
+      // Faixas de segurança / ponta esportiva Hi-Vis em laranja neon aeroespacial (#ff6b00 / #ff8c00)
+      ctx.fillStyle = "#ff6b00";
+      ctx.fillRect(190, 0, 66, 64);
+
+      // Faixa branca intermediária de alto contraste
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(180, 0, 10, 64);
+
+      // Linha técnica sutil ao longo da corda da pá
+      ctx.strokeStyle = "rgba(255,255,255,0.3)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(20, 32);
+      ctx.lineTo(170, 32);
+      ctx.stroke();
+
+      const tex = new THREE.CanvasTexture(canvas);
+      return tex;
+    }
+
+    // Textura para o transferidor / régua angular fixa do pivô (0° a 180°)
+    function criarTexturaTransferidorAngular() {
+      const canvas = document.createElement("canvas");
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext("2d");
+
+      // Fundo circular transparente com aro metálico escuro acetinado
+      ctx.clearRect(0, 0, 512, 512);
+
+      const cx = 256;
+      const cy = 256;
+      const rExt = 240;
+      const rInt = 150;
+
+      // Disco base semitransparente escuro
+      ctx.beginPath();
+      ctx.arc(cx, cy, rExt, 0, Math.PI * 2);
+      ctx.arc(cx, cy, rInt, Math.PI * 2, 0, true);
+      ctx.fillStyle = "rgba(22, 22, 28, 0.85)";
+      ctx.fill();
+
+      // Bordas do transferidor
+      ctx.strokeStyle = "#4dd0e1";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, rInt, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Graduações de 0° a 180° (e até 360°)
+      // O zero (repouso) aponta para baixo (-Y), correspondendo a 90° em coordenadas canvas
+      for (let deg = 0; deg <= 180; deg += 5) {
+        // ngulo no canvas: repouso (0°) = PI/2 (para baixo)
+        // Para frente (+theta) = sentido horário
+        const rad = Math.PI / 2 + (deg * Math.PI) / 180;
+        const is10 = deg % 10 === 0;
+        const is30 = deg % 30 === 0;
+        const tickLen = is30 ? 28 : (is10 ? 18 : 10);
+
+        const x1 = cx + (rExt - 2) * Math.cos(rad);
+        const y1 = cy + (rExt - 2) * Math.sin(rad);
+        const x2 = cx + (rExt - tickLen) * Math.cos(rad);
+        const y2 = cy + (rExt - tickLen) * Math.sin(rad);
+
+        ctx.strokeStyle = is30 ? "#00d2ff" : (is10 ? "#ffffff" : "rgba(255,255,255,0.45)");
+        ctx.lineWidth = is30 ? 2.5 : (is10 ? 1.5 : 0.8);
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+
+        // Rótulos numéricos (0°, 30°, 60°, 90°, 120°, 150°, 170°, 180°)
+        if (is30 || deg === 170) {
+          const xText = cx + (rExt - 42) * Math.cos(rad);
+          const yText = cy + (rExt - 42) * Math.sin(rad);
+          ctx.fillStyle = deg === 170 ? "#ff5252" : (deg === 0 ? "#00e676" : "#e0e0ea");
+          ctx.font = `bold ${deg === 170 || deg === 0 ? "18px" : "14px"} monospace`;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(`${deg}°`, xText, yText);
+        }
+      }
+
+      // Inscrição central serigrafada
+      ctx.fillStyle = "#8a8a9a";
+      ctx.font = "bold 11px monospace";
+      ctx.textAlign = "center";
+      ctx.fillText("UFPA // DIAL 0-170°", cx, cy - 80);
+
+      const tex = new THREE.CanvasTexture(canvas);
+      return tex;
+    }
+
+    // Texturas procedurais de alta fidelidade da Placa de Baixa Tensão: ESP32 TTGO T1 (1024x1024 com Normal/Bump)
+    function criarTexturasEsp32PCB() {
+      const canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      const ctx = canvas.getContext("2d");
+
+      const bumpCanvas = document.createElement("canvas");
+      bumpCanvas.width = 1024;
+      bumpCanvas.height = 1024;
+      const bCtx = bumpCanvas.getContext("2d");
+      bCtx.fillStyle = "#808080";
+      bCtx.fillRect(0, 0, 1024, 1024);
+
+      // Verniz escuro azul-petróleo de placas multilayer industriais (matte solder mask)
+      const grad = ctx.createLinearGradient(0, 0, 1024, 1024);
+      grad.addColorStop(0, "#08131e");
+      grad.addColorStop(0.3, "#0d2134");
+      grad.addColorStop(0.7, "#091724");
+      grad.addColorStop(1, "#050d15");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 1024, 1024);
+
+      // Micro-textura de fibra de vidro tecida (FR-4 weave pattern)
+      ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+      for (let y = 0; y < 1024; y += 4) {
+        ctx.fillRect(0, y, 1024, 1.5);
+      }
+      for (let x = 0; x < 1024; x += 4) {
+        ctx.fillRect(x, 0, 1.5, 1024);
+      }
+
+      // Plano de aterramento em relevo sutil (Copper pour hatch)
+      ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
+      for (let y = 30; y < 990; y += 8) {
+        for (let x = 30; x < 990; x += 8) {
+          if ((x + y) % 16 === 0) {
+            ctx.fillRect(x, y, 4, 4);
+          }
+        }
+      }
+
+      // Trilhas de sinal de cobre / ouro de imersão ENIG de alta precisão
+      ctx.strokeStyle = "rgba(225, 185, 65, 0.85)";
+      ctx.lineWidth = 3.0;
+      bCtx.strokeStyle = "#a0a0a0";
+      bCtx.lineWidth = 3.0;
+
+      const busLines = [160, 190, 220, 250, 720, 750, 780, 810];
+      busLines.forEach((by, idx) => {
+        ctx.beginPath();
+        bCtx.beginPath();
+        ctx.moveTo(80, by);
+        bCtx.moveTo(80, by);
+        ctx.lineTo(260 + idx * 25, by);
+        bCtx.lineTo(260 + idx * 25, by);
+        ctx.lineTo(340 + idx * 25, by + (idx % 2 === 0 ? 50 : -50));
+        bCtx.lineTo(340 + idx * 25, by + (idx % 2 === 0 ? 50 : -50));
+        ctx.lineTo(820, by + (idx % 2 === 0 ? 50 : -50));
+        bCtx.lineTo(820, by + (idx % 2 === 0 ? 50 : -50));
+        ctx.stroke();
+        bCtx.stroke();
+      });
+
+      // Vias com ilhas circulares e furos passantes metalizados (PTH & Microvias)
+      for (let i = 0; i < 90; i++) {
+        const vx = 90 + Math.floor((i * 97) % 840);
+        const vy = 90 + Math.floor((i * 131) % 840);
+        // Anel de cobre dourado
+        ctx.fillStyle = "#e2b842";
+        ctx.beginPath();
+        ctx.arc(vx, vy, 6, 0, Math.PI * 2);
+        ctx.fill();
+        // Furo da via
+        ctx.fillStyle = "#04080d";
+        ctx.beginPath();
+        ctx.arc(vx, vy, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Bump map correspondente
+        bCtx.fillStyle = "#c0c0c0";
+        bCtx.beginPath();
+        bCtx.arc(vx, vy, 6, 0, Math.PI * 2);
+        bCtx.fill();
+        bCtx.fillStyle = "#505050";
+        bCtx.beginPath();
+        bCtx.arc(vx, vy, 2.5, 0, Math.PI * 2);
+        bCtx.fill();
+      }
+
+      // Pads SMD estanhados prateados e dourados para chips periféricos
+      for (let p = 0; p < 24; p++) {
+        const px = 520 + (p % 6) * 22;
+        const py = 640 + Math.floor(p / 6) * 36;
+        ctx.fillStyle = "#d8dce2";
+        ctx.fillRect(px, py, 12, 20);
+        bCtx.fillStyle = "#d0d0d0";
+        bCtx.fillRect(px, py, 12, 20);
+      }
+
+      // Serigrafia Técnica Branca Ultra-Nítida (Silkscreen industrial)
+      ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+      bCtx.fillStyle = "#9a9a9a";
+      ctx.font = "bold 24px monospace";
+      ctx.fillText("UFPA // ESP32 TTGO T1 - CONTROLE DIGITAL & ADC", 50, 65);
+
+      ctx.fillStyle = "rgba(0, 215, 255, 0.95)";
+      ctx.font = "bold 19px monospace";
+      ctx.fillText("ESTÁGIO DE BAIXA TENSÃO (LOGIC / 3.3V) • DUAL-CORE 240MHz", 50, 95);
+
+      // Pinout técnico minucioso ao longo das bordas laterais
+      ctx.font = "bold 13px monospace";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.88)";
+      const pinosEsquerda = ["3V3", "GND", "GPIO32 (ADC_CH4)", "GPIO33", "GPIO25 (PWM_LEDC)", "GPIO26", "GPIO27", "GPIO14", "GPIO12", "GND"];
+      pinosEsquerda.forEach((pin, idx) => {
+        const py = 180 + idx * 60;
+        ctx.fillText(`◄ [ ${pin} ]`, 60, py);
+        ctx.strokeStyle = "rgba(255,255,255,0.4)";
+        ctx.strokeRect(50, py - 16, 230, 24);
+      });
+
+      const pinosDireita = ["5V_USB", "GND", "TXD0", "RXD0", "GPIO21 (SDA)", "GPIO22 (SCL)", "GPIO19", "GPIO18", "GPIO05", "EN_RST"];
+      pinosDireita.forEach((pin, idx) => {
+        const py = 180 + idx * 60;
+        ctx.fillText(`[ ${pin} ] ►`, 750, py);
+        ctx.strokeStyle = "rgba(255,255,255,0.4)";
+        ctx.strokeRect(740, py - 16, 230, 24);
+      });
+
+      // Rótulos de subsistemas e blocos lógicos no miolo
+      ctx.fillStyle = "rgba(255, 220, 80, 0.95)";
+      ctx.font = "bold 15px monospace";
+      ctx.fillText("FILTRO RC ANTI-ALIASING (fc ≈ 80 Hz)", 340, 560);
+      ctx.fillText("OPTO-ACOPLADORES DE ISOLAMENTO GALVÂNICO", 340, 600);
+      ctx.fillText("MÓDULO ESP32-WROOM DUAL-CORE 240MHz", 340, 310);
+      ctx.fillText("ANTENA DE COBRE PCB MEANDRADA 2.4GHz", 340, 210);
+
+      // Moldura periférica técnica e marcas de canto fiduciais
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.7)";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(25, 25, 974, 974);
+      // Fiduciais óticos nos 4 cantos
+      [[40, 40], [984, 40], [40, 984], [984, 984]].forEach(([fx, fy]) => {
+        ctx.fillStyle = "#e2b842";
+        ctx.beginPath();
+        ctx.arc(fx, fy, 8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = "#ffffff";
+        ctx.beginPath();
+        ctx.arc(fx, fy, 14, 0, Math.PI * 2);
+        ctx.stroke();
+      });
+
+      const texture = new THREE.CanvasTexture(canvas);
+      const bumpTexture = new THREE.CanvasTexture(bumpCanvas);
+      return { texture, bumpTexture };
+    }
+
+    // Texturas procedurais da Placa de Potência: Driver MOSFET Ponte H (1024x1024 com Barramentos de Alta Corrente)
+    function criarTexturasDriverPowerPCB() {
+      const canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      const ctx = canvas.getContext("2d");
+
+      const bumpCanvas = document.createElement("canvas");
+      bumpCanvas.width = 1024;
+      bumpCanvas.height = 1024;
+      const bCtx = bumpCanvas.getContext("2d");
+      bCtx.fillStyle = "#808080";
+      bCtx.fillRect(0, 0, 1024, 1024);
+
+      // Verniz vermelho intenso característico de drivers industriais de potência
+      const grad = ctx.createLinearGradient(0, 0, 1024, 1024);
+      grad.addColorStop(0, "#4a0808");
+      grad.addColorStop(0.3, "#751010");
+      grad.addColorStop(0.7, "#580b0b");
+      grad.addColorStop(1, "#360505");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 1024, 1024);
+
+      // Micro-textura FR-4 de alta densidade
+      ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+      for (let y = 0; y < 1024; y += 4) {
+        ctx.fillRect(0, y, 1024, 1.5);
+      }
+      for (let x = 0; x < 1024; x += 4) {
+        ctx.fillRect(x, 0, 1.5, 1024);
+      }
+
+      // Barramentos maciços estanhados de alta corrente (Soldered heavy copper busbars)
+      ctx.fillStyle = "#d0d4da";
+      bCtx.fillStyle = "#e0e0e0";
+      // Barramento VCC (+)
+      ctx.fillRect(80, 480, 864, 45);
+      bCtx.fillRect(80, 480, 864, 45);
+      // Barramento GND (-)
+      ctx.fillRect(80, 545, 864, 45);
+      bCtx.fillRect(80, 545, 864, 45);
+
+      // Pistas espessas para as saídas OUT+ e OUT- para o motor da hélice
+      ctx.fillStyle = "#c2c7ce";
+      bCtx.fillStyle = "#dadfe5";
+      ctx.fillRect(120, 180, 50, 280);
+      bCtx.fillRect(120, 180, 50, 280);
+      ctx.fillRect(200, 180, 50, 280);
+      bCtx.fillRect(200, 180, 50, 280);
+
+      // Malha térmica em cruz sob o dissipador de calor dos MOSFETs
+      ctx.fillStyle = "rgba(220, 220, 220, 0.25)";
+      for (let y = 200; y < 460; y += 18) {
+        for (let x = 320; x < 720; x += 18) {
+          ctx.beginPath();
+          ctx.arc(x, y, 4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // Serigrafia Técnica Industrial Branca e Dourada
+      ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+      ctx.font = "bold 24px monospace";
+      ctx.fillText("UFPA // DRIVER MOSFET DE ALTA POTÊNCIA (H-BRIDGE)", 50, 65);
+
+      ctx.fillStyle = "rgba(255, 175, 0, 0.95)";
+      ctx.font = "bold 19px monospace";
+      ctx.fillText("ESTÁGIO DE POTÊNCIA (POWER STAGE 5V/3A) • PWM 20kHz", 50, 95);
+
+      // Rótulos técnicos dos bornes em destaque
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 22px monospace";
+      ctx.fillText("[ +VCC ]  [ GND ] ──► ENTRADA DA FONTE CHAVEADA 5V/3A", 70, 940);
+      ctx.fillText("[ OUT+ ]  [ OUT- ] ──► MOTOR DC CORELESS + HÉLICE", 70, 150);
+
+      ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+      ctx.font = "bold 14px monospace";
+      ctx.fillText("ISOLAMENTO ÓPTICO TOTAL ENTRE CONTROLE E POTÊNCIA", 320, 670);
+      ctx.fillText("DISSIPADOR ALETADO DE ALUMÍNIO ANODIZADO PRETO", 320, 700);
+      ctx.fillText("FILTRO CAPACITIVO LOW-ESR 1000 µF / 25V", 320, 730);
+      ctx.fillText("4x MOSFETS DE POTÊNCIA CANAL N/P (TO-220)", 320, 760);
+
+      // Faixas de aviso de perigo / alta corrente (Hazard stripes industriais)
+      for (let i = 0; i < 16; i++) {
+        ctx.fillStyle = i % 2 === 0 ? "#ffd600" : "#222222";
+        ctx.beginPath();
+        ctx.moveTo(80 + i * 50, 610);
+        ctx.lineTo(110 + i * 50, 610);
+        ctx.lineTo(80 + i * 50, 635);
+        ctx.lineTo(50 + i * 50, 635);
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      // Moldura e fiduciais
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.7)";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(25, 25, 974, 974);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      const bumpTexture = new THREE.CanvasTexture(bumpCanvas);
+      return { texture, bumpTexture };
+    }
+
+    // Texturas da Fonte Industrial Chaveada: Chassi Perfurado em Colmeia e Etiqueta Técnica
+    function criarTexturasFonteIndustrial() {
+      const canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 512;
+      const ctx = canvas.getContext("2d");
+
+      const bumpCanvas = document.createElement("canvas");
+      bumpCanvas.width = 1024;
+      bumpCanvas.height = 512;
+      const bCtx = bumpCanvas.getContext("2d");
+      bCtx.fillStyle = "#808080";
+      bCtx.fillRect(0, 0, 1024, 512);
+
+      // Aço galvanizado escovado com reflexo metálico
+      const grad = ctx.createLinearGradient(0, 0, 1024, 512);
+      grad.addColorStop(0, "#b8bcc4");
+      grad.addColorStop(0.5, "#d6dade");
+      grad.addColorStop(1, "#a8acb4");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 1024, 512);
+
+      // Padrão de furos hexagonais perfurados de ventilação (Honeycomb mesh)
+      const rFuro = 7;
+      const dx = 22;
+      const dy = 19;
+      for (let y = 40; y < 470; y += dy) {
+        const offX = ((y / dy) % 2) * (dx / 2);
+        for (let x = 40 + offX; x < 620; x += dx) {
+          // Furo escuro com sombra interna
+          ctx.fillStyle = "#1e2024";
+          ctx.beginPath();
+          ctx.arc(x, y, rFuro, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Bump map com depressão
+          bCtx.fillStyle = "#303030";
+          bCtx.beginPath();
+          bCtx.arc(x, y, rFuro, 0, Math.PI * 2);
+          bCtx.fill();
+        }
+      }
+
+      // Etiqueta Técnica de Especificação Industrial (Placa prateada com especificações elétricas)
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(660, 50, 330, 410);
+      ctx.strokeStyle = "#111111";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(660, 50, 330, 410);
+
+      // Bump da etiqueta
+      bCtx.fillStyle = "#a8a8a8";
+      bCtx.fillRect(660, 50, 330, 410);
+
+      // Textos da etiqueta
+      ctx.fillStyle = "#0a0a0c";
+      ctx.font = "bold 16px sans-serif";
+      ctx.fillText("FONTE CHAVEADA INDUSTRIAL", 680, 85);
+      ctx.font = "bold 13px monospace";
+      ctx.fillText("MODELO: S-25-5", 680, 115);
+
+      ctx.fillStyle = "#d32f2f";
+      ctx.font = "bold 13px monospace";
+      ctx.fillText("OUTPUT: 5.0 V === 3.0 A (15W)", 680, 145);
+      ctx.fillStyle = "#1976d2";
+      ctx.fillText("INPUT:  100-240 VAC  50/60Hz", 680, 175);
+
+      ctx.fillStyle = "#333333";
+      ctx.font = "11px monospace";
+      ctx.fillText("RIPPLE & NOISE: < 50mVp-p", 680, 215);
+      ctx.fillText("EFICIÊNCIA: 84% TYPICAL", 680, 240);
+      ctx.fillText("ISOLAMENTO: 3kVAC HI-POT", 680, 265);
+      ctx.fillText("PROTEÇÕES: OVP / OCP / SCP", 680, 290);
+      ctx.fillText("TEMP. OPERAÇÃO: -10°C A +60°C", 680, 315);
+
+      // Símbolos de certificação CE / RoHS / Ground
+      ctx.font = "bold 14px sans-serif";
+      ctx.fillText("CE  RoHS  [⏚ ATERRADO]", 680, 365);
+      ctx.fillStyle = "#d32f2f";
+      ctx.font = "bold 12px sans-serif";
+      ctx.fillText("▲ CAUTION: HIGH VOLTAGE INSIDE", 680, 410);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      const bumpTexture = new THREE.CanvasTexture(bumpCanvas);
+      return { texture, bumpTexture };
+    }
+
+    // Textura da carcaça do Potenciômetro de Precisão (Gravação a laser e valor 10kΩ)
+    function criarTexturasPotenciometro() {
+      const canvas = document.createElement("canvas");
+      canvas.width = 512;
+      canvas.height = 256;
+      const ctx = canvas.getContext("2d");
+
+      // Alumínio escovado azul metálico anodizado
+      const grad = ctx.createLinearGradient(0, 0, 512, 0);
+      grad.addColorStop(0, "#1c4a75");
+      grad.addColorStop(0.3, "#2f72af");
+      grad.addColorStop(0.7, "#1c4a75");
+      grad.addColorStop(1, "#143352");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 512, 256);
+
+      // Gravação técnica a laser
+      ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+      ctx.font = "bold 18px monospace";
+      ctx.fillText("BOURNS / SPECTROL PRECISION", 40, 60);
+      ctx.font = "bold 24px monospace";
+      ctx.fillText("10kΩ ± 0.5% LIN", 40, 110);
+      ctx.font = "14px monospace";
+      ctx.fillText("ANGULAR SENSOR • RES: INFINITA", 40, 155);
+      ctx.fillText("1: VCC (3.3V) | 2: OUT | 3: GND", 40, 195);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      return texture;
+    }
+
+    // ------------------------------------------------------------------------
+    // 2. CONFIGURAÇÃO DA CENA THREE.JS
+    // ------------------------------------------------------------------------
+
+    const container = document.getElementById("canvas-container");
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#141416");
+
+    const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 50);
+    camera.position.set(3.4, 2.7, 3.6);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    container.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(0.08, 1.25, 0.08);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.6;
+    controls.maxPolarAngle = Math.PI * 0.52; // Não passar abaixo do plano do chão
+    controls.minDistance = 1.5;
+    controls.maxDistance = 8.0;
+
+    // Iluminação de Estúdio Industrial (Difusa, suave e sem reflexos estourados)
+    const ambientLight = new THREE.HemisphereLight(0xffffff, 0x44444a, 2.0);
+    scene.add(ambientLight);
+
+    const keyLight = new THREE.DirectionalLight(0xfff8f0, 1.7);
+    keyLight.position.set(3.5, 5.0, 3.5);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.width = 2048;
+    keyLight.shadow.mapSize.height = 2048;
+    keyLight.shadow.camera.near = 0.5;
+    keyLight.shadow.camera.far = 15;
+    keyLight.shadow.bias = -0.0001;
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0xddeeff, 0.85);
+    fillLight.position.set(-4, 3, -2);
+    scene.add(fillLight);
+
+    const rimLight = new THREE.DirectionalLight(0xffffff, 0.7);
+    rimLight.position.set(0, 4, -4);
+    scene.add(rimLight);
+
+    // Chão com sombra suave projetada
+    const shadowPlane = new THREE.Mesh(
+      new THREE.PlaneGeometry(12, 12),
+      new THREE.ShadowMaterial({ opacity: 0.35 })
+    );
+    shadowPlane.rotation.x = -Math.PI / 2;
+    shadowPlane.position.y = 0;
+    shadowPlane.receiveShadow = true;
+    scene.add(shadowPlane);
+
+    // Grade de piso de laboratório sutil
+    const grid = new THREE.GridHelper(8, 32, 0x44444a, 0x222226);
+    grid.position.y = 0.001;
+    scene.add(grid);
+
+    // ------------------------------------------------------------------------
+    // 3. MATERIAIS PBR DE ALTA FIDELIDADE
+    // ------------------------------------------------------------------------
+
+    const { texture: woodTexture, bumpTexture: woodBump } = criarTexturaCompensado();
+    const { colorTex: carbonTex, bumpTex: carbonBump } = criarTexturasFibraDeCarbono();
+    const travessaTexture = criarTexturaTravessa();
+    const heliceTexture = criarTexturaHelice();
+
+    // Madeira de compensado naval
+    const matCompensado = new THREE.MeshStandardMaterial({
+      map: woodTexture,
+      bumpMap: woodBump,
+      bumpScale: 0.006,
+      roughness: 0.55,
+      metalness: 0.02,
+    });
+
+    // Fibra de carbono envernizada (com brilho e tramas nítidas)
+    const matFibraCarbono = new THREE.MeshStandardMaterial({
+      map: carbonTex,
+      bumpMap: carbonBump,
+      bumpScale: 0.012,
+      roughness: 0.28,
+      metalness: 0.22,
+      color: 0xffffff,
+    });
+
+    // Travessa metálica de suporte com régua técnica serigrafada e acabamento titânio/grafite
+    const matTravessa = new THREE.MeshStandardMaterial({
+      map: travessaTexture,
+      roughness: 0.55,
+      metalness: 0.45,
+    });
+
+    // Metal usinado / Mancais e blocos (Cinza titânio espacial acetinado fosco)
+    const matMetalPreto = new THREE.MeshStandardMaterial({
+      color: 0x363640,
+      roughness: 0.60,
+      metalness: 0.40,
+    });
+
+    // Detalhe e anéis de contraste em Ciano / Teal Elétrico aeroespacial
+    const matAccentCyan = new THREE.MeshStandardMaterial({
+      color: 0x00d2ff,
+      roughness: 0.45,
+      metalness: 0.50,
+      emissive: 0x003344,
+      emissiveIntensity: 0.2,
+    });
+
+    // Alumínio usinado escovado suave (sem reflexo espelhado)
+    const matAluminio = new THREE.MeshStandardMaterial({
+      color: 0xdedee2,
+      roughness: 0.55,
+      metalness: 0.50,
+    });
+
+    // Hélice aerodinâmica com texturas de ponta esportiva Hi-Vis (Laranja / Branco / Grafite)
+    const matHelice = new THREE.MeshStandardMaterial({
+      map: heliceTexture,
+      roughness: 0.3,
+      metalness: 0.15,
+    });
+
+    // Spinner cônico da hélice (Laranja de alta visibilidade)
+    const matSpinner = new THREE.MeshStandardMaterial({
+      color: 0xff6b00,
+      roughness: 0.25,
+      metalness: 0.3,
+    });
+
+    // Linha técnica pontilhada de referência theta = 0 (ciano suave visível em dark mode)
+    const matLinhaDatum = new THREE.LineDashedMaterial({
+      color: 0x4dd0e1,
+      dashSize: 0.05,
+      gapSize: 0.04,
+      linewidth: 1,
+    });
+
+    // MATERIAIS PARA ELETRÔNICA EMBARCADA, POTÊNCIA E SINAL (Acabamento fosco realista e baixa reflexão)
+    const { texture: esp32PcbTex, bumpTexture: esp32PcbBump } = criarTexturasEsp32PCB();
+    const matEsp32PCB = new THREE.MeshStandardMaterial({
+      map: esp32PcbTex,
+      bumpMap: esp32PcbBump,
+      bumpScale: 0.005,
+      roughness: 0.72, // Máscara de solda fosca/antirreflexo
+      metalness: 0.08,
+    });
+
+    const { texture: driverPcbTex, bumpTexture: driverPcbBump } = criarTexturasDriverPowerPCB();
+    const matDriverPowerPCB = new THREE.MeshStandardMaterial({
+      map: driverPcbTex,
+      bumpMap: driverPcbBump,
+      bumpScale: 0.006,
+      roughness: 0.70, // Verniz FR-4 sem brilho espelhado
+      metalness: 0.12,
+    });
+
+    const { texture: fonteTex, bumpTexture: fonteBump } = criarTexturasFonteIndustrial();
+    const matFonte = new THREE.MeshStandardMaterial({
+      map: fonteTex,
+      bumpMap: fonteBump,
+      bumpScale: 0.008,
+      roughness: 0.58, // Aço galvanizado escovado fosco
+      metalness: 0.50,
+    });
+
+    const potLaserTex = criarTexturasPotenciometro();
+    const matPotLaser = new THREE.MeshStandardMaterial({
+      map: potLaserTex,
+      roughness: 0.62, // Alumínio anodizado acetinado sem reflexo excessivo
+      metalness: 0.35,
+    });
+
+    // Fiação de potência reforçada (18 AWG - Alta Corrente com isolamento de PVC fosco)
+    const matFioPositivo = new THREE.MeshStandardMaterial({
+      color: 0xd93838, // Vermelho PVC padrão
+      roughness: 0.75,
+      metalness: 0.02,
+    });
+    const matFioNegativo = new THREE.MeshStandardMaterial({
+      color: 0x18181b, // Preto PVC fosco (GND)
+      roughness: 0.75,
+      metalness: 0.02,
+    });
+
+    // Fiação de Baixa Tensão / Sinal Analógico e PWM
+    const matFioSinal = new THREE.MeshStandardMaterial({
+      color: 0x0ea5e9, // Azul sinal PVC fosco
+      roughness: 0.70,
+      metalness: 0.02,
+    });
+    const matFioSinalAmarelo = new THREE.MeshStandardMaterial({
+      color: 0xeab308, // Amarelo PVC fosco
+      roughness: 0.70,
+      metalness: 0.02,
+    });
+    const matCaboBlindado = new THREE.MeshStandardMaterial({
+      color: 0x52525b, // Revestimento emborrachado cinza escuro
+      roughness: 0.82,
+      metalness: 0.04,
+    });
+
+    // Chips semicondutores e encapsulamentos (epóxi preto moldado fosco)
+    const matChip = new THREE.MeshStandardMaterial({
+      color: 0x1a1a1e,
+      roughness: 0.78,
+      metalness: 0.08,
+    });
+
+    // Dissipador de calor aletado anodizado preto da Ponte H (acabamento matte)
+    const matDissipador = new THREE.MeshStandardMaterial({
+      color: 0x222228,
+      roughness: 0.68,
+      metalness: 0.45,
+    });
+
+    // Capacitores eletrolíticos de alta filtragem (manga plástica termoencolhível fosca)
+    const matCapacitor = new THREE.MeshStandardMaterial({
+      color: 0x1e3a5f,
+      roughness: 0.65,
+      metalness: 0.15,
+    });
+
+    // Conectores bornes industriais verdes e pinos header dourados
+    const matBorneVerde = new THREE.MeshStandardMaterial({
+      color: 0x2e7d32,
+      roughness: 0.68, // Polímero PBT fosco
+      metalness: 0.03,
+    });
+    const matPinosDourados = new THREE.MeshStandardMaterial({
+      color: 0xc9a227,
+      roughness: 0.45,
+      metalness: 0.70,
+    });
+
+    // LEDs indicadores de status (Sem reflexão excessiva na cúpula epóxi)
+    const matLedVerde = new THREE.MeshStandardMaterial({
+      color: 0x10b981,
+      emissive: 0x10b981,
+      emissiveIntensity: 0.70,
+      roughness: 0.50,
+    });
+    const matLedVermelho = new THREE.MeshStandardMaterial({
+      color: 0xef4444,
+      emissive: 0xef4444,
+      emissiveIntensity: 0.70,
+      roughness: 0.50,
+    });
+    const matLedAzul = new THREE.MeshStandardMaterial({
+      color: 0x3b82f6,
+      emissive: 0x3b82f6,
+      emissiveIntensity: 0.75,
+      roughness: 0.50,
+    });
+
+    // ------------------------------------------------------------------------
+    // 4. MODELAGEM GEOMÉTRICA CONFORME A ILUSTRAÇÃO TÉCNICA
+    // ------------------------------------------------------------------------
+
+    const bancada = new THREE.Group();
+    scene.add(bancada);
+
+    // Alturas e cotas parametrizadas (Mastro ampliado para dar folga total entre a hélice e o gabinete na base)
+    const H_MASTRO = 2.45;
+    const Y_PIVO = 2.32;
+    const L_BRACO = 1.28;
+
+    // 1. Base Hexagonal de Compensado Naval (D = 220 mm)
+    const baseHexShape = new THREE.Shape();
+    const rBase = 0.95;
+    for (let i = 0; i < 6; i++) {
+      const ang = (i * Math.PI) / 3;
+      const x = rBase * Math.cos(ang);
+      const y = rBase * Math.sin(ang);
+      if (i === 0) baseHexShape.moveTo(x, y);
+      else baseHexShape.lineTo(x, y);
+    }
+    baseHexShape.closePath();
+
+    const extrudeSettings = {
+      depth: 0.08,
+      bevelEnabled: true,
+      bevelSegments: 2,
+      steps: 1,
+      bevelSize: 0.015,
+      bevelThickness: 0.015,
+    };
+    const geomBase = new THREE.ExtrudeGeometry(baseHexShape, extrudeSettings);
+    const baseMesh = new THREE.Mesh(geomBase, matCompensado);
+    baseMesh.rotation.x = -Math.PI / 2;
+    baseMesh.position.set(0, 0.04, 0);
+    baseMesh.castShadow = true;
+    baseMesh.receiveShadow = true;
+    bancada.add(baseMesh);
+
+    // Posições-chave da estrutura canônica (conforme a ilustração e o protótipo real)
+    // Mastro vertical à esquerda da bancada: X = -0.32
+    // Travessa estende-se de X = -0.36 até X = 0.32 (comprimento ~0.68)
+    // Pivô fixado no final do braço de suporte (extremidade da travessa): X = 0.30, Y = Y_PIVO, Z = 0
+    const X_MASTRO = -0.30;
+    const X_PIVO = 0.30;
+
+    // 2. Mastro Vertical de Compensado (na lateral esquerda)
+    const mastroGeom = new THREE.BoxGeometry(0.12, H_MASTRO, 0.12);
+    const mastroMesh = new THREE.Mesh(mastroGeom, matCompensado);
+    mastroMesh.position.set(X_MASTRO, H_MASTRO / 2 + 0.08, 0);
+    mastroMesh.castShadow = true;
+    mastroMesh.receiveShadow = true;
+    bancada.add(mastroMesh);
+
+    // 3. Reforço Triangular de Compensado (apoiando o mastro pela esquerda)
+    const trianguloShape = new THREE.Shape();
+    trianguloShape.moveTo(0, 0);
+    trianguloShape.lineTo(0.50, 0);
+    trianguloShape.lineTo(0.50, 1.55);
+    trianguloShape.closePath();
+
+    const geomTriangulo = new THREE.ExtrudeGeometry(trianguloShape, {
+      depth: 0.06,
+      bevelEnabled: true,
+      bevelSegments: 1,
+      bevelSize: 0.005,
+      bevelThickness: 0.005,
+    });
+    const trianguloMesh = new THREE.Mesh(geomTriangulo, matCompensado);
+    // Posicionado apoiando à esquerda do mastro
+    trianguloMesh.position.set(X_MASTRO - 0.50, 0.08, -0.03);
+    trianguloMesh.castShadow = true;
+    bancada.add(trianguloMesh);
+
+    // 4. Travessa Horizontal de Suporte (braço de suporte com textura técnica e régua graduada)
+    // Estende-se do mastro (X_MASTRO) até a ponta (X_PIVO)
+    const largTravessa = (X_PIVO - X_MASTRO) + 0.14;
+    const centroTravessaX = (X_MASTRO + X_PIVO) / 2;
+    const travessaGeom = new THREE.BoxGeometry(largTravessa, 0.09, 0.10);
+    const travessaMesh = new THREE.Mesh(travessaGeom, matTravessa);
+    travessaMesh.position.set(centroTravessaX, Y_PIVO, 0);
+    travessaMesh.castShadow = true;
+    bancada.add(travessaMesh);
+
+    // Friso de acabamento técnico superior na travessa (Alumínio anodizado ciano)
+    const frisoGeom = new THREE.BoxGeometry(largTravessa, 0.008, 0.102);
+    const frisoMesh = new THREE.Mesh(frisoGeom, matAccentCyan);
+    frisoMesh.position.set(centroTravessaX, Y_PIVO + 0.046, 0);
+    bancada.add(frisoMesh);
+
+    // Parafusos de fixação metálicos na união mastro/travessa
+    const parafusoGeom = new THREE.CylinderGeometry(0.014, 0.014, 0.12, 12);
+    const p1 = new THREE.Mesh(parafusoGeom, matAluminio);
+    p1.position.set(X_MASTRO - 0.03, Y_PIVO, 0);
+    bancada.add(p1);
+    const p2 = new THREE.Mesh(parafusoGeom, matAluminio);
+    p2.position.set(X_MASTRO + 0.03, Y_PIVO, 0);
+    bancada.add(p2);
+
+    // 5. Linha de Prumo Datum Vertical no local do pivô (θ = 0°)
+    const pontosDatum = [
+      new THREE.Vector3(X_PIVO, Y_PIVO, 0),
+      new THREE.Vector3(X_PIVO, Y_PIVO - L_BRACO - 0.25, 0)
+    ];
+    const geomDatum = new THREE.BufferGeometry().setFromPoints(pontosDatum);
+    const linhaDatum = new THREE.Line(geomDatum, matLinhaDatum);
+    linhaDatum.computeLineDistances();
+    bancada.add(linhaDatum);
+
+    // 6. Mancal, Eixo e Transferidor / Régua Angular Fixa no Pivô (0° a 170°)
+    const mancalFixo = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.065, 0.14, 24), matMetalPreto);
+    mancalFixo.rotation.z = Math.PI / 2;
+    mancalFixo.position.set(X_PIVO, Y_PIVO, 0);
+    mancalFixo.castShadow = true;
+    bancada.add(mancalFixo);
+
+    // Anéis chanfrados de alumínio no mancal
+    const anelMancal1 = new THREE.Mesh(new THREE.TorusGeometry(0.066, 0.005, 8, 24), matAluminio);
+    anelMancal1.rotation.y = Math.PI / 2;
+    anelMancal1.position.set(X_PIVO - 0.065, Y_PIVO, 0);
+    bancada.add(anelMancal1);
+
+    const anelMancal2 = new THREE.Mesh(new THREE.TorusGeometry(0.066, 0.005, 8, 24), matAluminio);
+    anelMancal2.rotation.y = Math.PI / 2;
+    anelMancal2.position.set(X_PIVO + 0.065, Y_PIVO, 0);
+    bancada.add(anelMancal2);
+
+    // Batentes mecânicos físicos
+    const batenteGeom = new THREE.CylinderGeometry(0.012, 0.012, 0.06, 12);
+    const batenteFrente = new THREE.Mesh(batenteGeom, matAluminio);
+    batenteFrente.rotation.z = Math.PI / 2;
+    batenteFrente.position.set(X_PIVO - 0.08, Y_PIVO - 0.05, 0.08);
+    bancada.add(batenteFrente);
+
+    const batenteTras = new THREE.Mesh(batenteGeom, matAluminio);
+    batenteTras.rotation.z = Math.PI / 2;
+    batenteTras.position.set(X_PIVO - 0.08, Y_PIVO - 0.05, -0.08);
+    bancada.add(batenteTras);
+
+    const eixoCentroFixo = new THREE.Mesh(new THREE.CylinderGeometry(0.024, 0.024, 0.22, 16), matAluminio);
+    eixoCentroFixo.rotation.z = Math.PI / 2;
+    eixoCentroFixo.position.set(X_PIVO, Y_PIVO, 0);
+    bancada.add(eixoCentroFixo);
+
+    // 6.1 SENSOR DE POSIÇÃO ANGULAR: POTENCIÔMETRO DE PRECISÃO (10kΩ / CONDUTIVO)
+    // Acoplado coaxialmente à face traseira do eixo de rotação com suporte de fixação em alumínio
+    const potGroup = new THREE.Group();
+    potGroup.position.set(X_PIVO - 0.09, Y_PIVO, 0);
+    bancada.add(potGroup);
+
+    // Corpo metálico cilíndrico do potenciômetro com gravação a laser
+    const potCorpo = new THREE.Mesh(new THREE.CylinderGeometry(0.038, 0.038, 0.045, 24), matPotLaser);
+    potCorpo.rotation.z = Math.PI / 2;
+    potCorpo.castShadow = true;
+    potGroup.add(potCorpo);
+
+    // Anel azul de vedação / isolamento de precisão
+    const potBucha = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.055, 16), matAccentCyan);
+    potBucha.rotation.z = Math.PI / 2;
+    potGroup.add(potBucha);
+
+    // Terminais elétricos de solda dourados (VCC 3.3V, SINAL ADC, GND)
+    for (let ty of [-0.015, 0, 0.015]) {
+      const potTerminal = new THREE.Mesh(new THREE.BoxGeometry(0.008, 0.004, 0.018), matPinosDourados);
+      potTerminal.position.set(-0.024, ty, -0.035);
+      potGroup.add(potTerminal);
+    }
+
+    // Cabo blindado de instrumentação (Shielded 3-Wire Cable)
+    // Sai dos terminais do sensor e entra diretamente na canaleta técnica da travessa sem colisões
+    const curvaCaboPot = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(X_PIVO - 0.114, Y_PIVO, -0.035),
+      new THREE.Vector3(X_PIVO - 0.08, Y_PIVO - 0.035, -0.052),
+      new THREE.Vector3(X_PIVO - 0.04, Y_PIVO - 0.045, -0.052)
+    ]);
+    const caboBlindadoSensor = new THREE.Mesh(
+      new THREE.TubeGeometry(curvaCaboPot, 16, 0.0045, 8, false),
+      matCaboBlindado
+    );
+    bancada.add(caboBlindadoSensor);
+
+    // RÉGUA ANGULAR FIXA NO PIVÔ: Disco Transferidor Graduado 0° - 170°
+    const texTransferidor = criarTexturaTransferidorAngular();
+    const matTransferidor = new THREE.MeshBasicMaterial({
+      map: texTransferidor,
+      transparent: true,
+      opacity: 0.95,
+      side: THREE.DoubleSide,
+    });
+    const transferidorGeom = new THREE.PlaneGeometry(0.58, 0.58);
+    const transferidorMesh = new THREE.Mesh(transferidorGeom, matTransferidor);
+    // Girado para ficar no plano YZ (perpendicular ao eixo X da rotação)
+    transferidorMesh.rotation.y = Math.PI / 2;
+    transferidorMesh.position.set(X_PIVO + 0.095, Y_PIVO, 0);
+    bancada.add(transferidorMesh);
+
+    // SETOR ANGULAR DINÂMICO 3D (Fatia iluminada que mostra a variação angular no pivô)
+    const setorGeom = new THREE.BufferGeometry();
+    const maxSetorVerts = 60 * 3;
+    const setorPositions = new Float32Array(maxSetorVerts * 3);
+    setorGeom.setAttribute("position", new THREE.BufferAttribute(setorPositions, 3));
+    const matSetor = new THREE.MeshBasicMaterial({
+      color: 0x00d2ff,
+      transparent: true,
+      opacity: 0.28,
+      side: THREE.DoubleSide,
+      depthWrite: false,
+    });
+    const setorMesh = new THREE.Mesh(setorGeom, matSetor);
+    bancada.add(setorMesh);
+
+    // LABEL 3D FLUTUANTE DE ÂNGULO θ NO ESPAÇO (Sprite dinâmico com valor numérico)
+    const labelCanvas = document.createElement("canvas");
+    labelCanvas.width = 256;
+    labelCanvas.height = 128;
+    const labelCtx = labelCanvas.getContext("2d");
+    const labelTex = new THREE.CanvasTexture(labelCanvas);
+    const labelSpriteMat = new THREE.SpriteMaterial({ map: labelTex, transparent: true });
+    const labelSprite = new THREE.Sprite(labelSpriteMat);
+    labelSprite.scale.set(0.42, 0.21, 1);
+    labelSprite.position.set(X_PIVO + 0.12, Y_PIVO + 0.18, 0.25);
+    bancada.add(labelSprite);
+
+    function atualizarLabelAngular3D(anguloDeg) {
+      labelCtx.clearRect(0, 0, 256, 128);
+      // Fundo em cápsula escura translúcida
+      labelCtx.fillStyle = "rgba(18, 18, 24, 0.85)";
+      labelCtx.beginPath();
+      labelCtx.roundRect(10, 15, 236, 95, 20);
+      labelCtx.fill();
+      labelCtx.strokeStyle = "#00d2ff";
+      labelCtx.lineWidth = 3;
+      labelCtx.stroke();
+
+      // Indicador de medição angular
+      labelCtx.fillStyle = "#8a8a9a";
+      labelCtx.font = "bold 20px monospace";
+      labelCtx.textAlign = "center";
+      labelCtx.fillText("VARIAÇÃO θ", 128, 46);
+
+      labelCtx.fillStyle = "#ffffff";
+      labelCtx.font = "bold 40px monospace";
+      labelCtx.fillText(`${anguloDeg.toFixed(1)}°`, 128, 88);
+
+      labelTex.needsUpdate = true;
+    }
+    atualizarLabelAngular3D(0);
+
+    // 7. Conjunto Giratório do Braço (Pivô no final do braço de suporte)
+    const bracoGroup = new THREE.Group();
+    bracoGroup.position.set(X_PIVO, Y_PIVO, 0);
+    bancada.add(bracoGroup);
+
+    // Acoplador central da haste ao eixo com anel anodizado
+    const hubCentro = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.08, 0.06), matMetalPreto);
+    hubCentro.castShadow = true;
+    bracoGroup.add(hubCentro);
+
+    const hubColar = new THREE.Mesh(new THREE.CylinderGeometry(0.038, 0.038, 0.062, 16), matAluminio);
+    hubColar.rotation.z = Math.PI / 2;
+    bracoGroup.add(hubColar);
+
+    // Haste de Fibra de Carbono (passa pelo centro do pivô)
+    const L_TOTAL = L_BRACO + 0.45;
+    const hasteGeom = new THREE.BoxGeometry(0.032, L_TOTAL, 0.032);
+    const hasteMesh = new THREE.Mesh(hasteGeom, matFibraCarbono);
+    hasteMesh.position.set(0, (0.45 - L_BRACO) / 2, 0);
+    hasteMesh.castShadow = true;
+    bracoGroup.add(hasteMesh);
+
+    // Faixas de segurança / marcação métrica branca na haste
+    for (let yOffset of [-0.3, -0.6, -0.9]) {
+      const faixaHaste = new THREE.Mesh(new THREE.BoxGeometry(0.034, 0.012, 0.034), matAluminio);
+      faixaHaste.position.set(0, yOffset, 0);
+      bracoGroup.add(faixaHaste);
+    }
+
+    // 8. Conjunto Motor Coreless DC + Hélice na ponta inferior do braço
+    const motorGroup = new THREE.Group();
+    motorGroup.position.set(0, -L_BRACO, 0);
+    bracoGroup.add(motorGroup);
+
+    // Suporte usinado do motor na haste (titânio com rebites de alumínio)
+    const suporteMotor = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.09, 0.08), matMetalPreto);
+    suporteMotor.castShadow = true;
+    motorGroup.add(suporteMotor);
+
+    // Abraçadeira metálica de alumínio polido fixando o motor
+    const abracadeira = new THREE.Mesh(new THREE.BoxGeometry(0.094, 0.03, 0.084), matAluminio);
+    abracadeira.position.set(0, 0, 0);
+    motorGroup.add(abracadeira);
+
+    // Carcaça cilíndrica do motor Coreless (titânio escuro com anéis de refrigeração prateados)
+    const motorCilindro = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.16, 24), matMetalPreto);
+    motorCilindro.rotation.x = Math.PI / 2;
+    motorCilindro.position.set(0, 0, 0.08);
+    motorCilindro.castShadow = true;
+    motorGroup.add(motorCilindro);
+
+    // Anel decorativo de dissipação de calor no motor (Alumínio)
+    const dissipador1 = new THREE.Mesh(new THREE.TorusGeometry(0.046, 0.004, 8, 24), matAluminio);
+    dissipador1.position.set(0, 0, 0.04);
+    motorGroup.add(dissipador1);
+    const dissipador2 = new THREE.Mesh(new THREE.TorusGeometry(0.046, 0.004, 8, 24), matAluminio);
+    dissipador2.position.set(0, 0, 0.12);
+    motorGroup.add(dissipador2);
+
+    // Eixo metálico de saída do motor
+    const eixoMotor = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.08, 12), matAluminio);
+    eixoMotor.rotation.x = Math.PI / 2;
+    eixoMotor.position.set(0, 0, 0.18);
+    motorGroup.add(eixoMotor);
+
+    // Hélice FPV montada perpendicular à haste, girando no plano XY com empuxo em Z
+    const heliceGroup = new THREE.Group();
+    heliceGroup.position.set(0, 0, 0.22);
+    motorGroup.add(heliceGroup);
+
+    // Spinner cônico central com cor laranja aeroespacial vibrante
+    const spinnerGeom = new THREE.ConeGeometry(0.03, 0.06, 18);
+    const spinnerMesh = new THREE.Mesh(spinnerGeom, matSpinner);
+    spinnerMesh.rotation.x = Math.PI / 2;
+    heliceGroup.add(spinnerMesh);
+
+    // Pás aerodinâmicas da hélice com textura esportiva hi-vis
+    const paShape = new THREE.Shape();
+    paShape.moveTo(0, 0.02);
+    paShape.bezierCurveTo(0.04, 0.15, 0.06, 0.35, 0.02, 0.48);
+    paShape.lineTo(-0.02, 0.48);
+    paShape.bezierCurveTo(-0.05, 0.35, -0.03, 0.15, 0, 0.02);
+    paShape.closePath();
+
+    const paGeom = new THREE.ExtrudeGeometry(paShape, {
+      depth: 0.008,
+      bevelEnabled: true,
+      bevelSegments: 1,
+      bevelSize: 0.002,
+      bevelThickness: 0.002,
+    });
+
+    const pa1 = new THREE.Mesh(paGeom, matHelice);
+    pa1.castShadow = true;
+    heliceGroup.add(pa1);
+
+    // Segunda pá simétrica oposta a 180° (formando a hélice bipá completa)
+    const pa2 = new THREE.Mesh(paGeom, matHelice);
+    pa2.rotation.z = Math.PI;
+    pa2.castShadow = true;
+    heliceGroup.add(pa2);
+
+    // 9. FIAÇÃO ELÉTRICA E CANALETA MECATRÔNICA (SEM SOBREPOSIÇÃO DE SÓLIDOS)
+    // A fiação do motor desce colada à face traseira da haste de fibra de carbono
+    const fiaMotorPos = new THREE.Mesh(new THREE.CylinderGeometry(0.003, 0.003, L_BRACO * 0.98, 8), matFioPositivo);
+    fiaMotorPos.position.set(0.008, -L_BRACO * 0.50, -0.018);
+    bracoGroup.add(fiaMotorPos);
+
+    const fiaMotorNeg = new THREE.Mesh(new THREE.CylinderGeometry(0.003, 0.003, L_BRACO * 0.98, 8), matFioNegativo);
+    fiaMotorNeg.position.set(-0.008, -L_BRACO * 0.50, -0.018);
+    bracoGroup.add(fiaMotorNeg);
+
+    // Abraçadeiras técnicas usinadas (clips) prendendo os fios na haste
+    for (let yC of [-0.3, -0.6, -0.9]) {
+      const clip = new THREE.Mesh(new THREE.BoxGeometry(0.038, 0.012, 0.040), matAluminio);
+      clip.position.set(0, yC, 0);
+      bracoGroup.add(clip);
+    }
+
+    // Alívio de tensão flexível (cabo dinâmico no pivô atualizado a cada frame)
+    const caboFlexGeom = new THREE.BufferGeometry();
+    const N_FLEX = 16;
+    const flexPositions = new Float32Array(N_FLEX * 3);
+    caboFlexGeom.setAttribute("position", new THREE.BufferAttribute(flexPositions, 3));
+    const caboFlexMesh = new THREE.Line(caboFlexGeom, new THREE.LineBasicMaterial({ color: 0xef4444, linewidth: 3 }));
+    bancada.add(caboFlexMesh);
+
+    // Canaleta técnica embutida de alumínio anodizado preto na travessa e no mastro
+    // Conduz os cabos de forma limpa, sem fios flutuando ou atravessando peças
+    const canaletaTravessa = new THREE.Mesh(
+      new THREE.BoxGeometry(largTravessa - 0.04, 0.018, 0.024),
+      matMetalPreto
+    );
+    canaletaTravessa.position.set(centroTravessaX - 0.02, Y_PIVO - 0.045, -0.052);
+    canaletaTravessa.castShadow = true;
+    bancada.add(canaletaTravessa);
+
+    const canaletaMastro = new THREE.Mesh(
+      new THREE.BoxGeometry(0.024, H_MASTRO * 0.85, 0.018),
+      matMetalPreto
+    );
+    canaletaMastro.position.set(X_MASTRO + 0.062, H_MASTRO * 0.45, -0.052);
+    canaletaMastro.castShadow = true;
+    bancada.add(canaletaMastro);
+
+    // Saída do chicote na base rumo ao gabinete eletrônico
+    const curvaChicoteBase = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(X_MASTRO + 0.062, 0.16, -0.052),
+      new THREE.Vector3(X_MASTRO + 0.08, 0.145, 0.05),
+      new THREE.Vector3(-0.04, 0.14, 0.18)
+    ]);
+    const chicoteBase = new THREE.Mesh(
+      new THREE.TubeGeometry(curvaChicoteBase, 20, 0.006, 8, false),
+      matMetalPreto
+    );
+    bancada.add(chicoteBase);
+
+    // 10. ARQUITETURA ELETROELETRÔNICA: DIVISÃO FÍSICA ENTRE BAIXA TENSÃO E ALTA POTÊNCIA
+    // Montagem sobre a face superior da base de compensado naval (Y = 0.12), com isolamento e layout industrial limpo
+    const gabineteGroup = new THREE.Group();
+    gabineteGroup.position.set(0.18, 0.125, 0.20);
+    bancada.add(gabineteGroup);
+
+    // Bandeja de montagem em alumínio anodizado escovado com serigrafia de aterramento
+    const bandejaGeom = new THREE.BoxGeometry(0.74, 0.014, 0.48);
+    const bandejaMesh = new THREE.Mesh(bandejaGeom, matAluminio);
+    bandejaMesh.position.set(0, 0.007, 0);
+    bandejaMesh.castShadow = true;
+    gabineteGroup.add(bandejaMesh);
+
+    // Divisória / Barreira física metálica de aterramento entre o setor de sinal e o setor de potência
+    // Previne ruído eletromagnético e acoplamento indutivo
+    const barreiraBlindagem = new THREE.Mesh(
+      new THREE.BoxGeometry(0.006, 0.06, 0.38),
+      matAluminio
+    );
+    barreiraBlindagem.position.set(-0.01, 0.035, 0.02);
+    barreiraBlindagem.castShadow = true;
+    gabineteGroup.add(barreiraBlindagem);
+
+    // Cúpula / Tampa de proteção basculante em Acrílico fumê transparente
+    const tampaGeom = new THREE.BoxGeometry(0.72, 0.15, 0.46);
+    const matAcilico = new THREE.MeshPhysicalMaterial({
+      color: 0x182026,
+      transparent: true,
+      opacity: 0.30,
+      roughness: 0.1,
+      metalness: 0.1,
+      transmission: 0.80,
+      ior: 1.49,
+      depthWrite: false,
+    });
+    const tampaMesh = new THREE.Mesh(tampaGeom, matAcilico);
+    tampaMesh.position.set(0, 0.085, 0);
+    gabineteGroup.add(tampaMesh);
+
+    // =========================================================================
+    // SUBESTAÇÃO 1: MÓDULO DE BAIXA TENSÃO (CONTROLE & INSTRUMENTAÇÃO - 3.3V)
+    // Localizado no lado direito do gabinete (X > 0)
+    // =========================================================================
+    const logicGroup = new THREE.Group();
+    logicGroup.position.set(0.18, 0.015, 0.04);
+    gabineteGroup.add(logicGroup);
+
+    // PCB do ESP32 TTGO T1 com acabamento escuro e serigrafia técnica dourada
+    const esp32Pcb = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.008, 0.18), matEsp32PCB);
+    esp32Pcb.position.y = 0.014;
+    esp32Pcb.castShadow = true;
+    logicGroup.add(esp32Pcb);
+
+    // Espaçadores hexagonais de latão isolando a placa da bandeja metálica
+    for (let sx of [-0.10, 0.10]) {
+      for (let sz of [-0.07, 0.07]) {
+        const esp = new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.014, 6), matPinosDourados);
+        esp.position.set(sx, 0.007, sz);
+        logicGroup.add(esp);
+      }
+    }
+
+    // Módulo blindado ESP32-WROOM (com chip dual-core 240MHz em níquel usinado)
+    const esp32Can = new THREE.Mesh(new THREE.BoxGeometry(0.065, 0.008, 0.075), matAluminio);
+    esp32Can.position.set(-0.02, 0.022, -0.01);
+    logicGroup.add(esp32Can);
+
+    // Antena meandrada PCB 2.4GHz dourada
+    const antenaPcb = new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.002, 0.06), matPinosDourados);
+    antenaPcb.position.set(0.08, 0.019, -0.01);
+    logicGroup.add(antenaPcb);
+
+    // Barras de pinos GPIO macho (2x 15 pinos em duas fileiras douradas)
+    const gpioL = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.014, 0.01), matPinosDourados);
+    gpioL.position.set(-0.01, 0.024, 0.075);
+    logicGroup.add(gpioL);
+
+    const gpioR = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.014, 0.01), matPinosDourados);
+    gpioR.position.set(-0.01, 0.024, -0.075);
+    logicGroup.add(gpioR);
+
+    // Conector Micro-USB / USB-C para programação e telemetria serial (115200 bps)
+    const conUsb = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.018, 0.035), matAluminio);
+    conUsb.position.set(0.11, 0.022, 0.035);
+    logicGroup.add(conUsb);
+
+    // Circuito Integrado Regulador LDO 3.3V (AMS1117)
+    const ldoReg = new THREE.Mesh(new THREE.BoxGeometry(0.022, 0.01, 0.018), matChip);
+    ldoReg.position.set(0.05, 0.02, 0.04);
+    logicGroup.add(ldoReg);
+
+    // FILTRO RC ANTI-ALIASING PASSIVO (fc = 80 Hz para o conversor ADC de 12 bits)
+    // Resistor SMD de precisão e capacitor cerâmico multicamada SMD
+    const rFiltro = new THREE.Mesh(new THREE.BoxGeometry(0.012, 0.006, 0.008), matChip);
+    rFiltro.position.set(-0.07, 0.02, 0.04);
+    logicGroup.add(rFiltro);
+
+    const cFiltro = new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.008, 0.01), matCapacitor);
+    cFiltro.position.set(-0.07, 0.02, 0.025);
+    logicGroup.add(cFiltro);
+
+    // Optoacopladores de Isolamento Galvânico de Sinal (DIP-4 / PC817)
+    // Separam eletricamente as saídas lógicas do ESP32 da entrada do driver MOSFET
+    for (let oz of [-0.03, -0.055]) {
+      const opto = new THREE.Mesh(new THREE.BoxGeometry(0.022, 0.012, 0.018), matChip);
+      opto.position.set(-0.08, 0.022, oz);
+      logicGroup.add(opto);
+    }
+
+    // LEDs SMD de Diagnóstico e Sinal
+    // LED Vermelho de Alimentação 3.3V
+    const ledLogicPwr = new THREE.Mesh(new THREE.BoxGeometry(0.006, 0.005, 0.006), matLedVermelho);
+    ledLogicPwr.position.set(0.08, 0.02, 0.07);
+    logicGroup.add(ledLogicPwr);
+
+    // LED Azul de Aquisição ADC / Amostragem Ts=20ms
+    const ledLogicAdc = new THREE.Mesh(new THREE.BoxGeometry(0.006, 0.005, 0.006), matLedAzul);
+    ledLogicAdc.position.set(0.06, 0.02, 0.07);
+    logicGroup.add(ledLogicAdc);
+
+    // LED Verde de PWM Ativo (LEDC 20 kHz)
+    const ledLogicPwm = new THREE.Mesh(new THREE.BoxGeometry(0.006, 0.005, 0.006), matLedVerde);
+    ledLogicPwm.position.set(0.04, 0.02, 0.07);
+    logicGroup.add(ledLogicPwm);
+
+    // =========================================================================
+    // SUBESTAÇÃO 2: MÓDULO DE ALTA POTÊNCIA (POWER STAGE - DRIVER MOSFET 5V/3A)
+    // Localizado no lado esquerdo do gabinete (X < 0)
+    // =========================================================================
+    const powerGroup = new THREE.Group();
+    powerGroup.position.set(-0.18, 0.015, 0.04);
+    gabineteGroup.add(powerGroup);
+
+    // PCB de Potência com máscara vermelha e barramento de alta corrente estanhado
+    const powerPcb = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.008, 0.20), matDriverPowerPCB);
+    powerPcb.position.y = 0.014;
+    powerPcb.castShadow = true;
+    powerGroup.add(powerPcb);
+
+    // Espaçadores de latão da placa de potência
+    for (let sx of [-0.10, 0.10]) {
+      for (let sz of [-0.08, 0.08]) {
+        const esp = new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.014, 6), matPinosDourados);
+        esp.position.set(sx, 0.007, sz);
+        powerGroup.add(esp);
+      }
+    }
+
+    // DISSIPADOR TÉRMICO ALETADO DE ALTO FLUXO (Alumínio anodizado preto)
+    const dissBase = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.016, 0.08), matDissipador);
+    dissBase.position.set(0, 0.028, 0);
+    dissBase.castShadow = true;
+    powerGroup.add(dissBase);
+
+    // Aletas verticais do dissipador de calor para refrigeração dos transistores MOSFET
+    for (let f = -0.035; f <= 0.035; f += 0.014) {
+      const aleta = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.030, 0.004), matDissipador);
+      aleta.position.set(0, 0.045, f);
+      powerGroup.add(aleta);
+    }
+
+    // 4 Transistores MOSFET de Potência canal N/P em encapsulamento TO-220
+    for (let mz of [-0.025, 0.025]) {
+      const mosfet1 = new THREE.Mesh(new THREE.BoxGeometry(0.015, 0.022, 0.01), matChip);
+      mosfet1.position.set(-0.048, 0.028, mz);
+      powerGroup.add(mosfet1);
+
+      const mosfet2 = new THREE.Mesh(new THREE.BoxGeometry(0.015, 0.022, 0.01), matChip);
+      mosfet2.position.set(0.048, 0.028, mz);
+      powerGroup.add(mosfet2);
+    }
+
+    // Capacitores Eletrolíticos de Filtro Low-ESR (1000 µF / 25V) para absorver picos de corrente da hélice
+    for (let cz of [-0.05, 0.05]) {
+      const capPwr = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, 0.040, 16), matCapacitor);
+      capPwr.position.set(-0.065, 0.034, cz);
+      capPwr.castShadow = true;
+      powerGroup.add(capPwr);
+
+      // Topo estriado com válvula de alívio em alumínio
+      const capTopo = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.002, 16), matAluminio);
+      capTopo.position.set(-0.065, 0.055, cz);
+      powerGroup.add(capTopo);
+    }
+
+    // Bornes de Parafuso Industriais de Alta Corrente (Screw Terminals)
+    // Borne 1: Saída para o Motor Coreless [ OUT+ | OUT- ]
+    const borneMotor = new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.032, 0.065), matBorneVerde);
+    borneMotor.position.set(-0.095, 0.030, 0);
+    borneMotor.castShadow = true;
+    powerGroup.add(borneMotor);
+
+    // Parafusos metálicos no topo dos bornes
+    for (let pz of [-0.018, 0.018]) {
+      const paraf = new THREE.Mesh(new THREE.CylinderGeometry(0.004, 0.004, 0.006, 8), matAluminio);
+      paraf.position.set(-0.095, 0.048, pz);
+      powerGroup.add(paraf);
+    }
+
+    // Borne 2: Entrada de Tensão da Fonte Chaveada [ +VCC | GND ]
+    const borneAlim = new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.032, 0.065), matBorneVerde);
+    borneAlim.position.set(0.095, 0.030, -0.04);
+    borneAlim.castShadow = true;
+    powerGroup.add(borneAlim);
+
+    for (let pz of [-0.058, -0.022]) {
+      const paraf = new THREE.Mesh(new THREE.CylinderGeometry(0.004, 0.004, 0.006, 8), matAluminio);
+      paraf.position.set(0.095, 0.048, pz);
+      powerGroup.add(paraf);
+    }
+
+    // LED Indicador de Potência e Sobrecarga (Vermelho Alto Brilho)
+    const ledPowerStatus = new THREE.Mesh(new THREE.SphereGeometry(0.006, 8, 8), matLedVermelho);
+    ledPowerStatus.position.set(0.08, 0.022, 0.06);
+    powerGroup.add(ledPowerStatus);
+
+    // =========================================================================
+    // SUBESTAÇÃO 3: FONTE INDUSTRIAL CHAVEADA (5V / 3A - ALIMENTAÇÃO GERAL)
+    // Montada na porção traseira da bandeja (Z < 0)
+    // =========================================================================
+    const fonteGroup = new THREE.Group();
+    fonteGroup.position.set(0, 0.015, -0.14);
+    gabineteGroup.add(fonteGroup);
+
+    // Chassi metálico perfurado para ventilação da fonte chaveada
+    const fonteCorpo = new THREE.Mesh(new THREE.BoxGeometry(0.64, 0.075, 0.13), matFonte);
+    fonteCorpo.position.y = 0.042;
+    fonteCorpo.castShadow = true;
+    fonteGroup.add(fonteCorpo);
+
+    // Régua de bornes protegida com tampa acrílica
+    const borneFonte = new THREE.Mesh(new THREE.BoxGeometry(0.52, 0.026, 0.025), matMetalPreto);
+    borneFonte.position.set(0, 0.026, 0.072);
+    fonteGroup.add(borneFonte);
+
+    // Chave gangorra vermelha iluminada LIGA/DESLIGA geral
+    const chaveGeral = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.024, 0.024), matLedVermelho);
+    chaveGeral.position.set(0.24, 0.045, 0.072);
+    fonteGroup.add(chaveGeral);
+
+    // Conector de entrada de energia AC/DC
+    const plugEntrada = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.035, 0.035), matMetalPreto);
+    plugEntrada.position.set(-0.25, 0.04, -0.07);
+    fonteGroup.add(plugEntrada);
+
+    // =========================================================================
+    // ROTEAMENTO DE CABOS: TOTALMENTE SEM COLISÕES COM PEÇAS SÓLIDAS
+    // =========================================================================
+
+    // 1. Linhas de Controle Lógico Isoladas (Opto-Isolador ESP32 -> Entradas Lógicas da Ponte H)
+    // Curvas Bézier tridimensionais suaves passando pelo vão livre entre as placas
+    const curvaJumpPwm = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(0.09, 0.045, 0.04),   // Pinos do ESP32
+      new THREE.Vector3(0.04, 0.065, 0.06),   // Elevado sobre a barreira
+      new THREE.Vector3(-0.06, 0.065, 0.06),
+      new THREE.Vector3(-0.10, 0.045, 0.04)   // Entrada lógica do Driver
+    ]);
+    const caboJumpPwmMesh = new THREE.Mesh(
+      new THREE.TubeGeometry(curvaJumpPwm, 24, 0.0025, 8, false),
+      matFioSinal
+    );
+    gabineteGroup.add(caboJumpPwmMesh);
+
+    const curvaJumpDir = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(0.09, 0.042, 0.02),
+      new THREE.Vector3(0.04, 0.060, 0.04),
+      new THREE.Vector3(-0.06, 0.060, 0.04),
+      new THREE.Vector3(-0.10, 0.042, 0.02)
+    ]);
+    const caboJumpDirMesh = new THREE.Mesh(
+      new THREE.TubeGeometry(curvaJumpDir, 24, 0.0025, 8, false),
+      matFioSinalAmarelo
+    );
+    gabineteGroup.add(caboJumpDirMesh);
+
+    // 2. Cabos de Alta Corrente da Fonte Chaveada para a Ponte H (18 AWG - Vermelho e Preto)
+    const curvaPwrVcc = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-0.12, 0.038, -0.07), // Borne da fonte
+      new THREE.Vector3(-0.11, 0.030, -0.04),
+      new THREE.Vector3(-0.09, 0.045, 0.0)    // Borne VCC da Ponte H
+    ]);
+    const caboPwrVccMesh = new THREE.Mesh(
+      new THREE.TubeGeometry(curvaPwrVcc, 20, 0.004, 8, false),
+      matFioPositivo
+    );
+    gabineteGroup.add(caboPwrVccMesh);
+
+    const curvaPwrGnd = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-0.07, 0.038, -0.07),
+      new THREE.Vector3(-0.07, 0.030, -0.04),
+      new THREE.Vector3(-0.08, 0.045, -0.02)
+    ]);
+    const caboPwrGndMesh = new THREE.Mesh(
+      new THREE.TubeGeometry(curvaPwrGnd, 20, 0.004, 8, false),
+      matFioNegativo
+    );
+    gabineteGroup.add(caboPwrGndMesh);
+
+    // 3. Chicotes Estruturais que sobem pelo Mastro e Travessa
+    // ELETRODUTO DE POTÊNCIA (Cabos do Motor): Conecta o borne de saída da Ponte H até a canaleta do mastro
+    const curvaChicoteMotor = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-0.095 + 0.18, 0.125 + 0.045, 0.04 + 0.20), // Borne OUT do driver no gabinete (X=0.085, Y=0.17, Z=0.24)
+      new THREE.Vector3(0.01, 0.155, 0.18),
+      new THREE.Vector3(X_MASTRO + 0.08, 0.15, 0.04),
+      new THREE.Vector3(X_MASTRO + 0.062, 0.16, -0.048) // Entrada da canaleta do mastro
+    ]);
+    const chicoteMotorMesh = new THREE.Mesh(
+      new THREE.TubeGeometry(curvaChicoteMotor, 28, 0.005, 8, false),
+      matFioPositivo
+    );
+    bancada.add(chicoteMotorMesh);
+
+    // ELETRODUTO DE SINAL BLINDADO (Potenciômetro): Desce da canaleta do mastro até os pinos ADC do ESP32
+    const curvaChicoteSinal = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(X_MASTRO + 0.062, 0.16, -0.056), // Saída da canaleta
+      new THREE.Vector3(X_MASTRO + 0.10, 0.145, -0.02),
+      new THREE.Vector3(0.12, 0.15, 0.10),
+      new THREE.Vector3(0.11 + 0.18, 0.125 + 0.035, 0.04 + 0.20)  // Entrada ADC do ESP32
+    ]);
+    const chicoteSinalMesh = new THREE.Mesh(
+      new THREE.TubeGeometry(curvaChicoteSinal, 28, 0.0045, 8, false),
+      matCaboBlindado
+    );
+    bancada.add(chicoteSinalMesh);
+
+    // ------------------------------------------------------------------------
+    // 5. RASTRO 3D DA TRAJETÓRIA DO BRAÇO (DESENHO DE ONDA NO ESPAÇO)
+    // ------------------------------------------------------------------------
+    const MAX_TRAIL_POINTS = 300;
+    const trailPositions = new Float32Array(MAX_TRAIL_POINTS * 3);
+    const trailColors = new Float32Array(MAX_TRAIL_POINTS * 3);
+
+    // Inicializa posições na ponta inicial
+    const trailGeom = new THREE.BufferGeometry();
+    trailGeom.setAttribute("position", new THREE.BufferAttribute(trailPositions, 3));
+    trailGeom.setAttribute("color", new THREE.BufferAttribute(trailColors, 3));
+
+    const matTrail = new THREE.LineBasicMaterial({
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.9,
+      linewidth: 2,
+    });
+    const trailLine = new THREE.Line(trailGeom, matTrail);
+    scene.add(trailLine);
+
+    // Esfera luminosa marcadora na ponta da hélice/haste
+    const pontaMarcador = new THREE.Mesh(
+      new THREE.SphereGeometry(0.024, 16, 16),
+      new THREE.MeshBasicMaterial({ color: 0x00d2ff })
+    );
+    motorGroup.add(pontaMarcador);
+
+    let trailCount = 0;
+    let trailEnabled = true;
+    const tempPontaWorld = new THREE.Vector3();
+
+    // ------------------------------------------------------------------------
+    // 6. DINÂMICA DO MODELO, GERADORES DE SINAIS E CONTROLES
+    // ------------------------------------------------------------------------
+
+    // Modelo de 2ª ordem do TCC: G(s) = b0 / (s² + a1*s + a0)
+    const MODELO = { b0: 2.79245, a1: 0.71698, a0: 9.9849 };
+
+    let theta = 0;
+    let omega = 0;
+    let tensaoAtual = 2.5;
+    let modoSinal = "manual"; // "manual", "seno", "quadrada", "prbs", "degrau"
+    let tempoSinal = 0;
+    let prbsVal = 2.0;
+    let ultimoTempo = performance.now();
+
+    const elTheta = document.getElementById("val-theta");
+    const elVolt = document.getElementById("val-volt");
+    const elMiniTheta = document.getElementById("mini-val-theta");
+    const elMiniVolt = document.getElementById("mini-val-volt");
+    const painelDinamico = document.getElementById("painel-dinamico");
+    const btnTogglePainel = document.getElementById("btn-toggle-painel");
+    const painelHeaderToggle = document.getElementById("painel-header-toggle");
+    const iconePainelToggle = document.getElementById("icone-painel-toggle");
+    const elSlider = document.getElementById("slider-voltage");
+    const elSliderVal = document.getElementById("slider-val");
+    const elSimMode = document.getElementById("hud-sim-mode");
+
+    let painelMinimizado = false;
+    function alternarPainel(minimizar) {
+      painelMinimizado = typeof minimizar === "boolean" ? minimizar : !painelMinimizado;
+      if (painelMinimizado) {
+        painelDinamico.classList.add("minimizado");
+        iconePainelToggle.classList.add("rotate-180");
+        if (btnTogglePainel) btnTogglePainel.title = "Expandir painel de controle";
+      } else {
+        painelDinamico.classList.remove("minimizado");
+        iconePainelToggle.classList.remove("rotate-180");
+        if (btnTogglePainel) btnTogglePainel.title = "Minimizar painel";
+      }
+    }
+
+    if (btnTogglePainel) {
+      btnTogglePainel.addEventListener("click", (e) => {
+        e.stopPropagation();
+        alternarPainel();
+      });
+    }
+    if (painelHeaderToggle) {
+      painelHeaderToggle.addEventListener("click", () => {
+        alternarPainel();
+      });
+    }
+
+    const btnOndaSeno = document.getElementById("btn-onda-seno");
+    const btnOndaQuadrada = document.getElementById("btn-onda-quadrada");
+    const btnOndaPrbs = document.getElementById("btn-onda-prbs");
+    const btnDegrau = document.getElementById("btn-degrau");
+    const btnRepouso = document.getElementById("btn-repouso");
+    const btnToggleTrail = document.getElementById("btn-toggle-trail");
+
+    const btnTheme = document.getElementById("btn-theme");
+    const btnOrbit = document.getElementById("btn-orbit");
+    const themeIcon = document.getElementById("theme-icon");
+    const themeText = document.getElementById("theme-text");
+    const orbitStatus = document.getElementById("orbit-status");
+
+    function resetarBotoesSinal() {
+      [btnOndaSeno, btnOndaQuadrada, btnOndaPrbs, btnDegrau].forEach(b => {
+        b.classList.remove("ring-2", "ring-white", "scale-95");
+      });
+    }
+
+    elSlider.addEventListener("input", (e) => {
+      tensaoAtual = parseFloat(e.target.value);
+      elSliderVal.textContent = `${tensaoAtual.toFixed(1)} V`;
+      modoSinal = "manual";
+      elSimMode.textContent = "Controle Manual";
+      resetarBotoesSinal();
+    });
+
+    btnOndaSeno.addEventListener("click", () => {
+      modoSinal = "seno";
+      tempoSinal = 0;
+      elSimMode.textContent = "Sinal Senoidal Suave (0.2 Hz)";
+      resetarBotoesSinal();
+      btnOndaSeno.classList.add("ring-2", "ring-white", "scale-95");
+    });
+
+    btnOndaQuadrada.addEventListener("click", () => {
+      modoSinal = "quadrada";
+      tempoSinal = 0;
+      elSimMode.textContent = "Onda Quadrada (0.25 Hz)";
+      resetarBotoesSinal();
+      btnOndaQuadrada.classList.add("ring-2", "ring-white", "scale-95");
+    });
+
+    btnOndaPrbs.addEventListener("click", () => {
+      modoSinal = "prbs";
+      tempoSinal = 0;
+      elSimMode.textContent = "Sinal PRBS Pseudoaleatório";
+      resetarBotoesSinal();
+      btnOndaPrbs.classList.add("ring-2", "ring-white", "scale-95");
+    });
+
+    btnDegrau.addEventListener("click", () => {
+      modoSinal = "degrau";
+      tempoSinal = 0;
+      tensaoAtual = 2.6;
+      elSlider.value = 2.6;
+      elSliderVal.textContent = "2.6 V (Degrau)";
+      elSimMode.textContent = "Resposta ao Degrau";
+      resetarBotoesSinal();
+      btnDegrau.classList.add("ring-2", "ring-white", "scale-95");
+    });
+
+    btnRepouso.addEventListener("click", () => {
+      tensaoAtual = 0;
+      elSlider.value = 0;
+      elSliderVal.textContent = "0.0 V";
+      modoSinal = "manual";
+      elSimMode.textContent = "Motor Desligado";
+      resetarBotoesSinal();
+      // Limpa rastro
+      trailPoints = [];
+      trailGeom.setDrawRange(0, 0);
+    });
+
+    btnToggleTrail.addEventListener("click", () => {
+      trailEnabled = !trailEnabled;
+      trailLine.visible = trailEnabled;
+      btnToggleTrail.textContent = trailEnabled ? "Trajetória 3D: ON" : "Trajetória 3D: OFF";
+      btnToggleTrail.className = trailEnabled 
+        ? "flex-1 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/30 text-xs font-mono py-2 rounded transition"
+        : "flex-1 bg-white/10 hover:bg-white/20 text-white/50 border border-white/10 text-xs font-mono py-2 rounded transition";
+    });
+
+    let darkMode = true;
+    function setTema(isDark) {
+      darkMode = isDark;
+      if (darkMode) {
+        document.body.style.backgroundColor = "#141416";
+        scene.background.set("#141416");
+        grid.material.color.set(0x44444a);
+        ambientLight.intensity = 1.8;
+        themeIcon.textContent = "☀️";
+        themeText.textContent = "Modo Claro";
+      } else {
+        document.body.style.backgroundColor = "#E6E4DF";
+        scene.background.set("#E6E4DF");
+        grid.material.color.set(0xB0B0B5);
+        ambientLight.intensity = 1.4;
+        themeIcon.textContent = "🌙";
+        themeText.textContent = "Modo Escuro";
+      }
+    }
+
+    btnTheme.addEventListener("click", () => {
+      setTema(!darkMode);
+    });
+
+    // Escuta sincronização de tema vinda da documentação pai (MkDocs Material)
+    window.addEventListener("message", (ev) => {
+      if (ev.data && typeof ev.data.temaEscuro === "boolean") {
+        setTema(ev.data.temaEscuro);
+      }
+    });
+
+    // Sincronização inicial automática se renderizado em iframe de mesma origem
+    try {
+      if (window.parent && window.parent.document) {
+        const schemePai = window.parent.document.body.getAttribute("data-md-color-scheme");
+        if (schemePai) {
+          setTema(schemePai === "slate");
+        }
+      }
+    } catch (e) {
+      // Cross-origin fallback silencioso
+    }
+
+    // CONTROLES DE FOCO DE CÂMERA (HUD)
+    const btnCamGeral = document.getElementById("btn-cam-geral");
+    const btnCamEletronica = document.getElementById("btn-cam-eletronica");
+    const btnCamPivo = document.getElementById("btn-cam-pivo");
+
+    let alvoCamPos = null;
+    let alvoCamTarget = null;
+
+    function moverCameraPara(pos, target) {
+      alvoCamPos = pos;
+      alvoCamTarget = target;
+      controls.autoRotate = false;
+      orbitStatus.className = "w-2 h-2 rounded-full bg-white/40";
+    }
+
+    if (btnCamGeral) {
+      btnCamGeral.addEventListener("click", () => {
+        moverCameraPara(new THREE.Vector3(3.2, 2.6, 3.6), new THREE.Vector3(0.08, 1.35, 0.08));
+      });
+    }
+
+    if (btnCamEletronica) {
+      btnCamEletronica.addEventListener("click", () => {
+        // Zoom rasante detalhado sobre as placas de Baixa Tensão (ESP32) e Alta Potência (Driver)
+        moverCameraPara(new THREE.Vector3(0.40, 0.75, 0.75), new THREE.Vector3(0.18, 0.18, 0.20));
+      });
+    }
+
+    if (btnCamPivo) {
+      btnCamPivo.addEventListener("click", () => {
+        // Foco no potenciômetro de precisão, mancal e setor angular
+        moverCameraPara(new THREE.Vector3(X_PIVO + 0.15, Y_PIVO + 0.10, 0.85), new THREE.Vector3(X_PIVO, Y_PIVO, 0));
+      });
+    }
+
+    // CONTROLE DA TAMPA ACRÍLICA DO GABINETE
+    const btnTampa = document.getElementById("btn-tampa");
+    const tampaStatus = document.getElementById("tampa-status");
+    let tampaAberta = true;
+    tampaMesh.visible = false; // Inicia aberta para visualização direta dos componentes
+
+    if (btnTampa) {
+      btnTampa.addEventListener("click", () => {
+        tampaAberta = !tampaAberta;
+        tampaMesh.visible = !tampaAberta;
+        if (tampaAberta) {
+          btnTampa.innerHTML = `<span id="tampa-status" class="w-2 h-2 rounded-full bg-cyan-400"></span> Tampa: Aberta`;
+          btnTampa.className = "bg-[#1D1D1F]/80 hover:bg-[#2C2C2F] text-xs font-mono text-cyan-300 hover:text-white px-3.5 py-2.5 rounded-lg border border-cyan-500/30 backdrop-blur-md transition shadow-lg flex items-center gap-2";
+        } else {
+          btnTampa.innerHTML = `<span id="tampa-status" class="w-2 h-2 rounded-full bg-amber-400"></span> Tampa: Fechada`;
+          btnTampa.className = "bg-[#1D1D1F]/80 hover:bg-[#2C2C2F] text-xs font-mono text-amber-300 hover:text-white px-3.5 py-2.5 rounded-lg border border-amber-500/30 backdrop-blur-md transition shadow-lg flex items-center gap-2";
+        }
+      });
+    }
+
+    btnOrbit.addEventListener("click", () => {
+      controls.autoRotate = !controls.autoRotate;
+      if (controls.autoRotate) {
+        orbitStatus.className = "w-2 h-2 rounded-full bg-emerald-500";
+      } else {
+        orbitStatus.className = "w-2 h-2 rounded-full bg-white/40";
+      }
+    });
+
+    // Loop de Animação e Integração Numérica
+    let trailPoints = []; // Histórico ordenado de ângulos/pontos
+    let ultimoSentido = 0; // +1 subindo, -1 descendo
+
+    function animar(tempoAtual) {
+      requestAnimationFrame(animar);
+
+      const dt = Math.min((tempoAtual - ultimoTempo) / 1000, 0.05);
+      ultimoTempo = tempoAtual;
+      tempoSinal += dt;
+
+      // Geração dos Sinais Dinâmicos com limites de tensão menores (evita saturação no batente)
+      if (modoSinal === "seno") {
+        // Amplitude moderada: oscila suavemente entre 1.0 V e 2.6 V (offset 1.8V ± 0.8V a 0.2 Hz)
+        tensaoAtual = 1.8 + 0.8 * Math.sin(2 * Math.PI * 0.20 * tempoSinal);
+        elSlider.value = tensaoAtual.toFixed(1);
+        elSliderVal.textContent = `${tensaoAtual.toFixed(1)} V (Seno)`;
+      } else if (modoSinal === "quadrada") {
+        // Onda quadrada moderada: comuta entre 1.0 V e 2.7 V (0.2 Hz)
+        const ciclo = tempoSinal % 5.0;
+        tensaoAtual = ciclo < 2.5 ? 2.7 : 1.0;
+        elSlider.value = tensaoAtual.toFixed(1);
+        elSliderVal.textContent = `${tensaoAtual.toFixed(1)} V (Quadrada)`;
+      } else if (modoSinal === "prbs") {
+        // PRBS com pulsos controlados entre 1.1 V e 2.5 V
+        if (Math.floor(tempoSinal / 0.9) !== Math.floor((tempoSinal - dt) / 0.9)) {
+          prbsVal = Math.random() > 0.5 ? 2.6 : 1.1;
+        }
+        tensaoAtual = prbsVal;
+        elSlider.value = tensaoAtual.toFixed(1);
+        elSliderVal.textContent = `${tensaoAtual.toFixed(1)} V (PRBS)`;
+      } else if (modoSinal === "degrau") {
+        if (tempoSinal > 5.5) {
+          tensaoAtual = tensaoAtual === 2.6 ? 1.0 : 2.6;
+          tempoSinal = 0;
+        }
+        elSlider.value = tensaoAtual.toFixed(1);
+        elSliderVal.textContent = `${tensaoAtual.toFixed(1)} V (Degrau)`;
+      }
+
+      // Limite angular físico: Delimitador em 170 graus (2.967 radianos)
+      // Mantém a estabilidade do aeropêndulo sem dar volta completa
+      const THETA_MAX = THREE.MathUtils.degToRad(170);
+      const THETA_MIN = THREE.MathUtils.degToRad(-15);
+
+      // Integração sub-amostrada da equação diferencial do TCC
+      const sub = 8;
+      const h = dt / sub;
+      for (let i = 0; i < sub; i++) {
+        // J·θ̈ + c·θ̇ + mgd·sin(θ) = Km·V
+        const alfa = MODELO.b0 * tensaoAtual - MODELO.a1 * omega - MODELO.a0 * Math.sin(theta);
+        omega += alfa * h;
+        theta += omega * h;
+
+        // Bate no batente mecânico em 170°
+        if (theta > THETA_MAX) {
+          theta = THETA_MAX;
+          if (omega > 0) omega = -omega * 0.12; // amortecimento suave
+        }
+        // Bate no limite inferior de repouso
+        if (theta < THETA_MIN) {
+          theta = THETA_MIN;
+          if (omega < 0) omega = -omega * 0.12;
+        }
+      }
+
+      // Atualização dos componentes 3D
+      bracoGroup.rotation.x = -theta;
+
+      // Atualização cinemática do chicote flexível entre o braço móvel e a canaleta fixa
+      // O ponto de saída na haste (X_PIVO, Y_PIVO - 0.08*cos(theta), 0.08*sin(theta) - 0.02)
+      // O ponto de entrada na canaleta fixa (X_PIVO - 0.04, Y_PIVO - 0.045, -0.052)
+      const pSaidaHaste = new THREE.Vector3(
+        X_PIVO,
+        Y_PIVO - 0.09 * Math.cos(theta) - 0.015 * Math.sin(theta),
+        0.09 * Math.sin(theta) - 0.015 * Math.cos(theta)
+      );
+      const pEntradaCanaleta = new THREE.Vector3(X_PIVO - 0.04, Y_PIVO - 0.045, -0.052);
+      const pControleFlex = new THREE.Vector3(
+        X_PIVO - 0.025,
+        Y_PIVO - 0.08 - 0.03 * Math.cos(theta),
+        -0.03 + 0.04 * Math.sin(theta)
+      );
+      const curvaFlexDin = new THREE.QuadraticBezierCurve3(pSaidaHaste, pControleFlex, pEntradaCanaleta);
+      const ptsFlex = curvaFlexDin.getPoints(N_FLEX - 1);
+      for (let k = 0; k < N_FLEX; k++) {
+        flexPositions[k * 3]     = ptsFlex[k].x;
+        flexPositions[k * 3 + 1] = ptsFlex[k].y;
+        flexPositions[k * 3 + 2] = ptsFlex[k].z;
+      }
+      caboFlexGeom.attributes.position.needsUpdate = true;
+
+      // Giro da hélice proporcional ao empuxo
+      const velHelice = (tensaoAtual * 0.45) + Math.abs(omega) * 0.15 + 0.05;
+      heliceGroup.rotation.z += velHelice;
+
+      // Atualização da Trajetória Contínua (desenha arco contínuo atrás do braço a partir do repouso e apaga ao voltar)
+      if (trailEnabled) {
+        // Posição do pivô no espaço do mundo: (X_PIVO, Y_PIVO, 0)
+        // O braço gira em torno do eixo X com angulo rx = -theta
+        // Para um ponto em (0, -L_BRACO, 0) no grupo:
+        // Y(phi) = Y_PIVO - L_BRACO * Math.cos(phi)
+        // Z(phi) = L_BRACO * Math.sin(phi)
+        const N_ARCO_SEGMENTOS = 120;
+        const thetaAtual = Math.max(0, theta); // Ângulo de excursão a partir do repouso (0°)
+
+        if (thetaAtual > 0.005) {
+          const dPhi = thetaAtual / N_ARCO_SEGMENTOS;
+          for (let k = 0; k <= N_ARCO_SEGMENTOS; k++) {
+            const phi = k * dPhi;
+            const px = X_PIVO;
+            const py = Y_PIVO - L_BRACO * Math.cos(phi);
+            const pz = L_BRACO * Math.sin(phi);
+
+            trailPositions[k * 3]     = px;
+            trailPositions[k * 3 + 1] = py;
+            trailPositions[k * 3 + 2] = pz;
+
+            // Gradiente luminoso de alta tecnologia:
+            // Início (repouso): Ciano suave e translúcido
+            // Ponta (motor/hélice): Ciano elétrico de alto brilho com emissão branca
+            const prog = k / N_ARCO_SEGMENTOS;
+            trailColors[k * 3]     = 0.1 * (1 - prog) + 0.2 * prog; // R
+            trailColors[k * 3 + 1] = 0.6 * (1 - prog) + 0.95 * prog; // G
+            trailColors[k * 3 + 2] = 0.9 * (1 - prog) + 1.0 * prog; // B
+          }
+
+          trailGeom.attributes.position.needsUpdate = true;
+          trailGeom.attributes.color.needsUpdate = true;
+          trailGeom.setDrawRange(0, N_ARCO_SEGMENTOS + 1);
+        } else {
+          trailGeom.setDrawRange(0, 0);
+        }
+      }
+
+      // Atualização do Setor Angular Translúcido no Pivô (mostra a abertura de ângulo no transferidor)
+      const rSetor = 0.28;
+      const nSetor = 36;
+      const thSetor = Math.max(0, theta);
+      if (thSetor > 0.005) {
+        const dAng = thSetor / nSetor;
+        let vIdx = 0;
+        const xOffset = X_PIVO + 0.092;
+        for (let s = 0; s < nSetor; s++) {
+          const a1 = s * dAng;
+          const a2 = (s + 1) * dAng;
+          // Vértice 0: Centro do pivô
+          setorPositions[vIdx++] = xOffset;
+          setorPositions[vIdx++] = Y_PIVO;
+          setorPositions[vIdx++] = 0;
+          // Vértice 1: Borda no ângulo a1
+          setorPositions[vIdx++] = xOffset;
+          setorPositions[vIdx++] = Y_PIVO - rSetor * Math.cos(a1);
+          setorPositions[vIdx++] = rSetor * Math.sin(a1);
+          // Vértice 2: Borda no ângulo a2
+          setorPositions[vIdx++] = xOffset;
+          setorPositions[vIdx++] = Y_PIVO - rSetor * Math.cos(a2);
+          setorPositions[vIdx++] = rSetor * Math.sin(a2);
+        }
+        setorGeom.attributes.position.needsUpdate = true;
+        setorGeom.setDrawRange(0, nSetor * 3);
+        setorMesh.visible = true;
+      } else {
+        setorMesh.visible = false;
+      }
+
+      // Atualização dos indicadores HUD e do Label 3D Flutuante
+      const angGraus = THREE.MathUtils.radToDeg(theta);
+      elTheta.textContent = `${angGraus.toFixed(1)}°`;
+      elVolt.textContent = `${tensaoAtual.toFixed(1)} V`;
+      if (elMiniTheta) elMiniTheta.textContent = `${angGraus.toFixed(1)}°`;
+      if (elMiniVolt) elMiniVolt.textContent = `${tensaoAtual.toFixed(1)}V`;
+
+      // Atualiza o label dinâmico 3D ao lado do pivô e faz ele flutuar acompanhando a bissetriz do ângulo
+      const meiaAbertura = thSetor / 2;
+      const distLabel = 0.46;
+      labelSprite.position.set(
+        X_PIVO + 0.12,
+        Y_PIVO - distLabel * Math.cos(meiaAbertura) + 0.12,
+        distLabel * Math.sin(meiaAbertura) + 0.06
+      );
+      atualizarLabelAngular3D(angGraus);
+
+      // Interpolação suave de câmera (Lerp) para botões de foco
+      if (alvoCamPos && alvoCamTarget) {
+        camera.position.lerp(alvoCamPos, 0.06);
+        controls.target.lerp(alvoCamTarget, 0.06);
+        if (camera.position.distanceTo(alvoCamPos) < 0.01 && controls.target.distanceTo(alvoCamTarget) < 0.01) {
+          alvoCamPos = null;
+          alvoCamTarget = null;
+        }
+      }
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    requestAnimationFrame(animar);
+
+    // Ajuste responsivo de janela
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Suporte a parâmetros de URL (ex: ?min=1 ou ?compact=1)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("min") === "1" || urlParams.get("compact") === "1" || window.innerWidth < 640) {
+      alternarPainel(true);
+    }
+  </script>
+</body>
+</html>
+

@@ -31,6 +31,9 @@ O projeto tem 4 frentes que se integram:
 | Site de documentação publicado (MkDocs/GitHub Pages) | `docs/` | Completo, com deploy automático — ver [`03_docs_publicadas/resumo_mkdocs.md`](03_docs_publicadas/resumo_mkdocs.md) |
 | Material de apoio bruto (bibliografia, notebooks, modelagem, prototipagem) | `materiais_complementares/` | Duplicações removidas; inclui os scripts de métricas — ver [`04_materiais_complementares/`](04_materiais_complementares/) |
 | Dívida técnica (o que exige o protótipo real) | [`divida_tecnica.md`](divida_tecnica.md) | Firmware sem validação em hardware, pino do sensor, dependências novas |
+| Redesenho do site de documentação | [`06_site_redesign/`](06_site_redesign/) | Design e planos de reformulação pedagógica do MkDocs |
+| Plano de Publicações & Estratégia | [`05_plano_publicacoes/`](05_plano_publicacoes/) | Estratégia em dois ciclos, planos para Artigo 1 e Livro 1, fluxo de trabalho |
+| Evolução v2.0 (Laboratório Remoto / RLaaS) | [`07_evolucao_v2/`](07_evolucao_v2/) | Arquitetura de plataforma web, gateway IoT, ensaios remotos, Artigo 2 e Livro 2 |
 | Imagens/diagramas usados no README e docs | `utils/` | — |
 
 ## Como este `docs_tcc/` deve ser usado
@@ -42,18 +45,18 @@ Este diretório é um **cache de contexto** para não precisar reabrir os fontes
 3. Só abra o arquivo-fonte original (caminho no campo `fonte` do front-matter de cada `.md`) quando precisar de um detalhe que não está no resumo.
 4. Se o conteúdo-fonte mudar (nova revisão da monografia, novo commit no software), os resumos aqui ficam desatualizados — regenerar sob demanda, não automaticamente.
 
-## Os 3 objetivos declarados pelo usuário (para orientar próximos passos)
+## Estratégia de Produção e Publicação em Dois Ciclos (Lattes)
 
-1. **Finalizar a documentação do TCC** — ver punch list consolidado em [`05_plano_publicacoes/pendencias_documentacao.md`](05_plano_publicacoes/pendencias_documentacao.md).
-2. **Escrever um artigo com base no TCC** — planejado do zero (decisão de 2026-09-13: um
-   rascunho antigo do COBENGE 2023 existe no repositório, mas não será usado como base) —
-   esqueleto/inventário em [`05_plano_publicacoes/plano_artigo.md`](05_plano_publicacoes/plano_artigo.md).
-3. **Escrever um livro com base no TCC** — esqueleto/inventário de material em [`05_plano_publicacoes/plano_livro.md`](05_plano_publicacoes/plano_livro.md) (plano ainda não definido com o usuário).
+1. **Ciclo 1 (Imediato — Base Existente):**
+   - **Artigo 1:** Modelagem, identificação ARX, controle PID, métricas quantitativas e gêmeo digital desktop (ver [`05_plano_publicacoes/plano_artigo.md`](05_plano_publicacoes/plano_artigo.md)).
+   - **Livro 1 (1ª Edição):** Guia prático-teórico completo de construção, modelagem, controle e simulação do laboratório virtual (ver [`05_plano_publicacoes/plano_livro.md`](05_plano_publicacoes/plano_livro.md)).
+   - Detalhes da estratégia em [`05_plano_publicacoes/01_estrategia_dois_ciclos.md`](05_plano_publicacoes/01_estrategia_dois_ciclos.md).
+2. **Ciclo 2 (Evolução v2.0 — Web / RLaaS):**
+   - Plataforma web para ensaios remotos, fila de execução, segurança de bancada e gêmeo digital WebGL (ver [`07_evolucao_v2/00_visao_geral_rlaas.md`](07_evolucao_v2/00_visao_geral_rlaas.md)).
+   - **Artigo 2 & Livro 2 (2ª Edição Ampliada):** Publicações dedicadas à democratização do ensino e arquitetura RLaaS na nuvem.
 
 **Para retomar o trabalho em qualquer sessão futura, comece por
-[`05_plano_publicacoes/00_fluxo_trabalho.md`](05_plano_publicacoes/00_fluxo_trabalho.md)** —
-ele sequencia as 4 fases acima (fechar pendências → finalizar documentação → artigo/livro em
-sessões separadas) e diz o que é pré-requisito do quê.
+[`05_plano_publicacoes/00_fluxo_trabalho.md`](05_plano_publicacoes/00_fluxo_trabalho.md)**.
 
 ## Achados críticos (não ignorar)
 

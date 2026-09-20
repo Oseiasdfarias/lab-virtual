@@ -39,6 +39,10 @@ class ColetaDados(ColetaDadosInterface):
 
     def __init__(self, amostras: int = 50, porta: str = "/dev/ttyUSB0",
                  baud_rate: int = 115200) -> None:
+        """Prepara os buffers e inicia a leitura da porta serial em segundo plano.
+
+        Muda o diretório de trabalho para `src_interface`, onde os ensaios são gravados.
+        """
         self.amostras = amostras
         self.flag_salvar_dados = False
         os.chdir("src_interface")
@@ -165,6 +169,7 @@ class ColetaDados(ColetaDadosInterface):
         self.disp.reset_input_buffer()
 
     def __init_thread(self) -> None:
+        """Inicia `__coleta_dados` numa thread daemon."""
         self.new_thread = Thread(target=self.__coleta_dados)
         self.new_thread.daemon = True
         self.new_thread.start()
@@ -188,6 +193,11 @@ class ColetaDados(ColetaDadosInterface):
             # logger.exception(e)
 
     def __coleta_dados(self):
+        """Laço de leitura: abre a porta, lê uma linha CSV por vez e atualiza os buffers.
+
+        Mantém em `fila` as últimas `amostras` leituras, acrescenta a `salvar_dados` enquanto a
+        gravação estiver ativa e tenta reconectar se a porta falhar.
+        """
         self.disp = serial.Serial(self.porta,
                                   self.baud_rate,
                                   timeout=0.005)

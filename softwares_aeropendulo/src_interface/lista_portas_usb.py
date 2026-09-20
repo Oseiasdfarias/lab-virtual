@@ -28,6 +28,7 @@ class ListaPortasUsb(object):
             ser usada no momento da conexão da interface com o dispositivo.
     """
     def __init__(self, atualiza_menu, set_porta_atual) -> None:
+        """Lista as portas atuais, preenche o menu e começa a monitorar conexões USB."""
         self.set_porta_atual = set_porta_atual
         self.atualiza_menu = atualiza_menu
         self.monitora_conexao_usb = self.listar_portas_usb()

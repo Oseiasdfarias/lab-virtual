@@ -138,10 +138,12 @@
   cursor: grabbing;
 }
 
-.lv-hero3d canvas {
+.lv-hero3d canvas,
+.lv-hero3d iframe {
   display: block;
   width: 100% !important;
   height: 100% !important;
+  border: none;
 }
 
 /* display: grid/flex venceria o atributo hidden sem esta regra. */

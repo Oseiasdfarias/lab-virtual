@@ -1,55 +1,42 @@
 ---
-title: Tutorial - Instalando o Python 3.10 no macOS
+title: Python 3.11 no macOS
 author: Oséias Farias
-
 ---
 
-Neste tutorial, vamos guiar você pelo processo de instalação do Python 3.10 no sistema operacional macOS. O Python é uma linguagem de programação poderosa e versátil, e a instalação no macOS é relativamente simples.
+# Python 3.11 no macOS
 
+O projeto roda em **Python 3.10 ou 3.11**; versões 3.12 ou mais novas ainda não são suportadas
+pelas dependências.
 
-#### Passo 1: Verifique a versão do macOS
+## Opção 1: Homebrew
 
-Certifique-se de estar usando pelo menos o macOS 10.9 (Mavericks) ou posterior, pois as versões mais antigas podem ter complicações durante a instalação.
-
-#### Passo 2: Instale o Homebrew (se ainda não estiver instalado)
-
-O Homebrew é um gerenciador de pacotes que facilita a instalação de software no macOS. Abra o Terminal e execute o seguinte comando para instalar o Homebrew:
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-Siga as instruções que aparecem no Terminal para concluir a instalação.
-
-#### Passo 3: Instale o Python 3.10 com o Homebrew
-
-Agora que o Homebrew está instalado, use-o para instalar o Python 3.10. No Terminal, execute os seguintes comandos:
+Se o [Homebrew](https://brew.sh/) ainda não estiver instalado, siga as instruções do site.
+Depois, instale o Python e o Tkinter, usado pela interface gráfica:
 
 ```bash
 brew update
-brew install python@3.10
+brew install python@3.11 python-tk@3.11
 ```
 
-#### Passo 4: Adicione o Python ao PATH
+O Homebrew coloca o comando `python3.11` em `/opt/homebrew/bin` (Apple Silicon) ou
+`/usr/local/bin` (Intel), que já estão no `PATH` depois da instalação do Homebrew.
 
-Adicione o Python 3.10 ao seu PATH executando o seguinte comando:
+## Opção 2: instalador oficial
+
+Em [python.org/downloads/macos](https://www.python.org/downloads/macos/), baixe o instalador
+*universal2* da versão 3.11 mais recente e execute-o. Ele já inclui o Tkinter.
+
+## Verificando
 
 ```bash
-echo 'export PATH="/usr/local/opt/python@3.10/bin:$PATH"' >> ~/.zshrc
+python3.11 --version
+python3.11 -c "import tkinter; print('Tkinter', tkinter.TkVersion)"
 ```
 
-Se você estiver usando o Bash, substitua `~/.zshrc` por `~/.bash_profile`.
+Em seguida, siga para as [dependências do projeto](../dependencias.md); com Poetry, aponte o
+ambiente para essa versão com `poetry env use python3.11`.
 
-#### Passo 5: Verifique a instalação
-
-Feche e reabra o Terminal e digite o seguinte comando para verificar se o Python 3.10 foi instalado corretamente:
-
-```bash
-python3.10 --version
-```
-
-Você deverá ver a versão do Python 3.10.
-
-#### Conclusão
-
-Agora você tem o Python 3.10 instalado no seu sistema macOS. Pode começar a desenvolver e executar seus scripts Python. Lembre-se de que o Python 3.10 inclui o pip, então você pode usar o pip para instalar pacotes adicionais conforme necessário para seus projetos.
+!!! warning "Interface testada só no Linux"
+    A lista de portas da interface é atualizada com o `pyudev`, que depende do `libudev` do
+    Linux. Nesse sistema a interface nunca foi testada e deve falhar ao abrir; os scripts de análise
+    (identificação e métricas) não dependem disso.

@@ -17,9 +17,12 @@ from abc import ABC, abstractmethod
 
 
 class ListaPortasUsb(ABC):
+    """Contrato da listagem de portas USB (ver `lista_portas_usb.ListaPortasUsb`)."""
 
     @abstractmethod
-    def listar_portas_usb(self): ...
+    def listar_portas_usb(self):
+        """Retorna as portas seriais disponíveis."""
 
     @abstractmethod
-    def atualizar_dados_menu(self): ...
+    def atualizar_dados_menu(self):
+        """Atualiza o menu de portas da interface."""

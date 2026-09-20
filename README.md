@@ -45,12 +45,12 @@
   <tr>
     <td width="33%"><img src="./docs/prototipo/img/prototipo-aeropendulo.jpg" alt="Protótipo do aeropêndulo"></td>
     <td width="33%"><img src="./docs/software/img/interface-grafica.png" alt="Interface gráfica"></td>
-    <td width="33%"><img src="./docs/gemeo-digital/img/gemeo-digital.png" alt="Gêmeo digital"></td>
+    <td width="33%"><a href="https://oseiasdfarias.github.io/lab-virtual/assets/simulador/aeropendulo_3d.html"><img src="./docs/assets/simulador/aeropendulo_3d.gif" alt="Gêmeo Digital 3D Animado"></a></td>
   </tr>
   <tr>
     <td align="center"><sub><b>Protótipo</b> — planta física</sub></td>
     <td align="center"><sub><b>Interface gráfica</b> — aquisição e ensaios</sub></td>
-    <td align="center"><sub><b>Gêmeo digital</b> — réplica 3D</sub></td>
+    <td align="center"><sub><b>Gêmeo digital 3D</b> — <a href="https://oseiasdfarias.github.io/lab-virtual/assets/simulador/aeropendulo_3d.html">réplica Three.js (demo)</a></sub></td>
   </tr>
 </table>
 
