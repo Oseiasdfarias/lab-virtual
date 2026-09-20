@@ -91,49 +91,46 @@
       if (diag.dataset.hasGlightbox) return;
       diag.dataset.hasGlightbox = "true";
       diag.classList.add("lv-zoomable-element");
-      diag.setAttribute("title", "Clique para expandir o diagrama");
+      diag.setAttribute("title", "Clique para ver o diagrama ampliado");
+
+      const modalId = "mermaid-zoom-holder-" + idx;
+      let holder = document.getElementById(modalId);
+      if (!holder) {
+        holder = document.createElement("div");
+        holder.id = modalId;
+        holder.style.display = "none";
+        holder.className = "lv-glightbox-inline-box";
+        document.body.appendChild(holder);
+      }
 
       diag.addEventListener("click", (e) => {
         e.preventDefault();
-        const svg = diag.querySelector("svg");
-        if (!svg) return;
+        const currentSvg = diag.querySelector("svg");
+        if (!currentSvg) return;
 
-        // Clona e prepara o SVG com namespace e estilo de visualização
-        const clonedSvg = svg.cloneNode(true);
-        clonedSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-        
-        // Assegura largura e altura adequadas para visualização nítida
-        const bbox = svg.getBBox ? svg.getBBox() : null;
-        if (bbox && bbox.width && bbox.height) {
-          if (!clonedSvg.getAttribute("viewBox")) {
-            clonedSvg.setAttribute("viewBox", `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`);
-          }
-        }
-
-        const svgXml = new XMLSerializer().serializeToString(clonedSvg);
-        const svgBlob = new Blob([svgXml], { type: "image/svg+xml;charset=utf-8" });
-        const blobUrl = URL.createObjectURL(svgBlob);
+        // Limpa e injeta cópia fresca do SVG já montado pelo Mermaid
+        holder.innerHTML = "";
+        const clone = currentSvg.cloneNode(true);
+        clone.style.width = "100%";
+        clone.style.maxWidth = "1000px";
+        clone.style.height = "auto";
+        clone.style.display = "block";
+        clone.style.margin = "0 auto";
+        holder.appendChild(clone);
 
         const lb = GLightbox({
           elements: [{
-            href: blobUrl,
-            type: "image",
-            title: "Diagrama de Fluxo (Mermaid)",
-            description: "Clique na imagem ou use o scroll para zoom; arraste para navegar."
+            content: holder,
+            width: "90vw",
+            height: "auto"
           }],
           touchNavigation: true,
-          zoomable: true,
-          draggable: true
+          zoomable: false,
+          draggable: false
         });
-
-        lb.on("close", () => {
-          setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
-        });
-
         lb.open();
       });
     });
-
   }
 
   // Executa após o carregamento da página e em navegações instantâneas do Material
