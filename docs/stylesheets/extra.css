@@ -786,11 +786,44 @@
 }
 
 .lv-mermaid-modal {
-  padding: 2rem;
-  background: var(--lv-bg, #ffffff);
+  padding: 2.5rem 2rem;
+  background: #ffffff !important;
 }
 
-[data-md-color-scheme="slate"] .lv-mermaid-modal {
-  background: #1e1e24;
+.lv-mermaid-modal svg {
+  min-width: 600px;
+  max-width: 100%;
+  height: auto;
+}
+
+.lv-mermaid-modal .node rect,
+.lv-mermaid-modal .node circle,
+.lv-mermaid-modal .node ellipse,
+.lv-mermaid-modal .node polygon,
+.lv-mermaid-modal .node path {
+  fill: #f5f5f7 !important;
+  stroke: #1d1d1f !important;
+  stroke-width: 1.5px !important;
+}
+
+.lv-mermaid-modal .node .label {
+  color: #1d1d1f !important;
+  font-family: var(--md-text-font), sans-serif !important;
+}
+
+.lv-mermaid-modal .edgePath .path {
+  stroke: #1d1d1f !important;
+  stroke-width: 1.5px !important;
+}
+
+.lv-mermaid-modal .edgeLabel {
+  background-color: #ffffff !important;
+  color: #1d1d1f !important;
+  font-family: var(--md-text-font), sans-serif !important;
+}
+
+.lv-mermaid-modal marker path {
+  fill: #1d1d1f !important;
+  stroke: #1d1d1f !important;
 }
 
