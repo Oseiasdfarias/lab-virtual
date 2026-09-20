@@ -722,6 +722,27 @@
   box-shadow: none !important;
 }
 
+/* Borda branca nos elementos escuros da ilustração 2D do aeropêndulo */
+[data-md-color-scheme="slate"] .lv-aeropendulo-card svg [fill="#1D1D1F"],
+[data-md-color-scheme="slate"] .lv-aeropendulo-card svg [stroke="#1D1D1F"],
+[data-md-color-scheme="slate"] .lv-aeropendulo-card svg polygon,
+[data-md-color-scheme="slate"] .lv-aeropendulo-card svg rect[fill="#1D1D1F"],
+[data-md-color-scheme="slate"] .lv-aeropendulo-card svg path[fill="#1D1D1F"],
+[data-md-color-scheme="slate"] .lv-aeropendulo-card svg circle[fill="#1D1D1F"] {
+  stroke: rgba(255, 255, 255, 0.95) !important;
+  stroke-width: 0.8px;
+}
+
+[data-md-color-scheme="slate"] .lv-aeropendulo-card svg text {
+  fill: #ffffff !important;
+}
+
+[data-md-color-scheme="slate"] .lv-aeropendulo-card svg rect[fill="#F7F7F9"] {
+  fill: #1d1d1f !important;
+  stroke: rgba(255, 255, 255, 0.5) !important;
+  stroke-width: 0.5px;
+}
+
 .lv-aeropendulo-figure figcaption {
   display: block !important;
   text-align: center !important;
