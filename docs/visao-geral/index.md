@@ -26,7 +26,7 @@ O laboratório é composto por quatro subsistemas que operam de forma integrada:
 
 <figure class="lv-aeropendulo-figure" markdown="span">
   <div class="lv-aeropendulo-card">
-<svg viewBox="20 0 190 200" width="320" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="20 0 190 200" width="480" xmlns="http://www.w3.org/2000/svg">
   <!-- Envelope dinâmico de oscilação angular -->
   <path d="M 110.4 100.7 A 60.6 60.6 0 0 0 163.6 100.7" fill="none" stroke="#D0D0D4" stroke-width="0.5" stroke-dasharray="2.5,2.5" />
   <line x1="137" y1="46.2" x2="110.4" y2="100.7" stroke="#E0E0E4" stroke-width="0.4" stroke-dasharray="1.5,2.5" />
