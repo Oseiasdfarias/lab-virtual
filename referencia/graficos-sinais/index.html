@@ -1716,10 +1716,7 @@ sinal de controle e entrada em malha aberta.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>softwares_aeropendulo/src_interface/graficos_sinais.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 40</span>
-<span class="normal"> 41</span>
-<span class="normal"> 42</span>
-<span class="normal"> 43</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 43</span>
 <span class="normal"> 44</span>
 <span class="normal"> 45</span>
 <span class="normal"> 46</span>
@@ -1818,7 +1815,10 @@ sinal de controle e entrada em malha aberta.</p>
 <span class="normal">139</span>
 <span class="normal">140</span>
 <span class="normal">141</span>
-<span class="normal">142</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">GraficosSinais</span><span class="p">(</span><span class="n">GraficosSinaisInterface</span><span class="p">):</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">GraficosSinais</span><span class="p">(</span><span class="n">GraficosSinaisInterface</span><span class="p">):</span>
 
 <span class="w">    </span><span class="sd">"""Figura Matplotlib com os quatro gráficos da interface: referência e ângulo, erro,</span>
 <span class="sd">    sinal de controle e entrada em malha aberta.</span>
@@ -1955,10 +1955,7 @@ grid: exibe a grade nos eixos.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/src_interface/graficos_sinais.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
 <span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span>
@@ -1967,7 +1964,10 @@ grid: exibe a grade nos eixos.</p>
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
-<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">markersize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">,</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">markersize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">,</span>
              <span class="n">grid</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Args:</span>
 <span class="sd">        markersize: tamanho dos marcadores das curvas.</span>
@@ -2004,12 +2004,12 @@ erro, controle e entrada) que a animação da interface atualiza.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/src_interface/graficos_sinais.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
 <span class="normal">63</span>
-<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_fig_axes_ln</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_fig_axes_ln</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Returns:</span>
 <span class="sd">        Tupla `(figura, eixos, linhas)`: os 4 eixos e as 5 linhas (referência, ângulo,</span>
 <span class="sd">        erro, controle e entrada) que a animação da interface atualiza.</span>
@@ -2038,10 +2038,7 @@ preenche.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/src_interface/graficos_sinais.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 66</span>
-<span class="normal"> 67</span>
-<span class="normal"> 68</span>
-<span class="normal"> 69</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 69</span>
 <span class="normal"> 70</span>
 <span class="normal"> 71</span>
 <span class="normal"> 72</span>
@@ -2114,7 +2111,10 @@ preenche.</p>
 <span class="normal">139</span>
 <span class="normal">140</span>
 <span class="normal">141</span>
-<span class="normal">142</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">config_axes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">config_axes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Cria os quatro eixos, com títulos e rótulos, e as linhas vazias que a animação</span>
 <span class="sd">    preenche.</span>
 <span class="sd">    """</span>
