@@ -93,16 +93,34 @@
       diag.classList.add("lv-zoomable-element");
       diag.setAttribute("title", "Clique para expandir o diagrama");
 
-      diag.addEventListener("click", () => {
+      const modalId = "mermaid-zoom-modal-" + idx;
+      let modalHolder = document.getElementById(modalId);
+      if (!modalHolder) {
+        modalHolder = document.createElement("div");
+        modalHolder.id = modalId;
+        modalHolder.style.display = "none";
+        modalHolder.className = "lv-glightbox-inline-box lv-mermaid-modal";
+        document.body.appendChild(modalHolder);
+      }
+
+      diag.addEventListener("click", (e) => {
+        e.preventDefault();
         const svg = diag.querySelector("svg");
-        const contentHtml = svg ? svg.outerHTML : diag.innerHTML;
-        const inlineBox = document.createElement("div");
-        inlineBox.className = "lv-glightbox-inline-box lv-mermaid-modal";
-        inlineBox.innerHTML = contentHtml;
+        if (!svg) return;
+
+        // Clona o SVG com todas as classes e estilos computados
+        const clonedSvg = svg.cloneNode(true);
+        clonedSvg.removeAttribute("id");
+        clonedSvg.style.maxWidth = "100%";
+        clonedSvg.style.height = "auto";
+        clonedSvg.style.display = "block";
+
+        modalHolder.innerHTML = "";
+        modalHolder.appendChild(clonedSvg);
 
         const lb = GLightbox({
           elements: [{
-            content: inlineBox,
+            content: modalHolder,
             width: "92vw",
             height: "auto"
           }],
