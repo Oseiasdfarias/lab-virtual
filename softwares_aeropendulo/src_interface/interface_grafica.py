@@ -39,6 +39,14 @@ class InterfaceAeropendulo:
                  simulador: SimuladorInterfaceOrNone, baud_rate: int = 115200,
                  amostras: int = 50, Ts: float = 0.02,
                  tela_fixa: bool = False):
+        """Args:
+            graficos_sinais: classe (não instância) que cria a figura dos gráficos.
+            simulador: `Simulador` do gêmeo digital, ou `None` para desativá-lo.
+            baud_rate: taxa da porta serial.
+            amostras: número de amostras exibidas na janela dos gráficos.
+            Ts: período de amostragem, em segundos, usado no eixo de tempo.
+            tela_fixa: impede o redimensionamento da janela.
+        """
         self.tela_fixa = tela_fixa
 
         # Objeto para coletar dados do sensor
@@ -58,12 +66,20 @@ class InterfaceAeropendulo:
         # Inicializa a interface gráfica
         self.start_gui()
 
-    def atualizar_simulador(self, t, theta, ref):
+    def atualizar_simulador(self, t: float, theta: float, ref: float) -> None:
+        """Repassa uma amostra ao gêmeo digital, se ele estiver habilitado.
+
+        Args:
+            t: instante da amostra, em segundos.
+            theta: ângulo medido, em graus.
+            ref: referência, em graus.
+        """
         if isinstance(self.simulador, SimuladorInterface):
             self.simulador.atualizar_estados(t, theta, ref)
             self.simulador.animacao_aeropendulo.pause_giro()
 
     def quit(self) -> None:
+        """Fecha a janela da interface e limpa o terminal."""
         self.root.quit()
         self.root.destroy()
         if os.name == "nt":
@@ -73,13 +89,16 @@ class InterfaceAeropendulo:
             _ = os.system("clear")
 
     def set_usb_port(self, porta_atual: str) -> None:
+        """Define a porta serial escolhida no menu."""
         self.usb_port = porta_atual
 
     @staticmethod
     def aparencia_event(new_appearance_mode: str) -> None:
+        """Troca o modo de aparência da interface (`"Dark"` ou `"Light"`)."""
         ctk.set_appearance_mode(new_appearance_mode)
 
     def init(self) -> None:
+        """Configura os limites e as linhas de referência dos quatro eixos antes da animação."""
         for i in range(4):
             if i == 0:
                 self.ax[i].set_xlim(0, self.amostras*self.Ts)
@@ -102,6 +121,9 @@ class InterfaceAeropendulo:
         return self.ln
 
     def update(self, frame):
+        """Quadro da animação: lê a janela de amostras, atualiza o gêmeo digital e redesenha
+        as curvas.
+        """
         dados = self.coleta_dados.get_dados()
         self.atualizar_simulador(dados[-1][-1], dados[1][-1], dados[0][-1])
         t = np.arange(0, 0.02*len(dados[0]), 0.02)
@@ -111,6 +133,11 @@ class InterfaceAeropendulo:
         return self.ln
 
     def run_graph(self) -> None:
+        """Inicia o ensaio na porta selecionada.
+
+        Abre a conexão serial, envia o comando de execução (`12000`) e começa a animação dos
+        gráficos. Só age uma vez e se houver uma porta escolhida.
+        """
         if self.executar:
             if self.usb_port:
                 self.coleta_dados = ColetaDados(
@@ -126,6 +153,9 @@ class InterfaceAeropendulo:
                 self.executar = False
 
     def switch_event_den_serra(self) -> None:
+        """Seleciona a referência dente de serra (código `7000`) e desmarca as outras formas
+        de onda.
+        """
         if self.switch_var_den_serra.get() == "on":
             self.switch_quad.deselect(0)
             self.switch_seno.deselect(0)
@@ -135,6 +165,7 @@ class InterfaceAeropendulo:
             self.switch_den_serra.select(1)
 
     def switch_event_seno(self) -> None:
+        """Seleciona a referência senoidal (código `8000`) e desmarca as outras formas de onda."""
         if self.switch_var_seno.get() == "on":
             self.switch_den_serra.deselect(0)
             self.switch_quad.deselect(0)
@@ -144,6 +175,9 @@ class InterfaceAeropendulo:
             self.switch_seno.select(1)
 
     def switch_event_quad(self) -> None:
+        """Seleciona a referência em onda quadrada (código `9000`) e desmarca as outras formas
+        de onda.
+        """
         if self.switch_var_quad.get() == "on":
             self.switch_den_serra.deselect(0)
             self.switch_seno.deselect(0)
@@ -153,6 +187,10 @@ class InterfaceAeropendulo:
             self.switch_quad.select(1)
 
     def switch_event_mamb(self) -> None:
+        """Alterna entre malha fechada (código `10000`) e malha aberta (código `11000`).
+
+        Só tem efeito com o ensaio em execução.
+        """
         if not self.executar:
             if self.switch_var_mamf.get() == "on":
                 if not self.executar:
@@ -165,6 +203,7 @@ class InterfaceAeropendulo:
             return
 
     def switch_event_sdados(self) -> None:
+        """Liga ou desliga a gravação das amostras; ao desligar, grava o CSV do ensaio."""
         if self.executar:
             self.switch_salve.deselect(0)
             return
@@ -174,10 +213,11 @@ class InterfaceAeropendulo:
         else:
             self.coleta_dados.flag_salvar_dados = False
             self.coleta_dados.salvar_dados_colhidos()
-            self.salvar_dados = np.array([[], [], [],
-                                          [], [], [], []]).astype(object)
 
     def get_data_emtry_ampl1(self) -> None:
+        """Lê a amplitude digitada (0 a 30°), exibe-a e envia ao firmware; ignora valores
+        inválidos.
+        """
         data = self.emtry_ampl1.get()
         isnum = data.replace('.', '', 1).isdigit()
         if not self.executar and isnum:
@@ -188,6 +228,9 @@ class InterfaceAeropendulo:
         self.emtry_ampl1.delete(0, len(data))
 
     def get_data_emtry_freq1(self) -> None:
+        """Lê a frequência digitada (0 a 5 rad/s), exibe-a e envia ao firmware; ignora valores
+        inválidos.
+        """
         data = self.emtry_freq1.get()
         print(f"Dado entrada freq 1: {data.isdigit()}")
         isnum = data.replace('.', '', 1).isdigit()
@@ -199,6 +242,9 @@ class InterfaceAeropendulo:
         self.emtry_freq1.delete(0, len(data))
 
     def get_data_emtry_offset1(self) -> None:
+        """Lê o offset digitado (0 a 120°), exibe-o e envia ao firmware; ignora valores
+        inválidos.
+        """
         data = self.emtry_offset1.get()
         isnum = data.replace('.', '', 1).isdigit()
         if not self.executar and isnum:

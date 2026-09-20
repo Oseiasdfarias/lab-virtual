@@ -26,6 +26,11 @@ class AnimacaoAeropendulo(AnimacaoAeropenduloInterface):
     """
     def __init__(self, comprimento_braco=4.4) -> None:
         # Parâmetros do Aeropêndulo
+        """Cria a cena do VPython e desenha o aeropêndulo e a hélice.
+
+        Args:
+            comprimento_braco: comprimento do braço no modelo 3D, em unidades da cena.
+        """
         self.comprimento_braco = comprimento_braco
         self.scene = vp.canvas(title="<center><h1>Aeropêndulo</h1><center/>",
                                width=650,
@@ -82,6 +87,9 @@ class AnimacaoAeropendulo(AnimacaoAeropenduloInterface):
         return self.pendulo
 
     def __helice(self) -> None:
+        """Cria as pás da hélice: uma sempre visível e três extras, inicialmente ocultas,
+        defasadas de 45° entre si.
+        """
         self.helice = vp.box(pos=vp.vec(0.8, 0.6, 0),
                              size=vp.vec(0.05, 0.2, 2),
                              color=vp.vec(1, 1, 0))
@@ -114,16 +122,23 @@ class AnimacaoAeropendulo(AnimacaoAeropenduloInterface):
         self.helice3.visible = False
 
     def pause_giro(self) -> None:
+        """Torna visíveis as três pás extras da hélice."""
         self.helice1.visible = True
         self.helice2.visible = True
         self.helice3.visible = True
 
     def girar_helice(self) -> None:
+        """Oculta as três pás extras da hélice."""
         self.helice1.visible = False
         self.helice2.visible = False
         self.helice3.visible = False
 
-    def set_posicao_helice(self, angle):
+    def set_posicao_helice(self, angle: float) -> None:
+        """Gira as pás da hélice em torno do pivô.
+
+        Args:
+            angle: ângulo de rotação, em radianos.
+        """
         self.helice.rotate(axis=vp.vec(0, 0, 1),
                            angle=angle,
                            origin=vp.vec(0, 5.2, 0))
@@ -144,8 +159,17 @@ class AnimacaoAeropendulo(AnimacaoAeropenduloInterface):
                             origin=vp.vec(0, 5.2, 0))
         self.helice3.size = vp.vec(0.05, 0.2, 2)
 
-    def update_helice(self, angle, ts) -> None:
+    def update_helice(self, angle: float, ts: float) -> None:
 
+        """Faz a hélice acompanhar o braço e girar.
+
+        Realinha as pás ao eixo do braço, gira-as em torno do pivô de `angle * ts` radianos
+        e aplica um pequeno giro em torno do eixo do motor.
+
+        Args:
+            angle: velocidade angular do braço, em rad/s.
+            ts: intervalo desde a amostra anterior, em segundos.
+        """
         self.helice.size = vp.vec(0.05, 0.2, 2)
         self.helice1.size = vp.vec(0.05, 0.2, 2)
         self.helice2.size = vp.vec(0.05, 0.2, 2)
@@ -193,6 +217,7 @@ class AnimacaoAeropendulo(AnimacaoAeropenduloInterface):
 
     def __desenhar_pendulo(self) -> None:
         # Braço do Aeropêndulo.
+        """Desenha o braço e o conjunto do motor e os agrupa no objeto `self.pendulo`."""
         self.barra = vp.box(pos=vp.vec(0, -1.4, 0),
                             size=vp.vec(0.2, self.comprimento_braco, 0.2),
                             color=vp.vec(0.5, 0.5, 0.95))

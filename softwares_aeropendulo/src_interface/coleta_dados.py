@@ -52,9 +52,19 @@ class ColetaDados(ColetaDadosInterface):
         self.__init_thread()
 
     def get_dados(self) -> npt.ArrayLike:
+        """Returns:
+            Janela atual de amostras recebidas: um array 7 × N, uma linha por sinal, na ordem
+            do protocolo serial.
+        """
         return self.fila
 
     def set_amplitude(self, amplitude: str) -> None:
+        """Envia ao firmware a amplitude da referência.
+
+        Args:
+            amplitude: amplitude em graus, de 0 a 30, codificada na faixa 1000–2000 do
+                protocolo serial.
+        """
         data = ((float(amplitude) * 1000.) / 30.) + 1000.
         data_conv = f"{int(data)}"
         print(f"Ampl.: {data_conv}")
@@ -68,6 +78,12 @@ class ColetaDados(ColetaDadosInterface):
             self.set_amplitude(amplitude)
 
     def set_frequencia(self, frequencia: str) -> None:
+        """Envia ao firmware a frequência da referência.
+
+        Args:
+            frequencia: valor de 0 a 5 (a interface o rotula em rad/s), codificado na faixa
+                2000–3000 do protocolo serial.
+        """
         print(f"Dado entrada freq: {float(frequencia)}")
         data = ((float(frequencia) * 1000.) / 5.) + 2000.
         data_conv = f"{int(data)}"
@@ -82,6 +98,12 @@ class ColetaDados(ColetaDadosInterface):
             self.set_frequencia(frequencia)
 
     def set_offset(self, offset: str) -> None:
+        """Envia ao firmware o offset da referência.
+
+        Args:
+            offset: offset em graus, de 0 a 120, codificado na faixa 3000–4000 do protocolo
+                serial.
+        """
         data = ((float(offset) * 1000.) / 120.) + 3000.
         data_conv = f"{int(data)}"
         print(f"Offset: {data_conv}")
@@ -95,6 +117,12 @@ class ColetaDados(ColetaDadosInterface):
             self.set_offset(offset)
 
     def set_sinal(self, sinal: str) -> None:
+        """Envia um código de comando ao firmware e tenta de novo se a escrita falhar.
+
+        Args:
+            sinal: código do protocolo serial, como `"12000"` (executar) ou `"9000"` (onda
+                quadrada).
+        """
         self.disp.reset_input_buffer()
         if self.disp.write(sinal.encode("utf-8")):
             self.disp.flush()
@@ -105,6 +133,7 @@ class ColetaDados(ColetaDadosInterface):
             self.set_sinal(sinal)
 
     def listar_dir(self) -> None:
+        """Entra na pasta `dados_de_ensaio`, criando-a se ainda não existir."""
         pastas = os.listdir()
         diretorio = "dados_de_ensaio"
         file = False
@@ -119,6 +148,9 @@ class ColetaDados(ColetaDadosInterface):
                 os.chdir(diretorio)
 
     def salvar_dados_colhidos(self):
+        """Grava as amostras acumuladas em `dados_de_ensaio/arquivo_<data>_<hora>.csv` e
+        esvazia o buffer de gravação, para a próxima gravação começar do zero.
+        """
         data = dt.datetime.now()
         nome1 = f"{data.day}_{data.month}_{data.year}"
         nome2 = f"_{data.hour}_{data.minute}_{data.second}"
@@ -127,6 +159,8 @@ class ColetaDados(ColetaDadosInterface):
         dt_dados_obtidos = pd.DataFrame(self.salvar_dados.T)
         dt_dados_obtidos.to_csv(self.nome_arquivo)
         dt_dados_obtidos = None
+        self.salvar_dados = np.array(
+            [[], [], [], [], [], [], []]).astype(object)
         self.disp.flush()
         self.disp.reset_input_buffer()
 
@@ -136,6 +170,7 @@ class ColetaDados(ColetaDadosInterface):
         self.new_thread.start()
 
     def reconectar(self):
+        """Reabre a porta serial após uma falha de leitura e reenvia o comando de execução."""
         try:
             self.disp.close()
             self.disp = serial.Serial(self.porta,

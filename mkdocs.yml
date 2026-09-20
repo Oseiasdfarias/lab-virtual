@@ -110,7 +110,7 @@ nav:
           - Python (Ubuntu): software/instalacao/python/ubuntu.md
           - Python (Windows): software/instalacao/python/windows.md
           - Python (macOS): software/instalacao/python/macos.md
-          - Dependências: software/instalacao/dependencias.md
+          - Dependências do projeto: software/instalacao/dependencias.md
   - Referência de Código:
       - Gêmeo digital:
           - Simulador: referencia/simulador.md

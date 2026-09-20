@@ -27,11 +27,19 @@ from simulador_aeropendulo import AnimacaoAeropendulo
 
 class RunInterface:
 
+    """Ponto de entrada da aplicação: lê os argumentos e abre a interface gráfica,
+    com ou sem o gêmeo digital.
+    """
     def __init__(self) -> None:
         simular = self.get_args()
         self.runinterface(simular)
 
     def get_args(self) -> bool:
+        """Lê a linha de comando.
+
+        Returns:
+            True se o programa foi chamado com `-simular sim`, o que habilita o gêmeo digital.
+        """
         parser = argparse.ArgumentParser()
         parser.add_argument(
             "-simular", "--Output",
@@ -44,6 +52,11 @@ class RunInterface:
             return False
 
     def runinterface(self, simular):
+        """Cria o gêmeo digital, se habilitado, e inicia a interface gráfica.
+
+        Args:
+            simular: habilita o `Simulador` (animação 3D e gráficos do VPython).
+        """
         if simular:
             simulador = Simulador(Graficos(), AnimacaoAeropendulo())
         else:

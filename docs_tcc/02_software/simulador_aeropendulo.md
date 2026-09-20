@@ -1,6 +1,7 @@
 ---
-fonte: softwares_aeropendulo/simulador_aeropendulo/simulador.py, softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py, softwares_aeropendulo/simulador_aeropendulo/graficos_aeropendulo.py, softwares_aeropendulo/simulador_aeropendulo/interface_interativa.py, softwares_aeropendulo/simulador_aeropendulo/__init__.py, softwares_aeropendulo/simulador_aeropendulo/README.md, softwares_aeropendulo/simulador_aeropendulo/interfaces/
+fonte: softwares_aeropendulo/simulador_aeropendulo/simulador.py, softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py, softwares_aeropendulo/simulador_aeropendulo/graficos_aeropendulo.py, softwares_aeropendulo/simulador_aeropendulo/__init__.py, softwares_aeropendulo/simulador_aeropendulo/README.md, softwares_aeropendulo/simulador_aeropendulo/interfaces/
 gerado_em: 2026-09-12
+atualizado_em: 2026-09-13
 ---
 
 # Simulador Aeropêndulo (Gêmeo Digital)
@@ -20,7 +21,7 @@ T ≈ Km·V                              (aproximação linear empuxo ≈ ganho 
 
 Onde `J` = momento de inércia, `c` = coeficiente de atrito viscoso, `m` = massa, `d` = distância do centro de massa ao eixo, `Km` = ganho estático do motor/hélice, `V` = tensão de controle, `θ` = ângulo do braço.
 
-**Importante:** essa equação diferencial (a parte "matemática" do gêmeo digital, que integraria os estados a partir de `u`) não está implementada em nenhuma classe do pacote atual `simulador_aeropendulo`. A classe que faria isso (`ModeloMatAeropendulo`, usada só em `main_aeropendulo.py`) não existe mais no código-fonte — ver `docs_tcc/02_software/visao_geral.md`. A classe `Simulador` atual (ver abaixo) **não resolve a EDO**: ela é um "consumidor" de estados (ângulo, referência, tempo) vindos de fora (da interface real via serial, ou de outro lugar) e só cuida da parte gráfica/visual (rotacionar o modelo 3D e atualizar os plots).
+**Importante:** essa equação diferencial (a parte "matemática" do gêmeo digital, que integraria os estados a partir de `u`) não está implementada em nenhuma classe do pacote atual `simulador_aeropendulo`. A classe que faria isso (`ModeloMatAeropendulo`) não existe mais no código-fonte, e o script que a usava (`main_aeropendulo.py`) foi removido. A classe `Simulador` atual (ver abaixo) **não resolve a EDO**: ela é um "consumidor" de estados (ângulo, referência, tempo) vindos de fora (da interface real via serial, ou de outro lugar) e só cuida da parte gráfica/visual (rotacionar o modelo 3D e atualizar os plots).
 
 ## `simulador.py` — classe `Simulador`
 
@@ -57,14 +58,10 @@ Cria um gráfico VPython (`vp.graph`, scroll automático, `xmin=0, xmax=14`) com
 
 Curvas de velocidade angular e sinal de controle estão comentadas no código (desativadas), sugerindo uma versão anterior mais completa que foi simplificada.
 
-## `interface_interativa.py` — classe `Interface`
+## `interface_interativa.py` (removido)
 
-Widgets de controle sobrepostos à cena VPython (`scene.append_to_caption`, `vp.button`, `vp.winput`, `vp.slider`, `vp.wtext`):
-- Botão "Executar/Pausar" (`EXE` flag) que liga/desliga o giro visual da hélice.
-- Campo numérico para definir a posição inicial (rotação manual do braço, em graus).
-- Slider de 0–2 para o valor de referência do controlador (usado no laço de `main_aeropendulo.py`, que como já indicado está quebrado/desatualizado).
-
-Essa classe é usada apenas por `main_aeropendulo.py` (o script legado), não pelo fluxo principal (`rungui.py` → `Simulador`).
+A classe `Interface` (widgets sobre a cena VPython) só era usada pelo `main_aeropendulo.py` e
+dependia de um controlador que não existe no repositório; foi removida em 2026-09-13.
 
 ## Resumo do fluxo de animação
 

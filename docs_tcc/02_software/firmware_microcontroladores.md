@@ -1,6 +1,7 @@
 ---
 fonte: softwares_aeropendulo/firmwares_microcontroladores/Arduino_IDE/Arduino_Nano/src/main.cpp, softwares_aeropendulo/firmwares_microcontroladores/Arduino_IDE/arduino_uno/teste_aeropendulo_malha_aberta.ino, softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/Esp32_ttgo/src/main.cpp, softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/Esp32_ttgo_modulos/src/main.cpp, softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/Esp32_ttgo_modulos/lib/*/src/*, softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/Esp32_ttgo_modulos_freertos/src/main.cpp, softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/Esp32_ttgo_modulos_freertos/lib/*/src/*, softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/Arduino_Nano/src/main.cpp, softwares_aeropendulo/firmwares_microcontroladores/PlatformIo/arduino_uno/src/main.cpp
 gerado_em: 2026-09-12
+atualizado_em: 2026-09-13
 ---
 
 # Firmwares dos Microcontroladores
@@ -55,14 +56,14 @@ PID mypid(0.02, 0.055, 0.35);  // Kp, Ki, Kd (instanciado em main.cpp)
 float PID::atualiza_pid(float erro, float theta, float Ts) {
     P = erro * Kp;
     I += (erro * Ki) * Ts;
-    D = Kd * erro * (lastTheta - theta) * Ts;   // nota: forma não usual (multiplica erro, não delta_erro/Ts)
+    D = Kd * (lastTheta - theta) / Ts;          // corrigido em 2026-09-13 (antes: Kd * erro * (lastTheta - theta) * Ts)
     lastTheta = theta;
     return P + I + D;
 }
 ```
 
 - PID incremental simples, sem anti-windup explícito, chamado a cada iteração do `loop()` com `Ts = 0.02` s.
-- **Observação de possível bug**: o termo derivativo usa `erro * (lastTheta - theta) * Ts`, que não corresponde à forma clássica `Kd * d(erro)/dt` — multiplica pelo erro atual e por `Ts` (ao invés de dividir), o que é atipicamente dimensionado. Vale conferir na dissertação se esse comportamento foi intencional/calibrado empiricamente.
+- **Bug corrigido em 2026-09-13**: o termo derivativo multiplicava pelo erro e por `Ts`; agora é a derivada da medida, `Kd * (lastTheta - theta) / Ts`. Os ganhos foram calibrados com a fórmula antiga e a correção não foi testada no protótipo — ver `docs_tcc/divida_tecnica.md`.
 - Existe também uma classe alternativa `Controladores::controlador_1()` (`lib/controladores/src/controladores.cpp`) — um controlador digital de 2ª ordem por equação a diferenças com coeficientes fixos (`u0 = 1.724*u1 - 0.7241*u2 + 19.09*erro - 35.66*e1 + 16.68*e2`, saturado em ±1), aparentemente um controlador projetado via LGR/discretização (ver `simulador_aeropendulo/docs/projeto_de_controladores/`), mas **não é chamado no `main.cpp` atual** (a linha está comentada: `// sinal_controle = controle.controlador_1(...)`) — só o PID está ativo.
 
 ### Geração de sinal de referência (`lib/referencia/src/referencia.cpp`)
@@ -73,7 +74,7 @@ float PID::atualiza_pid(float erro, float theta, float Ts) {
 ### Conversões (`lib/conversor/src/conversor.cpp`)
 
 - `converte_escala()` — mapeamento linear genérico com correção de offset (usado para converter leitura ADC do potenciômetro em ângulo).
-- `converte_tensao_ciclo()` — converte tensão de controle (0–3.3V) para ciclo de trabalho PWM (0–255). **Bug notado**: a condição `if (0.0 <= sinal_controle <= 3.3)` em C++ não faz o que parece — `0.0 <= sinal_controle` avalia para `bool` (0 ou 1), que é então comparado com `<= 3.3` (sempre verdadeiro); ou seja, o `else if` para saturar em 255 quando `sinal_controle > 3.3` é código mortos na prática (a primeira condição sempre entra). Efeito prático provavelmente pequeno (o `ciclo_trabalho` calculado por `sinal_controle*255/3.3` já estoura o range de PWM para valores >3.3V, sem clamping — possível fonte de comportamento errático em saturação).
+- `converte_tensao_ciclo()` — converte tensão de controle (0–3.3V) para ciclo de trabalho PWM (0–255). **Bug corrigido em 2026-09-13 com `if/else if/else` explícito (sem validação em hardware)**; descrição original: a condição `if (0.0 <= sinal_controle <= 3.3)` em C++ não faz o que parece — `0.0 <= sinal_controle` avalia para `bool` (0 ou 1), que é então comparado com `<= 3.3` (sempre verdadeiro); ou seja, o `else if` para saturar em 255 quando `sinal_controle > 3.3` é código mortos na prática (a primeira condição sempre entra). Efeito prático provavelmente pequeno (o `ciclo_trabalho` calculado por `sinal_controle*255/3.3` já estoura o range de PWM para valores >3.3V, sem clamping — possível fonte de comportamento errático em saturação).
 
 ## Loop principal (`Esp32_ttgo_modulos/src/main.cpp`)
 
@@ -90,8 +91,12 @@ Estrutura do `loop()`:
 - **ESP32 TTGO**: ADC em GPIO numérico (`pin 2`), PWM via `ledcSetup`/`ledcWrite` (canal, frequência 500 Hz ou 30 kHz, resolução 8-bit configurável), mesma lógica de ponte H em GPIOs diferentes (32/33 ou 37/38 dependendo da variante).
 - O mapeamento ADC→ângulo (`map()`/`converte_escala`) usa faixas calibradas empiricamente e diferem por variante (ex.: `map(valorAD_POT, 528, 3235, 0, 180)` no Arduino Nano/ESP32 simples vs `converte_escala(valorAD_POT, 0, 4095, 0, 270, 528)` no ESP32 modular) — indício de recalibração/potenciômetro trocado entre versões.
 
-## Arquivos com problemas identificados
+## Arquivos com problemas identificados (situação em 2026-09-13)
 
-- `PlatformIo/Arduino_Nano/src/main.cpp`: **contém um erro de sintaxe** — caractere solto `k` na última linha do arquivo, após o `}` de fechamento do `loop()`. Não compila como está.
-- `PlatformIo/Esp32_ttgo/lib/ler_escrever_serial/src/ler_escrever_serial.cpp` e `.h`: **arquivos vazios** (0 linhas) — resíduo de biblioteca não utilizada (o `main.cpp` dessa variante implementa `enviar_dados_serial`/`ler_dados_serial` diretamente inline, sem usar essa lib).
-- `PlatformIo/Esp32_ttgo_modulos_freertos`: nome sugere uso de FreeRTOS/multitarefa mas o código não usa nenhuma API de tasks/filas do FreeRTOS; e tem menos funcionalidade que `Esp32_ttgo_modulos` (sem PID, sem seleção de forma de onda, sem malha aberta/fechada) — parece uma versão desatualizada/protótipo abandonado, não a mais avançada.
+- `PlatformIo/Arduino_Nano/src/main.cpp`: o caractere solto `k` foi removido.
+- `PlatformIo/Esp32_ttgo/lib/ler_escrever_serial/`: arquivos vazios removidos.
+- `PlatformIo/Esp32_ttgo_modulos_freertos`: ganhou um `README.md` explicando que não usa FreeRTOS.
+- Pino do sensor: o esquema elétrico da monografia liga o potenciômetro ao GPIO 12, mas o
+  `main.cpp` lê o GPIO 2.
+- Nenhuma variante além de `Esp32_ttgo_modulos` foi validada no protótipo real. Situação de cada
+  uma, compilação e o que falta testar: [`../divida_tecnica.md`](../divida_tecnica.md).

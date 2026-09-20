@@ -39,8 +39,15 @@ mpl.use('TkAgg')
 
 class GraficosSinais(GraficosSinaisInterface):
 
+    """Figura Matplotlib com os quatro gráficos da interface: referência e ângulo, erro,
+    sinal de controle e entrada em malha aberta.
+    """
     def __init__(self, markersize: float = 3.0,
                  grid: bool = True) -> None:
+        """Args:
+            markersize: tamanho dos marcadores das curvas.
+            grid: exibe a grade nos eixos.
+        """
         self.grid = grid
         self.markersize = markersize
         self.fig = plt.figure(figsize=(9.85, 6.45), facecolor="#FFFFFF")
@@ -50,9 +57,16 @@ class GraficosSinais(GraficosSinaisInterface):
                                  top=0.93, right=0.971, bottom=0.12)
 
     def get_fig_axes_ln(self):
+        """Returns:
+            Tupla `(figura, eixos, linhas)`: os 4 eixos e as 5 linhas (referência, ângulo,
+            erro, controle e entrada) que a animação da interface atualiza.
+        """
         return self.fig, self.ax, self.ln
 
     def config_axes(self) -> None:
+        """Cria os quatro eixos, com títulos e rótulos, e as linhas vazias que a animação
+        preenche.
+        """
         self.ax1 = self.fig.add_subplot(221)
         self.ax1.set_title("Referência + Ângulo (Graus)",
                            color="#2B2B2B", fontsize=9)

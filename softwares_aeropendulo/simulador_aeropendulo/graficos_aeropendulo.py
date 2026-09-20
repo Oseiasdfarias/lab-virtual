@@ -23,6 +23,10 @@ class Graficos(GraficosInterface):
     Gráfico para plotagem dos dados dos estados do Aeropéndulo.
     """
     def __init__(self, largura: int = 650, altura: int = 400):
+        """Args:
+            largura: largura do gráfico, em pixels.
+            altura: altura do gráfico, em pixels.
+        """
         self.width = largura
         self.height = altura
 

@@ -1,9 +1,10 @@
 [tool.poetry]
 name = "softwares_aeropendulo"
-version = "0.2.0"
-description = "Interface para interagir com o protótipon do Aeropêndulo"
+version = "1.0.0"
+description = "Interface gráfica e gêmeo digital do Laboratório Virtual (aeropêndulo)"
 authors = ["Oseiasdfarias <oseias.dfarias@gmail.com>"]
 readme = "README.md"
+license = "MIT"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
@@ -21,6 +22,9 @@ scikit-learn = "^1.3.1"
 sympy = "^1.12"
 # vpython 7.6.5 importa pkg_resources, que o setuptools removeu na versão 82.
 setuptools = ">=78.1.1,<82"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3"
 
 [build-system]
 requires = ["poetry-core"]

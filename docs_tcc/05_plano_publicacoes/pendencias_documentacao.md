@@ -178,13 +178,34 @@ uma nota de como foram verificados — nada foi marcado como feito sem checagem 
       versões fixadas em `requirements-docs.txt`.
 - [x] Dependências: piso em Python 3.10; os 151 alertas do Dependabot aplicáveis ao lock caem
       para 1. Validado em Python 3.11 (instalação, imports do `rungui.py`, script de métricas).
-- [ ] **Alerta restante:** `setuptools < 83` (médio). Não dá para fechar enquanto o `vpython`
-      7.6.5 importar `pkg_resources`, removido no setuptools 82.
-- [ ] **Validar em hardware:** a interface gráfica e o gêmeo digital com as dependências novas
-      só foram testados até o import; e os fixes do PID/conversor no firmware continuam sem
-      teste no protótipo.
-- [ ] **Apagar branches já mescladas na `main`** (a exclusão foi bloqueada pela ferramenta e
-      fica com o autor): `site-estilo-marca`, `site-redesign-plano`,
-      `site-redesign-plano-exec`, `docs/metadados-ufpa`, `docs/roadmap-artigo-livro`,
-      `fechamento-fase-1-2` (esta tem só um commit fora da `main`, já aplicado por
-      cherry-pick).
+- [→] **Alerta do `setuptools`** e **validação em hardware** (firmware, dependências novas):
+      movidos para [`../divida_tecnica.md`](../divida_tecnica.md).
+- [x] **2026-09-13** — Branches já mescladas apagadas no remoto e localmente; restam `main`,
+      `gh-pages`, `dev`, `backup-lab-virtual` e `tcc-estado-original`.
+
+## Rodada de 2026-09-13 (noite) — melhorias sem dependência de hardware
+
+- [x] `LICENSE` (MIT para código e firmware; documentação própria sob CC BY 4.0, monografia e
+      material de terceiros com os termos originais), `CITATION.cff` validado e `CHANGELOG.md`.
+- [x] Versões unificadas em 1.0.0 e descrição do pacote corrigida.
+- [x] Página do protótipo com lista de materiais, diagrama de comunicação, esquema elétrico e
+      pinagem; divergência de pino do sensor sinalizada.
+- [x] Catálogo dos 9 ensaios e métricas de malha fechada com script
+      (`materiais_complementares/analise_malha_fechada/`).
+- [x] Descrição da coluna de entrada corrigida: em malha fechada ela mantém o último valor da
+      malha aberta, não zero.
+- [x] Docstrings (13 → 57 de 62), correção do buffer de gravação e da checagem de eventos USB,
+      suíte de testes (24) no CI.
+- [x] Instalação unificada com Poetry como caminho principal.
+- [x] Resumos de `docs_tcc/` atualizados para o estado atual; dívida técnica criada.
+- [ ] Revisar os tutoriais de instalação do Python por sistema operacional (ainda ensinam o
+      3.10.0, que continua suportado). Baixa prioridade.
+
+## Ações que dependem do autor
+
+- [ ] **Release v1.0.0 com DOI:** ativar a integração do repositório no Zenodo
+      (zenodo.org → GitHub) **antes** de criar a release; depois, publicar a release `v1.0.0`
+      e acrescentar o DOI ao `README.md` e ao `CITATION.cff`.
+- [ ] **Atraso na função de transferência publicada:** decidir entre nota no artigo, errata
+      na monografia ou ambos.
+- [ ] Destino de `revisao_tcc/TCC-Oseas/` e `revisao_tcc/andre/`.

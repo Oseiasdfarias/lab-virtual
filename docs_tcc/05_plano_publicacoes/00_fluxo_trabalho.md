@@ -1,6 +1,7 @@
 ---
 fonte: síntese de todo docs_tcc/ + decisões tomadas nas sessões de 2026-09-12/13
 gerado_em: 2026-09-13
+atualizado_em: 2026-09-13 (fim do dia)
 ---
 
 # Fluxo de trabalho — do estado atual às publicações
@@ -22,56 +23,30 @@ da sessão atual        (monografia/software/site) └ Fase 4 ─ Livro    (sess
 
 ## Fase 1 — Fechar pendências da sessão de rebranding
 
-**Status em 2026-09-13: concluída, exceto a decisão de dependências (adiada de propósito).**
-
-- [x] Branches `docs/metadados-ufpa` e `docs/roadmap-artigo-livro` consolidadas na branch de
-      trabalho `fechamento-fase-1-2` (merge sem conflitos). Falta só o merge final na `main`.
-- [x] Pasta `docs/Componentes do Pendulab/` renomeada para `docs/Componentes do Aeropêndulo/`.
-- [x] `mkdocs build --strict` **passa sem avisos** — mkdocs foi instalado num venv
-      (`/tmp/mkdocs_venv`, fora do repo) para validar. No caminho, achou e corrigiu 2 bugs
-      reais que não estavam no radar: config obsoleta do mkdocstrings (`import:` →
-      `inventories:`, faltava `paths: [.]`) e uma docstring com parâmetro inexistente. Ver
-      "Achados extras" em [`pendencias_documentacao.md`](pendencias_documentacao.md).
-- [ ] **Decisão sobre dependências: adiada.** O `poetry.lock` tem ~294 alertas do
-      Dependabot, todos vindos de `aiohttp`/`tornado`/`jupyterlab`/etc. — dependências
-      transitivas reais do `vpython` (usado no gêmeo digital), não resíduo. `poetry update`
-      sozinho não resolve porque o piso `python >=3.8` força versões antigas dessas
-      dependências; seria preciso subir o piso para `>=3.10` e então atualizar. Ambas as
-      mudanças foram tentadas e revertidas nesta sessão por não terem como ser testadas sem
-      o hardware (GUI e comunicação serial precisam ser verificadas no protótipo real antes
-      do merge). Retomar como tarefa própria.
-
-**Definição de pronto:** branch de trabalho mesclada na `main`, site publicando sem erro
-(ambos confirmados nesta sessão) — falta só a decisão de dependências, adiada com
-justificativa registrada.
+**Status: concluída.** Branches consolidadas e mescladas na `main`, site publicando sem erro.
+A decisão de dependências, antes adiada, foi tomada: piso em Python 3.10, alertas do Dependabot
+de 151 para 3 (todos do `setuptools`, preso ao `vpython`), validado com instalação limpa,
+testes e import dos módulos. A validação no protótipo ficou registrada em
+[`../divida_tecnica.md`](../divida_tecnica.md).
 
 ## Fase 2 — Finalizar a documentação
 
-**Status em 2026-09-13: quase concluída.** Lista completa e detalhada em
-[`pendencias_documentacao.md`](pendencias_documentacao.md). Resumo por frente:
+**Status: concluída**, exceto o que depende do protótipo real, que está em
+[`../divida_tecnica.md`](../divida_tecnica.md). Detalhes em
+[`pendencias_documentacao.md`](pendencias_documentacao.md).
 
-| Frente | Itens | Status |
-| --- | --- | --- |
-| Monografia (texto/fonte LaTeX) | 7 itens | 5 feitos e verificados (compilação real com pdflatex+bibtex); 2 em aberto (padronização de terminologia, sugestões do orientador) |
-| Software | 7 itens | Todos os 7 feitos; PID e conversor corrigidos mas **não testados em hardware** |
-| Site publicado | 2 itens | Ambos feitos e verificados (`mkdocs build --strict` limpo) |
-| Organização do repo | 3 itens, opcionais | Nenhum feito — baixa prioridade, sem impacto em nada externo |
+| Frente | Situação |
+| --- | --- |
+| Site | Mapa completo do laboratório, página Início interativa, protótipo com lista de materiais, esquema e pinagem, deploy automático |
+| Métricas | Identificação (NRMSE/RMSE) e malha fechada (sobressinal, subida, acomodação, erro em regime), com scripts e testes de reprodutibilidade |
+| Software | Docstrings, correções na gravação de ensaios, testes no CI, dependências atualizadas, versão 1.0.0 |
+| Dados | Catálogo dos 9 ensaios |
+| Repositório | `LICENSE` (MIT), `CITATION.cff`, `CHANGELOG.md`, duplicatas removidas |
+| Monografia | Sugestões da banca conferidas ponto a ponto (`../01_monografia/sugestoes_banca.md`); não alterada por estar registrada |
 
-Achados que não estavam no radar original (ver punch list para detalhes): config quebrada
-do mkdocstrings, um binário Linux solto dentro do firmware, e um script morto
-(`main_aeropendulo.py`) cujos parâmetros físicos já estavam documentados em outro lugar.
-
-**O item que realmente importa para a Fase 3:** calcular métricas quantitativas de erro
-(RMSE / NRMSE) do modelo identificado e de desempenho em malha fechada (tempo de
-acomodação, sobressinal, erro em regime). Hoje a validação é só visual. Os dados para isso
-já existem — os 9 CSVs em `softwares_aeropendulo/src_interface/dados_de_ensaio/` — falta só
-processar. Esse cálculo serve três propósitos ao mesmo tempo: fecha a limitação que o
-próprio autor reconhece no Cap. 4 da monografia, é pré-requisito do artigo, e vira material
-de exemplo no livro. **Candidato natural a próxima sessão de trabalho.**
-
-**Definição de pronto:** todos os itens de `pendencias_documentacao.md` marcados como feitos
-ou explicitamente adiados com justificativa; métricas quantitativas calculadas e
-documentadas em algum lugar de `docs_tcc/`.
+**Achados que alimentam a Fase 3:** a função de transferência de 10ª ordem publicada tem 7
+amostras de atraso a mais que o modelo estimado (55,97 % × 78,30 % de NRMSE), e as métricas de
+malha fechada mostram assimetria entre subida (≈ 6 % de sobressinal) e descida (≈ 26 %).
 
 ## Fase 3 — Artigo (sessão dedicada separada)
 
@@ -80,8 +55,9 @@ orientando (`softwares_aeropendulo/simulador_aeropendulo/docs/utils/Template_Art
 mas ele **não será usado como base** — o artigo é planejado do zero, focado só no trabalho
 próprio. Ver [`plano_artigo.md`](plano_artigo.md).
 
-Não abrir essa sessão antes das métricas quantitativas da Fase 2 estarem prontas — sem elas
-não há o que revisor de artigo aceite como resultado.
+As métricas quantitativas que eram pré-requisito estão prontas (ver Fase 2); a Fase 3 pode
+começar. Antes de redigir, decidir com o autor como tratar o atraso da função de transferência
+publicada (nota no artigo, errata ou ambos).
 
 ## Fase 4 — Livro (sessão dedicada separada)
 

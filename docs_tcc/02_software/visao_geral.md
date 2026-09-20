@@ -1,6 +1,7 @@
 ---
-fonte: softwares_aeropendulo/main_aeropendulo.py, softwares_aeropendulo/rungui.py, softwares_aeropendulo/pyproject.toml, softwares_aeropendulo/requirements.txt, softwares_aeropendulo/README.md, softwares_aeropendulo/simulador_aeropendulo/__init__.py, softwares_aeropendulo/src_interface/__init__.py
+fonte: softwares_aeropendulo/rungui.py, softwares_aeropendulo/pyproject.toml, softwares_aeropendulo/requirements.txt, softwares_aeropendulo/README.md, softwares_aeropendulo/simulador_aeropendulo/__init__.py, softwares_aeropendulo/src_interface/__init__.py
 gerado_em: 2026-09-12
+atualizado_em: 2026-09-13
 ---
 
 # Visão Geral do Software — Aeropêndulo
@@ -12,14 +13,13 @@ gerado_em: 2026-09-12
 - `simulador_aeropendulo/` — "Gêmeo digital": simulação 3D (VPython) do aeropêndulo, animação e gráficos.
 - `src_interface/` — Interface gráfica (customtkinter) que fala com o hardware real via serial/USB, plota sinais em tempo real e grava ensaios em CSV.
 
-Ambos têm o mesmo padrão interno: uma pasta `interfaces/` com **classes abstratas (ABC)** que definem o contrato de cada módulo, e os arquivos na raiz do pacote com a **implementação concreta** que herda dessas interfaces (ex.: `ColetaDadosInterface` → `ColetaDados`). Isso é um Dependency Inversion simples: `interface_grafica.py` e `main_aeropendulo.py` importam pelas interfaces/implementações concretas dos dois pacotes, permitindo rodar a GUI com ou sem o simulador acoplado.
+Ambos têm o mesmo padrão interno: uma pasta `interfaces/` com **classes abstratas (ABC)** que definem o contrato de cada módulo, e os arquivos na raiz do pacote com a **implementação concreta** que herda dessas interfaces (ex.: `ColetaDadosInterface` → `ColetaDados`). Isso é um Dependency Inversion simples: `interface_grafica.py` e `rungui.py` importam pelas interfaces/implementações concretas dos dois pacotes, permitindo rodar a GUI com ou sem o simulador acoplado.
 
 ## Pontos de entrada
 
 | Arquivo | Função | Observação |
 |---|---|---|
 | `rungui.py` | Ponto de entrada oficial da interface gráfica. Aceita `-simular sim` (via `argparse`) para instanciar também o `Simulador` (gêmeo digital) em paralelo à GUI real. | É o script documentado/atual. |
-| `main_aeropendulo.py` | Roda **apenas** o simulador standalone (sem GUI), com loop físico próprio (integração de Euler) e animação VPython. | **Quebrado**: importa `ModeloMatAeropendulo` e `ControladorDiscreto` de `simulador_aeropendulo`, mas nenhuma dessas classes existe no pacote atual (`simulador_aeropendulo/__init__.py` só exporta `Graficos`, `AnimacaoAeropendulo`, `Simulador`). Parece um script legado de uma versão anterior do simulador (antes da refatoração para `Simulador` guiado externamente por dados reais/seriais). Não executa como está. |
 
 Fluxo de `rungui.py`:
 1. Lê `-simular sim/nada` via CLI.
@@ -29,7 +29,7 @@ Fluxo de `rungui.py`:
 
 ## Dependências principais (pyproject.toml)
 
-Python `>=3.8,<3.12`. Poetry, com grupo `dev` só para mkdocs (docs).
+Python `>=3.10,<3.12` (versão do pacote: 1.0.0, licença MIT). Poetry, com grupo `test` (pytest). As ferramentas da documentação saíram do Poetry e ficam em `requirements-docs.txt` na raiz.
 
 - `matplotlib` — gráficos em tempo real (embutidos no Tkinter via `FigureCanvasTkAgg`).
 - `numpy`, `pandas` — manipulação de arrays e persistência de ensaios em CSV.
@@ -38,21 +38,29 @@ Python `>=3.8,<3.12`. Poetry, com grupo `dev` só para mkdocs (docs).
 - `pyudev` — monitoramento de conexão/desconexão de dispositivos USB (Linux, via netlink).
 - `vpython` — motor 3D usado no simulador/gêmeo digital.
 - `scienceplots`, `mplfonts` — estilo científico dos gráficos matplotlib.
-- `control`, `scikit-learn`, `sympy` — provavelmente usados nos notebooks de modelagem/projeto de controladores (`simulador_aeropendulo/docs/`), não no runtime da GUI.
+- `control`, `scikit-learn`, `sympy` — usados nos notebooks e scripts de análise (identificação e métricas), não no runtime da GUI.
+- `setuptools` fixado em `<82`: o `vpython` 7.6.5 ainda importa `pkg_resources`.
 
-`requirements.txt` é um artefato separado/mais antigo (pip freeze de um ambiente Jupyter — traz `jupyter*`, `mypy`, etc., que não aparecem no `pyproject.toml`); não deve ser a fonte de verdade para reproduzir o ambiente — usar `pyproject.toml`/`poetry.lock`.
+`requirements.txt` é gerado com `poetry export` a partir do `poetry.lock` (as dependências Jupyter vêm de fato do `vpython`), então `pip install -r requirements.txt` instala as mesmas versões.
 
 ## Como rodar
 
-Não há seção "instalação/uso" explícita no `README.md` da raiz (ele só descreve a interface com imagens). Pela leitura do código:
+A partir de `softwares_aeropendulo/` (a coleta usa caminhos relativos a essa pasta):
 
 ```bash
 poetry install
 poetry run python rungui.py                 # só interface real (sem gêmeo digital)
 poetry run python rungui.py -simular sim     # interface real + gêmeo digital 3D sincronizado
+poetry install --with test && poetry run pytest   # testes, sem hardware
 ```
 
-`main_aeropendulo.py` (simulador standalone) não deve ser usado no estado atual — precisa de correção/recuperação das classes `ModeloMatAeropendulo`/`ControladorDiscreto` (provavelmente existiam em uma versão anterior de `simulador.py`, ou precisam ser reimplementadas a partir da modelagem em `simulador_aeropendulo/docs/Modelagem_matematica_do_aeropendulo.ipynb` e do README do simulador, que documenta a equação de movimento do aeropêndulo).
+`main_aeropendulo.py` e `interface_interativa.py` foram removidos em 2026-09-13 (código morto).
+
+## Testes
+
+`softwares_aeropendulo/tests/`: protocolo serial conferido contra a decodificação do firmware,
+regressão da gravação de ensaios, importação dos módulos e reprodutibilidade das métricas
+publicadas. Rodam no CI em `.github/workflows/testes.yml`.
 
 ## Diretórios auxiliares
 

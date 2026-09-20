@@ -1,13 +1,14 @@
 ---
 fonte: síntese de todo docs_tcc/ + estrutura do repositório
 gerado_em: 2026-09-12
+atualizado_em: 2026-09-13
 ---
 
 # Visão geral do projeto
 
 ## O que é
 
-TCC de Engenharia Elétrica (UFPA — Campus Universitário de Tucuruí), autor **Oséias Farias**, orientação de **Raphael Teixeira** (revisor identificado como "André" nos arquivos de revisão pode ser um segundo revisor/banca — checar).
+TCC de Engenharia Elétrica (UFPA — Campus Universitário de Tucuruí), autor **Oséias Dias de Farias**, orientação de **Raphael Barros Teixeira**; o "André" dos arquivos de revisão é o **Prof. André Cruz**, da banca. Defendido em 11/12/2023, publicado na BDM/UFPA (https://bdm.ufpa.br/handle/prefix/6944). Repositório público `Oseiasdfarias/lab-virtual` ("Laboratório Virtual"), versão 1.0.0, código sob MIT e documentação sob CC BY 4.0.
 
 Título no site publicado: *"Desenvolvimento de Protótipo e Gêmeo Digital como Ferramenta para um Laboratório Virtual com Foco em Modelagem e Controle de Sistemas Dinâmicos"*.
 Subtítulo/tema no README: *"Identificação de Sistemas, Simulador Gráfico e Prototipagem de um Aeropêndulo para estudos de Projetos de Controle"*.
@@ -17,7 +18,7 @@ O projeto tem 4 frentes que se integram:
 1. **Protótipo físico** — um aeropêndulo (braço com motor CC + hélice, ESP32/Arduino) para servir de planta real de testes de controle.
 2. **Firmware** — roda no microcontrolador, faz leitura de sensores, controle PID em malha fechada e comunicação serial com o PC.
 3. **Interface gráfica (PC)** — coleta dados via serial, plota sinais em tempo real, salva ensaios em CSV.
-4. **Gêmeo digital / simulador** — modelo matemático em Python que reproduz a dinâmica do aeropêndulo (animação + gráficos), usado tanto para projeto de controlador quanto para fins didáticos.
+4. **Gêmeo digital** — réplica 3D em VPython que espelha, em tempo real, o ângulo medido no protótipo (não integra um modelo da planta).
 
 ## Onde está cada coisa (mapa rápido)
 
@@ -26,9 +27,10 @@ O projeto tem 4 frentes que se integram:
 | Monografia (fonte LaTeX, versão final) | `revisao_tcc/Template_TCC_FEE/` | Completa, com pendências pontuais — ver [`01_monografia/pendencias.md`](01_monografia/pendencias.md) |
 | Monografia (PDF final) | `revisao_tcc/Template_TCC_FEE/tcc_oseias_farias.pdf` | — |
 | Cópias de revisão (não usar como fonte) | `revisao_tcc/TCC-Oseas/`, `revisao_tcc/andre/` | Desatualizadas, mantidas só para histórico de revisão |
-| Software (simulador, interface, firmware) | `softwares_aeropendulo/` | Funcional com bugs pontuais — ver [`02_software/`](02_software/) |
-| Site de documentação publicado (MkDocs/GitHub Pages) | `docs/` | Parcialmente incompleto ("EM DESENVOLVIMENTO" em 4 páginas) — ver [`03_docs_publicadas/resumo_mkdocs.md`](03_docs_publicadas/resumo_mkdocs.md) |
-| Material de apoio bruto (bibliografia, notebooks, modelagem, prototipagem) | `materiais_complementares/` | Volumoso, com duplicações — ver [`04_materiais_complementares/`](04_materiais_complementares/) |
+| Software (simulador, interface, firmware) | `softwares_aeropendulo/` | Funcional, com testes automatizados; o que depende do protótipo está em [`divida_tecnica.md`](divida_tecnica.md) |
+| Site de documentação publicado (MkDocs/GitHub Pages) | `docs/` | Completo, com deploy automático — ver [`03_docs_publicadas/resumo_mkdocs.md`](03_docs_publicadas/resumo_mkdocs.md) |
+| Material de apoio bruto (bibliografia, notebooks, modelagem, prototipagem) | `materiais_complementares/` | Duplicações removidas; inclui os scripts de métricas — ver [`04_materiais_complementares/`](04_materiais_complementares/) |
+| Dívida técnica (o que exige o protótipo real) | [`divida_tecnica.md`](divida_tecnica.md) | Firmware sem validação em hardware, pino do sensor, dependências novas |
 | Imagens/diagramas usados no README e docs | `utils/` | — |
 
 ## Como este `docs_tcc/` deve ser usado
@@ -55,7 +57,7 @@ sessões separadas) e diz o que é pré-requisito do quê.
 
 ## Achados críticos (não ignorar)
 
-- O arquivo mestre LaTeX (`tcc_oseias_farias.tex`) usa `elementos_textuais/` e `elementos_pretextuais/`, **não** as pastas `Capitulos/` e `PreTextual/` que os nomes sugeririam à primeira vista — ver nota em [`01_monografia/resumo.md`](01_monografia/resumo.md).
-- `softwares_aeropendulo/main_aeropendulo.py` está **quebrado** (importa classes que não existem mais); o entry point real e funcional é `rungui.py`.
-- Duas equações do Capítulo 3 final aparecem literalmente como `\frac{numerador}{denominador}` em vez dos coeficientes — parece edição incompleta (ver `01_monografia/pendencias.md`).
-- 4 páginas do site MkDocs publicado estão marcadas "EM DESENVOLVIMENTO..." sem conteúdo.
+- O arquivo mestre LaTeX (`tcc_oseias_farias.tex`) inclui a introdução de `elementos_textuais/` e os capítulos 2 a 4 de `Capitulos/` — ver [`01_monografia/resumo.md`](01_monografia/resumo.md).
+- A função de transferência de 10ª ordem da monografia tem 7 amostras de atraso a mais que o ARX estimado (montagem em potências positivas de z): NRMSE 55,97 % publicado × 78,30 % correto. Ver `docs/identificacao/validacao.md`.
+- Correções do firmware (PID, conversor) e as dependências Python novas não foram testadas no protótipo; o esquema elétrico e o firmware divergem no pino do sensor. Ver [`divida_tecnica.md`](divida_tecnica.md).
+- Os ensaios de malha fechada gravados (0–10°, 0,2 e 0,15 Hz) não têm os parâmetros citados no texto da monografia (0,5 Hz, 15°).
