@@ -729,3 +729,29 @@
   font-size: 0.75rem !important;
   color: var(--md-default-fg-color--light) !important;
 }
+
+/* ---------- GLightbox / Zoom com Fundo Desfocado ---------- */
+.glightbox-container .goverlay {
+  background: rgba(18, 18, 20, 0.72) !important;
+  backdrop-filter: blur(12px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+}
+
+.gslide-image img {
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.gslide-title {
+  font-family: var(--md-text-font), sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  color: #ffffff !important;
+}
+
+.gslide-desc {
+  font-family: var(--md-text-font), sans-serif !important;
+  font-size: 0.82rem !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
