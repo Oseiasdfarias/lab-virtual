@@ -777,10 +777,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#limitacoes-reconhecidas" class="md-nav__link">
+  <a href="#metricas-a-partir-dos-ensaios-gravados" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Limitações reconhecidas
+        Métricas a partir dos ensaios gravados
       
     </span>
   </a>
@@ -1124,7 +1124,7 @@
   <span class="md-ellipsis">
     
   
-    Dependências
+    Dependências do projeto
   
 
     
@@ -1571,10 +1571,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#limitacoes-reconhecidas" class="md-nav__link">
+  <a href="#metricas-a-partir-dos-ensaios-gravados" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Limitações reconhecidas
+        Métricas a partir dos ensaios gravados
       
     </span>
   </a>
@@ -1682,14 +1682,69 @@ com o requisito de projeto do controlador, que era justamente erro nulo em regim
 entrada do tipo degrau. Um detalhe honesto observado nos dois sinais: aparece um transitório
 nas extremidades da forma de onda (visível como um aumento do sinal de erro nesses pontos),
 análogo ao que se espera de uma resposta a um degrau.</p>
-<h2 id="limitacoes-reconhecidas">Limitações reconhecidas</h2>
-<p>A avaliação em malha fechada também foi qualitativa (inspeção visual dos gráficos), sem
-métricas numéricas como tempo de acomodação, sobressinal ou erro em regime permanente
-calculadas explicitamente. Isso, junto com a validação quantitativa do modelo (ver
-<a href="../../identificacao/validacao/">Validação do Modelo</a>), é a lacuna mais importante para
-quem quiser transformar este trabalho em um artigo científico -- os dados brutos dos
-ensaios já existem (<code>softwares_aeropendulo/src_interface/dados_de_ensaio/</code>), falta somente
-processá-los.</p>
+<h2 id="metricas-a-partir-dos-ensaios-gravados">Métricas a partir dos ensaios gravados</h2>
+<p>A monografia avaliou a malha fechada de forma <strong>qualitativa</strong>, pela inspeção dos gráficos.
+Entre os <a href="https://github.com/Oseiasdfarias/lab-virtual/tree/main/softwares_aeropendulo/src_interface/dados_de_ensaio">dados de ensaio</a>
+há dois ensaios completos em malha fechada, ambos com referência em onda quadrada entre 0° e
+10°: <code>arquivo_13_9_2023_23_48_56.csv</code> (troca a cada 2,5 s) e
+<code>arquivo_14_9_2023_20_31_13.csv</code> (troca a cada 3,3 s). Os parâmetros desses arquivos não são
+os citados no texto da monografia (0,5 Hz e 15°), e não há ensaio com dente de serra
+gravado; as métricas abaixo valem, portanto, para esses dois ensaios.</p>
+<p>Cada troca de nível foi tratada como um degrau de ±10°. Os valores são a <strong>mediana</strong> dos
+degraus de cada ensaio:</p>
+<table>
+<thead>
+<tr>
+<th>Ensaio</th>
+<th>Degrau</th>
+<th style="text-align: center;">Sobressinal</th>
+<th style="text-align: center;">Tempo de subida (10–90 %)</th>
+<th style="text-align: center;">Acomodação (±5 %)</th>
+<th style="text-align: center;">Erro em regime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>13/09/2023 (42 degraus)</td>
+<td>subida</td>
+<td style="text-align: center;">5,8 %</td>
+<td style="text-align: center;">0,64 s</td>
+<td style="text-align: center;">1,36 s</td>
+<td style="text-align: center;">0,27°</td>
+</tr>
+<tr>
+<td>13/09/2023</td>
+<td>descida</td>
+<td style="text-align: center;">25,5 %</td>
+<td style="text-align: center;">0,40 s</td>
+<td style="text-align: center;">1,40 s</td>
+<td style="text-align: center;">0,91°</td>
+</tr>
+<tr>
+<td>14/09/2023 (25 degraus)</td>
+<td>subida</td>
+<td style="text-align: center;">5,9 %</td>
+<td style="text-align: center;">0,44 s</td>
+<td style="text-align: center;">2,66 s</td>
+<td style="text-align: center;">0,29°</td>
+</tr>
+<tr>
+<td>14/09/2023</td>
+<td>descida</td>
+<td style="text-align: center;">26,9 %</td>
+<td style="text-align: center;">0,34 s</td>
+<td style="text-align: center;">1,76 s</td>
+<td style="text-align: center;">0,51°</td>
+</tr>
+</tbody>
+</table>
+<p>O comportamento é assimétrico: ao erguer o braço, o sobressinal fica perto de 6 %; ao
+baixá-lo, com a gravidade a favor, passa de 25 %. O erro residual fica abaixo de 1°, medido
+nos últimos 20 % de cada janela de 2,5 a 3,3 s entre trocas.</p>
+<p>Essas métricas são uma análise posterior à defesa, com os ganhos e o termo derivativo da
+época dos ensaios. O script que as reproduz está em
+<a href="https://github.com/Oseiasdfarias/lab-virtual/blob/main/materiais_complementares/analise_malha_fechada/metricas_malha_fechada.py"><code>metricas_malha_fechada.py</code></a>,
+e as definições de cada métrica estão no cabeçalho do arquivo.</p>
 <h2 id="trabalhos-futuros-sugeridos">Trabalhos futuros sugeridos</h2>
 <p>O Cap. 4 da monografia aponta como próximos passos imediatos a documentação online (este
 próprio site) e vídeos explicativos, mantendo o projeto como código aberto. Como

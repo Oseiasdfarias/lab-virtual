@@ -1031,7 +1031,7 @@
   <span class="md-ellipsis">
     
   
-    Dependências
+    Dependências do projeto
   
 
     
@@ -2009,7 +2009,32 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 <span class="normal">218</span>
 <span class="normal">219</span>
 <span class="normal">220</span>
-<span class="normal">221</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnimacaoAeropendulo</span><span class="p">(</span><span class="n">AnimacaoAeropenduloInterface</span><span class="p">):</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnimacaoAeropendulo</span><span class="p">(</span><span class="n">AnimacaoAeropenduloInterface</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Classe que implementa a aminação do Aeropêndulo.</span>
 
@@ -2018,6 +2043,11 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 <span class="sd">    """</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comprimento_braco</span><span class="o">=</span><span class="mf">4.4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Parâmetros do Aeropêndulo</span>
+<span class="w">        </span><span class="sd">"""Cria a cena do VPython e desenha o aeropêndulo e a hélice.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            comprimento_braco: comprimento do braço no modelo 3D, em unidades da cena.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">comprimento_braco</span> <span class="o">=</span> <span class="n">comprimento_braco</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scene</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">canvas</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"&lt;center&gt;&lt;h1&gt;Aeropêndulo&lt;/h1&gt;&lt;center/&gt;"</span><span class="p">,</span>
                                <span class="n">width</span><span class="o">=</span><span class="mi">650</span><span class="p">,</span>
@@ -2074,6 +2104,9 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendulo</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__helice</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Cria as pás da hélice: uma sempre visível e três extras, inicialmente ocultas,</span>
+<span class="sd">        defasadas de 45° entre si.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
                              <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
                              <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
@@ -2106,16 +2139,23 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
         <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">pause_giro</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Torna visíveis as três pás extras da hélice."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">girar_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Oculta as três pás extras da hélice."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_posicao_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_posicao_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Gira as pás da hélice em torno do pivô.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            angle: ângulo de rotação, em radianos.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
                            <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
                            <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
@@ -2136,8 +2176,17 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
                             <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">ts</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ts</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
+<span class="w">        </span><span class="sd">"""Faz a hélice acompanhar o braço e girar.</span>
+
+<span class="sd">        Realinha as pás ao eixo do braço, gira-as em torno do pivô de `angle * ts` radianos</span>
+<span class="sd">        e aplica um pequeno giro em torno do eixo do motor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            angle: velocidade angular do braço, em rad/s.</span>
+<span class="sd">            ts: intervalo desde a amostra anterior, em segundos.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -2185,6 +2234,7 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__desenhar_pendulo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Braço do Aeropêndulo.</span>
+<span class="w">        </span><span class="sd">"""Desenha o braço e o conjunto do motor e os agrupa no objeto `self.pendulo`."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">barra</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
                             <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">comprimento_braco</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
                             <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">))</span>
@@ -2267,12 +2317,7 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">47</span>
 <span class="normal">48</span>
 <span class="normal">49</span>
 <span class="normal">50</span>
@@ -2307,7 +2352,12 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 <span class="normal">79</span>
 <span class="normal">80</span>
 <span class="normal">81</span>
-<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__aminacao</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">vp</span><span class="o">.</span><span class="n">compound</span><span class="p">:</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__aminacao</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">vp</span><span class="o">.</span><span class="n">compound</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Classe que implementa o Aeropêndulo.</span>
 
@@ -2365,15 +2415,13 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 
     <div class="doc doc-contents ">
 
+        <p>Cria as pás da hélice: uma sempre visível e três extras, inicialmente ocultas,
+defasadas de 45° entre si.</p>
+
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 84</span>
-<span class="normal"> 85</span>
-<span class="normal"> 86</span>
-<span class="normal"> 87</span>
-<span class="normal"> 88</span>
-<span class="normal"> 89</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 89</span>
 <span class="normal"> 90</span>
 <span class="normal"> 91</span>
 <span class="normal"> 92</span>
@@ -2398,7 +2446,18 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 <span class="normal">111</span>
 <span class="normal">112</span>
 <span class="normal">113</span>
-<span class="normal">114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__helice</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__helice</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Cria as pás da hélice: uma sempre visível e três extras, inicialmente ocultas,</span>
+<span class="sd">    defasadas de 45° entre si.</span>
+<span class="sd">    """</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
                          <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
                          <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
@@ -2446,13 +2505,17 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 
     <div class="doc doc-contents ">
 
+        <p>Torna visíveis as três pás extras da hélice.</p>
+
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">pause_giro</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">pause_giro</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Torna visíveis as três pás extras da hélice."""</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>
@@ -2473,13 +2536,17 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 
     <div class="doc doc-contents ">
 
+        <p>Oculta as três pás extras da hélice.</p>
+
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">girar_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">girar_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Oculta as três pás extras da hélice."""</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice3</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
@@ -2493,27 +2560,50 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 
 
 <h2 id="softwares_aeropendulo.simulador_aeropendulo.animacao_aeropendulo.AnimacaoAeropendulo.set_posicao_helice" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">set_posicao_helice</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">set_posicao_helice</span><span class="p">(</span><span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h2>
 
 
     <div class="doc doc-contents ">
 
+        <p>Gira as pás da hélice em torno do pivô.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>angle</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ângulo de rotação, em radianos.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">136</span>
 <span class="normal">137</span>
 <span class="normal">138</span>
 <span class="normal">139</span>
@@ -2522,7 +2612,27 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 <span class="normal">142</span>
 <span class="normal">143</span>
 <span class="normal">144</span>
-<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_posicao_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_posicao_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Gira as pás da hélice em torno do pivô.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        angle: ângulo de rotação, em radianos.</span>
+<span class="sd">    """</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
                        <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
                        <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
@@ -2552,32 +2662,68 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 
 
 <h2 id="softwares_aeropendulo.simulador_aeropendulo.animacao_aeropendulo.AnimacaoAeropendulo.update_helice" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">update_helice</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">ts</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+            <code class="highlight language-python"><span class="n">update_helice</span><span class="p">(</span><span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ts</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h2>
 
 
     <div class="doc doc-contents ">
 
+        <p>Faz a hélice acompanhar o braço e girar.</p>
+<p>Realinha as pás ao eixo do braço, gira-as em torno do pivô de <code>angle * ts</code> radianos
+e aplica um pequeno giro em torno do eixo do motor.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>angle</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>velocidade angular do braço, em rad/s.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ts</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>intervalo desde a amostra anterior, em segundos.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span>
-<span class="normal">156</span>
-<span class="normal">157</span>
-<span class="normal">158</span>
-<span class="normal">159</span>
-<span class="normal">160</span>
-<span class="normal">161</span>
-<span class="normal">162</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
 <span class="normal">163</span>
 <span class="normal">164</span>
 <span class="normal">165</span>
@@ -2607,8 +2753,41 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 <span class="normal">189</span>
 <span class="normal">190</span>
 <span class="normal">191</span>
-<span class="normal">192</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">ts</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_helice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ts</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
+<span class="w">    </span><span class="sd">"""Faz a hélice acompanhar o braço e girar.</span>
+
+<span class="sd">    Realinha as pás ao eixo do braço, gira-as em torno do pivô de `angle * ts` radianos</span>
+<span class="sd">    e aplica um pequeno giro em torno do eixo do motor.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        angle: velocidade angular do braço, em rad/s.</span>
+<span class="sd">        ts: intervalo desde a amostra anterior, em segundos.</span>
+<span class="sd">    """</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice1</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">helice2</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -2670,38 +2849,42 @@ métodos que o <code>Simulador</code> usa para girar o braço e animar a hélice
 
     <div class="doc doc-contents ">
 
+        <p>Desenha o braço e o conjunto do motor e os agrupa no objeto <code>self.pendulo</code>.</p>
+
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/animacao_aeropendulo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">194</span>
-<span class="normal">195</span>
-<span class="normal">196</span>
-<span class="normal">197</span>
-<span class="normal">198</span>
-<span class="normal">199</span>
-<span class="normal">200</span>
-<span class="normal">201</span>
-<span class="normal">202</span>
-<span class="normal">203</span>
-<span class="normal">204</span>
-<span class="normal">205</span>
-<span class="normal">206</span>
-<span class="normal">207</span>
-<span class="normal">208</span>
-<span class="normal">209</span>
-<span class="normal">210</span>
-<span class="normal">211</span>
-<span class="normal">212</span>
-<span class="normal">213</span>
-<span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
-<span class="normal">218</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">218</span>
 <span class="normal">219</span>
 <span class="normal">220</span>
-<span class="normal">221</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__desenhar_pendulo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__desenhar_pendulo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="c1"># Braço do Aeropêndulo.</span>
+<span class="w">    </span><span class="sd">"""Desenha o braço e o conjunto do motor e os agrupa no objeto `self.pendulo`."""</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">barra</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
                         <span class="n">size</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">comprimento_braco</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
                         <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">))</span>

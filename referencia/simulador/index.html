@@ -1031,7 +1031,7 @@
   <span class="md-ellipsis">
     
   
-    Dependências
+    Dependências do projeto
   
 
     
@@ -1728,6 +1728,11 @@ acrescenta o ângulo e a referência aos gráficos.</p>
 
 
 
+        <p>Gêmeo digital: espelha no VPython o movimento medido no protótipo.</p>
+<p>Recebe da interface o tempo, o ângulo e a referência de cada amostra, gira o modelo 3D
+e a hélice e atualiza os gráficos de ângulo e referência. Não integra um modelo da
+planta: o movimento vem dos dados medidos.</p>
+
 
 
 
@@ -1737,68 +1742,105 @@ acrescenta o ângulo e a referência aos gráficos.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/simulador.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Simulador</span><span class="p">(</span><span class="n">SimuladorInterface</span><span class="p">):</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Simulador</span><span class="p">(</span><span class="n">SimuladorInterface</span><span class="p">):</span>
 
+<span class="w">    </span><span class="sd">"""Gêmeo digital: espelha no VPython o movimento medido no protótipo.</span>
+
+<span class="sd">    Recebe da interface o tempo, o ângulo e a referência de cada amostra, gira o modelo 3D</span>
+<span class="sd">    e a hélice e atualiza os gráficos de ângulo e referência. Não integra um modelo da</span>
+<span class="sd">    planta: o movimento vem dos dados medidos.</span>
+<span class="sd">    """</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">graficos</span><span class="p">:</span> <span class="n">GraficosInterface</span><span class="p">,</span>
             <span class="n">animacao_aeropendulo</span><span class="p">:</span> <span class="n">AnimacaoAeropenduloInterface</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Args:</span>
+<span class="sd">            graficos: objeto que cria os gráficos do gêmeo digital (`Graficos`).</span>
+<span class="sd">            animacao_aeropendulo: modelo 3D do aeropêndulo (`AnimacaoAeropendulo`).</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t_ant</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1814,9 +1856,15 @@ acrescenta o ângulo e a referência aos gráficos.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">graf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">graficos</span><span class="p">()</span>  <span class="c1"># noqa</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">grau2rad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graus</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Converte um ângulo de graus para radianos."""</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">graus</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">vp</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">180.0</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Gira o braço do modelo 3D e a hélice em torno do pivô.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            angle: ângulo de rotação, em graus.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">valor_angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grau2rad</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">animacao_aeropendulo</span><span class="o">.</span><span class="n">aeropendulo</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
@@ -1824,7 +1872,18 @@ acrescenta o ângulo e a referência aos gráficos.</p>
             <span class="n">origin</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">animacao_aeropendulo</span><span class="o">.</span><span class="n">set_posicao_helice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">valor_angle</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">atualizar_estados</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">ref</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">atualizar_estados</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Atualiza o gêmeo digital com uma nova amostra.</span>
+
+<span class="sd">        Calcula a velocidade angular por diferença finita em relação à amostra anterior,</span>
+<span class="sd">        gira o braço e a hélice de forma correspondente e acrescenta o ângulo e a referência</span>
+<span class="sd">        aos gráficos.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            t: instante da amostra, em segundos.</span>
+<span class="sd">            theta: ângulo medido, em graus.</span>
+<span class="sd">            ref: referência, em graus.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_ant</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">theta_rad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grau2rad</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
@@ -1879,16 +1938,14 @@ acrescenta o ângulo e a referência aos gráficos.</p>
 
     <div class="doc doc-contents ">
 
+        <p>Args:
+graficos: objeto que cria os gráficos do gêmeo digital (<code>Graficos</code>).
+animacao_aeropendulo: modelo 3D do aeropêndulo (<code>AnimacaoAeropendulo</code>).</p>
+
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/simulador.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
 <span class="normal">36</span>
@@ -1897,9 +1954,23 @@ acrescenta o ângulo e a referência aos gráficos.</p>
 <span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">graficos</span><span class="p">:</span> <span class="n">GraficosInterface</span><span class="p">,</span>
         <span class="n">animacao_aeropendulo</span><span class="p">:</span> <span class="n">AnimacaoAeropenduloInterface</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Args:</span>
+<span class="sd">        graficos: objeto que cria os gráficos do gêmeo digital (`Graficos`).</span>
+<span class="sd">        animacao_aeropendulo: modelo 3D do aeropêndulo (`AnimacaoAeropendulo`).</span>
+<span class="sd">    """</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">t_ant</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1930,11 +2001,15 @@ acrescenta o ângulo e a referência aos gráficos.</p>
 
     <div class="doc doc-contents ">
 
+        <p>Converte um ângulo de graus para radianos.</p>
+
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/simulador.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
-<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">grau2rad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graus</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">grau2rad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graus</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Converte um ângulo de graus para radianos."""</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">graus</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">vp</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">180.0</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1946,23 +2021,66 @@ acrescenta o ângulo e a referência aos gráficos.</p>
 
 
 <h2 id="softwares_aeropendulo.simulador_aeropendulo.simulador.Simulador.rotate" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+            <code class="highlight language-python"><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h2>
 
 
     <div class="doc doc-contents ">
 
+        <p>Gira o braço do modelo 3D e a hélice em torno do pivô.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>angle</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ângulo de rotação, em graus.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/simulador.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Gira o braço do modelo 3D e a hélice em torno do pivô.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        angle: ângulo de rotação, em graus.</span>
+<span class="sd">    """</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">valor_angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grau2rad</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">animacao_aeropendulo</span><span class="o">.</span><span class="n">aeropendulo</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
         <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
@@ -1979,44 +2097,134 @@ acrescenta o ângulo e a referência aos gráficos.</p>
 
 
 <h2 id="softwares_aeropendulo.simulador_aeropendulo.simulador.Simulador.atualizar_estados" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">atualizar_estados</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">atualizar_estados</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h2>
 
 
     <div class="doc doc-contents ">
 
+        <p>Atualiza o gêmeo digital com uma nova amostra.</p>
+<p>Calcula a velocidade angular por diferença finita em relação à amostra anterior,
+gira o braço e a hélice de forma correspondente e acrescenta o ângulo e a referência
+aos gráficos.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>t</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>instante da amostra, em segundos.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>theta</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ângulo medido, em graus.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ref</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>referência, em graus.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>softwares_aeropendulo/simulador_aeropendulo/simulador.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">atualizar_estados</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">ref</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">atualizar_estados</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Atualiza o gêmeo digital com uma nova amostra.</span>
+
+<span class="sd">    Calcula a velocidade angular por diferença finita em relação à amostra anterior,</span>
+<span class="sd">    gira o braço e a hélice de forma correspondente e acrescenta o ângulo e a referência</span>
+<span class="sd">    aos gráficos.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        t: instante da amostra, em segundos.</span>
+<span class="sd">        theta: ângulo medido, em graus.</span>
+<span class="sd">        ref: referência, em graus.</span>
+<span class="sd">    """</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_ant</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">theta_rad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grau2rad</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
@@ -2095,7 +2303,7 @@ acrescenta o ângulo e a referência aos gráficos.</p>
       <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
         
           
-          <a href="../../software/instalacao/dependencias/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Dependências">
+          <a href="../../software/instalacao/dependencias/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Dependências do projeto">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2105,7 +2313,7 @@ acrescenta o ângulo e a referência aos gráficos.</p>
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Dependências
+                Dependências do projeto
               </div>
             </div>
           </a>

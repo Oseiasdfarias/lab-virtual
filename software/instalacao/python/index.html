@@ -7,8 +7,6 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <meta name="author" content="Oséias Farias">
-      
       
       
         <link rel="prev" href="../../firmware/">
@@ -25,7 +23,7 @@
     
     
       
-        <title>Instalação do Python - Laboratório Virtual</title>
+        <title>Instalação - Laboratório Virtual</title>
       
     
     
@@ -75,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#instalacao" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -115,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Instalação do Python
+              Instalação
             
           </span>
         </div>
@@ -919,6 +922,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -1040,7 +1045,7 @@
   <span class="md-ellipsis">
     
   
-    Dependências
+    Dependências do projeto
   
 
     
@@ -1455,6 +1460,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -1540,9 +1547,19 @@
   
 
 
-  <h1>Visão geral</h1>
-
-<p>O projeto precisa do Python <code>3.10</code> ou <code>3.11</code>, o Python pode ser instalado em diferentes sistemas operacionais, dessa forma, existe diferentes formas de instala-lo. A baixo é mostrado como você pode instalar nos sistemas operacionais mais populares atualmente.</p>
+<h1 id="instalacao">Instalação</h1>
+<p>A instalação tem três partes:</p>
+<ol>
+<li><strong>Python 3.10 ou 3.11</strong> — os guias ao lado mostram como instalar no
+   <a href="ubuntu/">Ubuntu</a>, no <a href="windows/">Windows</a> e no <a href="macos/">macOS</a>. Versões 3.12 ou
+   mais novas ainda não são suportadas pelas dependências do projeto.</li>
+<li><strong>Dependências do projeto</strong> — com <a href="../dependencias/#com-poetry-recomendado">Poetry</a> ou
+   com <a href="../dependencias/#com-pip">pip</a>.</li>
+<li><strong>Firmware no ESP32</strong> — pelo PlatformIO, como descrito em
+   <a href="../../firmware/#como-compilar-e-gravar">Firmware</a>.</li>
+</ol>
+<p>Para conferir se a instalação está correta sem precisar do protótipo, rode os testes
+automatizados, descritos em <a href="../dependencias/#conferindo-a-instalacao">Dependências</a>.</p>
 
 
 

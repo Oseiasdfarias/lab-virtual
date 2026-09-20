@@ -7,8 +7,6 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <meta name="author" content="Oséias Farias">
-      
       
       
         <link rel="prev" href="../python/macos/">
@@ -25,7 +23,7 @@
     
     
       
-        <title>Instalação das Dependências do Python - Laboratório Virtual</title>
+        <title>Dependências do projeto - Laboratório Virtual</title>
       
     
     
@@ -76,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tutorial-instalando-dependencias-do-python-a-partir-do-arquivo-requirementstxt" class="md-skip">
+        <a href="#dependencias-do-projeto" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -120,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Instalação das Dependências do Python
+              Dependências do projeto
             
           </span>
         </div>
@@ -1046,7 +1044,7 @@
   <span class="md-ellipsis">
     
   
-    Dependências
+    Dependências do projeto
   
 
     
@@ -1064,7 +1062,7 @@
   <span class="md-ellipsis">
     
   
-    Dependências
+    Dependências do projeto
   
 
     
@@ -1090,10 +1088,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#instalacao-a-partir-do-requirementstxt" class="md-nav__link">
+  <a href="#com-poetry-recomendado" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Instalação a partir do requirements.txt
+        Com Poetry (recomendado)
       
     </span>
   </a>
@@ -1101,10 +1099,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusao" class="md-nav__link">
+  <a href="#com-pip" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conclusão
+        Com pip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conferindo-a-instalacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conferindo a instalação
       
     </span>
   </a>
@@ -1531,10 +1540,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#instalacao-a-partir-do-requirementstxt" class="md-nav__link">
+  <a href="#com-poetry-recomendado" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Instalação a partir do requirements.txt
+        Com Poetry (recomendado)
       
     </span>
   </a>
@@ -1542,10 +1551,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusao" class="md-nav__link">
+  <a href="#com-pip" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conclusão
+        Com pip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conferindo-a-instalacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conferindo a instalação
       
     </span>
   </a>
@@ -1638,38 +1658,38 @@
   
 
 
-<h1 id="tutorial-instalando-dependencias-do-python-a-partir-do-arquivo-requirementstxt">Tutorial: Instalando Dependências do Python a partir do arquivo requirements.txt</h1>
-<p>Quando trabalhamos em projetos Python, é comum listar todas as dependências necessárias em um arquivo chamado <code>requirements.txt</code>. Este tutorial mostrará como instalar essas dependências utilizando o <code>pip</code>.</p>
-<h2 id="instalacao-a-partir-do-requirementstxt">Instalação a partir do requirements.txt</h2>
-<ol>
-<li>
-<p>Abra o Terminal ou Prompt de Comando no seu sistema operacional.</p>
-</li>
-<li>
-<p>Navegue até a pasta <code>softwares_aeropendulo</code> do repositório, onde fica o <code>requirements.txt</code>. Por exemplo:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/caminho/do/seu/projeto/lab-virtual/softwares_aeropendulo
+<h1 id="dependencias-do-projeto">Dependências do projeto</h1>
+<p>As dependências Python ficam em <code>softwares_aeropendulo/pyproject.toml</code> e são fixadas no
+<code>poetry.lock</code>. O <code>requirements.txt</code> da mesma pasta é gerado a partir desse lock, então os
+dois caminhos abaixo instalam as mesmas versões.</p>
+<h2 id="com-poetry-recomendado">Com Poetry (recomendado)</h2>
+<p>Com o <a href="https://python-poetry.org/docs/#installation">Poetry</a> instalado e o Python 3.10 ou
+3.11 disponível:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Oseiasdfarias/lab-virtual.git
+<span class="nb">cd</span><span class="w"> </span>lab-virtual/softwares_aeropendulo
+poetry<span class="w"> </span>install
 </code></pre></div>
-</li>
-<li>
-<p>Execute o seguinte comando para instalar as dependências listadas no <code>requirements.txt</code>:</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<p>Os comandos do projeto passam a rodar com <code>poetry run</code>:</p>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>rungui.py<span class="w">               </span><span class="c1"># interface gráfica</span>
+poetry<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>rungui.py<span class="w"> </span>-simular<span class="w"> </span>sim<span class="w">  </span><span class="c1"># interface + gêmeo digital</span>
 </code></pre></div>
-</li>
-</ol>
-<p>Este comando instrui o <code>pip</code> a ler o arquivo <code>requirements.txt</code> e instalar todas as dependências listadas com as versões especificadas.</p>
-<ol>
-<li>
-<p>Após a execução bem-sucedida do comando, todas as dependências do seu projeto serão instaladas.</p>
-</li>
-<li>
-<p>Para verificar as dependências instaladas, você pode executar:</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>freeze
+<h2 id="com-pip">Com pip</h2>
+<p>Sem Poetry, crie um ambiente virtual e instale a partir do <code>requirements.txt</code>:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Oseiasdfarias/lab-virtual.git
+<span class="nb">cd</span><span class="w"> </span>lab-virtual/softwares_aeropendulo
+python3.11<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">        </span><span class="c1"># no Windows: .venv\Scripts\activate</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+python<span class="w"> </span>rungui.py
 </code></pre></div>
-</li>
-</ol>
-<p>Isso exibirá uma lista das dependências instaladas, incluindo suas versões.</p>
-<h2 id="conclusao">Conclusão</h2>
-<p>Agora, você instalou com sucesso as dependências do seu projeto Python a partir do arquivo <code>requirements.txt</code>. Certifique-se de compartilhar e manter atualizado esse arquivo conforme necessário para garantir que todos no seu projeto estejam usando as mesmas versões das bibliotecas. Este é um passo importante para garantir a consistência do ambiente de desenvolvimento entre membros da equipe e ao implantar seu aplicativo em diferentes ambientes.</p>
+<p>Em ambos os casos, execute os comandos a partir da pasta <code>softwares_aeropendulo</code>: a coleta de
+dados usa caminhos relativos a ela.</p>
+<h2 id="conferindo-a-instalacao">Conferindo a instalação</h2>
+<p>A suíte de testes não precisa do protótipo: confere o protocolo serial, a gravação dos
+ensaios, a importação dos módulos e a reprodução das métricas publicadas nesta documentação.</p>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>install<span class="w"> </span>--with<span class="w"> </span><span class="nb">test</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest
+</code></pre></div>
 
 
 

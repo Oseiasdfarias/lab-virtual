@@ -1135,7 +1135,7 @@
   <span class="md-ellipsis">
     
   
-    Dependências
+    Dependências do projeto
   
 
     
@@ -1766,7 +1766,7 @@ serial:</p>
 </tr>
 <tr>
 <td>4</td>
-<td>Sinal de entrada em malha aberta (PRBS, <code>OndaPrbs::onda_prbs()</code>); <code>0</code> em malha fechada</td>
+<td>Sinal de entrada em malha aberta (PRBS, <code>OndaPrbs::onda_prbs()</code>); em malha fechada, mantém o último valor da malha aberta, pois o firmware não zera a variável</td>
 <td>Volts</td>
 <td><code>*sinal_entrada_ma</code> (o parâmetro da função chama-se <code>ampl</code>, mas quem chama passa <code>sinal_entrada_ma</code> — nome interno enganoso)</td>
 </tr>
@@ -1784,7 +1784,7 @@ serial:</p>
 </tr>
 </tbody>
 </table>
-<p>Os arquivos de cada ensaio ficam em <code>softwares_aeropendulo/src_interface/dados_de_ensaio/</code>.</p>
+<p>Os arquivos de cada ensaio ficam em <code>softwares_aeropendulo/src_interface/dados_de_ensaio/</code>, com um <a href="https://github.com/Oseiasdfarias/lab-virtual/tree/main/softwares_aeropendulo/src_interface/dados_de_ensaio#catálogo-dos-ensaios">catálogo</a> que indica a malha, a excitação e o uso de cada um.</p>
 <h2 id="separacao-treinoteste">Separação treino/teste</h2>
 <p><img alt="Divisão dos dados em identificação e validação" src="../img/dados-treino-teste-1.png" /></p>
 <p>Os dados do ensaio são divididos em dois trechos: as primeiras 60% das amostras, usadas para
