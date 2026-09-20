@@ -26,14 +26,21 @@ A evolução do Gêmeo Digital adota uma arquitetura nativa em **WebGL com Three
   <iframe src="../assets/simulador/aeropendulo_3d.html" style="width: 100%; height: 100%; border: none;" title="Demonstração 3D do Aeropêndulo"></iframe>
 </div>
 
+<div align="right" style="margin-top: -0.75rem; margin-bottom: 1.5rem;">
+  <a href="../assets/simulador/aeropendulo_3d.html" target="_blank" class="md-button md-button--primary" style="font-size: 0.8rem;">
+    ⛶ Abrir Simulador 3D em Tela Cheia
+  </a>
+</div>
+
 > [!TIP]
 > **Interação com o Modelo 3D**: Arraste com o botão esquerdo para orbitar a câmera, utilize o scroll do mouse para zoom e segure `Shift + arraste` para transladar a visão. Use os botões do painel lateral para alternar entre sinais de entrada (**Senoidal**, **Quadrada**, **PRBS** ou **Degrau**) ou inspecionar detalhes com os botões de **Foco Eletrônica** e **Foco Pivô/Sensor**.
 
 ### Destaques da Nova Modelagem:
 1. **Fidelidade Mecatrônica Total**: Mastro vertical com reforço triangular naval, eixo apoiado em mancal axial com transferidor angular graduado de $0^\circ$ a $170^\circ$, haste em fibra de carbono 3K, motor Coreless e hélice bipá balanceada com rotação proporcional ao empuxo.
 2. **Painel Dinâmico Minimizável e Responsivo**: O painel de controle lateral pode ser minimizado com um único clique no botão de seta ou no cabeçalho, recolhendo-se em uma pílula compacta de telemetria contínua ($\theta$ e $V$) para desobstruir a visualização do modelo 3D. O estado inicial pode ser controlado via parâmetro de URL (`?min=1` ou `?compact=1`).
-3. **Sincronização Bidirecional de Tema (Claro / Escuro)**: O simulador 3D sincroniza sua iluminação de estúdio, grid e plano de fundo automaticamente com o tema da documentação (**MkDocs Material**) via `postMessage` e `MutationObserver` (`javascripts/theme_sync.js`). Ao alternar o tema do site no canto superior da página, o ambiente 3D acompanha a transição em tempo real.
-4. **Arquitetura Eletroeletrônica Completa**:
+3. **Barra HUD Superior Unificada**: Cabeçalho discreto de perfil ultra-fino contendo identificação de status em tempo real, alternador de tema claro/escuro, controle de órbita automática da câmera e botão de abertura/fechamento da tampa acrílica protetora da eletrônica.
+4. **Sincronização Bidirecional de Tema (Claro / Escuro)**: O simulador 3D sincroniza sua iluminação de estúdio, grid e plano de fundo automaticamente com o tema da documentação (**MkDocs Material**) via `postMessage` e `MutationObserver` (`javascripts/theme_sync.js`). Ao alternar o tema do site no canto superior da página, o ambiente 3D acompanha a transição em tempo real.
+5. **Arquitetura Eletroeletrônica Completa**:
    - **Estágio de Baixa Tensão (3.3V)**: Módulo microcontrolador **ESP32 TTGO T1** com acabamento em verniz fosco, vias passantes metalizadas (PTH), serigrafia com pinout técnico detalhado, filtro antialiasing RC passivo ($f_c \approx 80\text{ Hz}$) e optoacopladores lógicos.
    - **Estágio de Alta Potência (5V/3A)**: Placa **Driver MOSFET Ponte H** com barramentos maciços de corrente, dissipador térmico aletado de alto fluxo em alumínio anodizado preto e capacitores de filtro low-ESR.
    - **Alimentação Industrial**: Fonte chaveada industrial com chassi perfurado em colmeia (*honeycomb*) e chave geral iluminada.
