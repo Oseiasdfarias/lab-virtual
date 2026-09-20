@@ -48,4 +48,78 @@
     });
     notificarIframes(escuro);
   });
+
+  // Habilitar GLightbox com desfoque de fundo em Diagramas Mermaid e Ilustrações SVG
+  function inicializarZoomDiagramasEIlustracoes() {
+    if (typeof GLightbox === "undefined") return;
+
+    // 1. Ilustrações Técnicas (.lv-aeropendulo-card com SVG)
+    document.querySelectorAll(".lv-aeropendulo-card").forEach((card, idx) => {
+      if (card.dataset.hasGlightbox) return;
+      card.dataset.hasGlightbox = "true";
+      card.classList.add("lv-zoomable-element");
+      card.setAttribute("title", "Clique para expandir a ilustração técnica");
+
+      const inlineId = "inline-svg-illus-" + idx;
+      let modalContent = document.getElementById(inlineId);
+      if (!modalContent) {
+        modalContent = document.createElement("div");
+        modalContent.id = inlineId;
+        modalContent.style.display = "none";
+        modalContent.className = "lv-glightbox-inline-box";
+        modalContent.innerHTML = card.innerHTML;
+        document.body.appendChild(modalContent);
+      }
+
+      card.addEventListener("click", () => {
+        const lb = GLightbox({
+          elements: [{
+            content: document.getElementById(inlineId),
+            width: "90vw",
+            height: "auto"
+          }],
+          touchNavigation: true,
+          zoomable: true,
+          draggable: true
+        });
+        lb.open();
+      });
+    });
+
+    // 2. Diagramas Mermaid (.mermaid)
+    document.querySelectorAll(".mermaid").forEach((diag, idx) => {
+      if (diag.dataset.hasGlightbox) return;
+      diag.dataset.hasGlightbox = "true";
+      diag.classList.add("lv-zoomable-element");
+      diag.setAttribute("title", "Clique para expandir o diagrama");
+
+      diag.addEventListener("click", () => {
+        const svg = diag.querySelector("svg");
+        const contentHtml = svg ? svg.outerHTML : diag.innerHTML;
+        const inlineBox = document.createElement("div");
+        inlineBox.className = "lv-glightbox-inline-box lv-mermaid-modal";
+        inlineBox.innerHTML = contentHtml;
+
+        const lb = GLightbox({
+          elements: [{
+            content: inlineBox,
+            width: "92vw",
+            height: "auto"
+          }],
+          touchNavigation: true,
+          zoomable: true,
+          draggable: true
+        });
+        lb.open();
+      });
+    });
+  }
+
+  // Executa após o carregamento da página e em navegações instantâneas do Material
+  window.addEventListener("DOMContentLoaded", inicializarZoomDiagramasEIlustracoes);
+  window.addEventListener("load", () => setTimeout(inicializarZoomDiagramasEIlustracoes, 600));
+  if (typeof document$ !== "undefined") {
+    document$.subscribe(() => setTimeout(inicializarZoomDiagramasEIlustracoes, 600));
+  }
 })();
+
