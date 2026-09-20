@@ -769,6 +769,34 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
+.lv-mermaid-zoom-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--lv-surface, #ffffff);
+  color: var(--lv-ink, #1d1d1f);
+  border: 1px solid var(--lv-border, rgba(0, 0, 0, 0.1));
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-family: var(--md-code-font), monospace;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  z-index: 10;
+  opacity: 0.85;
+}
+
+.lv-mermaid-zoom-btn:hover {
+  opacity: 1;
+  transform: scale(1.04);
+  border-color: var(--lv-ink, #1d1d1f);
+}
+
 .lv-glightbox-inline-box {
   background: #ffffff;
   padding: 2rem 2.5rem;
@@ -787,4 +815,5 @@
   max-width: 100%;
   height: auto;
 }
+
 
