@@ -755,3 +755,42 @@
   color: rgba(255, 255, 255, 0.75) !important;
 }
 
+/* Elementos clicáveis para zoom (diagramas e ilustrações) */
+.lv-zoomable-element {
+  cursor: zoom-in !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.lv-zoomable-element:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.lv-glightbox-inline-box {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 90vw;
+  max-height: 85vh;
+  overflow: auto;
+}
+
+.lv-glightbox-inline-box svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.lv-mermaid-modal {
+  padding: 2rem;
+  background: var(--lv-bg, #ffffff);
+}
+
+[data-md-color-scheme="slate"] .lv-mermaid-modal {
+  background: #1e1e24;
+}
+
