@@ -88,19 +88,25 @@
 
     // 2. Diagramas Mermaid (.mermaid)
     document.querySelectorAll(".mermaid").forEach((diag, idx) => {
+      if (diag.dataset.hasZoomAction) return;
+      diag.dataset.hasZoomAction = "true";
       diag.classList.add("lv-zoomable-element");
       diag.setAttribute("title", "Clique para ver o diagrama ampliado");
+
+      // Botão visível de maximizar no canto superior direito do diagrama
+      if (!diag.querySelector(".lv-mermaid-zoom-btn")) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "lv-mermaid-zoom-btn";
+        btn.setAttribute("aria-label", "Maximizar diagrama");
+        btn.setAttribute("title", "Maximizar diagrama");
+        btn.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expandir</span>`;
+        diag.appendChild(btn);
+      }
     });
   }
 
-  // Delegação global de clique para garantir abertura mesmo após re-render do Mermaid
-  document.addEventListener("click", function(e) {
-    const mermaidContainer = e.target.closest(".mermaid");
-    if (!mermaidContainer) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
+  function abrirModalMermaid(mermaidContainer) {
     const svg = mermaidContainer.querySelector("svg");
     if (!svg) return;
 
@@ -113,11 +119,10 @@
       document.body.appendChild(holder);
     }
 
-    // Clona o SVG com dimensões originais preservadas
     holder.innerHTML = "";
     const clone = svg.cloneNode(true);
     clone.style.width = "100%";
-    clone.style.maxWidth = "1100px";
+    clone.style.maxWidth = "1150px";
     clone.style.height = "auto";
     clone.style.display = "block";
     clone.style.margin = "0 auto";
@@ -127,7 +132,7 @@
       const lb = GLightbox({
         elements: [{
           content: holder,
-          width: "92vw",
+          width: "94vw",
           height: "auto"
         }],
         touchNavigation: true,
@@ -136,13 +141,30 @@
       });
       lb.open();
     }
+  }
+
+  // Intercepta cliques no container mermaid ou no botão de expandir
+  document.addEventListener("click", function(e) {
+    const mermaidContainer = e.target.closest(".mermaid");
+    if (mermaidContainer) {
+      e.preventDefault();
+      abrirModalMermaid(mermaidContainer);
+    }
   });
 
   // Executa após o carregamento da página e em navegações instantâneas do Material
   window.addEventListener("DOMContentLoaded", inicializarZoomDiagramasEIlustracoes);
-  window.addEventListener("load", () => setTimeout(inicializarZoomDiagramasEIlustracoes, 600));
+  window.addEventListener("load", () => {
+    inicializarZoomDiagramasEIlustracoes();
+    setTimeout(inicializarZoomDiagramasEIlustracoes, 500);
+    setTimeout(inicializarZoomDiagramasEIlustracoes, 1500);
+  });
   if (typeof document$ !== "undefined") {
-    document$.subscribe(() => setTimeout(inicializarZoomDiagramasEIlustracoes, 600));
+    document$.subscribe(() => {
+      inicializarZoomDiagramasEIlustracoes();
+      setTimeout(inicializarZoomDiagramasEIlustracoes, 500);
+      setTimeout(inicializarZoomDiagramasEIlustracoes, 1500);
+    });
   }
 })();
 
