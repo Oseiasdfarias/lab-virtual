@@ -19,14 +19,52 @@
     .font-mono { font-family: 'IBM Plex Mono', monospace; }
     canvas { outline: none; }
     #painel-dinamico {
-      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  max-height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  padding 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      top: 4.5rem;
+      bottom: auto;
+      left: 0.75rem;
+      max-height: calc(100% - 5.25rem);
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    #painel-header-toggle {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      flex-shrink: 0;
+      user-select: none;
+      background: inherit;
+    }
+    #painel-conteudo {
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      flex: 1 1 auto;
+      max-height: calc(100% - 2.5rem);
+      padding-right: 4px;
+    }
+    #painel-conteudo::-webkit-scrollbar {
+      width: 4px;
+    }
+    #painel-conteudo::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+    #painel-conteudo::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.4);
     }
     #painel-dinamico.minimizado {
       width: auto !important;
       min-width: auto !important;
+      max-height: 44px !important;
       padding: 0.5rem 0.85rem !important;
       background: rgba(29, 29, 31, 0.85) !important;
       cursor: pointer;
+      overflow: hidden !important;
     }
     #painel-dinamico.minimizado #painel-conteudo {
       display: none !important;
@@ -81,7 +119,7 @@
   </header>
 
   <!-- PAINEL DE CONTROLE DE ENSAIO E MATERIAIS (LADO ESQUERDO) -->
-  <aside id="painel-dinamico" class="absolute bottom-6 left-4 bg-[#1D1D1F]/90 backdrop-blur-md border border-white/10 rounded-lg p-4 w-[320px] shadow-2xl z-10">
+  <aside id="painel-dinamico" class="absolute top-16 left-3 bg-[#1D1D1F]/90 backdrop-blur-md border border-white/10 rounded-lg p-3 w-[300px] max-w-[calc(100%-1.5rem)] shadow-2xl z-20">
     <!-- CABEÇALHO DO PAINEL COM BOTÃO MINIMIZAR/EXPANDIR -->
     <div class="flex justify-between items-center border-b border-white/10 pb-2 cursor-pointer" id="painel-header-toggle" title="Clique para minimizar/expandir o painel">
       <div class="flex items-center gap-2">

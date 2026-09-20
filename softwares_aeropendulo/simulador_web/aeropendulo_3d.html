@@ -18,6 +18,60 @@
     }
     .font-mono { font-family: 'IBM Plex Mono', monospace; }
     canvas { outline: none; }
+    #painel-dinamico {
+      transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  max-height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  padding 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      top: 4.5rem;
+      bottom: auto;
+      left: 0.75rem;
+      max-height: calc(100% - 5.25rem);
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    #painel-header-toggle {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      flex-shrink: 0;
+      user-select: none;
+      background: inherit;
+    }
+    #painel-conteudo {
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      flex: 1 1 auto;
+      max-height: calc(100% - 2.5rem);
+      padding-right: 4px;
+    }
+    #painel-conteudo::-webkit-scrollbar {
+      width: 4px;
+    }
+    #painel-conteudo::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+    #painel-conteudo::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+    #painel-dinamico.minimizado {
+      width: auto !important;
+      min-width: auto !important;
+      max-height: 44px !important;
+      padding: 0.5rem 0.85rem !important;
+      background: rgba(29, 29, 31, 0.85) !important;
+      cursor: pointer;
+      overflow: hidden !important;
+    }
+    #painel-dinamico.minimizado #painel-conteudo {
+      display: none !important;
+    }
+    #painel-dinamico.minimizado #painel-mini-tag {
+      display: inline-flex !important;
+    }
   </style>
   <!-- Import map para Three.js via CDN moderno -->
   <script type="importmap">
@@ -65,11 +119,27 @@
   </header>
 
   <!-- PAINEL DE CONTROLE DE ENSAIO E MATERIAIS (LADO ESQUERDO) -->
-  <aside class="absolute bottom-6 left-4 bg-[#1D1D1F]/90 backdrop-blur-md border border-white/10 rounded-lg p-4 w-[320px] shadow-2xl z-10 space-y-4">
-    <div class="flex justify-between items-center border-b border-white/10 pb-2">
-      <span class="text-xs font-mono font-semibold text-white/90 uppercase tracking-wider">Controle Dinâmico</span>
-      <span class="text-[10px] font-mono text-emerald-400" id="hud-sim-mode">Simulação Contínua</span>
+  <aside id="painel-dinamico" class="absolute top-16 left-3 bg-[#1D1D1F]/90 backdrop-blur-md border border-white/10 rounded-lg p-3 w-[300px] max-w-[calc(100%-1.5rem)] shadow-2xl z-20">
+    <!-- CABEÇALHO DO PAINEL COM BOTÃO MINIMIZAR/EXPANDIR -->
+    <div class="flex justify-between items-center border-b border-white/10 pb-2 cursor-pointer" id="painel-header-toggle" title="Clique para minimizar/expandir o painel">
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-mono font-semibold text-white/90 uppercase tracking-wider">Controle Dinâmico</span>
+        <span id="painel-mini-tag" class="hidden text-[10px] font-mono text-cyan-300 bg-cyan-950/60 px-1.5 py-0.5 rounded border border-cyan-500/30">
+          <span id="mini-val-theta">0.0°</span> | <span id="mini-val-volt">0.0V</span>
+        </span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-[10px] font-mono text-emerald-400" id="hud-sim-mode">Simulação Contínua</span>
+        <button id="btn-toggle-painel" type="button" class="text-white/60 hover:text-white p-1 rounded hover:bg-white/10 transition" title="Minimizar painel">
+          <svg id="icone-painel-toggle" class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+      </div>
     </div>
+
+    <!-- CONTEÚDO DO PAINEL (OCULTADO AO MINIMIZAR) -->
+    <div id="painel-conteudo" class="space-y-4 pt-3">
 
     <!-- MEDIDAS EM TEMPO REAL -->
     <div class="grid grid-cols-2 gap-2 text-center font-mono">
@@ -166,6 +236,7 @@
         </button>
       </div>
     </div>
+    </div> <!-- fim de #painel-conteudo -->
   </aside>
 
   <!-- DICA DE INTERAÇÃO -->
@@ -1936,9 +2007,41 @@
 
     const elTheta = document.getElementById("val-theta");
     const elVolt = document.getElementById("val-volt");
+    const elMiniTheta = document.getElementById("mini-val-theta");
+    const elMiniVolt = document.getElementById("mini-val-volt");
+    const painelDinamico = document.getElementById("painel-dinamico");
+    const btnTogglePainel = document.getElementById("btn-toggle-painel");
+    const painelHeaderToggle = document.getElementById("painel-header-toggle");
+    const iconePainelToggle = document.getElementById("icone-painel-toggle");
     const elSlider = document.getElementById("slider-voltage");
     const elSliderVal = document.getElementById("slider-val");
     const elSimMode = document.getElementById("hud-sim-mode");
+
+    let painelMinimizado = false;
+    function alternarPainel(minimizar) {
+      painelMinimizado = typeof minimizar === "boolean" ? minimizar : !painelMinimizado;
+      if (painelMinimizado) {
+        painelDinamico.classList.add("minimizado");
+        iconePainelToggle.classList.add("rotate-180");
+        if (btnTogglePainel) btnTogglePainel.title = "Expandir painel de controle";
+      } else {
+        painelDinamico.classList.remove("minimizado");
+        iconePainelToggle.classList.remove("rotate-180");
+        if (btnTogglePainel) btnTogglePainel.title = "Minimizar painel";
+      }
+    }
+
+    if (btnTogglePainel) {
+      btnTogglePainel.addEventListener("click", (e) => {
+        e.stopPropagation();
+        alternarPainel();
+      });
+    }
+    if (painelHeaderToggle) {
+      painelHeaderToggle.addEventListener("click", () => {
+        alternarPainel();
+      });
+    }
 
     const btnOndaSeno = document.getElementById("btn-onda-seno");
     const btnOndaQuadrada = document.getElementById("btn-onda-quadrada");
@@ -2024,8 +2127,8 @@
     });
 
     let darkMode = true;
-    btnTheme.addEventListener("click", () => {
-      darkMode = !darkMode;
+    function setTema(isDark) {
+      darkMode = isDark;
       if (darkMode) {
         document.body.style.backgroundColor = "#141416";
         scene.background.set("#141416");
@@ -2041,7 +2144,30 @@
         themeIcon.textContent = "🌙";
         themeText.textContent = "Modo Escuro";
       }
+    }
+
+    btnTheme.addEventListener("click", () => {
+      setTema(!darkMode);
     });
+
+    // Escuta sincronização de tema vinda da documentação pai (MkDocs Material)
+    window.addEventListener("message", (ev) => {
+      if (ev.data && typeof ev.data.temaEscuro === "boolean") {
+        setTema(ev.data.temaEscuro);
+      }
+    });
+
+    // Sincronização inicial automática se renderizado em iframe de mesma origem
+    try {
+      if (window.parent && window.parent.document) {
+        const schemePai = window.parent.document.body.getAttribute("data-md-color-scheme");
+        if (schemePai) {
+          setTema(schemePai === "slate");
+        }
+      }
+    } catch (e) {
+      // Cross-origin fallback silencioso
+    }
 
     // CONTROLES DE FOCO DE CÂMERA (HUD)
     const btnCamGeral = document.getElementById("btn-cam-geral");
@@ -2277,6 +2403,8 @@
       const angGraus = THREE.MathUtils.radToDeg(theta);
       elTheta.textContent = `${angGraus.toFixed(1)}°`;
       elVolt.textContent = `${tensaoAtual.toFixed(1)} V`;
+      if (elMiniTheta) elMiniTheta.textContent = `${angGraus.toFixed(1)}°`;
+      if (elMiniVolt) elMiniVolt.textContent = `${tensaoAtual.toFixed(1)}V`;
 
       // Atualiza o label dinâmico 3D ao lado do pivô e faz ele flutuar acompanhando a bissetriz do ângulo
       const meiaAbertura = thSetor / 2;
@@ -2310,6 +2438,12 @@
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
+
+    // Suporte a parâmetros de URL (ex: ?min=1 ou ?compact=1)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("min") === "1" || urlParams.get("compact") === "1" || window.innerWidth < 640) {
+      alternarPainel(true);
+    }
   </script>
 </body>
 </html>
