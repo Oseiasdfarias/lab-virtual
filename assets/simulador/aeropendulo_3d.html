@@ -22,10 +22,10 @@
       transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
                   max-height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
                   padding 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-      top: 4.5rem;
+      top: 3.25rem;
       bottom: auto;
-      left: 0.75rem;
-      max-height: calc(100% - 5.25rem);
+      left: 0.625rem;
+      max-height: calc(100% - 3.75rem);
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
@@ -88,38 +88,41 @@
   <!-- CANVAS 3D CONTAINER -->
   <div id="canvas-container" class="w-full h-full absolute inset-0"></div>
 
-  <!-- PAINEL SUPERIOR DE CONTROLE E TELEMETRIA (HUD) -->
-  <header class="absolute top-4 left-4 right-4 flex flex-col md:flex-row justify-between items-start md:items-center pointer-events-none gap-3 z-10">
-    <div class="bg-[#1D1D1F]/80 backdrop-blur-md border border-white/10 rounded-lg p-3.5 px-5 shadow-2xl pointer-events-auto">
-      <div class="flex items-center gap-2 mb-1">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span class="text-[10px] font-mono tracking-widest text-emerald-400 uppercase font-bold">Laboratório Virtual 3D</span>
-        <span class="text-[10px] text-white/40 font-mono">| Three.js PBR</span>
+  <!-- BARRA SUPERIOR UNIFICADA E COMPACTA (HUD HEADER) -->
+  <header class="absolute top-2.5 left-2.5 right-2.5 flex flex-wrap items-center justify-between gap-2 pointer-events-none z-30">
+    <!-- TÍTULO COMPACTO EM CARD ÚNICO -->
+    <div class="bg-[#1D1D1F]/85 backdrop-blur-md border border-white/10 rounded-lg px-3 py-1.5 shadow-xl pointer-events-auto flex items-center gap-2.5 max-w-[calc(100%-180px)] sm:max-w-none">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
+      <div class="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-2 truncate">
+        <span class="text-xs font-bold text-white tracking-tight truncate">Aeropêndulo 3D</span>
+        <span class="text-[10px] text-white/50 font-mono hidden md:inline truncate">Modelo Físico Three.js PBR</span>
       </div>
-      <h1 class="text-base font-bold text-white tracking-tight">Aeropêndulo Experimental — Modelo Físico 3D</h1>
-      <p class="text-xs text-white/60">Base hexagonal de compensado naval, braço contínuo em fibra de carbono e hélice de drone FPV.</p>
     </div>
 
-    <div class="flex items-center gap-2 pointer-events-auto">
-      <!-- TAMPA DO GABINETE ELETRÔNICO (ABRIR/FECHAR PARA VER DETALHES) -->
-      <button id="btn-tampa" class="bg-[#1D1D1F]/80 hover:bg-[#2C2C2F] text-xs font-mono text-cyan-300 hover:text-white px-3.5 py-2.5 rounded-lg border border-cyan-500/30 backdrop-blur-md transition shadow-lg flex items-center gap-2">
-        <span id="tampa-status" class="w-2 h-2 rounded-full bg-cyan-400"></span> Tampa: Aberta
+    <!-- BOTÕES SUPERIORES COMPACTOS -->
+    <div class="flex items-center gap-1.5 pointer-events-auto flex-shrink-0">
+      <!-- TAMPA GABINETE -->
+      <button id="btn-tampa" class="bg-[#1D1D1F]/85 hover:bg-[#2C2C2F] text-[11px] font-mono text-cyan-300 hover:text-white px-2.5 py-1.5 rounded-md border border-cyan-500/30 backdrop-blur-md transition shadow-md flex items-center gap-1.5" title="Abrir/Fechar tampa acrílica">
+        <span id="tampa-status" class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+        <span class="hidden sm:inline">Tampa</span>
       </button>
 
-      <!-- MUDANÇA DE TEMA DE FUNDO -->
-      <button id="btn-theme" class="bg-[#1D1D1F]/80 hover:bg-[#2C2C2F] text-xs font-mono text-white/80 hover:text-white px-3.5 py-2.5 rounded-lg border border-white/10 backdrop-blur-md transition shadow-lg flex items-center gap-2">
-        <span id="theme-icon">☀️</span> <span id="theme-text">Modo Claro</span>
+      <!-- TEMA CLARO/ESCURO -->
+      <button id="btn-theme" class="bg-[#1D1D1F]/85 hover:bg-[#2C2C2F] text-[11px] font-mono text-white/80 hover:text-white px-2.5 py-1.5 rounded-md border border-white/10 backdrop-blur-md transition shadow-md flex items-center gap-1.5" title="Alternar tema">
+        <span id="theme-icon">☀️</span>
+        <span id="theme-text" class="hidden sm:inline">Tema</span>
       </button>
 
-      <!-- AUTO-ROTAÇÃO DA CÂMERA -->
-      <button id="btn-orbit" class="bg-[#1D1D1F]/80 hover:bg-[#2C2C2F] text-xs font-mono text-white/80 hover:text-white px-3.5 py-2.5 rounded-lg border border-white/10 backdrop-blur-md transition shadow-lg flex items-center gap-2">
-        <span id="orbit-status" class="w-2 h-2 rounded-full bg-emerald-500"></span> Órbita Auto
+      <!-- ÓRBITA AUTO -->
+      <button id="btn-orbit" class="bg-[#1D1D1F]/85 hover:bg-[#2C2C2F] text-[11px] font-mono text-white/80 hover:text-white px-2.5 py-1.5 rounded-md border border-white/10 backdrop-blur-md transition shadow-md flex items-center gap-1.5" title="Girar câmera automaticamente">
+        <span id="orbit-status" class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        <span class="hidden sm:inline">Órbita</span>
       </button>
     </div>
   </header>
 
   <!-- PAINEL DE CONTROLE DE ENSAIO E MATERIAIS (LADO ESQUERDO) -->
-  <aside id="painel-dinamico" class="absolute top-16 left-3 bg-[#1D1D1F]/90 backdrop-blur-md border border-white/10 rounded-lg p-3 w-[300px] max-w-[calc(100%-1.5rem)] shadow-2xl z-20">
+  <aside id="painel-dinamico" class="absolute top-12 left-2.5 bg-[#1D1D1F]/90 backdrop-blur-md border border-white/10 rounded-lg p-3 w-[295px] max-w-[calc(100%-1.25rem)] shadow-2xl z-20">
     <!-- CABEÇALHO DO PAINEL COM BOTÃO MINIMIZAR/EXPANDIR -->
     <div class="flex justify-between items-center border-b border-white/10 pb-2 cursor-pointer" id="painel-header-toggle" title="Clique para minimizar/expandir o painel">
       <div class="flex items-center gap-2">
