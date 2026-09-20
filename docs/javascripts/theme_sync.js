@@ -88,50 +88,55 @@
 
     // 2. Diagramas Mermaid (.mermaid)
     document.querySelectorAll(".mermaid").forEach((diag, idx) => {
-      if (diag.dataset.hasGlightbox) return;
-      diag.dataset.hasGlightbox = "true";
       diag.classList.add("lv-zoomable-element");
       diag.setAttribute("title", "Clique para ver o diagrama ampliado");
-
-      const modalId = "mermaid-zoom-holder-" + idx;
-      let holder = document.getElementById(modalId);
-      if (!holder) {
-        holder = document.createElement("div");
-        holder.id = modalId;
-        holder.style.display = "none";
-        holder.className = "lv-glightbox-inline-box";
-        document.body.appendChild(holder);
-      }
-
-      diag.addEventListener("click", (e) => {
-        e.preventDefault();
-        const currentSvg = diag.querySelector("svg");
-        if (!currentSvg) return;
-
-        // Limpa e injeta cópia fresca do SVG já montado pelo Mermaid
-        holder.innerHTML = "";
-        const clone = currentSvg.cloneNode(true);
-        clone.style.width = "100%";
-        clone.style.maxWidth = "1000px";
-        clone.style.height = "auto";
-        clone.style.display = "block";
-        clone.style.margin = "0 auto";
-        holder.appendChild(clone);
-
-        const lb = GLightbox({
-          elements: [{
-            content: holder,
-            width: "90vw",
-            height: "auto"
-          }],
-          touchNavigation: true,
-          zoomable: false,
-          draggable: false
-        });
-        lb.open();
-      });
     });
   }
+
+  // Delegação global de clique para garantir abertura mesmo após re-render do Mermaid
+  document.addEventListener("click", function(e) {
+    const mermaidContainer = e.target.closest(".mermaid");
+    if (!mermaidContainer) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const svg = mermaidContainer.querySelector("svg");
+    if (!svg) return;
+
+    let holder = document.getElementById("mermaid-global-zoom-holder");
+    if (!holder) {
+      holder = document.createElement("div");
+      holder.id = "mermaid-global-zoom-holder";
+      holder.style.display = "none";
+      holder.className = "lv-glightbox-inline-box";
+      document.body.appendChild(holder);
+    }
+
+    // Clona o SVG com dimensões originais preservadas
+    holder.innerHTML = "";
+    const clone = svg.cloneNode(true);
+    clone.style.width = "100%";
+    clone.style.maxWidth = "1100px";
+    clone.style.height = "auto";
+    clone.style.display = "block";
+    clone.style.margin = "0 auto";
+    holder.appendChild(clone);
+
+    if (typeof GLightbox !== "undefined") {
+      const lb = GLightbox({
+        elements: [{
+          content: holder,
+          width: "92vw",
+          height: "auto"
+        }],
+        touchNavigation: true,
+        zoomable: false,
+        draggable: false
+      });
+      lb.open();
+    }
+  });
 
   // Executa após o carregamento da página e em navegações instantâneas do Material
   window.addEventListener("DOMContentLoaded", inicializarZoomDiagramasEIlustracoes);
