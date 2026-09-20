@@ -40,3 +40,7 @@ artifacts/
 
 # Publicações (repositório privado separado)
 publicacoes/
+
+# Ambientes virtuais e temporários
+.venv_docs/
+teste-design/

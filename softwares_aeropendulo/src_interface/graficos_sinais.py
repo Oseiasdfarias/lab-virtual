@@ -21,48 +21,51 @@ import numpy as np
 
 from src_interface.interfaces.graficos_sinais import GraficosSinaisInterface
 
-plt.style.use(['science', 'no-latex'])
+plt.style.use(["science", "no-latex"])
 
-use_font('Fira Code')
+use_font("Fira Code")
 
-plt.rcParams.update({
-    "font.size": 11,
-    'text.color': "black",
-    'axes.labelcolor': "black",
-    'text.color': "black",
-    'axes.labelcolor': "black",
-    'axes.titlecolor': "#2B2B2B",
-    'axes.titleweight': "bold"})
+plt.rcParams.update(
+    {
+        "font.size": 11,
+        "text.color": "black",
+        "axes.labelcolor": "black",
+        "text.color": "black",
+        "axes.labelcolor": "black",
+        "axes.titlecolor": "#2B2B2B",
+        "axes.titleweight": "bold",
+    }
+)
 
 try:
-    mpl.use('TkAgg')
+    mpl.use("TkAgg")
 except ImportError:
     pass
 
 
 class GraficosSinais(GraficosSinaisInterface):
-
     """Figura Matplotlib com os quatro gráficos da interface: referência e ângulo, erro,
     sinal de controle e entrada em malha aberta.
     """
-    def __init__(self, markersize: float = 3.0,
-                 grid: bool = True) -> None:
+
+    def __init__(self, markersize: float = 3.0, grid: bool = True) -> None:
         """Args:
-            markersize: tamanho dos marcadores das curvas.
-            grid: exibe a grade nos eixos.
+        markersize: tamanho dos marcadores das curvas.
+        grid: exibe a grade nos eixos.
         """
         self.grid = grid
         self.markersize = markersize
         self.fig = plt.figure(figsize=(9.85, 6.45), facecolor="#FFFFFF")
         self.config_axes()
 
-        self.fig.subplots_adjust(wspace=0.2, hspace=0.45, left=0.08,
-                                 top=0.93, right=0.971, bottom=0.12)
+        self.fig.subplots_adjust(
+            wspace=0.2, hspace=0.45, left=0.08, top=0.93, right=0.971, bottom=0.12
+        )
 
     def get_fig_axes_ln(self):
         """Returns:
-            Tupla `(figura, eixos, linhas)`: os 4 eixos e as 5 linhas (referência, ângulo,
-            erro, controle e entrada) que a animação da interface atualiza.
+        Tupla `(figura, eixos, linhas)`: os 4 eixos e as 5 linhas (referência, ângulo,
+        erro, controle e entrada) que a animação da interface atualiza.
         """
         return self.fig, self.ax, self.ln
 
@@ -71,73 +74,85 @@ class GraficosSinais(GraficosSinaisInterface):
         preenche.
         """
         self.ax1 = self.fig.add_subplot(221)
-        self.ax1.set_title("Referência + Ângulo (Graus)",
-                           color="#2B2B2B", fontsize=9)
+        self.ax1.set_title("Referência + Ângulo (Graus)", color="#2B2B2B", fontsize=9)
         self.ax1.set_xlabel("Tempo", color="#2B2B2B", fontsize=9)
         self.ax1.set_ylabel("Amplitude", color="#2B2B2B", fontsize=9)
-        self.ln_1, = self.ax1.plot([], [], marker=".",
-                                   markersize=self.markersize,
-                                   lw=1.2, label="Ref.", color="red")
-        self.ln1, = self.ax1.plot([], [], lw=1.2, marker=".",
-                                  markersize=self.markersize,
-                                  label="Saída", color="sienna")
+        (self.ln_1,) = self.ax1.plot(
+            [],
+            [],
+            marker=".",
+            markersize=self.markersize,
+            lw=1.2,
+            label="Ref.",
+            color="red",
+        )
+        (self.ln1,) = self.ax1.plot(
+            [],
+            [],
+            lw=1.2,
+            marker=".",
+            markersize=self.markersize,
+            label="Saída",
+            color="sienna",
+        )
         plt.yticks(np.arange(-50, 176, 25), rotation=45)
         plt.xticks(rotation=45)
-        self.ax1.tick_params(axis='both', which='major', labelsize=9)
-        self.ax1.tick_params(axis='both', which='minor', labelsize=7)
+        self.ax1.tick_params(axis="both", which="major", labelsize=9)
+        self.ax1.tick_params(axis="both", which="minor", labelsize=7)
 
-        plt.grid(which='major', color='#CCCCCC', linestyle='-', alpha=1)
-        plt.grid(which='minor', color='#CCCCCC', linestyle=':', alpha=0.5)
+        plt.grid(which="major", color="#CCCCCC", linestyle="-", alpha=1)
+        plt.grid(which="minor", color="#CCCCCC", linestyle=":", alpha=0.5)
         self.ax1.grid(self.grid)
         plt.legend()
 
         self.ax2 = self.fig.add_subplot(222)
-        self.ax2.set_title("Sinal de Erro (Graus)",
-                           color="#2B2B2B", fontsize=9)
+        self.ax2.set_title("Sinal de Erro (Graus)", color="#2B2B2B", fontsize=9)
         self.ax2.set_xlabel("Tempo", color="#2B2B2B", fontsize=9)
         self.ax2.set_ylabel("Amplitude", color="#2B2B2B", fontsize=9)
-        self.ln2, = self.ax2.plot([], [], lw=1.2, marker=".",
-                                  markersize=self.markersize, color="green")
+        (self.ln2,) = self.ax2.plot(
+            [], [], lw=1.2, marker=".", markersize=self.markersize, color="green"
+        )
         plt.yticks(np.arange(-60, 61, 15), rotation=45)
         plt.xticks(rotation=45)
-        self.ax2.tick_params(axis='both', which='major', labelsize=9)
-        self.ax2.tick_params(axis='both', which='minor', labelsize=7)
+        self.ax2.tick_params(axis="both", which="major", labelsize=9)
+        self.ax2.tick_params(axis="both", which="minor", labelsize=7)
 
-        plt.grid(which='major', color='#CCCCCC', linestyle='-', alpha=1)
-        plt.grid(which='minor', color='#CCCCCC', linestyle=':', alpha=0.5)
+        plt.grid(which="major", color="#CCCCCC", linestyle="-", alpha=1)
+        plt.grid(which="minor", color="#CCCCCC", linestyle=":", alpha=0.5)
         self.ax2.grid(self.grid)
 
         self.ax3 = self.fig.add_subplot(223)
-        self.ax3.set_title("Sinal de Controle (Volts)",
-                           color="#2B2B2B", fontsize=9)
+        self.ax3.set_title("Sinal de Controle (Volts)", color="#2B2B2B", fontsize=9)
         self.ax3.set_xlabel("Tempo", color="#2B2B2B", fontsize=9)
         self.ax3.set_ylabel("Amplitude", color="#2B2B2B", fontsize=9)
-        self.ln3, = self.ax3.plot([], [], lw=1.2, marker=".",
-                                  markersize=self.markersize, color="purple")
+        (self.ln3,) = self.ax3.plot(
+            [], [], lw=1.2, marker=".", markersize=self.markersize, color="purple"
+        )
         plt.yticks(np.arange(-1, 2, 0.5), rotation=45)
         plt.xticks(rotation=45)
-        self.ax3.tick_params(axis='both', which='major', labelsize=9)
-        self.ax3.tick_params(axis='both', which='minor', labelsize=7)
+        self.ax3.tick_params(axis="both", which="major", labelsize=9)
+        self.ax3.tick_params(axis="both", which="minor", labelsize=7)
 
-        plt.grid(which='major', color='#CCCCCC', linestyle='-', alpha=1)
-        plt.grid(which='minor', color='#CCCCCC', linestyle=':', alpha=0.5)
+        plt.grid(which="major", color="#CCCCCC", linestyle="-", alpha=1)
+        plt.grid(which="minor", color="#CCCCCC", linestyle=":", alpha=0.5)
         self.ax3.grid(self.grid)
 
         self.ax4 = self.fig.add_subplot(224)
-        self.ax4.set_title("Sinal Entrada Malha Aberta (Volts RMS)",
-                           color="#2B2B2B", fontsize=9)
+        self.ax4.set_title(
+            "Sinal Entrada Malha Aberta (Volts RMS)", color="#2B2B2B", fontsize=9
+        )
         self.ax4.set_xlabel("Tempo", color="#2B2B2B", fontsize=9)
         self.ax4.set_ylabel("Amplitude", color="#2B2B2B", fontsize=9)
-        self.ln4, = self.ax4.plot([], [], marker=".",
-                                  markersize=self.markersize,
-                                  lw=1.2, color="orange")
+        (self.ln4,) = self.ax4.plot(
+            [], [], marker=".", markersize=self.markersize, lw=1.2, color="orange"
+        )
         plt.yticks(np.arange(0, 3.5, 0.5), rotation=45)
         plt.xticks(rotation=45)
-        self.ax4.tick_params(axis='both', which='major', labelsize=9)
-        self.ax4.tick_params(axis='both', which='minor', labelsize=7)
+        self.ax4.tick_params(axis="both", which="major", labelsize=9)
+        self.ax4.tick_params(axis="both", which="minor", labelsize=7)
 
-        plt.grid(which='major', color='#CCCCCC', linestyle='-', alpha=1)
-        plt.grid(which='minor', color='#CCCCCC', linestyle=':', alpha=0.5)
+        plt.grid(which="major", color="#CCCCCC", linestyle="-", alpha=1)
+        plt.grid(which="minor", color="#CCCCCC", linestyle=":", alpha=0.5)
         self.ax4.grid(self.grid)
 
         # Axis que para plotar os gráficos

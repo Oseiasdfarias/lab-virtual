@@ -1,55 +1,46 @@
 ---
-title: Tutorial - Instalando o Python 3.10 no Ubuntu
+title: Python 3.11 no Ubuntu
 author: Oséias Farias
-
 ---
 
-Neste tutorial, vamos guiar você através do processo de instalação do Python 3.10 no sistema operacional Ubuntu. O Python é uma linguagem de programação poderosa e versátil, e ter a versão mais recente pode proporcionar acesso a recursos e melhorias mais recentes. 
+# Python 3.11 no Ubuntu
 
-#### Passo 1: Atualize o sistema
+O projeto roda em **Python 3.10 ou 3.11**. O Ubuntu 22.04 já traz o 3.10, e o 24.04 traz o
+3.12, que ainda não é suportado. Este guia instala o 3.11 ao lado do Python do sistema, sem
+substituí-lo.
 
-Antes de começar a instalação, é sempre recomendável garantir que seu sistema esteja atualizado. Abra o terminal e execute os seguintes comandos:
+A interface gráfica usa o CustomTkinter, que depende do **Tkinter**. Por isso, o pacote
+`python3.11-tk` faz parte da instalação.
+
+## Opção 1: pacotes do PPA *deadsnakes*
 
 ```bash
 sudo apt update
-sudo apt upgrade
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.11 python3.11-venv python3.11-tk
 ```
 
-Digite a senha de administrador quando solicitado e aguarde o término do processo.
+## Opção 2: uv
 
-#### Passo 2: Instale as dependências
-
-O Python requer algumas dependências que precisam ser instaladas. Execute o seguinte comando:
+O [uv](https://docs.astral.sh/uv/) baixa um Python já compilado (com Tkinter) para a pasta do
+usuário, sem `sudo`:
 
 ```bash
-sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv python install 3.11
 ```
 
-#### Passo 3: Baixe e compile o Python 3.10
-
-Agora, você está pronto para baixar e compilar o Python 3.10. Utilizaremos o `wget` para baixar o arquivo de origem e o `tar` para descompactar. Em seguida, compilaremos e instalaremos o Python. Execute os seguintes comandos:
+## Verificando
 
 ```bash
-wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
-tar -xf Python-3.10.0.tgz
-cd Python-3.10.0
-./configure --enable-optimizations
-make -j$(nproc)
-sudo make altinstall
+python3.11 --version
+python3.11 -c "import tkinter; print('Tkinter', tkinter.TkVersion)"
 ```
 
-O processo de compilação pode levar algum tempo. Se ocorrerem erros durante a execução do `make`, certifique-se de que todas as dependências foram instaladas corretamente no Passo 2.
+Com o uv, use `uv run --python 3.11 python --version` se o `python3.11` não estiver no `PATH`.
 
-#### Passo 4: Verifique a instalação
-
-Após a conclusão da instalação, verifique se o Python 3.10 foi instalado corretamente. Execute:
-
-```bash
-python3.10 --version
-```
-
-Você deverá ver a versão do Python 3.10.
-
-#### Conclusão
-
-Agora, você tem o Python 3.10 instalado no seu sistema Ubuntu. Lembre-se de que a instalação manual pode ter suas vantagens, mas também significa que você é responsável por manter as atualizações do Python. Se preferir, pode optar por instalar o Python 3.10 usando ferramentas como `pyenv` ou `deadsnakes`. Certifique-se de escolher o método que melhor atenda às suas necessidades.
+Os dois comandos devem responder sem erro. Em seguida, siga para as
+[dependências do projeto](../dependencias.md); com Poetry, aponte o ambiente para essa versão
+com `poetry env use python3.11`.

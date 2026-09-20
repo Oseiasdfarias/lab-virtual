@@ -23,6 +23,7 @@ e o resultado do teste.
 | DT-05 | Validar a gravação de ensaios e a detecção de USB corrigidas | Protótipo | Média |
 | DT-06 | Variantes de firmware não validadas: testar, documentar ou arquivar | Protótipo | Baixa |
 | DT-07 | Alerta de segurança do `setuptools` | Nova versão do `vpython` | Baixa |
+| DT-08 | Interface gráfica no Windows e no macOS | Máquina com Windows ou macOS | Baixa |
 
 ## DT-01 — Termo derivativo do PID
 
@@ -112,3 +113,14 @@ não pertence ao firmware.
   `setuptools < 82` porque o `vpython` 7.6.5 importa `pkg_resources`, removido na versão 82.
 - **Como fechar:** acompanhar novas versões do `vpython`; quando uma deixar de usar
   `pkg_resources`, remover a restrição do `pyproject.toml`, rodar `poetry lock` e os testes.
+
+## DT-08 — Interface gráfica no Windows e no macOS
+
+- **Onde:** `src_interface/lista_portas_usb.py` (`pyudev.Context` e `Monitor`).
+- **Estado:** a interface foi desenvolvida e usada só no Linux. A detecção de portas usa o
+  `pyudev`, que depende do `libudev` e não funciona fora do Linux. Os guias de instalação do site
+  avisam isso.
+- **Risco:** no Windows e no macOS a interface deve falhar ao abrir.
+- **Como fechar:** trocar o monitoramento por uma checagem periódica de
+  `serial.tools.list_ports.comports()` quando o `pyudev` não estiver disponível, e testar numa
+  máquina com cada sistema.

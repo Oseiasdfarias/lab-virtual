@@ -168,6 +168,11 @@ documentos:
     resumo: "Validações pendentes em hardware (PID, conversor, pino do sensor, dependências novas, gravação de ensaios), situação e compilação das 7 variantes de firmware não documentadas, e o alerta de setuptools preso ao vpython."
     tags: [divida_tecnica, firmware, hardware, validacao]
 
+  - path: docs_tcc/06_site_redesign/2026-09-13-documentacao-online-redesign-design.md
+    titulo: "Design do Redesenho da Documentação Online (Site MkDocs)"
+    resumo: "Decisões de design, público-alvo (estudantes e portfólio) e nova arquitetura temático-pedagógica do site em MkDocs Material."
+    tags: [site, redesign, mkdocs, documentacao]
+
   - path: docs_tcc/05_plano_publicacoes/pendencias_documentacao.md
     titulo: "Punch list — o que falta para finalizar a documentação"
     fonte: "síntese de 01_monografia/pendencias.md, 02_software/*, 03_docs_publicadas/resumo_mkdocs.md"
@@ -175,9 +180,9 @@ documentos:
     tags: [plano, pendencias, punch_list, proximos_passos]
 
   - path: docs_tcc/05_plano_publicacoes/plano_artigo.md
-    titulo: "Plano do artigo (planejado do zero)"
-    resumo: "Inventário do material que já sustenta um artigo (modelagem, identificação de sistemas, protótipo+firmware+interface+gêmeo digital) e perguntas em aberto para definir escopo/veículo com o usuário. Existe um rascunho antigo do COBENGE 2023 (coautoria com outro orientando) em softwares_aeropendulo/simulador_aeropendulo/docs/utils/, mas foi decidido (2026-09-13) não usá-lo como base."
-    tags: [plano, artigo, publicacao, a_definir]
+    titulo: "Plano do Artigo 1 (IEEE Latin America Transactions)"
+    resumo: "Plano editorial e estrutura completa em 6 seções (6 a 9 páginas) para submissão na IEEE Latin America Transactions em formato IEEEtran (duas colunas), integrando modelagem, ARX, métricas quantitativas, PID e gêmeo digital."
+    tags: [plano, artigo, ieee_latam, publicacao]
 
   - path: docs_tcc/05_plano_publicacoes/plano_livro.md
     titulo: "Plano do livro (esqueleto, não definido)"
@@ -188,6 +193,46 @@ documentos:
     titulo: "Fluxo de trabalho — abrir primeiro ao retomar"
     resumo: "Sequencia as fases (fechar pendências → finalizar documentação → artigo/livro em sessões separadas), com definição de pronto de cada uma e o que não fazer ainda."
     tags: [plano, roadmap, navegacao, entry_point]
+
+  - path: docs_tcc/05_plano_publicacoes/01_estrategia_dois_ciclos.md
+    titulo: "Estratégia Editorial em Dois Ciclos (Artigo 1 + Livro 1 agora; Artigo 2 + Livro 2 na v2)"
+    resumo: "Planejamento para maximizar o Lattes e acelerar publicações: Ciclo 1 imediato com a bancada local já pronta; Ciclo 2 com a plataforma web de laboratório remoto (v2.0)."
+    tags: [estrategia_publicacoes, lattes, artigo, livro, plano]
+
+  - path: docs_tcc/05_plano_publicacoes/02_checklist_implementacao.md
+    titulo: "Plano de Ação e Checklist de Implementação (Ciclos 1 e 2)"
+    resumo: "Checklist operacional dividido em 4 blocos para validação contínua: Dívidas Técnicas, Ciclo 1 (Artigo 1 e Livro 1), Desenvolvimento v2.0 RLaaS e Ciclo 2 (Artigo 2 e Livro 2)."
+    tags: [plano_acao, checklist, implementacao, artigo, livro, v2_rlaas]
+
+  - path: docs_tcc/07_evolucao_v2/00_visao_geral_rlaas.md
+    titulo: "Evolução v2.0 — Laboratório Remoto como Serviço (RLaaS) e Plataforma Web"
+    resumo: "Proposta arquitetural e conceitual da evolução da bancada didática para um Laboratório Remoto web (RLaaS) para democratização do ensino e pesquisa em controle, integrando fila de ensaios, segurança e desdobramentos no artigo e livro."
+    tags: [evolucao_v2, laboratorio_remoto, rlaas, artigo, livro, divulgacao_cientifica]
+
+  - path: docs_tcc/08_gerenciamento_livro/00_visao_geral_livro.md
+    titulo: "Visão Geral e Estado Atual do Livro 1"
+    resumo: "Síntese executiva do Livro 1: identificação da obra, linha do tempo dos marcos, estrutura de diretórios e compilação em 78 páginas com kaobook."
+    tags: [livro, kaobook, aeropendulo, controle, status, gestao]
+
+  - path: docs_tcc/08_gerenciamento_livro/01_status_capitulos.md
+    titulo: "Status Detalhado por Capítulo e Apêndice (Livro 1)"
+    resumo: "Matriz detalhada com o estado de cada um dos 9 capítulos e 4 apêndices, listando páginas estimadas, elementos já inseridos e pendências futuras."
+    tags: [livro, checklist, capitulos, pendencias, status]
+
+  - path: docs_tcc/08_gerenciamento_livro/02_backlog_proximos_passos.md
+    titulo: "Backlog de Pendências e Próximos Passos (Livro 1)"
+    resumo: "Painel de tarefas priorizado por níveis (Alta, Média, Baixa/Futura) orientando as próximas sessões de escrita e refinamento editorial."
+    tags: [livro, backlog, tarefas, roadmap, prioridades]
+
+  - path: docs_tcc/08_gerenciamento_livro/03_briefing_design_livro.md
+    titulo: "Briefing Editorial e Referências Canônicas para Design do Livro"
+    resumo: "Documento de briefing para direcionar o Claude Design: contextualização da obra, público-alvo, referências canônicas (Ogata, Nise, Åström, Aguirre) e elementos técnicos da planta."
+    tags: [briefing, design, claude_design, referencias, livros_controle]
+
+  - path: docs_tcc/08_gerenciamento_livro/04_diretrizes_design_capa_3d.md
+    titulo: "Diretrizes de Refinamento da Capa (Opção 3d — Perfil da Bancada)"
+    resumo: "Análise e calibração geométrica da opção de capa 3d: proporções da base de madeira, inclusão sutil da eletrônica, curvatura da hélice e transição física para a telemetria amostrada."
+    tags: [capa, design_3d, refinamento, identidade_visual, memoir]
 
 alertas_criticos:
   - "Há um rascunho antigo de artigo (COBENGE 2023, coautoria com outro orientando) em softwares_aeropendulo/simulador_aeropendulo/docs/utils/Template_Artigos_ST_COBENGE-2023.docx.pdf. Decisão de 2026-09-13: não usar como base — o artigo é planejado do zero (ver plano_artigo.md)."

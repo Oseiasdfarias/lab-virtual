@@ -1,42 +1,45 @@
 ---
-title: Tutorial - Instalando o Python 3.10 no Windows
+title: Python 3.11 no Windows
 author: Oséias Farias
-
 ---
 
-Neste tutorial, vamos orientar você pelo processo de instalação do Python 3.10 no sistema operacional Windows. O Python é uma linguagem de programação poderosa e versátil, e a instalação no Windows é um processo relativamente simples.
+# Python 3.11 no Windows
 
-#### Passo 1: Baixe o instalador do Python
+O projeto roda em **Python 3.10 ou 3.11**; versões 3.12 ou mais novas ainda não são suportadas
+pelas dependências.
 
-Acesse o site oficial do Python em [python.org](https://www.python.org/), vá até a seção "Downloads" e clique em "View the full list of Python downloads". Escolha a versão mais recente do Python 3.10 para Windows e baixe o instalador executável (`.exe`).
+## Instalação
 
-#### Passo 2: Execute o instalador
+1. Em [python.org/downloads/windows](https://www.python.org/downloads/windows/), baixe o
+   instalador de 64 bits (*Windows installer (64-bit)*) da versão 3.11 mais recente.
+2. Na primeira tela do instalador, marque **Add python.exe to PATH** e clique em
+   **Install Now**. A instalação padrão já inclui o pip e o Tkinter, usado pela interface
+   gráfica.
 
-Após o download, execute o arquivo `.exe` que você baixou. Na primeira tela do instalador, certifique-se de marcar a opção "Add Python 3.x to PATH" e clique em "Install Now". Isso adicionará o Python ao seu PATH, facilitando o uso do Python a partir do prompt de comando.
+Se você usa o `winget`, o mesmo resultado sai de:
 
-#### Passo 3: Aguarde a instalação
-
-O instalador começará a instalar o Python em seu sistema. Aguarde o término do processo.
-
-#### Passo 4: Verifique a instalação
-
-Após a conclusão da instalação, abra o prompt de comando e digite:
-
-```bash
-python --version
+```powershell
+winget install Python.Python.3.11
 ```
 
-Você deverá ver a versão do Python 3.10.
+## Verificando
 
-#### Passo 5: Instale o pip (gerenciador de pacotes do Python)
+Abra um novo terminal (PowerShell ou Prompt de Comando):
 
-O pip é uma ferramenta essencial para instalar pacotes Python. Certifique-se de que o pip está instalado executando o seguinte comando no prompt de comando:
-
-```bash
-python -m ensurepip --default-pip
+```powershell
+py -3.11 --version
+py -3.11 -c "import tkinter; print('Tkinter', tkinter.TkVersion)"
 ```
 
-#### Conclusão
+O lançador `py` escolhe a versão certa mesmo com outros Pythons instalados. Em seguida, siga
+para as [dependências do projeto](../dependencias.md); com Poetry, aponte o ambiente para essa
+versão com `poetry env use (py -3.11 -c "import sys; print(sys.executable)")` no PowerShell.
 
-Agora você tem o Python 3.10 instalado no seu sistema Windows. Você pode começar a criar e executar seus scripts Python. Lembre-se de que o Python 3.10 inclui o pip, então você pode usar o pip para instalar pacotes adicionais conforme necessário para seus projetos.
+!!! note "Porta serial"
+    No Windows, o ESP32 aparece como `COM3`, `COM4` etc. Se ele não aparecer no Gerenciador de
+    Dispositivos, instale o driver do conversor USB-serial da placa (CP210x ou CH340).
 
+!!! warning "Interface testada só no Linux"
+    A lista de portas da interface é atualizada com o `pyudev`, que depende do `libudev` do
+    Linux. Nesse sistema a interface nunca foi testada e deve falhar ao abrir; os scripts de análise
+    (identificação e métricas) não dependem disso.
