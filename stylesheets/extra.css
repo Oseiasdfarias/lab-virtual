@@ -722,15 +722,22 @@
   box-shadow: none !important;
 }
 
-/* Borda branca nos elementos escuros da ilustração 2D do aeropêndulo */
-[data-md-color-scheme="slate"] .lv-aeropendulo-card svg [fill="#1D1D1F"],
-[data-md-color-scheme="slate"] .lv-aeropendulo-card svg [stroke="#1D1D1F"],
-[data-md-color-scheme="slate"] .lv-aeropendulo-card svg polygon,
+/* Borda branca APENAS nos elementos escuros da ilustração 2D */
 [data-md-color-scheme="slate"] .lv-aeropendulo-card svg rect[fill="#1D1D1F"],
 [data-md-color-scheme="slate"] .lv-aeropendulo-card svg path[fill="#1D1D1F"],
 [data-md-color-scheme="slate"] .lv-aeropendulo-card svg circle[fill="#1D1D1F"] {
   stroke: rgba(255, 255, 255, 0.95) !important;
   stroke-width: 0.8px;
+}
+
+/* Mantém borda preta original nos elementos claros (base, mastro, reforço triangular) */
+[data-md-color-scheme="slate"] .lv-aeropendulo-card svg polygon,
+[data-md-color-scheme="slate"] .lv-aeropendulo-card svg rect[fill="#E3E3E5"],
+[data-md-color-scheme="slate"] .lv-aeropendulo-card svg rect[fill="#D8D8DA"],
+[data-md-color-scheme="slate"] .lv-aeropendulo-card svg rect[fill="#F0F0F2"],
+[data-md-color-scheme="slate"] .lv-aeropendulo-card svg circle[fill="#C9C9CB"] {
+  stroke: #1D1D1F !important;
+  stroke-width: 1.1px !important;
 }
 
 [data-md-color-scheme="slate"] .lv-aeropendulo-card svg text {
