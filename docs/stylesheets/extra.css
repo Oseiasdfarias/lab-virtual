@@ -683,3 +683,33 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ---------- Ilustração do Aeropêndulo (Modo Claro e Modo Escuro) ---------- */
+
+.lv-aeropendulo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.lv-aeropendulo-svg {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background-color: #ffffff;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+[data-md-color-scheme="slate"] .lv-aeropendulo-svg {
+  background-color: #1a1a1e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Inversão adaptativa suave para o desenho no dark mode */
+[data-md-color-scheme="slate"] .lv-aeropendulo-svg {
+  filter: invert(0.92) hue-rotate(180deg);
+}
