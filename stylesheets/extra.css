@@ -712,7 +712,8 @@
 .lv-aeropendulo-card svg {
   display: block;
   margin: 0 auto;
-  max-width: 100%;
+  width: 480px !important;
+  max-width: 100% !important;
   height: auto;
 }
 
